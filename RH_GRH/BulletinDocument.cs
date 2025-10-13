@@ -102,8 +102,8 @@ namespace RH_GRH
                                 info.Spacing(1);
                                 info.Item().Text(text => text.Span(model.Civilite + " . " + model.NomEmploye).FontColor(Colors.Blue.Medium).Bold().FontFamily("Montserrat").FontSize(10));
                                 info.Item().Text(text => text.Span(model.Matricule).FontColor(Colors.Red.Medium).FontFamily("Montserrat").FontSize(10));
-                                info.Item().Text(text => text.Span("Poste : " + model.Poste).FontColor(Colors.Blue.Lighten2).FontFamily("Montserrat").FontSize(10));
-                                info.Item().Text(text => text.Span("Numéro : " + model.NumeroEmploye).FontColor(Colors.Blue.Lighten2).FontFamily("Montserrat").FontSize(10));
+                                info.Item().Text(text => text.Span( model.Poste).FontColor(Colors.Blue.Lighten2).Bold().FontFamily("Montserrat").FontSize(10));
+                                info.Item().Text(text => text.Span(model.NumeroEmploye).FontColor(Colors.Blue.Lighten2).Bold().FontFamily("Montserrat").FontSize(10));
                             });
 
                         // Ligne 3 : Détails contractuels

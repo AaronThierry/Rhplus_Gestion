@@ -634,6 +634,10 @@ public static class IUTS
             public string Civilite { get; set; } = "";
             public string Poste { get; set; } = "";
             public string Matricule { get; set; } = "";
+            public string NumeroEmploye { get; set; } = "";
+            public DateTime DateNaissance { get; set; } // Utilisation de DateTime pour les dates
+            public DateTime DateEntree { get; set; } // Utilisation de DateTime pour les dates
+            public DateTime DateSortie { get; set; } // Nullable DateTime pour la sortie
 
 
             // Composantes de gains
@@ -1052,6 +1056,12 @@ public static class IUTS
                     NomPrenom = employe.Nom ?? "",
                     Civilite = employe.Civilite ?? "",
                     Matricule = employe.Matricule,
+                    Poste = employe.Poste,
+                    NumeroEmploye = employe.TelephoneEmploye,
+          
+                    DateNaissance = employe.DateNaissance,
+                    DateEntree = employe.DateEntree,
+
 
 
                     IdEntreprise = int.Parse(ComboBoxEntreprise.SelectedValue.ToString()),
@@ -1178,12 +1188,14 @@ public static class IUTS
 
             try
             {
+                byte[] logo = EntrepriseClass.GetLogoEntreprise(_lastSnapshot.IdEntreprise);
                 var model = new BulletinModel
                 {
                     NomEmploye = _lastSnapshot.NomPrenom,
                     Civilite = _lastSnapshot.Civilite,
                     Matricule = _lastSnapshot.Matricule,
-                    Poste = "Comptable",
+                    Poste = _lastSnapshot.Poste,
+                    NumeroEmploye = _lastSnapshot.NumeroEmploye,
                     Mois = "Août 2025",
                     SalaireDeBase = (double)_lastSnapshot.SalaireBase,
                     SalaireBrut = (double)_lastSnapshot.SalaireBrut,
@@ -1195,9 +1207,12 @@ public static class IUTS
                     AdresseEntreprise = "05 BP 6520 Ouagadougou / Ouagadougou,sect 06, Baskuy",
                     AdresseEmploye = "Ouagadougou,sect 06, Baskuy",
                     Periode = "01/08/2025 - 16/09/2025",
-                   // LogoEntreprise = File.ReadAllBytes(@"C:\Users\aaron\source\repos\RH_GRH\RH_GRH\Resources\logo-genux.png"),
+                    LogoEntreprise = logo,
                     TelephoneEntreprise = "+22607122327 / 72467143",
-                    courrier = "aarontamini01@gmail.com"
+                    courrier = "aarontamini01@gmail.com",
+                    DateNaissance = _lastSnapshot.DateNaissance,
+                    DateDebut = _lastSnapshot.DateEntree,
+                    DateFin = _lastSnapshot.DateSortie
 
                 };
 

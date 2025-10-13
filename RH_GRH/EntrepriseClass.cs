@@ -235,6 +235,34 @@ namespace RH_GRH
 
 
 
+
+        public static byte[] GetLogoEntreprise(int idEntreprise)
+        {
+            const string sql = "SELECT logo_entreprise FROM entreprise WHERE id_entreprise = @id";
+
+            var connect = new Dbconnect();
+            using (var con = connect.getconnection)
+            {
+                con.Open();
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", idEntreprise);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read() && !reader.IsDBNull(0))
+                        {
+                            return (byte[])reader["logo_entreprise"];
+                        }
+                    }
+                }
+            }
+
+            return null; // Aucun logo trouvé
+        }
+
+
+
     }
 
 

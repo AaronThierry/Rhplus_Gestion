@@ -27,6 +27,7 @@ namespace RH_GRH
                 p.modePayement,
                 p.identification,
                 p.cadre,
+                p.date_naissance,
                 p.date_entree,
                 p.date_sortie,
                 p.poste,
@@ -80,7 +81,9 @@ namespace RH_GRH
                                 jourContrat:reader.GetInt32("jourContrat"),
                                 salairemoyen:reader.GetDecimal("salairemoyen"),
                                 tpa:reader.GetDecimal("tpa"),
-                                civilite: reader.GetString("civilite")
+                                civilite: reader.GetString("civilite"),
+                                dateNaissance:reader.GetDateTime("date_naissance")
+                                
                             );
                         }
                     }

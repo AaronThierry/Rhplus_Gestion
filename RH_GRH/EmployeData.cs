@@ -12,11 +12,12 @@ namespace RH_GRH
         public int Id { get; set; }
         public string Nom { get; set; }
         public string Civilite { get; set; }
+        public DateTime DateNaissance { get; set; } // Utilisation de DateTime pour les dates
         public DateTime DateEntree { get; set; } // Utilisation de DateTime pour les dates
         public DateTime? DateSortie { get; set; } // Nullable DateTime pour la sortie
         public string Poste { get; set; }
         public string Matricule { get; set; }
-        public string Telephone { get; set; }
+        public string TelephoneEmploye { get; set; }
         public string Adresse { get; set; }
         public string Contrat { get; set; }
         public string ModePaiement { get; set; }
@@ -36,7 +37,7 @@ namespace RH_GRH
                        string poste, string matricule, string telephone, string adresse, string contrat,
                        string modePaiement, string identification, string cadre, int entreprise, string service, 
                        string categorie, double montant, string typeContrat, int heureContrat, int jourContrat,
-                       decimal salairemoyen, decimal tpa, string civilite)
+                       decimal salairemoyen, decimal tpa, string civilite,DateTime dateNaissance)
         {
             Id = id;
             Nom = nom;
@@ -44,7 +45,7 @@ namespace RH_GRH
             DateSortie = dateSortie;
             Poste = poste;
             Matricule = matricule;
-            Telephone = telephone;
+            TelephoneEmploye = telephone;
             Adresse = adresse;
             Contrat = contrat;
             ModePaiement = modePaiement;
@@ -60,6 +61,7 @@ namespace RH_GRH
             SalaireMoyen = salairemoyen;
             Tpa = tpa;
             Civilite = civilite;
+            DateNaissance = dateNaissance;
          }
 
         // Méthode pour vérifier si l'employé est encore actif
