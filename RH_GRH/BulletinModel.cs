@@ -13,6 +13,7 @@ namespace RH_GRH
             public string Poste { get; set; }
             public string Mois { get; set; }
             public double SalaireDeBase { get; set; }
+            public double SalaireBrut { get; set; }
             public decimal HeuresSup { get; set; }
             public decimal CNSS { get; set; }
             public decimal SalaireNet { get; set; }

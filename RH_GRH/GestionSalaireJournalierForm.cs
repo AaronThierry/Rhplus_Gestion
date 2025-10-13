@@ -1,5 +1,5 @@
-﻿using FastReport.Utils;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Math;
 using QuestPDF.Fluent;
 using System;
 using System.Collections.Generic;
@@ -8,35 +8,26 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static RH_GRH.GestionSalaireHoraireForm;
 
 namespace RH_GRH
 {
-
-    public partial class GestionSalaireHoraireForm : Form
+    public partial class GestionSalaireJournalierForm : Form
     {
-        // en haut du Form
-        private PayrollSnapshot _lastSnapshot;
-
-        public GestionSalaireHoraireForm()
+        public GestionSalaireJournalierForm()
         {
             InitializeComponent();
             InitPeriode();
-            
         }
 
 
 
-
-
-        /// <summary>
-        /// *******************************************
-        /// </summary>
-
-        // À appeler après InitializeComponent()
         private void InitPeriode()
         {
             guna2DateTimePickerDebut.Format = DateTimePickerFormat.Custom;
@@ -47,9 +38,6 @@ namespace RH_GRH
             // La fin ne peut jamais être avant le début
             guna2DateTimePickerFin.MinDate = guna2DateTimePickerDebut.Value.Date;
         }
-
-
-
 
 
 
@@ -118,44 +106,32 @@ namespace RH_GRH
 
 
 
-
         /// <summary>
-        /// nbreHC = unités contractuelles (heures) de la période.
-        /// hsNormJour = heures supp normales de jour (avec palier 8h: 1.15 puis 1.35)
-        /// hsNormNuit = heures supp normales de nuit (1.50)
-        /// hsFerieJour = heures supp férié/dimanche de jour (1.60)
-        /// hsFerieNuit = heures supp férié/dimanche de nuit (2.20)
+        /// nbreJC = unités contractuelles (heures) de la période.
+        /// hsDimFerie 
         /// </summary>
         /// 
-        public static decimal CalculerHeuresSupp(
-    int nbreHC,                 // heures contractuelles sur la période
-    decimal salaireCategoriel,  // salaire de la période
-    int hsNormJour,             // HS normales jour
-    int hsNormNuit,             // HS normales nuit
-    int hsFerieJour,            // HS férié/dimanche jour
-    int hsFerieNuit)            // HS férié/dimanche nuit
+
+
+        public static decimal CalculerJourSupp(
+            int nbreJC,                  // unités contractuelles en JOURS sur la période
+            decimal salaireCategoriel,   // salaire de la période
+            int nbJoursFerieDimanche,    // nombre de jours fériés/dimanches travaillés
+            decimal multiplicateur = 1.60m) // coef par jour (par défaut 1,60)
         {
-            if (nbreHC <= 0) return 0m;
-            if (salaireCategoriel < 0m) return 0m;
+            if (nbreJC <= 0)
+                throw new ArgumentOutOfRangeException(nameof(nbreJC), "nbreJC doit être > 0.");
+            if (salaireCategoriel < 0m)
+                throw new ArgumentOutOfRangeException(nameof(salaireCategoriel), "Salaire négatif.");
 
-            // clamp négatifs
-            hsNormJour = Math.Max(hsNormJour, 0);
-            hsNormNuit = Math.Max(hsNormNuit, 0);
-            hsFerieJour = Math.Max(hsFerieJour, 0);
-            hsFerieNuit = Math.Max(hsFerieNuit, 0);
+            // Clamp négatif
+            if (nbJoursFerieDimanche < 0) nbJoursFerieDimanche = 0;
 
-            decimal scParHeure = salaireCategoriel / nbreHC;
+            // Salaire catégoriel par JOUR
+            decimal scParJour = salaireCategoriel / nbreJC;
 
-            // paliers jour: 1..8 à 1.15 ; >8 à 1.35
-            int palier1 = Math.Min(hsNormJour, 8);
-            int palier2 = Math.Max(hsNormJour - 8, 0);
-
-            decimal total = 0m;
-            total += palier1 * (scParHeure * 1.15m);
-            total += palier2 * (scParHeure * 1.35m);
-            total += hsNormNuit * (scParHeure * 1.50m);
-            total += hsFerieJour * (scParHeure * 1.60m);
-            total += hsFerieNuit * (scParHeure * 2.20m);
+            // Prime jours supplémentaires
+            decimal total = nbJoursFerieDimanche * (scParJour * multiplicateur);
 
             return Math.Round(total, 2, MidpointRounding.AwayFromZero);
         }
@@ -164,8 +140,22 @@ namespace RH_GRH
 
 
 
-        //Somme indemnite 
 
+
+
+
+
+
+
+
+
+        //Recuperer Indemnite
+
+
+        /// <summary>
+        /// Sommes des indemnités (numéraire / nature) pour un employé d'une entreprise (IDs).
+        /// Clés retournées: "somme_numeraire", "somme_nature".
+        /// </summary>
         public static Dictionary<string, double> GetSommeIndemnitesParIds(int idEmploye)
         {
             const string sql =
@@ -213,14 +203,6 @@ namespace RH_GRH
 
 
 
-
-
-        //Prime Ancienete 
-        /// <summary>
-        /// //
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
 
 
 
@@ -336,6 +318,9 @@ namespace RH_GRH
 
 
 
+
+
+
         /// <summary>
         /// Salaire Brut
         /// </summary>
@@ -344,11 +329,17 @@ namespace RH_GRH
 
 
 
-            public static decimal CalculerSalaireBrut(decimal salaireBase,decimal primeHeuresSupp, decimal indemniteNumeraire,decimal indemniteNature,decimal primeAnciennete)
-            {
-                var brut = salaireBase + primeHeuresSupp + indemniteNumeraire + indemniteNature + primeAnciennete;
-                return Math.Round(brut, 2, MidpointRounding.AwayFromZero);
-            }
+        public static decimal CalculerSalaireBrut(decimal salaireBase, decimal primeHeuresSupp, decimal indemniteNumeraire, decimal indemniteNature, decimal primeAnciennete)
+        {
+            var brut = salaireBase + primeHeuresSupp + indemniteNumeraire + indemniteNature + primeAnciennete;
+            return Math.Round(brut, 2, MidpointRounding.AwayFromZero);
+        }
+
+
+
+
+
+
 
 
 
@@ -417,287 +408,135 @@ namespace RH_GRH
 
 
         public static class DeductibilitesIndemnites
+    {
+        // ───────────────────────────────── Exonérations unitaires ─────────────────────────────────
+
+        /// <summary>
+        /// Exonération logement :
+        /// - Numéraire seul : min(montant, min(20% * BS, 75 000))
+        /// - Nature seul    : min(montant / 240, 75 000)
+        /// - Sinon          : 0 (fidèle à ta logique "un seul type" actif)
+        /// </summary>
+        public static decimal CalculerExonerationLogement(
+            decimal montantLogementNumeraire,
+            decimal montantLogementNature,
+            decimal salaireBrutSocial)
         {
-            // ───────────────────────────────── Exonérations unitaires ─────────────────────────────────
+            if (salaireBrutSocial <= 0m) return 0m;
 
-            /// <summary>
-            /// Exonération logement :
-            /// - Numéraire seul : min(montant, min(20% * BS, 75 000))
-            /// - Nature seul    : min(montant / 240, 75 000)
-            /// - Sinon          : 0 (fidèle à ta logique "un seul type" actif)
-            /// </summary>
-            public static decimal CalculerExonerationLogement(
-                decimal montantLogementNumeraire,
-                decimal montantLogementNature,
-                decimal salaireBrutSocial)
+            if (montantLogementNumeraire > 0m && montantLogementNature == 0m)
             {
-                if (salaireBrutSocial <= 0m) return 0m;
-
-                if (montantLogementNumeraire > 0m && montantLogementNature == 0m)
-                {
-                    decimal plafondPourcentage = 0.20m * salaireBrutSocial;
-                    decimal plafondFixe = 75000m;
-                    return Min(montantLogementNumeraire, Min(plafondPourcentage, plafondFixe));
-                }
-                else if (montantLogementNumeraire == 0m && montantLogementNature > 0m)
-                {
-                    decimal plafondFixe = 75000m;
-                    return Min(montantLogementNature / 240m, plafondFixe);
-                }
-
-                return 0m;
+                decimal plafondPourcentage = 0.20m * salaireBrutSocial;
+                decimal plafondFixe = 75000m;
+                return Min(montantLogementNumeraire, Min(plafondPourcentage, plafondFixe));
+            }
+            else if (montantLogementNumeraire == 0m && montantLogementNature > 0m)
+            {
+                decimal plafondFixe = 75000m;
+                return Min(montantLogementNature / 240m, plafondFixe);
             }
 
-            /// <summary>
-            /// Exonération transport :
-            /// - Numéraire seul : min( min(5% * BS, 30 000), montant )
-            /// - Nature seul    : min( min(5% * BS, 30 000), montant/240 )
-            /// - Sinon          : 0
-            /// </summary>
-            public static decimal CalculerExonerationTransport(
-                decimal montantTransportNumeraire,
-                decimal montantTransportNature,
-                decimal salaireBrutSocial)
-            {
-                if (salaireBrutSocial <= 0m) return 0m;
-
-                decimal plafondPourcentage = 0.05m * salaireBrutSocial;
-                decimal plafondFixe = 30000m;
-                decimal montantBrut = 0m;
-
-                if (montantTransportNumeraire > 0m && montantTransportNature == 0m)
-                    montantBrut = montantTransportNumeraire;
-                else if (montantTransportNumeraire == 0m && montantTransportNature > 0m)
-                    montantBrut = montantTransportNature / 240m;
-                else
-                    return 0m;
-
-                return Min(Min(plafondPourcentage, plafondFixe), montantBrut);
-            }
-
-            /// <summary>
-            /// Exonération indemnité de fonction (numéraire) :
-            /// min(montant, min(5% * BS, 50 000))
-            /// </summary>
-            public static decimal CalculerExonerationFonction(
-                decimal montantFonctionNumeraire,
-                decimal salaireBrutSocial)
-            {
-                if (montantFonctionNumeraire <= 0m || salaireBrutSocial <= 0m) return 0m;
-
-                decimal plafondPourcentage = 0.05m * salaireBrutSocial;
-                decimal plafondFixe = 50000m;
-                return Min(montantFonctionNumeraire, Min(plafondPourcentage, plafondFixe));
-            }
-
-            /// <summary>
-            /// Déductibilité totale = exonLogement + exonTransport + exonFonction
-            /// </summary>
-            public static decimal CalculerDeductibiliteIndemnites(
-                decimal exonerationLogement,
-                decimal exonerationTransport,
-                decimal exonerationFonction)
-            {
-                return exonerationLogement + exonerationTransport + exonerationFonction;
-            }
-
-            // ───────────────────────────────── Orchestrateur pratique ─────────────────────────────────
-            /// <summary>
-            /// Calcule la déductibilité totale à partir des montants des indemnités et du salaire brut social,
-            /// puis journalise en une ligne.
-            /// </summary>
-            public static decimal ComputeDeductibiliteTotale(
-                decimal salaireBrutSocial,
-                decimal logementNum, decimal logementNat,
-                decimal transportNum, decimal transportNat,
-                decimal fonctionNum)
-            {
-                var exLog = CalculerExonerationLogement(logementNum, logementNat, salaireBrutSocial);
-                var exTrp = CalculerExonerationTransport(transportNum, transportNat, salaireBrutSocial);
-                var exFct = CalculerExonerationFonction(fonctionNum, salaireBrutSocial);
-
-                var total = CalculerDeductibiliteIndemnites(exLog, exTrp, exFct);
-
-                Debug.WriteLine(
-                    $"[DEDUCT] BSoc={salaireBrutSocial:N2} | Log(N)={logementNum:N2} Log( nat)={logementNat:N2} | " +
-                    $"Trp(N)={transportNum:N2} Trp(nat)={transportNat:N2} | Fct(N)={fonctionNum:N2} | " +
-                    $"ExLog={exLog:N2} ExTrp={exTrp:N2} ExFct={exFct:N2} | Total={total:N2}"
-                );
-
-                return total;
-            }
-
-            // Helper min decimal (équivalent à Math.min double côté Java)
-            private static decimal Min(decimal a, decimal b) => a < b ? a : b;
+            return 0m;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-public static class IUTS
-    {
         /// <summary>
-        /// Calcule l'IUTS (brut par tranches) et l'IUTS final après réduction liée au nombre de charges.
-        /// baseIUTS doit idéalement être déjà planché à la centaine (ex: floor( /100 )*100).
+        /// Exonération transport :
+        /// - Numéraire seul : min( min(5% * BS, 30 000), montant )
+        /// - Nature seul    : min( min(5% * BS, 30 000), montant/240 )
+        /// - Sinon          : 0
         /// </summary>
-        /// <param name="baseIUTS">Base imposable IUTS</param>
-        /// <param name="nombreCharges">Nombre de charges (1→8%, 2→10%, 3→12%, 4 ou +→14%)</param>
-        /// <param name="iutsBrut">Sortie: IUTS avant réduction</param>
-        /// <returns>IUTS final après réduction</returns>
-        public static decimal Calculer(decimal baseIUTS, int nombreCharges, out decimal iutsBrut)
+        public static decimal CalculerExonerationTransport(
+            decimal montantTransportNumeraire,
+            decimal montantTransportNature,
+            decimal salaireBrutSocial)
         {
-            if (baseIUTS <= 0m)
-            {
-                iutsBrut = 0m;
+            if (salaireBrutSocial <= 0m) return 0m;
+
+            decimal plafondPourcentage = 0.05m * salaireBrutSocial;
+            decimal plafondFixe = 30000m;
+            decimal montantBrut = 0m;
+
+            if (montantTransportNumeraire > 0m && montantTransportNature == 0m)
+                montantBrut = montantTransportNumeraire;
+            else if (montantTransportNumeraire == 0m && montantTransportNature > 0m)
+                montantBrut = montantTransportNature / 240m;
+            else
                 return 0m;
-            }
 
-            // Tranches (bornes incluses à gauche, exclusives à droite)
-            decimal[] bornesInf = { 0m, 30100m, 50100m, 80100m, 120100m, 170100m, 250100m };
-            decimal[] bornesSup = { 30000m, 50000m, 80000m, 120000m, 170000m, 250000m, decimal.MaxValue };
-            decimal[] tauxPct = { 0.00m, 12.10m, 13.90m, 15.70m, 18.40m, 21.70m, 25.00m };
+            return Min(Min(plafondPourcentage, plafondFixe), montantBrut);
+        }
 
-            decimal iuts = 0m;
+        /// <summary>
+        /// Exonération indemnité de fonction (numéraire) :
+        /// min(montant, min(5% * BS, 50 000))
+        /// </summary>
+        public static decimal CalculerExonerationFonction(
+            decimal montantFonctionNumeraire,
+            decimal salaireBrutSocial)
+        {
+            if (montantFonctionNumeraire <= 0m || salaireBrutSocial <= 0m) return 0m;
 
-            for (int i = 0; i < bornesInf.Length; i++)
-            {
-                if (baseIUTS < bornesInf[i]) break;
+            decimal plafondPourcentage = 0.05m * salaireBrutSocial;
+            decimal plafondFixe = 50000m;
+            return Min(montantFonctionNumeraire, Min(plafondPourcentage, plafondFixe));
+        }
 
-                decimal trancheDebut = bornesInf[i];
-                decimal trancheFin = bornesSup[i];
+        /// <summary>
+        /// Déductibilité totale = exonLogement + exonTransport + exonFonction
+        /// </summary>
+        public static decimal CalculerDeductibiliteIndemnites(
+            decimal exonerationLogement,
+            decimal exonerationTransport,
+            decimal exonerationFonction)
+        {
+            return exonerationLogement + exonerationTransport + exonerationFonction;
+        }
 
-                decimal plafond = baseIUTS < trancheFin ? baseIUTS : trancheFin;
-                decimal montantTranche = plafond - trancheDebut;
+        // ───────────────────────────────── Orchestrateur pratique ─────────────────────────────────
+        /// <summary>
+        /// Calcule la déductibilité totale à partir des montants des indemnités et du salaire brut social,
+        /// puis journalise en une ligne.
+        /// </summary>
+        public static decimal ComputeDeductibiliteTotale(
+            decimal salaireBrutSocial,
+            decimal logementNum, decimal logementNat,
+            decimal transportNum, decimal transportNat,
+            decimal fonctionNum)
+        {
+            var exLog = CalculerExonerationLogement(logementNum, logementNat, salaireBrutSocial);
+            var exTrp = CalculerExonerationTransport(transportNum, transportNat, salaireBrutSocial);
+            var exFct = CalculerExonerationFonction(fonctionNum, salaireBrutSocial);
 
-                if (montantTranche > 0m)
-                {
-                    iuts += montantTranche * (tauxPct[i] / 100m);
-                }
-            }
+            var total = CalculerDeductibiliteIndemnites(exLog, exTrp, exFct);
 
-            // Réduction selon charges
-            decimal reduction = 0m;
-            switch (nombreCharges)
-            {
-                case 1: reduction = 0.08m; break;
-                case 2: reduction = 0.10m; break;
-                case 3: reduction = 0.12m; break;
-                default:
-                    if (nombreCharges >= 4) reduction = 0.14m; // 4 ou plus
-                    break;
-            }
-
-            iutsBrut = Math.Round(iuts, 2, MidpointRounding.AwayFromZero);
-            decimal iutsFinal = Math.Round(iutsBrut * (1m - reduction), 2, MidpointRounding.AwayFromZero);
-
-            // Debug compact (une ligne)
             Debug.WriteLine(
-                $"[IUTS] Base={baseIUTS:N2} | Brut={iutsBrut:N2} | Charges={nombreCharges} (−{reduction:P0}) | Final={iutsFinal:N2}"
+                $"[DEDUCT] BSoc={salaireBrutSocial:N2} | Log(N)={logementNum:N2} Log( nat)={logementNat:N2} | " +
+                $"Trp(N)={transportNum:N2} Trp(nat)={transportNat:N2} | Fct(N)={fonctionNum:N2} | " +
+                $"ExLog={exLog:N2} ExTrp={exTrp:N2} ExFct={exFct:N2} | Total={total:N2}"
             );
 
-            return iutsFinal;
+            return total;
         }
+
+        // Helper min decimal (équivalent à Math.min double côté Java)
+        private static decimal Min(decimal a, decimal b) => a < b ? a : b;
 }
 
 
 
-        //******************************************************************************************
-        //******************************************************************************************
-        //******************************************************************************************
-        //**************//********************************//********************************************///
-        /// <summary>
-        /// /*******************************************
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
 
 
 
 
-        public sealed class PayrollSnapshot
-        {
-            // Identifiants
-            public int IdEntreprise { get; set; }
-            public int IdEmploye { get; set; }
-            public string AncienneteStr { get; set; } = "";
-
-            //Infos Employe 
-            public string NomPrenom { get; set; } = "";
-            public string Civilite { get; set; } = "";
-            public string Poste { get; set; } = "";
-            public string Matricule { get; set; } = "";
-
-
-            // Composantes de gains
-            public decimal SalaireBase { get; set; }
-            public decimal HeuresSupp { get; set; }
-            public decimal IndemNum { get; set; }
-            public decimal IndemNat { get; set; }
-            public decimal PrimeAnciennete { get; set; }
-
-            // Totaux bruts / sociaux
-            public decimal SalaireBrut { get; set; }
-            public decimal SalaireBrutSocial { get; set; }
-
-            // CNSS & TPA (employé / employeur)
-            public decimal CNSS_Employe { get; set; }
-            public decimal PensionEmployeur { get; set; }
-            public decimal RisqueProEmployeur { get; set; }
-            public decimal PFEmployeur { get; set; }
-            public decimal CNSS_Employeur_Total { get; set; }
-            public decimal TPA { get; set; }
-
-            // IUTS
-            public decimal DeductibiliteIndemnites { get; set; }
-            public decimal BaseIUTS { get; set; }
-            public decimal BaseIUTS_Arrondie { get; set; }
-            public int NombreCharges { get; set; }
-            public decimal IUTS_Brut { get; set; }
-            public decimal IUTS_Final { get; set; }
-
-            // Net
-            public decimal SalaireNet { get; set; }
-
-            // Méta (facultatif)
-            public string Contrat { get; set; } = "";
-            public decimal TauxTPA { get; set; }
-            public string StatutCadre { get; set; } = ""; // "oui"/"non"
-        }
-
-
-
-
-
-        //*******************************************************************************************
-        //*******************************************************************************************
-        //*******************************************************************************************
-
-
-
-
-
-
-
-
-        private void GestionSalaireHoraireForm_Load(object sender, EventArgs e)
+        private void GestionSalaireJournalierForm_Load(object sender, EventArgs e)
         {
             EntrepriseClass.ChargerEntreprises(ComboBoxEntreprise);
         }
 
 
-        /*///////////////**////////////////**************/****/*****************////////////
 
-        /// <summary>
-        /// Récupère l'ID sélectionné d'un ComboBox même si SelectedValue est un DataRowView.
-        /// </summary>
+
+
         private static int? GetSelectedIntOrNull(ComboBox combo, string valueColumnName)
         {
             if (combo.SelectedValue == null) return null;
@@ -719,7 +558,7 @@ public static class IUTS
             return null;
         }
 
-        private void ComboBoxEntreprise_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void ComboBoxEntreprise_SelectedIndexChanged(object sender, EventArgs e)
         {
             int? idEnt = GetSelectedIntOrNull(ComboBoxEntreprise, "id_entreprise");
             if (idEnt == null || idEnt.Value <= 0)
@@ -730,14 +569,8 @@ public static class IUTS
             }
             ComboBoxEmploye.Enabled = true;
             // Charge les employés filtrés par entreprise
-            EmployeClass.ChargerEmployesParEntrepriseHoraire(ComboBoxEmploye, idEnt.Value, null, true);
-
+            EmployeClass.ChargerEmployesParEntrepriseJournalier(ComboBoxEmploye, idEnt.Value, null, true);
         }
-
-
-
-        //**************//********************************//********************************************///
-
 
         private void ComboBoxEmploye_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -768,7 +601,6 @@ public static class IUTS
                 Console.WriteLine($"Récupération des informations de l'employé avec ID : {idEmploye}");
                 var employe = EmployeService.GetEmployeDetails(idEmploye);
 
-
                 if (employe != null)
                 {
                     // Mettre à jour l'interface utilisateur avec les informations de l'employé
@@ -781,18 +613,16 @@ public static class IUTS
                     textBoxCategorie.Text = employe.Categorie?.ToString() ?? string.Empty;
                     textBoxNP.Text = employe.Nom ?? string.Empty;
                     textBoxtypeContrat.Text = employe.TypeContrat ?? string.Empty;
-                    textBoxHcontrat.Text = employe.HeureContrat.ToString();
+                    textBoxHcontrat.Text = employe.JourContrat.ToString();
                     // Montant nullable
-                    textBoxSalaire.Text = employe.Montant.HasValue? employe.Montant.Value.ToString("N2", CultureInfo.CurrentCulture): string.Empty;
+                    textBoxSalaire.Text = employe.Montant.HasValue ? employe.Montant.Value.ToString("N2", CultureInfo.CurrentCulture) : string.Empty;
 
+                    //somme indemnite 
+                    // Appel
                     var sums = GetSommeIndemnitesParIds(idEmploye);
 
                     // Exemples d’usage
                     System.Diagnostics.Debug.WriteLine($"Num={sums["somme_numeraire"]:N2} | Nat={sums["somme_nature"]:N2} FCFA");
-
-
-
-
 
                 }
                 else
@@ -809,14 +639,7 @@ public static class IUTS
             }
         }
 
-        private void panel7_Paint(object sender, PaintEventArgs e)
-        {
-
-
-
-        }
-
-        private void guna2DateTimePicker_ValueChanged(object sender, EventArgs e)
+        private void guna2DateTimePickerFin_ValueChanged(object sender, EventArgs e)
         {
             var d0 = guna2DateTimePickerDebut.Value.Date;
             var d1 = guna2DateTimePickerFin.Value.Date;
@@ -824,10 +647,8 @@ public static class IUTS
             if (d1 < d0)
                 guna2DateTimePickerFin.Value = d0; // clamp
             textBoxAbsences.Enabled = (d1 > d0);
-            textboxJourNo.Enabled = (d1 > d0);
-            textBoxNuitNo.Enabled = (d1 > d0);
-            textBoxJourHSF.Enabled = (d1 > d0);  
-            textBoxNuitHSF.Enabled = (d1 > d0);
+            textboxFerieDimanche.Enabled = (d1 > d0);
+            
         }
 
         private void guna2DateTimePickerDebut_ValueChanged(object sender, EventArgs e)
@@ -835,21 +656,9 @@ public static class IUTS
             guna2DateTimePickerFin.MinDate = guna2DateTimePickerDebut.Value.Date;
         }
 
-
-
-
-
-
-
-        /// Bouton "Calculer"
-        /// <summary>
-        /// Bouton "Calculer"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
-        private void buttonEffacer_Click(object sender, EventArgs e)
-        {// 0) Sélection employé valide
+        private void buttonValider_Click(object sender, EventArgs e)
+        {
+            // 0) Sélection employé valide
             if (ComboBoxEmploye.SelectedValue == null
                 || !int.TryParse(ComboBoxEmploye.SelectedValue.ToString(), out int idEmploye)
                 || idEmploye <= 0)
@@ -868,13 +677,11 @@ public static class IUTS
 
             // Par la version correcte ci-dessous :
             decimal salaireCategoriel = (decimal)(employe.Montant ?? 0.0); // decimal? -> decimal
-            decimal unitesTotales = employe.HeureContrat;             // heures/jours contractuels
+          // heures/jours contractuels
+            int unitesTotalesJour = employe.JourContrat;             // heures/jours contractuels
             decimal unitesAbsences = ParseDecimal(textBoxAbsences.Text);              // heures/jours d'absence
             int nbreHC = employe.HeureContrat;
-            int hsNJ = ParseInt(textboxJourNo.Text);
-            int hsNN = ParseInt(textBoxNuitNo.Text);
-            int hsFJ = ParseInt(textBoxJourHSF.Text);
-            int hsFN = ParseInt(textBoxNuitHSF.Text);
+            int jsFDJ = ParseInt(textboxFerieDimanche.Text);
 
 
 
@@ -884,7 +691,7 @@ public static class IUTS
                 MessageBox.Show("Le salaire catégoriel de l'employé est invalide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (unitesTotales <= 0m)
+            if (unitesTotalesJour <= 0m)
             {
                 MessageBox.Show("Le nombre d’unités contractuelles doit être > 0.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -899,7 +706,7 @@ public static class IUTS
                 decimal baseUnitaire, unitesPayees;
                 decimal salaireBase = CalculerSalaireBase(
                     salaireCategoriel,
-                    unitesTotales,
+                    unitesTotalesJour,
                     unitesAbsences,
                     out baseUnitaire,
                     out unitesPayees
@@ -912,13 +719,11 @@ public static class IUTS
 
                 // Calcule les heures supplémentaires****************************************
 
-                decimal primeHS = CalculerHeuresSupp(nbreHC,
-                    salaireCategoriel, 
-                    hsNJ, 
-                    hsNN, 
-                    hsFJ, 
-                    hsFN);
-
+                decimal primeJourSupp = CalculerJourSupp(
+                    unitesTotalesJour,
+                    salaireCategoriel,
+                    jsFDJ 
+                );
 
 
 
@@ -933,17 +738,19 @@ public static class IUTS
 
 
 
-
                 //Calculer Salaire BRUT 
                 // 4) Calcul du BRUT
                 var sums = GetSommeIndemnitesParIds(idEmploye);
                 decimal salaireBrut = CalculerSalaireBrut(
                     salaireBase,
-                    primeHS,
+                    primeJourSupp,
                     (decimal)sums["somme_numeraire"],
                     (decimal)sums["somme_nature"],
                     prime   // ta prime d'ancienneté (decimal)
                 );
+
+
+
 
 
 
@@ -965,7 +772,7 @@ public static class IUTS
                 decimal tauxTpa = emp.Tpa.HasValue ? emp.Tpa.Value : 0m; // en %
 
                 // 2) Lire le salaire brut (déjà calculé et affiché)
-                
+
                 if (salaireBrut <= 0m)
                 {
                     MessageBox.Show("Salaire brut invalide ou non calculé.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -982,10 +789,6 @@ public static class IUTS
                 decimal pfEmployeur = CNSSCalculator.CalculerPFEmployeur(salaireBrut);
                 decimal cnssEmployeur = pensionEmployeur + risqueProEmployeur + pfEmployeur;
                 decimal tpa = CNSSCalculator.CalculerTpa(salaireBrut, tauxTpa);
-
-
-
-
 
 
 
@@ -1025,6 +828,7 @@ public static class IUTS
 
 
 
+
                 // CALCUL BASE IUTS ,SALAIRE BRUT SOCIAL
 
                 var r = IUTSCalculator.CalculerIUTS(
@@ -1039,99 +843,22 @@ public static class IUTS
 
 
 
-                //************************************************************************
-                //************************************************************************
-                //Remplir le snapshot
-
-
-
-
-                // Suppose : idEntreprise, idEmploye, anc, contrat, emp.Cadre, tauxTpa, etc. sont disponibles
-                var snapshot = new PayrollSnapshot
-                {
-                    NomPrenom = employe.Nom ?? "",
-                    Civilite = employe.Civilite ?? "",
-                    Matricule = employe.Matricule,
-
-
-                    IdEntreprise = int.Parse(ComboBoxEntreprise.SelectedValue.ToString()),
-                    IdEmploye = idEmploye,
-                    AncienneteStr = anc,
-
-
-                    // Gains
-                    SalaireBase = salaireBase,
-                    HeuresSupp = primeHS,
-                    IndemNum = (decimal)sums["somme_numeraire"],
-                    IndemNat = (decimal)sums["somme_nature"],
-                    PrimeAnciennete = prime,
-
-                    // Bruts
-                    SalaireBrut = salaireBrut,
-                    SalaireBrutSocial = SalairebrutSocial,
-
-                    // CNSS/TPA
-                    CNSS_Employe = cnssEmploye,
-                    PensionEmployeur = pensionEmployeur,
-                    RisqueProEmployeur = risqueProEmployeur,
-                    PFEmployeur = pfEmployeur,
-                    CNSS_Employeur_Total = cnssEmployeur,
-                    TPA = tpa,
-                    TauxTPA = tauxTpa,
-
-                    // IUTS
-                    DeductibiliteIndemnites = deductibiliteIndem,
-                    BaseIUTS = r.BaseIUTS,
-                    BaseIUTS_Arrondie = r.BaseIUTSArrondieCent,
-                    NombreCharges = nombreCharges,
-                    IUTS_Brut = iutsBrut,
-                    IUTS_Final = iutsFinal,
-
-                    // Net (exemple)
-                    SalaireNet = salaireBrut - cnssEmploye - iutsFinal - tpa,
-
-                    // Méta
-                    Contrat = contrat,
-                    StatutCadre = emp.Cadre
-                };
-
-                // 👉 Stocke-le pour le bouton "Enregistrer" (champ du Form)
-                _lastSnapshot = snapshot;
-
-                // (Optionnel) trace 1 ligne
-                System.Diagnostics.Debug.WriteLine(
-                    $"[SNAP] EmpId={snapshot.IdEmploye} | Brut={snapshot.SalaireBrut:N2} | BSoc={snapshot.SalaireBrutSocial:N2} | " +
-                    $"CNSS(E)={snapshot.CNSS_Employe:N2} | IUTS={snapshot.IUTS_Final:N2} | TPA={snapshot.TPA:N2} | Net={snapshot.SalaireNet:N2}"
-                );
-
-
-
-
-
-                //************************************************************************
-                //************************************************************************
-
-
-
 
                 // 4) Sortie terminal (fenêtre Sortie de VS)
                 Debug.WriteLine($"[PAIE] EmpId={idEmploye} | BaseUnitaire={baseUnitaire:N6} | UnitesPayees={unitesPayees:N2} | SalaireBase={salaireBase:N2} FCFA");
-                Debug.WriteLine($"[HS] EmpId={idEmploye} | NJ={hsNJ} NN={hsNN} FJ={hsFJ} FN={hsFN} | Total={primeHS:N2} FCFA");
+                System.Diagnostics.Debug.WriteLine($"[JOUR SUPP] Total={primeJourSupp:N2} FCFA");
                 System.Diagnostics.Debug.WriteLine($"[ANCIENNETE] {anc} | Prime={prime:N2} FCFA");
-                // 🔹 Trace complète en une seule ligne
                 Debug.WriteLine(
-                    $"[BRUT] EmpId={idEmploye} | Base={salaireBase:N2} | HS={primeHS:N2} | " +
-                    $"Num={sums["somme_numeraire"]:N2} | Nat={sums["somme_nature"]:N2} | " +
-                    $"Anc={prime:N2} | => BRUT={salaireBrut:N2} FCFA"
+                $"[BRUT] EmpId={idEmploye} | Base={salaireBase:N2} | HS={primeJourSupp:N2} | " +
+                $"Num={sums["somme_numeraire"]:N2} | Nat={sums["somme_nature"]:N2} | " +
+                $"Anc={prime:N2} | => BRUT={salaireBrut:N2} FCFA"
                 );
-                // 6) Debug COMPACT sur une seule ligne
                 Debug.WriteLine(
-                    $"[CNSS] EmpId={idEmploye} | Contrat='{contrat}' | Brut={salaireBrut:N2} | " +
-                    $"Employe(CNSS)={cnssEmploye:N2} | Employeur(Pens)={pensionEmployeur:N2} | Employeur(RP)={risqueProEmployeur:N2} | Employeur(PF)={pfEmployeur:N2} | " +
-                    $"Employeur cnss (Total)={cnssEmployeur:N2} | TPA@{tauxTpa:N2}%={tpa:N2}"
+                $"[CNSS] EmpId={idEmploye} | Contrat='{contrat}' | Brut={salaireBrut:N2} | " +
+                $"Employe(CNSS)={cnssEmploye:N2} | Employeur(Pens)={pensionEmployeur:N2} | Employeur(RP)={risqueProEmployeur:N2} | Employeur(PF)={pfEmployeur:N2} | " +
+                $"Employeur cnss (Total)={cnssEmployeur:N2} | TPA@{tauxTpa:N2}%={tpa:N2}"
                 );
                 Debug.WriteLine($"[IUTS] Base(⌊100⌋)={baseIutsArr:N2} | Charges={nombreCharges} | Brut={iutsBrut:N2} | Final={iutsFinal:N2}");
-                // … ta suite (affichage, net à payer, etc.)
                 // (si tu as une console attachée)
                 // Console.WriteLine($"[PAIE] EmpId={idEmploye} | BaseUnitaire={baseUnitaire:N6} | UnitesPayees={unitesPayees:N2} | SalaireBase={salaireBase:N2} FCFA");
             }
@@ -1160,42 +887,30 @@ public static class IUTS
             return decimal.TryParse(clean, NumberStyles.Any, CultureInfo.InvariantCulture, out var v) ? v : 0m;
         }
 
+
         private static int ParseInt(string s) => int.TryParse((s ?? "").Trim(), out var v) ? v : 0;
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void buttonparcourir_Click(object sender, EventArgs e)
         {
-            if (_lastSnapshot == null)
-            {
-                MessageBox.Show("Effectuez d'abord le calcul pour constituer les valeurs à enregistrer.",
-                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
             try
             {
                 var model = new BulletinModel
                 {
-                    NomEmploye = _lastSnapshot.NomPrenom,
-                    Civilite = _lastSnapshot.Civilite,
-                    Matricule = _lastSnapshot.Matricule,
+                    NomEmploye = "OUEDRAOGO Issa",
+                    Civilite = "M",
+                    Matricule = "EMP001",
                     Poste = "Comptable",
                     Mois = "Août 2025",
-                    SalaireDeBase = (double)_lastSnapshot.SalaireBase,
-                    SalaireBrut = (double)_lastSnapshot.SalaireBrut,
+                    SalaireDeBase = 30000.50,
                     HeuresSup = 15000,
-                    CNSS = (decimal)_lastSnapshot.CNSS_Employe,
-                    SalaireNet = (decimal)_lastSnapshot.SalaireNet,
+                    CNSS = 8500,
+                    SalaireNet = 256500,
                     Sigle = "RH+",
                     NomEntreprise = "Cyberlink Afrique",
                     AdresseEntreprise = "05 BP 6520 Ouagadougou / Ouagadougou,sect 06, Baskuy",
                     AdresseEmploye = "Ouagadougou,sect 06, Baskuy",
                     Periode = "01/08/2025 - 16/09/2025",
-                   // LogoEntreprise = File.ReadAllBytes(@"C:\Users\aaron\source\repos\RH_GRH\RH_GRH\Resources\logo-genux.png"),
+                    LogoEntreprise = File.ReadAllBytes(@"C:\Users\aaron\source\repos\RH_GRH\RH_GRH\Resources\logo-genux.png"),
                     TelephoneEntreprise = "+22607122327 / 72467143",
                     courrier = "aarontamini01@gmail.com"
 
@@ -1230,10 +945,7 @@ public static class IUTS
                 MessageBox.Show($"Une erreur est survenue :\n{ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        // --- UTIL ---
     }
-
 
 
 

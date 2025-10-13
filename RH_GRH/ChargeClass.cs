@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -151,6 +152,42 @@ ORDER BY p.nomPrenom, c.type, c.nom_prenom;";
 
             return table;
         }
+
+
+
+        // <summary>
+        /// Retourne le nombre total de charges pour un employé.
+        /// Hypothèses : table = 'charges', colonnes = 'id_employe' et optionnel 'is_active'.
+        /// </summary>
+        public static int CountTotalCharges(int idEmploye)
+        {
+            if (idEmploye <= 0) return 0;
+
+            // Si vous n'avez pas de colonne 'is_active', supprimez la condition correspondante.
+            const string sql = @"
+            SELECT COALESCE(COUNT(*), 0)
+            FROM charge
+            WHERE id_personnel = @emp;";
+
+            var connect = new Dbconnect();
+            using (var con = connect.getconnection)
+            {
+                con.Open();
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@emp", idEmploye);
+
+                    object o = cmd.ExecuteScalar();
+                    int count = (o == null || o == DBNull.Value) ? 0 : Convert.ToInt32(o);
+
+                    // Debug compact
+                    Debug.WriteLine($"[CHARGES] EmpId={idEmploye} | Total={count}");
+                    return count;
+                }
+            }
+        }
+
+
     }
 
 }

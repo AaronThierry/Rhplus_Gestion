@@ -21,7 +21,7 @@ namespace RH_GRH
         public GestionChargeForm()
         {
             InitializeComponent();
-            EntrepriseClass.ChargerEntreprises(ComboBoxEntreprise);
+             
             StyliserDataGridView();
             StyliserDataGridViewGestion();
             StyliserTabControl();

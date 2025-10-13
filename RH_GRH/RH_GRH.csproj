@@ -141,7 +141,10 @@
     <Compile Include="Charge.cs" />
     <Compile Include="ChargeClass.cs" />
     <Compile Include="ChargeRepository.cs" />
+    <Compile Include="CNSS_TPA_CALCULATOR.cs" />
     <Compile Include="EmployeClass.cs" />
+    <Compile Include="EmployeData.cs" />
+    <Compile Include="EmployeDetail.cs" />
     <Compile Include="GestionChargeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,8 +176,16 @@
     <Compile Include="GestionSalaireHoraireForm.Designer.cs">
       <DependentUpon>GestionSalaireHoraireForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GestionSalaireJournalierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionSalaireJournalierForm.Designer.cs">
+      <DependentUpon>GestionSalaireJournalierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Indemnite.cs" />
     <Compile Include="IndemniteClass.cs" />
     <Compile Include="IndemniteRepository.cs" />
+    <Compile Include="IUTSCalculator.cs" />
     <Compile Include="MatriculeGenerator.cs" />
     <Compile Include="ServiceClass.cs" />
     <Compile Include="DirectionClass.cs" />
@@ -226,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionSalaireHoraireForm.resx">
       <DependentUpon>GestionSalaireHoraireForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionSalaireJournalierForm.resx">
+      <DependentUpon>GestionSalaireJournalierForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionServiceForm.resx">
       <DependentUpon>GestionServiceForm.cs</DependentUpon>

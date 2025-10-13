@@ -92,7 +92,7 @@ namespace RH_GRH
                         // Ligne 2 : Infos employé
                         col.Item()
                             .AlignRight()
-                            .Width(200)
+                            .Width(250)
                             .PaddingTop(10)
                             .Border(1)
                             .BorderColor(Colors.Black)
@@ -100,8 +100,8 @@ namespace RH_GRH
                             .Column(info =>
                             {
                                 info.Spacing(1);
-                                info.Item().Text(text => text.Span(model.Civilite + " " + model.NomEmploye).FontColor(Colors.Blue.Medium).Bold().FontFamily("Montserrat").FontSize(10));
-                                info.Item().Text(text => text.Span("Identifiant : " + model.Matricule).FontColor(Colors.Red.Medium).FontFamily("Montserrat").FontSize(10));
+                                info.Item().Text(text => text.Span(model.Civilite + " . " + model.NomEmploye).FontColor(Colors.Blue.Medium).Bold().FontFamily("Montserrat").FontSize(10));
+                                info.Item().Text(text => text.Span(model.Matricule).FontColor(Colors.Red.Medium).FontFamily("Montserrat").FontSize(10));
                                 info.Item().Text(text => text.Span("Poste : " + model.Poste).FontColor(Colors.Blue.Lighten2).FontFamily("Montserrat").FontSize(10));
                                 info.Item().Text(text => text.Span("Numéro : " + model.NumeroEmploye).FontColor(Colors.Blue.Lighten2).FontFamily("Montserrat").FontSize(10));
                             });
@@ -207,10 +207,10 @@ namespace RH_GRH
                     table.ColumnsDefinition(columns =>
                     {
                         columns.ConstantColumn(25);  // N°
-                        columns.ConstantColumn(170);   // Désignation
+                        columns.ConstantColumn(155);   // Désignation
                         columns.ConstantColumn(60);  // Base
                         columns.ConstantColumn(60);   // Trav. Nbre/taux
-                        columns.ConstantColumn(60);   // Trav. Gains
+                        columns.ConstantColumn(75);   // Trav. Gains
                         columns.ConstantColumn(60);   // Trav. Retenues
                         columns.ConstantColumn(60);   // Pat. Nbre/taux
                         columns.ConstantColumn(60);   // Pat. Retenues
@@ -340,7 +340,7 @@ namespace RH_GRH
                     table.Cell().Element(BodyCell).Text("Total brut").FontSize(8).FontFamily("Montserrat").AlignRight().SemiBold();
                     table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).Background(Colors.Grey.Lighten4).AlignCenter().Text("15 000").FontSize(8).FontFamily("Montserrat").SemiBold();
+                    table.Cell().Element(BodyCell).Background(Colors.Grey.Lighten4).AlignCenter().Text(model.SalaireBrut.ToString("N2")).FontSize(8).FontFamily("Montserrat").SemiBold();
                     table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
@@ -453,7 +453,9 @@ namespace RH_GRH
                     table.Cell().Element(BodyCell).Text("Salaire net a payer").FontSize(8).FontFamily("Montserrat").AlignRight().SemiBold();
                     table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).Background(Colors.Grey.Lighten4).AlignCenter().Text("15 000").FontSize(8).FontFamily("Montserrat").SemiBold();
+                    var fr = System.Globalization.CultureInfo.GetCultureInfo("fr-FR");
+                    table.Cell().Element(BodyCell).Background(Colors.Grey.Lighten4).AlignCenter().Text(b => b.Span($"{Convert.ToDecimal(model.CNSS).ToString("N2", fr)} FCFA").FontFamily("Montserrat").SemiBold().FontSize(8));
+
                     table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");

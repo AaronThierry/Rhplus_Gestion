@@ -1,6 +1,6 @@
 ﻿namespace RH_GRH
 {
-    partial class GestionSalaireHoraireForm
+    partial class GestionSalaireJournalierForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,23 +30,13 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.buttonPrint = new System.Windows.Forms.Button();
+            this.buttonparcourir = new System.Windows.Forms.Button();
             this.buttonAjouter = new System.Windows.Forms.Button();
             this.buttonValider = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.textBoxJourHSF = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBoxNuitHSF = new Guna.UI2.WinForms.Guna2TextBox();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.textboxJourNo = new Guna.UI2.WinForms.Guna2TextBox();
+            this.textboxFerieDimanche = new Guna.UI2.WinForms.Guna2TextBox();
             this.textBoxAbsences = new Guna.UI2.WinForms.Guna2TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.textBoxNuitNo = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.textBoxNP = new Guna.UI2.WinForms.Guna2TextBox();
@@ -78,9 +68,11 @@
             this.label19 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -95,11 +87,11 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1154, 741);
-            this.panel1.TabIndex = 4;
+            this.panel1.TabIndex = 5;
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.buttonPrint);
+            this.panel3.Controls.Add(this.buttonparcourir);
             this.panel3.Controls.Add(this.buttonAjouter);
             this.panel3.Controls.Add(this.buttonValider);
             this.panel3.Controls.Add(this.panel7);
@@ -111,20 +103,20 @@
             this.panel3.Size = new System.Drawing.Size(1154, 681);
             this.panel3.TabIndex = 1;
             // 
-            // buttonPrint
+            // buttonparcourir
             // 
-            this.buttonPrint.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonPrint.BackColor = System.Drawing.Color.Green;
-            this.buttonPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonPrint.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.ForeColor = System.Drawing.Color.White;
-            this.buttonPrint.Location = new System.Drawing.Point(322, 629);
-            this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(522, 45);
-            this.buttonPrint.TabIndex = 222;
-            this.buttonPrint.Text = "Enregistrer et Imprimer";
-            this.buttonPrint.UseVisualStyleBackColor = false;
-            this.buttonPrint.Click += new System.EventHandler(this.buttonparcourir_Click);
+            this.buttonparcourir.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonparcourir.BackColor = System.Drawing.Color.Green;
+            this.buttonparcourir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonparcourir.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonparcourir.ForeColor = System.Drawing.Color.White;
+            this.buttonparcourir.Location = new System.Drawing.Point(322, 629);
+            this.buttonparcourir.Name = "buttonparcourir";
+            this.buttonparcourir.Size = new System.Drawing.Size(522, 45);
+            this.buttonparcourir.TabIndex = 222;
+            this.buttonparcourir.Text = "Enregistrer et Imprimer";
+            this.buttonparcourir.UseVisualStyleBackColor = false;
+            this.buttonparcourir.Click += new System.EventHandler(this.buttonparcourir_Click);
             // 
             // buttonAjouter
             // 
@@ -153,7 +145,7 @@
             this.buttonValider.TabIndex = 220;
             this.buttonValider.Text = "Valider";
             this.buttonValider.UseVisualStyleBackColor = false;
-            this.buttonValider.Click += new System.EventHandler(this.buttonEffacer_Click);
+            this.buttonValider.Click += new System.EventHandler(this.buttonValider_Click);
             // 
             // panel7
             // 
@@ -161,146 +153,39 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BackColor = System.Drawing.Color.MidnightBlue;
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel7.Controls.Add(this.textBoxJourHSF);
-            this.panel7.Controls.Add(this.label11);
-            this.panel7.Controls.Add(this.label13);
-            this.panel7.Controls.Add(this.label14);
-            this.panel7.Controls.Add(this.textBoxNuitHSF);
-            this.panel7.Controls.Add(this.panel9);
-            this.panel7.Controls.Add(this.textboxJourNo);
+            this.panel7.Controls.Add(this.label17);
+            this.panel7.Controls.Add(this.panel8);
             this.panel7.Controls.Add(this.textBoxAbsences);
             this.panel7.Controls.Add(this.label15);
-            this.panel7.Controls.Add(this.label12);
-            this.panel7.Controls.Add(this.label16);
-            this.panel7.Controls.Add(this.label17);
-            this.panel7.Controls.Add(this.textBoxNuitNo);
-            this.panel7.Controls.Add(this.panel8);
-            this.panel7.Location = new System.Drawing.Point(2, 397);
+            this.panel7.Location = new System.Drawing.Point(2, 394);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1146, 175);
             this.panel7.TabIndex = 219;
-            this.panel7.Paint += new System.Windows.Forms.PaintEventHandler(this.panel7_Paint);
             // 
-            // textBoxJourHSF
+            // textboxFerieDimanche
             // 
-            this.textBoxJourHSF.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxJourHSF.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textBoxJourHSF.DefaultText = "";
-            this.textBoxJourHSF.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.textBoxJourHSF.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.textBoxJourHSF.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.textBoxJourHSF.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.textBoxJourHSF.Enabled = false;
-            this.textBoxJourHSF.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxJourHSF.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxJourHSF.ForeColor = System.Drawing.Color.Black;
-            this.textBoxJourHSF.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxJourHSF.Location = new System.Drawing.Point(711, 109);
-            this.textBoxJourHSF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBoxJourHSF.Name = "textBoxJourHSF";
-            this.textBoxJourHSF.PlaceholderForeColor = System.Drawing.Color.DimGray;
-            this.textBoxJourHSF.PlaceholderText = "";
-            this.textBoxJourHSF.SelectedText = "";
-            this.textBoxJourHSF.Size = new System.Drawing.Size(161, 36);
-            this.textBoxJourHSF.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
-            this.textBoxJourHSF.TabIndex = 221;
-            this.textBoxJourHSF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label11
-            // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label11.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(711, 81);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(161, 30);
-            this.label11.TabIndex = 222;
-            this.label11.Text = "Jour";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label13.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(932, 81);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(161, 30);
-            this.label13.TabIndex = 223;
-            this.label13.Text = "Nuit";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label14
-            // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label14.BackColor = System.Drawing.Color.White;
-            this.label14.Font = new System.Drawing.Font("Montserrat Medium", 12.25F, System.Drawing.FontStyle.Bold);
-            this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(718, 45);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(388, 30);
-            this.label14.TabIndex = 220;
-            this.label14.Text = "Heure Supplementaires Ferie et Dimanche";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textBoxNuitHSF
-            // 
-            this.textBoxNuitHSF.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxNuitHSF.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textBoxNuitHSF.DefaultText = "";
-            this.textBoxNuitHSF.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.textBoxNuitHSF.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.textBoxNuitHSF.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.textBoxNuitHSF.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.textBoxNuitHSF.Enabled = false;
-            this.textBoxNuitHSF.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNuitHSF.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNuitHSF.ForeColor = System.Drawing.Color.Black;
-            this.textBoxNuitHSF.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNuitHSF.Location = new System.Drawing.Point(932, 109);
-            this.textBoxNuitHSF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBoxNuitHSF.Name = "textBoxNuitHSF";
-            this.textBoxNuitHSF.PlaceholderForeColor = System.Drawing.Color.DimGray;
-            this.textBoxNuitHSF.PlaceholderText = "";
-            this.textBoxNuitHSF.SelectedText = "";
-            this.textBoxNuitHSF.Size = new System.Drawing.Size(161, 36);
-            this.textBoxNuitHSF.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
-            this.textBoxNuitHSF.TabIndex = 224;
-            this.textBoxNuitHSF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // panel9
-            // 
-            this.panel9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel9.Location = new System.Drawing.Point(686, 54);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(441, 106);
-            this.panel9.TabIndex = 225;
-            // 
-            // textboxJourNo
-            // 
-            this.textboxJourNo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textboxJourNo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textboxJourNo.DefaultText = "";
-            this.textboxJourNo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.textboxJourNo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.textboxJourNo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.textboxJourNo.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.textboxJourNo.Enabled = false;
-            this.textboxJourNo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textboxJourNo.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textboxJourNo.ForeColor = System.Drawing.Color.Black;
-            this.textboxJourNo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textboxJourNo.Location = new System.Drawing.Point(40, 109);
-            this.textboxJourNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textboxJourNo.Name = "textboxJourNo";
-            this.textboxJourNo.PlaceholderForeColor = System.Drawing.Color.DimGray;
-            this.textboxJourNo.PlaceholderText = "";
-            this.textboxJourNo.SelectedText = "";
-            this.textboxJourNo.Size = new System.Drawing.Size(161, 36);
-            this.textboxJourNo.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
-            this.textboxJourNo.TabIndex = 208;
-            this.textboxJourNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textboxFerieDimanche.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textboxFerieDimanche.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textboxFerieDimanche.DefaultText = "";
+            this.textboxFerieDimanche.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.textboxFerieDimanche.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.textboxFerieDimanche.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.textboxFerieDimanche.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.textboxFerieDimanche.Enabled = false;
+            this.textboxFerieDimanche.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.textboxFerieDimanche.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textboxFerieDimanche.ForeColor = System.Drawing.Color.Black;
+            this.textboxFerieDimanche.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.textboxFerieDimanche.Location = new System.Drawing.Point(142, 23);
+            this.textboxFerieDimanche.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textboxFerieDimanche.Name = "textboxFerieDimanche";
+            this.textboxFerieDimanche.PlaceholderForeColor = System.Drawing.Color.DimGray;
+            this.textboxFerieDimanche.PlaceholderText = "";
+            this.textboxFerieDimanche.SelectedText = "";
+            this.textboxFerieDimanche.Size = new System.Drawing.Size(161, 36);
+            this.textboxFerieDimanche.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
+            this.textboxFerieDimanche.TabIndex = 208;
+            this.textboxFerieDimanche.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxAbsences
             // 
@@ -340,75 +225,14 @@
             this.label15.Text = "Absences";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label12
-            // 
-            this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label12.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(40, 81);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(161, 30);
-            this.label12.TabIndex = 209;
-            this.label12.Text = "Jour";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label16
-            // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label16.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(261, 81);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(161, 30);
-            this.label16.TabIndex = 209;
-            this.label16.Text = "Nuit";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label17
-            // 
-            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label17.BackColor = System.Drawing.Color.White;
-            this.label17.Font = new System.Drawing.Font("Montserrat Medium", 12.25F, System.Drawing.FontStyle.Bold);
-            this.label17.ForeColor = System.Drawing.Color.Red;
-            this.label17.Location = new System.Drawing.Point(78, 45);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(314, 30);
-            this.label17.TabIndex = 206;
-            this.label17.Text = "Heure Supplementaires Normaux";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textBoxNuitNo
-            // 
-            this.textBoxNuitNo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxNuitNo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textBoxNuitNo.DefaultText = "";
-            this.textBoxNuitNo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.textBoxNuitNo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.textBoxNuitNo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.textBoxNuitNo.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.textBoxNuitNo.Enabled = false;
-            this.textBoxNuitNo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNuitNo.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNuitNo.ForeColor = System.Drawing.Color.Black;
-            this.textBoxNuitNo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNuitNo.Location = new System.Drawing.Point(261, 109);
-            this.textBoxNuitNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBoxNuitNo.Name = "textBoxNuitNo";
-            this.textBoxNuitNo.PlaceholderForeColor = System.Drawing.Color.DimGray;
-            this.textBoxNuitNo.PlaceholderText = "";
-            this.textBoxNuitNo.SelectedText = "";
-            this.textBoxNuitNo.Size = new System.Drawing.Size(161, 36);
-            this.textBoxNuitNo.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
-            this.textBoxNuitNo.TabIndex = 210;
-            this.textBoxNuitNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // panel8
             // 
             this.panel8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel8.Location = new System.Drawing.Point(15, 54);
+            this.panel8.Controls.Add(this.textboxFerieDimanche);
+            this.panel8.Location = new System.Drawing.Point(347, 98);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(441, 106);
+            this.panel8.Size = new System.Drawing.Size(441, 68);
             this.panel8.TabIndex = 219;
             // 
             // panel6
@@ -740,7 +564,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1146, 170);
             this.panel5.TabIndex = 206;
-            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
             // ComboBoxEntreprise
             // 
@@ -758,7 +581,7 @@
             this.ComboBoxEntreprise.Name = "ComboBoxEntreprise";
             this.ComboBoxEntreprise.Size = new System.Drawing.Size(305, 36);
             this.ComboBoxEntreprise.TabIndex = 102;
-            this.ComboBoxEntreprise.SelectedIndexChanged += new System.EventHandler(this.ComboBoxEntreprise_SelectedIndexChanged_1);
+            this.ComboBoxEntreprise.SelectedIndexChanged += new System.EventHandler(this.ComboBoxEntreprise_SelectedIndexChanged);
             // 
             // panel4
             // 
@@ -805,7 +628,7 @@
             this.guna2DateTimePickerFin.TabIndex = 206;
             this.guna2DateTimePickerFin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.guna2DateTimePickerFin.Value = new System.DateTime(2025, 8, 27, 9, 58, 12, 0);
-            this.guna2DateTimePickerFin.ValueChanged += new System.EventHandler(this.guna2DateTimePicker_ValueChanged);
+            this.guna2DateTimePickerFin.ValueChanged += new System.EventHandler(this.guna2DateTimePickerFin_ValueChanged);
             // 
             // label2
             // 
@@ -912,21 +735,35 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1154, 60);
             this.label1.TabIndex = 1;
-            this.label1.Text = ">> Salaire Horaire";
+            this.label1.Text = ">> Salaire Journalier";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // GestionSalaireHoraireForm
+            // label17
+            // 
+            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label17.BackColor = System.Drawing.Color.White;
+            this.label17.Font = new System.Drawing.Font("Montserrat Medium", 12.25F, System.Drawing.FontStyle.Bold);
+            this.label17.ForeColor = System.Drawing.Color.Red;
+            this.label17.Location = new System.Drawing.Point(411, 85);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(314, 30);
+            this.label17.TabIndex = 209;
+            this.label17.Text = "Heure Supplementaires Normaux";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // GestionSalaireJournalierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1154, 741);
             this.Controls.Add(this.panel1);
-            this.Name = "GestionSalaireHoraireForm";
-            this.Text = "GestionSalaireHoraireForm";
-            this.Load += new System.EventHandler(this.GestionSalaireHoraireForm_Load);
+            this.Name = "GestionSalaireJournalierForm";
+            this.Text = "GestionSalaireJournalierForm";
+            this.Load += new System.EventHandler(this.GestionSalaireJournalierForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -939,53 +776,44 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
-        private Guna.UI2.WinForms.Guna2ComboBox ComboBoxEmploye;
-        private System.Windows.Forms.Label label19;
-        private Guna.UI2.WinForms.Guna2ComboBox ComboBoxEntreprise;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Panel panel4;
-        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePickerDebut;
-        private System.Windows.Forms.Label label70;
-        private System.Windows.Forms.Label label3;
-        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePickerFin;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label4;
-        private Guna.UI2.WinForms.Guna2TextBox textBoxMatricule;
-        private System.Windows.Forms.Label label7;
-        private Guna.UI2.WinForms.Guna2TextBox textBoxtypeContrat;
-        private System.Windows.Forms.Label label6;
-        private Guna.UI2.WinForms.Guna2TextBox textBoxContrat;
-        private System.Windows.Forms.Label label5;
-        private Guna.UI2.WinForms.Guna2TextBox textBoxPoste;
+        private System.Windows.Forms.Button buttonparcourir;
+        private System.Windows.Forms.Button buttonAjouter;
+        private System.Windows.Forms.Button buttonValider;
+        private System.Windows.Forms.Panel panel7;
+        private Guna.UI2.WinForms.Guna2TextBox textboxFerieDimanche;
+        private Guna.UI2.WinForms.Guna2TextBox textBoxAbsences;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel6;
-        private Guna.UI2.WinForms.Guna2TextBox textBoxCategorie;
-        private System.Windows.Forms.Label label8;
+        private Guna.UI2.WinForms.Guna2TextBox textBoxNP;
+        private System.Windows.Forms.Label label18;
         private Guna.UI2.WinForms.Guna2TextBox textBoxSalaire;
         private System.Windows.Forms.Label label10;
         private Guna.UI2.WinForms.Guna2TextBox textBoxHcontrat;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel7;
-        private Guna.UI2.WinForms.Guna2TextBox textboxJourNo;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
+        private Guna.UI2.WinForms.Guna2TextBox textBoxCategorie;
+        private System.Windows.Forms.Label label8;
+        private Guna.UI2.WinForms.Guna2TextBox textBoxPoste;
+        private System.Windows.Forms.Label label7;
+        private Guna.UI2.WinForms.Guna2TextBox textBoxMatricule;
+        private Guna.UI2.WinForms.Guna2TextBox textBoxtypeContrat;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private Guna.UI2.WinForms.Guna2TextBox textBoxContrat;
+        private System.Windows.Forms.Panel panel5;
+        private Guna.UI2.WinForms.Guna2ComboBox ComboBoxEntreprise;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label3;
+        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePickerFin;
+        private System.Windows.Forms.Label label2;
+        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePickerDebut;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Label label25;
+        private Guna.UI2.WinForms.Guna2ComboBox ComboBoxEmploye;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label17;
-        private Guna.UI2.WinForms.Guna2TextBox textBoxNuitNo;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Panel panel8;
-        private Guna.UI2.WinForms.Guna2TextBox textBoxJourHSF;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private Guna.UI2.WinForms.Guna2TextBox textBoxNuitHSF;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Button buttonAjouter;
-        private System.Windows.Forms.Button buttonValider;
-        private System.Windows.Forms.Button buttonPrint;
-        private Guna.UI2.WinForms.Guna2TextBox textBoxNP;
-        private System.Windows.Forms.Label label18;
-        private Guna.UI2.WinForms.Guna2TextBox textBoxAbsences;
     }
 }
