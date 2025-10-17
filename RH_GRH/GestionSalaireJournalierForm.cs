@@ -907,7 +907,7 @@ namespace RH_GRH
                     SalaireNet = 256500,
                     Sigle = "RH+",
                     NomEntreprise = "Cyberlink Afrique",
-                    AdresseEntreprise = "05 BP 6520 Ouagadougou / Ouagadougou,sect 06, Baskuy",
+                    AdressePhysiqueEntreprise = "05 BP 6520 Ouagadougou / Ouagadougou,sect 06, Baskuy",
                     AdresseEmploye = "Ouagadougou,sect 06, Baskuy",
                     Periode = "01/08/2025 - 16/09/2025",
                     LogoEntreprise = File.ReadAllBytes(@"C:\Users\aaron\source\repos\RH_GRH\RH_GRH\Resources\logo-genux.png"),
@@ -922,7 +922,7 @@ namespace RH_GRH
                 {
                     saveDialog.Title = "Enregistrer le bulletin de paie";
                     saveDialog.Filter = "Fichier PDF (*.pdf)|*.pdf";
-                    saveDialog.FileName = $"Bulletin_{model.Matricule}_{model.Mois.Replace(" ", "_")}.pdf";
+                    saveDialog.FileName = $"Bulletin_{model.Matricule}_{model.Periode.Replace(" ", "_")}.pdf";
 
                     if (saveDialog.ShowDialog() == DialogResult.OK)
                     {

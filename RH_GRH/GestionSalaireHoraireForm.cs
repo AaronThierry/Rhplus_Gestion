@@ -629,23 +629,62 @@ public static class IUTS
             public int IdEmploye { get; set; }
             public string AncienneteStr { get; set; } = "";
 
+
+
+            //Salaire Base
+            public decimal BaseUnitaire { get; set; }
+            public decimal SalaireBase { get; set; }
+            public decimal TauxSalaireDeBase { get; set; }
+            //****************************************
+
+
+            //HEURES SUPPLEMENTAIRES
+            public decimal PrimeHeuressupp { get; set; }
+            public decimal TauxHeureSupp { get; set; }
+            //******************************************
+
+
+            //PRIME ANCIENNETE
+            public decimal PrimeAnciennete { get; set; }
+            //******************************************
+
+
+
+
+
             //Infos Employe 
             public string NomPrenom { get; set; } = "";
             public string Civilite { get; set; } = "";
             public string Poste { get; set; } = "";
             public string Matricule { get; set; } = "";
             public string NumeroEmploye { get; set; } = "";
+            public string AdresseEmploye { get; set; } = "";
+            public string PeriodeSalaire { get; set; } = "";
+            public string Contrat { get; set; } = "";
+            public string Sexe { get; set; } = "";
+            public string DureeContrat { get; set; } = "";
+            public int HeureContrat { get; set; }
+
+
+
+            public string Sigle { get; set; } = "";
+            public string NomEntreprise { get; set; } = "";
+            public string TelephoneEntreprise { get; set; } = "";
+            public string EmailEntreprise { get; set; } = "";
+            public string AdressePhysiqueEntreprise { get; set; } = "";
+            public string AdressePostaleEntreprise { get; set; } = "";
+
+
             public DateTime DateNaissance { get; set; } // Utilisation de DateTime pour les dates
             public DateTime DateEntree { get; set; } // Utilisation de DateTime pour les dates
-            public DateTime DateSortie { get; set; } // Nullable DateTime pour la sortie
+            public DateTime? DateSortie { get; set; } // Nullable DateTime pour la sortie
 
 
             // Composantes de gains
-            public decimal SalaireBase { get; set; }
+
             public decimal HeuresSupp { get; set; }
             public decimal IndemNum { get; set; }
             public decimal IndemNat { get; set; }
-            public decimal PrimeAnciennete { get; set; }
 
             // Totaux bruts / sociaux
             public decimal SalaireBrut { get; set; }
@@ -671,11 +710,36 @@ public static class IUTS
             public decimal SalaireNet { get; set; }
 
             // Méta (facultatif)
-            public string Contrat { get; set; } = "";
+            public string Categorie { get; set; } = "";
+            public string Direction { get; set; } = "";
+            public string Service { get; set; } = "";
+            public string NumeroCnssEmploye { get; set; } = "";
             public decimal TauxTPA { get; set; }
             public string StatutCadre { get; set; } = ""; // "oui"/"non"
+
+
         }
 
+
+
+
+
+
+
+        public void RemplirIndemnites(Dictionary<string, object> para, int idEmploye)
+        {
+            var listeIndemnites = IndemniteClass.GetIndemnitesByEmploye(idEmploye);
+
+            int maxIndemnites = 5; // Tu limites à 5 indemnités max, si tu veux plus, ajuste cette valeur
+            for (int i = 0; i < Math.Min(listeIndemnites.Count, maxIndemnites); i++)
+            {
+                var ind = listeIndemnites[i];
+                para.Add($"type{i + 1}", ind.NomIndemnite);
+                para.Add($"valeur{i + 1}", ind.MontantIndemnite);
+                para.Add($"taux_indemnite{i + 1}", ind.TauxIndem);
+            }
+
+        }
 
 
 
@@ -922,7 +986,7 @@ public static class IUTS
                     hsNN, 
                     hsFJ, 
                     hsFN);
-
+                decimal tauxHS = hsNJ + hsNN + hsFJ + hsFN;
 
 
 
@@ -1040,13 +1104,19 @@ public static class IUTS
                 decimal iutsFinal = IUTS.Calculer(baseIutsArr, nombreCharges, out iutsBrut); // ta méthode de barème
 
 
+                // Récupère les deux dates
+                DateTime d0 = guna2DateTimePickerDebut.Value.Date;
+                DateTime d1 = guna2DateTimePickerFin.Value.Date;
 
+                // Concatène en "dd/MM/yyyy - dd/MM/yyyy"
+                string periode = $"{d0:dd/MM/yyyy} - {d1:dd/MM/yyyy}";
 
 
                 //************************************************************************
                 //************************************************************************
                 //Remplir le snapshot
 
+               
 
 
 
@@ -1058,9 +1128,31 @@ public static class IUTS
                     Matricule = employe.Matricule,
                     Poste = employe.Poste,
                     NumeroEmploye = employe.TelephoneEmploye,
-          
+                    AdresseEmploye = employe.Adresse,
+                    PeriodeSalaire = periode,
+                    Categorie = employe.Categorie,
+                    Service = employe.Service,
+                    Direction = employe.Direction,
+                    NumeroCnssEmploye = employe.NumeroCnssEmploye,
+                    Sexe = employe.Sexe,
+                    DureeContrat = employe.DureeContrat,
+                    HeureContrat  = employe.HeureContrat,
+
+                    // Infos entreprise
+                    Sigle = employe.Sigle,
+                    NomEntreprise = employe.NomEntreprise,
+                    TelephoneEntreprise = employe.TelephoneEntreprise,
+                    EmailEntreprise = employe.EmailEntreprise,
+                    AdressePhysiqueEntreprise = employe.AdressePhysiqueEntreprise,
+                    AdressePostaleEntreprise = employe.AdressePostaleEntreprise,
+
+
+
+                    ///*******************
+
                     DateNaissance = employe.DateNaissance,
                     DateEntree = employe.DateEntree,
+                    DateSortie = employe?.DateSortie,     // type DateTime?
 
 
 
@@ -1070,11 +1162,10 @@ public static class IUTS
 
 
                     // Gains
-                    SalaireBase = salaireBase,
+
                     HeuresSupp = primeHS,
                     IndemNum = (decimal)sums["somme_numeraire"],
                     IndemNat = (decimal)sums["somme_nature"],
-                    PrimeAnciennete = prime,
 
                     // Bruts
                     SalaireBrut = salaireBrut,
@@ -1102,7 +1193,30 @@ public static class IUTS
 
                     // Méta
                     Contrat = contrat,
-                    StatutCadre = emp.Cadre
+                    StatutCadre = emp.Cadre,
+
+
+
+                    //*******************
+                    //SALAIRE BASE
+                    BaseUnitaire = baseUnitaire,
+                    SalaireBase = salaireBase,
+                    TauxSalaireDeBase = unitesPayees,
+                    //*******************
+
+
+                    //********************
+                    //HEURES SUPPLEMENTAIRES
+                     PrimeHeuressupp = primeHS,
+                     TauxHeureSupp = tauxHS,
+                    //********************
+
+
+                    //*******************
+                    //PRIME ANCIENNETE
+                    PrimeAnciennete = prime
+
+
                 };
 
                 // 👉 Stocke-le pour le bouton "Enregistrer" (champ du Form)
@@ -1185,9 +1299,98 @@ public static class IUTS
                     "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
+            // Exemple pour récupérer et afficher la première indemnité
+            var listeIndemnites = IndemniteClass.GetIndemnitesByEmploye(_lastSnapshot.IdEmploye);
             try
             {
+                /// Initialiser les variables avec des valeurs par défaut (vides ou à zéro)
+                string Numero_indemnite_1 = string.Empty;
+                string Nom_Indemnite_1 = string.Empty;   // Nom de la première indemnité (vide par défaut)
+                string Montant_Indemnite_1 = string.Empty;        // Montant de la première indemnité (0.0 par défaut)
+                string Taux_Indemnite_1 = string.Empty;           // Taux de la première indemnité (0.0 par défaut)
+
+
+                string Numero_indemnite_2 = string.Empty;
+                string Nom_Indemnite_2 = string.Empty;   // Nom de la deuxième indemnité (vide par défaut)
+                string Montant_Indemnite_2 = string.Empty;        // Montant de la deuxième indemnité (0.0 par défaut)
+                string Taux_Indemnite_2 = string.Empty;           // Taux de la deuxième indemnité (0.0 par défaut)
+
+
+                string Numero_indemnite_3 = string.Empty;
+                string Nom_Indemnite_3 = string.Empty;   // Nom de la deuxième indemnité (vide par défaut)
+                string Montant_Indemnite_3 = string.Empty;        // Montant de la deuxième indemnité (0.0 par défaut)
+                string Taux_Indemnite_3 = string.Empty;           // Taux de la deuxième indemnité (0.0 par défaut)
+
+
+                string Numero_indemnite_4 = string.Empty;
+                string Nom_Indemnite_4 = string.Empty;   // Nom de la deuxième indemnité (vide par défaut)
+                string Montant_Indemnite_4 = string.Empty;        // Montant de la deuxième indemnité (0.0 par défaut)
+                string Taux_Indemnite_4 = string.Empty;           // Taux de la deuxième indemnité (0.0 par défaut)
+
+
+                string Numero_indemnite_5 = string.Empty;
+                string Nom_Indemnite_5 = string.Empty;   // Nom de la deuxième indemnité (vide par défaut)
+                string Montant_Indemnite_5 = string.Empty;        // Montant de la deuxième indemnité (0.0 par défaut)
+                string Taux_Indemnite_5 = string.Empty;           // Taux de la deuxième indemnité (0.0 par défaut)
+
+                // Récupérer la liste des indemnités pour un employé donné
+
+                // Vérifier si la liste contient des indemnités
+                if (listeIndemnites.Count > 0)
+                {
+                    // Récupérer la première indemnité (si elle existe)
+                    var indemnite1 = listeIndemnites[0];
+                    Numero_indemnite_1 = "04";
+                    Nom_Indemnite_1 = indemnite1.NomIndemnite;  // Récupérer le nom de la première indemnité
+                    Montant_Indemnite_1 = indemnite1.MontantIndemnite;  // Récupérer le montant de la première indemnité
+                    Taux_Indemnite_1 = indemnite1.TauxIndem;  // Récupérer le taux de la première indemnité
+
+                    // Vérifier si une deuxième indemnité existe
+                    if (listeIndemnites.Count > 1)
+                    {
+                        var indemnite2 = listeIndemnites[1];
+                        Numero_indemnite_2 = "05";
+                        Nom_Indemnite_2 = indemnite2.NomIndemnite;  // Récupérer le nom de la deuxième indemnité
+                        Montant_Indemnite_2 = indemnite2.MontantIndemnite;  // Récupérer le montant de la deuxième indemnité
+                        Taux_Indemnite_2 = indemnite2.TauxIndem;  // Récupérer le taux de la deuxième indemnité
+                    }
+
+                    // Vérifier si une deuxième indemnité existe
+                    if (listeIndemnites.Count > 2)
+                    {
+                        var indemnite3 = listeIndemnites[2];
+                        Numero_indemnite_3 = "06";
+                        Nom_Indemnite_3 = indemnite3.NomIndemnite;  // Récupérer le nom de la deuxième indemnité
+                        Montant_Indemnite_3 = indemnite3.MontantIndemnite;  // Récupérer le montant de la deuxième indemnité
+                        Taux_Indemnite_3 = indemnite3.TauxIndem;  // Récupérer le taux de la deuxième indemnité
+                    }
+
+                    // Vérifier si une deuxième indemnité existe
+                    if (listeIndemnites.Count > 3)
+                    {
+                        var indemnite4 = listeIndemnites[3];
+                        Numero_indemnite_4 = "07";
+                        Nom_Indemnite_4 = indemnite4.NomIndemnite;  // Récupérer le nom de la deuxième indemnité
+                        Montant_Indemnite_4 = indemnite4.MontantIndemnite;  // Récupérer le montant de la deuxième indemnité
+                        Taux_Indemnite_4 = indemnite4.TauxIndem;  // Récupérer le taux de la deuxième indemnité
+                    }
+
+                    // Vérifier si une deuxième indemnité existe
+                    if (listeIndemnites.Count > 4)
+                    {
+                        var indemnite5 = listeIndemnites[4];
+                        Numero_indemnite_5 = "05";
+                        Nom_Indemnite_5 = indemnite5.NomIndemnite;  // Récupérer le nom de la deuxième indemnité
+                        Montant_Indemnite_5 = indemnite5.MontantIndemnite;  // Récupérer le montant de la deuxième indemnité
+                        Taux_Indemnite_5 = indemnite5.TauxIndem;  // Récupérer le taux de la deuxième indemnité
+                    }
+                }
+
+                // Affichage des valeurs récupérées
+                Console.WriteLine($"Indemnité 1: {Nom_Indemnite_1}, Montant: {Montant_Indemnite_1:N2}, Taux: {Taux_Indemnite_1:N2}");
+                Console.WriteLine($"Indemnité 2: {Nom_Indemnite_2}, Montant: {Montant_Indemnite_2:N2}, Taux: {Taux_Indemnite_2:N2}");
+
+
                 byte[] logo = EntrepriseClass.GetLogoEntreprise(_lastSnapshot.IdEntreprise);
                 var model = new BulletinModel
                 {
@@ -1197,24 +1400,83 @@ public static class IUTS
                     Poste = _lastSnapshot.Poste,
                     NumeroEmploye = _lastSnapshot.NumeroEmploye,
                     Mois = "Août 2025",
-                    SalaireDeBase = (double)_lastSnapshot.SalaireBase,
-                    SalaireBrut = (double)_lastSnapshot.SalaireBrut,
                     HeuresSup = 15000,
                     CNSS = (decimal)_lastSnapshot.CNSS_Employe,
                     SalaireNet = (decimal)_lastSnapshot.SalaireNet,
-                    Sigle = "RH+",
-                    NomEntreprise = "Cyberlink Afrique",
-                    AdresseEntreprise = "05 BP 6520 Ouagadougou / Ouagadougou,sect 06, Baskuy",
-                    AdresseEmploye = "Ouagadougou,sect 06, Baskuy",
-                    Periode = "01/08/2025 - 16/09/2025",
+                    AdresseEmploye = _lastSnapshot.AdresseEmploye,
+                    Periode = _lastSnapshot.PeriodeSalaire,
                     LogoEntreprise = logo,
-                    TelephoneEntreprise = "+22607122327 / 72467143",
-                    courrier = "aarontamini01@gmail.com",
                     DateNaissance = _lastSnapshot.DateNaissance,
                     DateDebut = _lastSnapshot.DateEntree,
-                    DateFin = _lastSnapshot.DateSortie
+                    DateFin = _lastSnapshot.DateSortie,
+                    Contrat = _lastSnapshot.Contrat,
+                    Categorie = _lastSnapshot.Categorie,
+                    Service = _lastSnapshot.Service,
+                    Direction = _lastSnapshot.Direction,
+                    NumeroCNSSEmploye = _lastSnapshot.NumeroCnssEmploye,
+                    Sexe = _lastSnapshot.Sexe,
+                    Charges = _lastSnapshot.NombreCharges,
+                    DureeContrat = _lastSnapshot.DureeContrat,
+                    Anciennete = _lastSnapshot.AncienneteStr,
+                    NbJourHeure = _lastSnapshot.HeureContrat,
+                    Sigle = _lastSnapshot.Sigle,
+                    NomEntreprise = _lastSnapshot.NomEntreprise,
+                    AdressePhysiqueEntreprise = _lastSnapshot.AdressePhysiqueEntreprise,
+                    AdressePostaleEntreprise = _lastSnapshot.AdressePostaleEntreprise,
+                    TelephoneEntreprise = _lastSnapshot.TelephoneEntreprise,
+                    EmailEntreprise = _lastSnapshot.EmailEntreprise,
+                    Numero_indemnite_1 = Numero_indemnite_1,
+                    Nom_Indemnite_1 = Nom_Indemnite_1,
+                    Montant_Indemnite_1 = Montant_Indemnite_1,
+                    Taux_Indemnite_1 = Taux_Indemnite_1,
+                    Numero_indemnite_2 = Numero_indemnite_2,
+                    Nom_Indemnite_2 = Nom_Indemnite_2,
+                    Montant_Indemnite_2 = Montant_Indemnite_2,
+                    Taux_Indemnite_2 = Taux_Indemnite_2,
+                    Numero_indemnite_3 = Numero_indemnite_3,
+                    Nom_Indemnite_3 = Nom_Indemnite_3,
+                    Montant_Indemnite_3 = Montant_Indemnite_3,
+                    Taux_Indemnite_3 = Taux_Indemnite_3,
+                    Numero_indemnite_4 = Numero_indemnite_4,
+                    Nom_Indemnite_4 = Nom_Indemnite_4,
+                    Montant_Indemnite_4 = Montant_Indemnite_4,
+                    Taux_Indemnite_4 = Taux_Indemnite_4,
+                    Numero_indemnite_5 = Numero_indemnite_5,
+                    Nom_Indemnite_5 = Nom_Indemnite_5,
+                    Montant_Indemnite_5 = Montant_Indemnite_5,
+                    Taux_Indemnite_5 = Taux_Indemnite_5,
+                    //SALAIRE DE BASE
+                    baseUnitaire = (double)_lastSnapshot.BaseUnitaire,
+                    SalaireDeBase = (double)_lastSnapshot.SalaireBase,
+                    TauxSalaireDeBase = (double)_lastSnapshot.TauxSalaireDeBase,
+                    //HEURES SUPPLEMENTAIRES
+                    PrimeHeureSupp = (double)_lastSnapshot.HeuresSupp,
+                    TauxHeureSupp = (double)_lastSnapshot.TauxHeureSupp,
+                    //PRIME ANCIENNETE
+                    PrimeAnciennete = (decimal)_lastSnapshot.PrimeAnciennete,
+                    //SALAIRE BRUT
+                    SalaireBrut = (double)_lastSnapshot.SalaireBrut,
+                    //BASE IUTS
+                    BaseIUTS = (double)_lastSnapshot.BaseIUTS,
+                    //IUTS
+                    Iuts = (double)_lastSnapshot.IUTS_Final,
+                    //TPA ET TAUX TPA
+                    Tpa = (double)_lastSnapshot.TPA,
+                    TauxTpa = (double)_lastSnapshot.TauxTPA,
+                    //CNSS EMPLOYE ET EMPLOYEUR
+                    CnssEmploye = (double)_lastSnapshot.CNSS_Employe,
+                    CnssEmployeur = (double)_lastSnapshot.PensionEmployeur,
+                    //RISQUE PROFESSIONNEL EMPLOYEUR
+                    RisqueProfessionnel = (double)_lastSnapshot.RisqueProEmployeur,
+                    //PRESTATION FAMILIALE EMPLOYEUR
+                    PrestationFamiliale = (double)_lastSnapshot.PFEmployeur,
+                    //AVANTAGES EN NATURE
+                    AvantageNature = (double)_lastSnapshot.IndemNat,
+
 
                 };
+
+
 
 
 
@@ -1222,7 +1484,17 @@ public static class IUTS
                 {
                     saveDialog.Title = "Enregistrer le bulletin de paie";
                     saveDialog.Filter = "Fichier PDF (*.pdf)|*.pdf";
-                    saveDialog.FileName = $"Bulletin_{model.Matricule}_{model.Mois.Replace(" ", "_")}.pdf";
+                    // Nettoyer la période avant d'insérer dans le nom du fichier
+                    string periodeSafe = model.Periode
+                        .Replace("/", "-")   // remplace les slashs
+                        .Replace(" ", "_")   // remplace les espaces
+                        .Replace(":", "-");  // remplace les deux-points s'il y en a
+
+                    // Exemple : "27/08/2025 - 13/10/2025" devient "27-08-2025_-_13-10-2025"
+
+                    // Générer le nom du fichier
+                    saveDialog.FileName = $"Bulletin_{model.Matricule}_{periodeSafe}.pdf";
+
 
                     if (saveDialog.ShowDialog() == DialogResult.OK)
                     {

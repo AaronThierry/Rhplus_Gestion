@@ -304,6 +304,7 @@ namespace RH_GRH
             string regimeFiscal = textBoxRegimeFiscal.Text.Trim();
             string registreCommerce = textBoxRegistreCommerce.Text.Trim();
             string numeroBancaire = textBoxNumeroBancaire.Text.Trim();
+            string email = textBoxEmail.Text.Trim(); // Champ email non présent dans le formulaire
 
             // tpa et effortPaix sont des décimaux, donc on parse
             decimal? tpa = null;
@@ -325,7 +326,7 @@ namespace RH_GRH
                     pictureBox_logo.Image.Save(ms, pictureBox_logo.Image.RawFormat);
                     byte[] img = ms.ToArray();
 
-                    if (Entreprise.insertEntreprise(nomEntreprise, formeJuridique, sigle, activite, adressePhysique, adressePostale, telephone, commune, quartier, rue, lot, centreImpots, numeroIfu, numeroCnss, codeActivite, regimeFiscal, registreCommerce, numeroBancaire, tpa, img))
+                    if (Entreprise.insertEntreprise(nomEntreprise, formeJuridique, sigle, activite, adressePhysique, adressePostale, telephone, commune, quartier, rue, lot, centreImpots, numeroIfu, numeroCnss, codeActivite, regimeFiscal, registreCommerce, numeroBancaire, tpa, img, email))
                     {
 
                         MessageBox.Show("Entreprise enregistrée avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -518,6 +519,7 @@ namespace RH_GRH
             string regimeFiscal = textBoxRegimeFiscal.Text.Trim();
             string registreCommerce = textBoxRegistreCommerce.Text.Trim();
             string numeroBancaire = textBoxNumeroBancaire.Text.Trim();
+            string email = textBoxEmail.Text.Trim(); // Champ email non présent dans le formulaire
 
             // Lecture du TPA (nullable)
             decimal? tpa = null;
@@ -551,7 +553,8 @@ namespace RH_GRH
                 bool success = Entreprise.insertEntreprise(
                     nomEntreprise, formeJuridique, sigle, activite, adressePhysique, adressePostale,
                     telephone, commune, quartier, rue, lot, centreImpots, numeroIfu, numeroCnss,
-                    codeActivite, regimeFiscal, registreCommerce, numeroBancaire, tpa, logoBytes
+                    codeActivite, regimeFiscal, registreCommerce, numeroBancaire, tpa, logoBytes,
+                    email
                 );
 
                 if (success)
@@ -689,6 +692,7 @@ namespace RH_GRH
             string regimeFiscal = textBoxRegimeFiscalGestion.Text.Trim();
             string registreCommerce = textBoxRegistreCommerceGestion.Text.Trim();
             string numeroBancaire = textBoxNumeroBancaireGestion.Text.Trim();
+            string email = textBoxEmailGestion.Text.Trim(); // Champ email non présent dans le formulaire
 
             decimal? tpa = null;
             if (decimal.TryParse(textBoxTPAGestion.Text.Trim(), out decimal tpaParsed))
@@ -703,7 +707,8 @@ namespace RH_GRH
                 bool success = Entreprise.updateEntreprise(
                     idEntreprise, nomEntreprise, formeJuridique, sigle, activite, adressePhysique,
                     adressePostale, telephone, commune, quartier, rue, lot, centreImpots, numeroIfu,
-                    numeroCnss, codeActivite, regimeFiscal, registreCommerce, numeroBancaire, tpa, logoBytes
+                    numeroCnss, codeActivite, regimeFiscal, registreCommerce, numeroBancaire, tpa, logoBytes,
+                    email
                 );
 
                 if (success)
@@ -758,7 +763,7 @@ namespace RH_GRH
                     SalaireNet = 256500,
                     Sigle = "RH+",
                     NomEntreprise = "Cyberlink Afrique",
-                    AdresseEntreprise = "05 BP 6520 Ouagadougou / Ouagadougou,sect 06, Baskuy",
+                    AdressePostaleEntreprise = "05 BP 6520 Ouagadougou / Ouagadougou,sect 06, Baskuy",
                     AdresseEmploye = "Ouagadougou,sect 06, Baskuy",
                     Periode = "01/08/2025 - 16/09/2025",
                     LogoEntreprise = File.ReadAllBytes(@"C:\Users\aaron\source\repos\RH_GRH\RH_GRH\Resources\logo-genux.png"),

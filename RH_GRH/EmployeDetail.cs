@@ -18,8 +18,15 @@ namespace RH_GRH
 
                 string sql = @"SELECT
                 p.id_personnel,
+                e.sigle,
+                e.nomEntreprise,
+                e.telephone       AS TelephoneEntreprise,
+                e.email           AS EmailEntreprise,
+                e.adresse_physique        AS AdressePhysiqueEntreprise,
+                e.adresse_postale        AS AdressePostaleEntreprise,
                 p.nomPrenom,
                 p.civilite,
+                p.sexe,
                 p.matricule,
                 p.telephone,
                 p.adresse,
@@ -33,19 +40,23 @@ namespace RH_GRH
                 p.poste,
                 p.id_entreprise,
                 p.id_service,
+                p.numerocnss,
                 p.id_categorie,
                 p.heureContrat,
                 p.jourContrat,
                 p.typeContrat,
+                p.dureeContrat,
                 p.salairemoyen,
                 c.montant           AS MontantCategorie,
                 c.nomCategorie AS categorie,          -- << nom de la catégorie
                 s.nomService   AS service,            -- (optionnel) libellé service
+                d.nomDirection   AS direction,            -- (optionnel) libellé Direction
                 e.nomEntreprise AS entreprise,        -- (optionnel) libellé entreprise
                 e.tpa                               -- (optionnel) taux TPA entreprise
             FROM personnel p
             LEFT JOIN categorie  c ON c.id_categorie  = p.id_categorie
             LEFT JOIN service    s ON s.id_service    = p.id_service
+            LEFT JOIN direction  d ON d.id_direction    = p.id_direction
             LEFT JOIN entreprise e ON e.id_entreprise = p.id_entreprise
             WHERE p.id_personnel = @id
             LIMIT 1;
@@ -82,8 +93,21 @@ namespace RH_GRH
                                 salairemoyen:reader.GetDecimal("salairemoyen"),
                                 tpa:reader.GetDecimal("tpa"),
                                 civilite: reader.GetString("civilite"),
-                                dateNaissance:reader.GetDateTime("date_naissance")
-                                
+                                dateNaissance:reader.GetDateTime("date_naissance"),
+                                direction:reader.GetString("direction"),
+                                numeroCnssEmploye:reader.GetString("numerocnss"),
+                                sexe:reader.GetString("sexe"),
+                                dureeContrat:reader.GetString("dureeContrat"),
+                                sigle:reader.GetString("sigle"),
+                                nomEntreprise:reader.GetString("nomEntreprise"),
+                                telephoneEntreprise:reader.GetString("TelephoneEntreprise"),
+                                emailEntreprise:reader.GetString("EmailEntreprise"),
+                                adressePhysiqueEntreprise:reader.GetString("AdressePhysiqueEntreprise"),
+                                adressePostaleEntreprise:reader.GetString("AdressePostaleEntreprise")
+
+
+
+
                             );
                         }
                     }

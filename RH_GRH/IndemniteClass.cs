@@ -1,6 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using MySql.Data.MySqlClient;
 
 namespace RH_GRH
 {
@@ -203,6 +204,48 @@ ORDER BY p.nomPrenom, i.type;";
 
             return table;
         }
+
+
+
+        public static List<IndemniteList> GetIndemnitesByEmploye(int idEmploye)
+        {
+            List<IndemniteList> listeIndemnites = new List<IndemniteList>();
+
+            string sql = "SELECT  id_personnel, type, valeur, taux_indemnite FROM indemnite WHERE id_personnel = @idEmploye";
+            var connect = new Dbconnect();
+            try
+            {
+                using (var con = connect.getconnection)
+                {
+                    con.Open();
+                    using (var command = new MySqlCommand(sql, con))
+                    {
+                        command.Parameters.AddWithValue("@idEmploye", idEmploye);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string nomIndemnite = reader.GetString("type");
+                                string montantIndemnite = reader.GetDouble("valeur").ToString();
+                                string tauxIndem = reader.GetDouble("taux_indemnite").ToString();  // Ici tu peux personnaliser le taux d'indemnité si nécessaire
+
+                                listeIndemnites.Add(new IndemniteList(idEmploye, nomIndemnite, montantIndemnite, tauxIndem));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Gère l'exception de manière appropriée
+                Console.WriteLine($"Erreur lors de la récupération des indemnités : {ex.Message}");
+            }
+
+            return listeIndemnites;
+        }
+
+
 
 
     }
