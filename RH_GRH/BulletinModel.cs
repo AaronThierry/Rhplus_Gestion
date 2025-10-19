@@ -14,7 +14,6 @@ namespace RH_GRH
             public string Mois { get; set; }
             public decimal HeuresSup { get; set; }
             public decimal CNSS { get; set; }
-            public decimal SalaireNet { get; set; }
             public byte[] LogoEntreprise { get; set; }
 
 
@@ -121,6 +120,11 @@ namespace RH_GRH
 
 
 
+        //SALAIRE NET ET EFFORT DE PAIX
+
+             public decimal SalaireNet { get; set; }
+             public decimal EffortDePaix { get; set; }
+             public decimal SalaireNetaPayer { get; set; }
 
 
         public string Periode { get; set; }

@@ -30,14 +30,15 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.buttonparcourir = new System.Windows.Forms.Button();
+            this.buttonEnregistrerImprimer = new System.Windows.Forms.Button();
             this.buttonAjouter = new System.Windows.Forms.Button();
             this.buttonValider = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.textboxFerieDimanche = new Guna.UI2.WinForms.Guna2TextBox();
             this.textBoxAbsences = new Guna.UI2.WinForms.Guna2TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.textBoxNP = new Guna.UI2.WinForms.Guna2TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -68,7 +69,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -91,7 +91,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.buttonparcourir);
+            this.panel3.Controls.Add(this.buttonEnregistrerImprimer);
             this.panel3.Controls.Add(this.buttonAjouter);
             this.panel3.Controls.Add(this.buttonValider);
             this.panel3.Controls.Add(this.panel7);
@@ -103,20 +103,20 @@
             this.panel3.Size = new System.Drawing.Size(1154, 681);
             this.panel3.TabIndex = 1;
             // 
-            // buttonparcourir
+            // buttonEnregistrerImprimer
             // 
-            this.buttonparcourir.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonparcourir.BackColor = System.Drawing.Color.Green;
-            this.buttonparcourir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonparcourir.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonparcourir.ForeColor = System.Drawing.Color.White;
-            this.buttonparcourir.Location = new System.Drawing.Point(322, 629);
-            this.buttonparcourir.Name = "buttonparcourir";
-            this.buttonparcourir.Size = new System.Drawing.Size(522, 45);
-            this.buttonparcourir.TabIndex = 222;
-            this.buttonparcourir.Text = "Enregistrer et Imprimer";
-            this.buttonparcourir.UseVisualStyleBackColor = false;
-            this.buttonparcourir.Click += new System.EventHandler(this.buttonparcourir_Click);
+            this.buttonEnregistrerImprimer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonEnregistrerImprimer.BackColor = System.Drawing.Color.Green;
+            this.buttonEnregistrerImprimer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonEnregistrerImprimer.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEnregistrerImprimer.ForeColor = System.Drawing.Color.White;
+            this.buttonEnregistrerImprimer.Location = new System.Drawing.Point(322, 629);
+            this.buttonEnregistrerImprimer.Name = "buttonEnregistrerImprimer";
+            this.buttonEnregistrerImprimer.Size = new System.Drawing.Size(522, 45);
+            this.buttonEnregistrerImprimer.TabIndex = 222;
+            this.buttonEnregistrerImprimer.Text = "Enregistrer et Imprimer";
+            this.buttonEnregistrerImprimer.UseVisualStyleBackColor = false;
+            this.buttonEnregistrerImprimer.Click += new System.EventHandler(this.buttonparcourir_Click);
             // 
             // buttonAjouter
             // 
@@ -161,6 +161,29 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1146, 175);
             this.panel7.TabIndex = 219;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label17.BackColor = System.Drawing.Color.White;
+            this.label17.Font = new System.Drawing.Font("Montserrat Medium", 12.25F, System.Drawing.FontStyle.Bold);
+            this.label17.ForeColor = System.Drawing.Color.Red;
+            this.label17.Location = new System.Drawing.Point(411, 85);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(314, 30);
+            this.label17.TabIndex = 209;
+            this.label17.Text = "Heure Supplementaires Normaux";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel8
+            // 
+            this.panel8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel8.Controls.Add(this.textboxFerieDimanche);
+            this.panel8.Location = new System.Drawing.Point(347, 98);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(441, 68);
+            this.panel8.TabIndex = 219;
             // 
             // textboxFerieDimanche
             // 
@@ -224,16 +247,6 @@
             this.label15.TabIndex = 206;
             this.label15.Text = "Absences";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel8
-            // 
-            this.panel8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel8.Controls.Add(this.textboxFerieDimanche);
-            this.panel8.Location = new System.Drawing.Point(347, 98);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(441, 68);
-            this.panel8.TabIndex = 219;
             // 
             // panel6
             // 
@@ -737,19 +750,7 @@
             this.label1.TabIndex = 1;
             this.label1.Text = ">> Salaire Journalier";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label17
-            // 
-            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label17.BackColor = System.Drawing.Color.White;
-            this.label17.Font = new System.Drawing.Font("Montserrat Medium", 12.25F, System.Drawing.FontStyle.Bold);
-            this.label17.ForeColor = System.Drawing.Color.Red;
-            this.label17.Location = new System.Drawing.Point(411, 85);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(314, 30);
-            this.label17.TabIndex = 209;
-            this.label17.Text = "Heure Supplementaires Normaux";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // GestionSalaireJournalierForm
             // 
@@ -776,7 +777,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button buttonparcourir;
+        private System.Windows.Forms.Button buttonEnregistrerImprimer;
         private System.Windows.Forms.Button buttonAjouter;
         private System.Windows.Forms.Button buttonValider;
         private System.Windows.Forms.Panel panel7;

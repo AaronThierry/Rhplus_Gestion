@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static RH_GRH.GestionSalaireHoraireForm;
 
 namespace RH_GRH
 {
@@ -543,69 +544,55 @@ namespace RH_GRH
 
 
 public static class IUTS
+{
+    public static decimal Calculer(decimal baseIUTS, int nombreCharges, out decimal iutsBrut)
     {
-        /// <summary>
-        /// Calcule l'IUTS (brut par tranches) et l'IUTS final après réduction liée au nombre de charges.
-        /// baseIUTS doit idéalement être déjà planché à la centaine (ex: floor( /100 )*100).
-        /// </summary>
-        /// <param name="baseIUTS">Base imposable IUTS</param>
-        /// <param name="nombreCharges">Nombre de charges (1→8%, 2→10%, 3→12%, 4 ou +→14%)</param>
-        /// <param name="iutsBrut">Sortie: IUTS avant réduction</param>
-        /// <returns>IUTS final après réduction</returns>
-        public static decimal Calculer(decimal baseIUTS, int nombreCharges, out decimal iutsBrut)
+        if (baseIUTS <= 0m)
         {
-            if (baseIUTS <= 0m)
-            {
-                iutsBrut = 0m;
-                return 0m;
-            }
-
-            // Tranches (bornes incluses à gauche, exclusives à droite)
-            decimal[] bornesInf = { 0m, 30100m, 50100m, 80100m, 120100m, 170100m, 250100m };
-            decimal[] bornesSup = { 30000m, 50000m, 80000m, 120000m, 170000m, 250000m, decimal.MaxValue };
-            decimal[] tauxPct = { 0.00m, 12.10m, 13.90m, 15.70m, 18.40m, 21.70m, 25.00m };
-
-            decimal iuts = 0m;
-
-            for (int i = 0; i < bornesInf.Length; i++)
-            {
-                if (baseIUTS < bornesInf[i]) break;
-
-                decimal trancheDebut = bornesInf[i];
-                decimal trancheFin = bornesSup[i];
-
-                decimal plafond = baseIUTS < trancheFin ? baseIUTS : trancheFin;
-                decimal montantTranche = plafond - trancheDebut;
-
-                if (montantTranche > 0m)
-                {
-                    iuts += montantTranche * (tauxPct[i] / 100m);
-                }
-            }
-
-            // Réduction selon charges
-            decimal reduction = 0m;
-            switch (nombreCharges)
-            {
-                case 1: reduction = 0.08m; break;
-                case 2: reduction = 0.10m; break;
-                case 3: reduction = 0.12m; break;
-                default:
-                    if (nombreCharges >= 4) reduction = 0.14m; // 4 ou plus
-                    break;
-            }
-
-            iutsBrut = Math.Round(iuts, 2, MidpointRounding.AwayFromZero);
-            decimal iutsFinal = Math.Round(iutsBrut * (1m - reduction), 2, MidpointRounding.AwayFromZero);
-
-            // Debug compact (une ligne)
-            Debug.WriteLine(
-                $"[IUTS] Base={baseIUTS:N2} | Brut={iutsBrut:N2} | Charges={nombreCharges} (−{reduction:P0}) | Final={iutsFinal:N2}"
-            );
-
-            return iutsFinal;
+            iutsBrut = 0m;
+            return 0m;
         }
+
+        // ✅ Force un nombre rond à la centaine inférieure : 12345 -> 12300
+        baseIUTS = Math.Floor(baseIUTS / 100m) * 100m;
+
+        decimal[] bornesInf = { 0m, 30100m, 50100m, 80100m, 120100m, 170100m, 250100m };
+        decimal[] bornesSup = { 30000m, 50000m, 80000m, 120000m, 170000m, 250000m, decimal.MaxValue };
+        decimal[] tauxPct   = { 0.00m, 12.10m, 13.90m, 15.70m, 18.40m, 21.70m, 25.00m };
+
+        decimal iuts = 0m;
+        for (int i = 0; i < bornesInf.Length; i++)
+        {
+            if (baseIUTS < bornesInf[i]) break;
+
+            decimal trancheDebut = bornesInf[i];
+            decimal trancheFin   = bornesSup[i];
+            decimal plafond      = baseIUTS < trancheFin ? baseIUTS : trancheFin;
+            decimal montant      = plafond - trancheDebut;
+
+            if (montant > 0m)
+                iuts += montant * (tauxPct[i] / 100m);
+        }
+
+        decimal reduction = 0m;
+        switch (nombreCharges)
+        {
+            case 1: reduction = 0.08m; break;
+            case 2: reduction = 0.10m; break;
+            case 3: reduction = 0.12m; break;
+            default:
+                if (nombreCharges >= 4) reduction = 0.14m;
+                break;
+        }
+
+        iutsBrut = Math.Round(iuts, 2, MidpointRounding.AwayFromZero);
+        decimal iutsFinal = Math.Round(iutsBrut * (1m - reduction), 2, MidpointRounding.AwayFromZero);
+
+        Debug.WriteLine($"[IUTS] Base(⌊100⌋)={baseIUTS:N0} | Brut={iutsBrut:N2} | Charges={nombreCharges} (−{reduction:P0}) | Final={iutsFinal:N2}");
+        return iutsFinal;
+    }
 }
+
 
 
 
@@ -708,6 +695,8 @@ public static class IUTS
 
             // Net
             public decimal SalaireNet { get; set; }
+            public decimal EffortPaix { get; set; }
+            public decimal SalaireNetaPayer { get; set; }
 
             // Méta (facultatif)
             public string Categorie { get; set; } = "";
@@ -758,6 +747,7 @@ public static class IUTS
         private void GestionSalaireHoraireForm_Load(object sender, EventArgs e)
         {
             EntrepriseClass.ChargerEntreprises(ComboBoxEntreprise);
+            buttonAjouter.Visible = false;
         }
 
 
@@ -1098,7 +1088,7 @@ public static class IUTS
                 var r = IUTSCalculator.CalculerIUTS(
                     salaireBrut, cnssEmploye, emp.Cadre, deductibiliteIndem, salaireCategoriel, prime, floorCentaines: true);
 
-                decimal baseIutsArr = r.BaseIUTS; // ta base IUTS arrondie à la centaine (decimal)
+                decimal baseIutsArr = r.BaseIUTSArrondieCent; // ta base IUTS arrondie à la centaine (decimal)
                 int nombreCharges = ChargeClass.CountTotalCharges(idEmploye);
                 decimal iutsBrut;
                 decimal iutsFinal = IUTS.Calculer(baseIutsArr, nombreCharges, out iutsBrut); // ta méthode de barème
@@ -1116,7 +1106,14 @@ public static class IUTS
                 //************************************************************************
                 //Remplir le snapshot
 
-               
+
+
+                decimal IndemNat = (decimal)sums["somme_nature"];
+                //Salaire Net 
+                var res = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, IndemNat, tauxEffort: 0.01m, arrondirNetAPayerCeil: true);
+                // (Optionnel)affichage UI
+                var fr = System.Globalization.CultureInfo.GetCultureInfo("fr-FR");
+
 
 
 
@@ -1182,14 +1179,14 @@ public static class IUTS
 
                     // IUTS
                     DeductibiliteIndemnites = deductibiliteIndem,
-                    BaseIUTS = r.BaseIUTS,
+                    BaseIUTS = r.BaseIUTSArrondieCent,
                     BaseIUTS_Arrondie = r.BaseIUTSArrondieCent,
                     NombreCharges = nombreCharges,
                     IUTS_Brut = iutsBrut,
                     IUTS_Final = iutsFinal,
 
                     // Net (exemple)
-                    SalaireNet = salaireBrut - cnssEmploye - iutsFinal - tpa,
+
 
                     // Méta
                     Contrat = contrat,
@@ -1214,20 +1211,23 @@ public static class IUTS
 
                     //*******************
                     //PRIME ANCIENNETE
-                    PrimeAnciennete = prime
+                    PrimeAnciennete = prime,
 
+                    //SALAIRE NET A PAYER
+                    SalaireNet = res.SalaireNet,
+                    EffortPaix = res.Effort,
+                    SalaireNetaPayer = res.NetAPayer
 
                 };
+
+
+
+
 
                 // 👉 Stocke-le pour le bouton "Enregistrer" (champ du Form)
                 _lastSnapshot = snapshot;
 
-                // (Optionnel) trace 1 ligne
-                System.Diagnostics.Debug.WriteLine(
-                    $"[SNAP] EmpId={snapshot.IdEmploye} | Brut={snapshot.SalaireBrut:N2} | BSoc={snapshot.SalaireBrutSocial:N2} | " +
-                    $"CNSS(E)={snapshot.CNSS_Employe:N2} | IUTS={snapshot.IUTS_Final:N2} | TPA={snapshot.TPA:N2} | Net={snapshot.SalaireNet:N2}"
-                );
-
+                // (Optionnel) trace 1 lign
 
 
 
@@ -1255,6 +1255,10 @@ public static class IUTS
                     $"Employeur cnss (Total)={cnssEmployeur:N2} | TPA@{tauxTpa:N2}%={tpa:N2}"
                 );
                 Debug.WriteLine($"[IUTS] Base(⌊100⌋)={baseIutsArr:N2} | Charges={nombreCharges} | Brut={iutsBrut:N2} | Final={iutsFinal:N2}");
+                // Trace compacte
+                System.Diagnostics.Debug.WriteLine(
+                    $" " +
+                    $"=> Net={res.SalaireNet:N2} | Effort(1%)={res.Effort:N2} | NetAPayer(ceil)={res.NetAPayer:N2}");
                 // … ta suite (affichage, net à payer, etc.)
                 // (si tu as une console attachée)
                 // Console.WriteLine($"[PAIE] EmpId={idEmploye} | BaseUnitaire={baseUnitaire:N6} | UnitesPayees={unitesPayees:N2} | SalaireBase={salaireBase:N2} FCFA");
@@ -1386,9 +1390,12 @@ public static class IUTS
                     }
                 }
 
+
+
                 // Affichage des valeurs récupérées
                 Console.WriteLine($"Indemnité 1: {Nom_Indemnite_1}, Montant: {Montant_Indemnite_1:N2}, Taux: {Taux_Indemnite_1:N2}");
                 Console.WriteLine($"Indemnité 2: {Nom_Indemnite_2}, Montant: {Montant_Indemnite_2:N2}, Taux: {Taux_Indemnite_2:N2}");
+
 
 
                 byte[] logo = EntrepriseClass.GetLogoEntreprise(_lastSnapshot.IdEntreprise);
@@ -1402,7 +1409,6 @@ public static class IUTS
                     Mois = "Août 2025",
                     HeuresSup = 15000,
                     CNSS = (decimal)_lastSnapshot.CNSS_Employe,
-                    SalaireNet = (decimal)_lastSnapshot.SalaireNet,
                     AdresseEmploye = _lastSnapshot.AdresseEmploye,
                     Periode = _lastSnapshot.PeriodeSalaire,
                     LogoEntreprise = logo,
@@ -1472,7 +1478,10 @@ public static class IUTS
                     PrestationFamiliale = (double)_lastSnapshot.PFEmployeur,
                     //AVANTAGES EN NATURE
                     AvantageNature = (double)_lastSnapshot.IndemNat,
-
+                    //SALAIRE NET A PAYER
+                    SalaireNet = _lastSnapshot.SalaireNet,
+                    EffortDePaix = _lastSnapshot.EffortPaix,
+                    SalaireNetaPayer = _lastSnapshot.SalaireNetaPayer
 
                 };
 
