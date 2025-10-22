@@ -532,6 +532,76 @@ WHERE id_personnel  = @id_personnel;";
     }
 
 
+    public static void ChargerEmployesParEntrepriseHoraire(ComboBox combo, int idEntreprise, int? idSel = null, bool placeholder = true)
+    {
+        var connect = new Dbconnect();
+        var con = connect.getconnection;
+        con.Open();
+
+        const string sql = @"
+    SELECT id_personnel, nomPrenom 
+    FROM personnel 
+    WHERE id_entreprise = @e
+    AND typeContrat = 'Horaire'  -- Filtrer par typeContrat = 'Horaire'
+    ORDER BY nomPrenom;";
+
+        var cmd = new MySqlCommand(sql, con);
+        cmd.Parameters.Add("@e", MySqlDbType.Int32).Value = idEntreprise;
+
+        var da = new MySqlDataAdapter(cmd);
+        var dt = new DataTable();
+        da.Fill(dt);
+
+        if (placeholder)
+        {
+            var row = dt.NewRow();
+            row["id_personnel"] = 0;
+            row["nomPrenom"] = "--- Sélectionner employé ---";
+            dt.Rows.InsertAt(row, 0);
+        }
+
+        combo.ValueMember = "id_personnel";
+        combo.DisplayMember = "nomPrenom";
+        combo.DataSource = dt;
+        combo.SelectedValue = idSel ?? (placeholder ? 0 : -1);
+    }
+
+
+
+
+    public static void ChargerEmployesParEntrepriseJournalier(ComboBox combo, int idEntreprise, int? idSel = null, bool placeholder = true)
+    {
+        var connect = new Dbconnect();
+        var con = connect.getconnection;
+        con.Open();
+
+        const string sql = @"
+    SELECT id_personnel, nomPrenom 
+    FROM personnel 
+    WHERE id_entreprise = @e
+    AND typeContrat = 'Journalier'  -- Filtrer par typeContrat = 'Journalier'
+    ORDER BY nomPrenom;";
+
+        var cmd = new MySqlCommand(sql, con);
+        cmd.Parameters.Add("@e", MySqlDbType.Int32).Value = idEntreprise;
+
+        var da = new MySqlDataAdapter(cmd);
+        var dt = new DataTable();
+        da.Fill(dt);
+
+        if (placeholder)
+        {
+            var row = dt.NewRow();
+            row["id_personnel"] = 0;
+            row["nomPrenom"] = "--- Sélectionner employé ---";
+            dt.Rows.InsertAt(row, 0);
+        }
+
+        combo.ValueMember = "id_personnel";
+        combo.DisplayMember = "nomPrenom";
+        combo.DataSource = dt;
+        combo.SelectedValue = idSel ?? (placeholder ? 0 : -1);
+    }
 
 
 

@@ -121,7 +121,7 @@ namespace RH_GRH
         private void button_journalier_Click(object sender, EventArgs e)
         {
             //...
-            //..Le code
+            OpenChildForm(new GestionSalaireJournalierForm());
             //...
             hideSubmenu();
         }
