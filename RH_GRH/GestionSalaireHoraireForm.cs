@@ -747,7 +747,6 @@ public static class IUTS
         private void GestionSalaireHoraireForm_Load(object sender, EventArgs e)
         {
             EntrepriseClass.ChargerEntreprises(ComboBoxEntreprise);
-            buttonAjouter.Visible = false;
         }
 
 
@@ -1525,6 +1524,31 @@ public static class IUTS
             {
                 MessageBox.Show($"Une erreur est survenue :\n{ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         // --- UTIL ---

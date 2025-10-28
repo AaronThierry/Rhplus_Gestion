@@ -19,6 +19,8 @@ namespace RH_GRH
             QuestPDF.Settings.License = LicenseType.Community;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Formmain());
         }
     }

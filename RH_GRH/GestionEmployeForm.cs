@@ -26,6 +26,8 @@ namespace RH_GRH
             ShowTablePersonnel();
             ShowTablePersonnelGestion();
             ClearFormPersonnelGestion();
+            // État initial au chargement
+            AppliquerEtatDateSortie();
         }
 
 
@@ -591,7 +593,14 @@ namespace RH_GRH
 
 
 
+        private void AppliquerEtatDateSortie()
+        {
+            dateSortiePicker.Enabled = CheckBoxCDD.Checked;
 
+            // Optionnel : réinitialiser la date si CDD n’est pas coché
+            if (!CheckBoxCDD.Checked)
+                dateSortiePicker.Value = DateTime.Today;
+        }
 
 
         private void checkBoxCDI_CheckedChanged(object sender, EventArgs e) => ToggleContratAndDate();
@@ -621,13 +630,14 @@ namespace RH_GRH
                 if (CheckBoxCDDGestion.Checked && CheckBoxCDIGestion.Checked) CheckBoxCDIGestion.Checked = false;
                 if (CheckBoxCDIGestion.Checked && CheckBoxCDDGestion.Checked) CheckBoxCDDGestion.Checked = false;
 
-                bool cdd = CheckBoxCDDGestion.Checked;
-
+                bool cdd = CheckBoxCDD.Checked;
+                bool cddgestion = CheckBoxCDDGestion.Checked;
                 // activer/désactiver le picker
                 dateSortiePicker.Enabled = cdd;
+                dateSortieGestionPicker.Enabled = cddgestion;
                 dateSortiePicker.CustomFormat = cdd ? "dd/MM/yyyy" : " ";
-                dateSortieGestionPicker.Enabled = cdd;
-                dateSortieGestionPicker.CustomFormat = cdd ? "dd/MM/yyyy" : " ";
+                dateSortieGestionPicker.Enabled = cddgestion;
+                dateSortieGestionPicker.CustomFormat = cddgestion ? "dd/MM/yyyy" : " ";
 
                 // (facultatif) petit nudge d’affichage si le thème Guna2 ne se rafraîchit pas
                 if (cdd && dateSortiePicker.CustomFormat == " ")
@@ -1398,6 +1408,7 @@ namespace RH_GRH
                     {
                         if (!dateSortiePicker.Checked)
                         {
+                            dateSortiePicker.Checked = true;
                             errors.Add("Pour un CDD, la date de sortie est obligatoire.");
                         }
                         else

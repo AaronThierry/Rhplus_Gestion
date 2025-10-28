@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tabControlCharge = new System.Windows.Forms.TabControl();
@@ -167,16 +167,16 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1154, 741);
+            this.panel1.Size = new System.Drawing.Size(1216, 687);
             this.panel1.TabIndex = 3;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.tabControlCharge);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 60);
+            this.panel3.Location = new System.Drawing.Point(0, 47);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1154, 681);
+            this.panel3.Size = new System.Drawing.Size(1216, 640);
             this.panel3.TabIndex = 1;
             // 
             // tabControlCharge
@@ -187,7 +187,7 @@
             this.tabControlCharge.Location = new System.Drawing.Point(0, 0);
             this.tabControlCharge.Name = "tabControlCharge";
             this.tabControlCharge.SelectedIndex = 0;
-            this.tabControlCharge.Size = new System.Drawing.Size(1154, 681);
+            this.tabControlCharge.Size = new System.Drawing.Size(1216, 640);
             this.tabControlCharge.TabIndex = 0;
             // 
             // tabPage1
@@ -197,7 +197,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1146, 655);
+            this.tabPage1.Size = new System.Drawing.Size(1208, 614);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Inscription";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -232,7 +232,7 @@
             this.panel_center.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_center.Location = new System.Drawing.Point(3, 3);
             this.panel_center.Name = "panel_center";
-            this.panel_center.Size = new System.Drawing.Size(1136, 645);
+            this.panel_center.Size = new System.Drawing.Size(1198, 604);
             this.panel_center.TabIndex = 3;
             // 
             // panel4
@@ -242,7 +242,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1136, 645);
+            this.panel4.Size = new System.Drawing.Size(1198, 604);
             this.panel4.TabIndex = 26;
             // 
             // panel5
@@ -265,18 +265,19 @@
             this.panel5.Controls.Add(this.buttonAjouter);
             this.panel5.Controls.Add(this.buttonEffacer);
             this.panel5.Controls.Add(this.label25);
-            this.panel5.Location = new System.Drawing.Point(0, 253);
+            this.panel5.Location = new System.Drawing.Point(0, 267);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1136, 400);
+            this.panel5.Size = new System.Drawing.Size(1198, 345);
             this.panel5.TabIndex = 3;
+            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
             // label20
             // 
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label20.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(317, 287);
+            this.label20.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label20.Location = new System.Drawing.Point(329, 243);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(159, 30);
+            this.label20.Size = new System.Drawing.Size(160, 30);
             this.label20.TabIndex = 213;
             this.label20.Text = "Scolarisation :";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -290,17 +291,16 @@
             this.ComboBoxScolarisation.Enabled = false;
             this.ComboBoxScolarisation.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ComboBoxScolarisation.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ComboBoxScolarisation.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxScolarisation.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold);
             this.ComboBoxScolarisation.ForeColor = System.Drawing.Color.Black;
-            this.ComboBoxScolarisation.ItemHeight = 30;
+            this.ComboBoxScolarisation.ItemHeight = 26;
             this.ComboBoxScolarisation.Items.AddRange(new object[] {
             "***",
             "Oui",
             "Non"});
-            this.ComboBoxScolarisation.Location = new System.Drawing.Point(482, 287);
-            this.ComboBoxScolarisation.MinimumSize = new System.Drawing.Size(240, 0);
+            this.ComboBoxScolarisation.Location = new System.Drawing.Point(498, 243);
             this.ComboBoxScolarisation.Name = "ComboBoxScolarisation";
-            this.ComboBoxScolarisation.Size = new System.Drawing.Size(305, 36);
+            this.ComboBoxScolarisation.Size = new System.Drawing.Size(305, 32);
             this.ComboBoxScolarisation.StartIndex = 0;
             this.ComboBoxScolarisation.TabIndex = 212;
             // 
@@ -312,21 +312,21 @@
             this.dateNaissancePicker.FillColor = System.Drawing.SystemColors.ControlLightLight;
             this.dateNaissancePicker.Font = new System.Drawing.Font("Montserrat Medium", 9.999999F, System.Drawing.FontStyle.Bold);
             this.dateNaissancePicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dateNaissancePicker.Location = new System.Drawing.Point(482, 178);
+            this.dateNaissancePicker.Location = new System.Drawing.Point(498, 161);
             this.dateNaissancePicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dateNaissancePicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dateNaissancePicker.Name = "dateNaissancePicker";
-            this.dateNaissancePicker.Size = new System.Drawing.Size(305, 36);
+            this.dateNaissancePicker.Size = new System.Drawing.Size(305, 30);
             this.dateNaissancePicker.TabIndex = 202;
             this.dateNaissancePicker.Value = new System.DateTime(2025, 8, 27, 9, 58, 12, 0);
             // 
             // label70
             // 
             this.label70.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label70.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.Location = new System.Drawing.Point(313, 178);
+            this.label70.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label70.Location = new System.Drawing.Point(329, 157);
             this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(139, 30);
+            this.label70.Size = new System.Drawing.Size(160, 30);
             this.label70.TabIndex = 201;
             this.label70.Text = "Date naissance ";
             this.label70.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -337,9 +337,9 @@
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel12.Controls.Add(this.CheckBoxEnfant);
             this.panel12.Controls.Add(this.CheckBoxEpouse);
-            this.panel12.Location = new System.Drawing.Point(493, 75);
+            this.panel12.Location = new System.Drawing.Point(532, 73);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(228, 35);
+            this.panel12.Size = new System.Drawing.Size(208, 35);
             this.panel12.TabIndex = 199;
             // 
             // CheckBoxEnfant
@@ -352,12 +352,12 @@
             this.CheckBoxEnfant.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.CheckBoxEnfant.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CheckBoxEnfant.Enabled = false;
-            this.CheckBoxEnfant.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckBoxEnfant.Location = new System.Drawing.Point(117, -2);
+            this.CheckBoxEnfant.Font = new System.Drawing.Font("Montserrat SemiBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheckBoxEnfant.Location = new System.Drawing.Point(118, -2);
             this.CheckBoxEnfant.MinimumSize = new System.Drawing.Size(60, 36);
             this.CheckBoxEnfant.Name = "CheckBoxEnfant";
             this.CheckBoxEnfant.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.CheckBoxEnfant.Size = new System.Drawing.Size(71, 36);
+            this.CheckBoxEnfant.Size = new System.Drawing.Size(70, 36);
             this.CheckBoxEnfant.TabIndex = 147;
             this.CheckBoxEnfant.Text = "Enfant ";
             this.CheckBoxEnfant.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
@@ -375,11 +375,11 @@
             this.CheckBoxEpouse.CheckedState.BorderThickness = 0;
             this.CheckBoxEpouse.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.CheckBoxEpouse.Enabled = false;
-            this.CheckBoxEpouse.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckBoxEpouse.Location = new System.Drawing.Point(24, -2);
+            this.CheckBoxEpouse.Font = new System.Drawing.Font("Montserrat SemiBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheckBoxEpouse.Location = new System.Drawing.Point(14, -2);
             this.CheckBoxEpouse.MinimumSize = new System.Drawing.Size(60, 36);
             this.CheckBoxEpouse.Name = "CheckBoxEpouse";
-            this.CheckBoxEpouse.Size = new System.Drawing.Size(73, 36);
+            this.CheckBoxEpouse.Size = new System.Drawing.Size(72, 36);
             this.CheckBoxEpouse.TabIndex = 146;
             this.CheckBoxEpouse.Text = "Epouse";
             this.CheckBoxEpouse.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
@@ -397,20 +397,19 @@
             this.ComboBoxEmploye.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ComboBoxEmploye.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxEmploye.ForeColor = System.Drawing.Color.Black;
-            this.ComboBoxEmploye.ItemHeight = 30;
-            this.ComboBoxEmploye.Location = new System.Drawing.Point(714, 24);
-            this.ComboBoxEmploye.MinimumSize = new System.Drawing.Size(305, 0);
+            this.ComboBoxEmploye.ItemHeight = 26;
+            this.ComboBoxEmploye.Location = new System.Drawing.Point(725, 26);
             this.ComboBoxEmploye.Name = "ComboBoxEmploye";
-            this.ComboBoxEmploye.Size = new System.Drawing.Size(305, 36);
+            this.ComboBoxEmploye.Size = new System.Drawing.Size(275, 32);
             this.ComboBoxEmploye.TabIndex = 100;
             // 
             // label19
             // 
             this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label19.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(607, 24);
+            this.label19.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label19.Location = new System.Drawing.Point(595, 26);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(101, 30);
+            this.label19.Size = new System.Drawing.Size(124, 26);
             this.label19.TabIndex = 99;
             this.label19.Text = "Employe :";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -429,23 +428,23 @@
             this.textBoxIdentification.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxIdentification.ForeColor = System.Drawing.Color.Black;
             this.textBoxIdentification.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxIdentification.Location = new System.Drawing.Point(482, 231);
+            this.textBoxIdentification.Location = new System.Drawing.Point(497, 203);
             this.textBoxIdentification.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxIdentification.Name = "textBoxIdentification";
             this.textBoxIdentification.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxIdentification.PlaceholderText = "Reference Cnib ";
             this.textBoxIdentification.SelectedText = "";
-            this.textBoxIdentification.Size = new System.Drawing.Size(305, 36);
+            this.textBoxIdentification.Size = new System.Drawing.Size(305, 30);
             this.textBoxIdentification.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxIdentification.TabIndex = 98;
             // 
             // label17
             // 
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label17.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(317, 231);
+            this.label17.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label17.Location = new System.Drawing.Point(329, 199);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(159, 30);
+            this.label17.Size = new System.Drawing.Size(160, 30);
             this.label17.TabIndex = 97;
             this.label17.Text = "Identification :";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -461,16 +460,16 @@
             this.textBoxNomPrenom.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxNomPrenom.Enabled = false;
             this.textBoxNomPrenom.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNomPrenom.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNomPrenom.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold);
             this.textBoxNomPrenom.ForeColor = System.Drawing.Color.Black;
             this.textBoxNomPrenom.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNomPrenom.Location = new System.Drawing.Point(482, 122);
+            this.textBoxNomPrenom.Location = new System.Drawing.Point(498, 118);
             this.textBoxNomPrenom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxNomPrenom.Name = "textBoxNomPrenom";
             this.textBoxNomPrenom.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxNomPrenom.PlaceholderText = "Saisir le Nom et Prenom";
             this.textBoxNomPrenom.SelectedText = "";
-            this.textBoxNomPrenom.Size = new System.Drawing.Size(305, 36);
+            this.textBoxNomPrenom.Size = new System.Drawing.Size(305, 30);
             this.textBoxNomPrenom.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxNomPrenom.TabIndex = 96;
             // 
@@ -484,21 +483,20 @@
             this.ComboBoxEntreprise.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ComboBoxEntreprise.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxEntreprise.ForeColor = System.Drawing.Color.Black;
-            this.ComboBoxEntreprise.ItemHeight = 30;
-            this.ComboBoxEntreprise.Location = new System.Drawing.Point(231, 24);
-            this.ComboBoxEntreprise.MinimumSize = new System.Drawing.Size(305, 0);
+            this.ComboBoxEntreprise.ItemHeight = 26;
+            this.ComboBoxEntreprise.Location = new System.Drawing.Point(281, 26);
             this.ComboBoxEntreprise.Name = "ComboBoxEntreprise";
-            this.ComboBoxEntreprise.Size = new System.Drawing.Size(305, 36);
+            this.ComboBoxEntreprise.Size = new System.Drawing.Size(275, 32);
             this.ComboBoxEntreprise.TabIndex = 95;
             this.ComboBoxEntreprise.SelectedIndexChanged += new System.EventHandler(this.ComboBoxEntreprise_SelectedIndexChanged);
             // 
             // label14
             // 
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label14.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(313, 122);
+            this.label14.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label14.Location = new System.Drawing.Point(329, 118);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(163, 30);
+            this.label14.Size = new System.Drawing.Size(160, 30);
             this.label14.TabIndex = 92;
             this.label14.Text = "Nom Prenom (s) :";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -508,9 +506,9 @@
             this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel10.BackColor = System.Drawing.Color.MidnightBlue;
-            this.panel10.Location = new System.Drawing.Point(2, 3);
+            this.panel10.Location = new System.Drawing.Point(2, 6);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1130, 10);
+            this.panel10.Size = new System.Drawing.Size(1192, 10);
             this.panel10.TabIndex = 91;
             // 
             // buttonAjouter
@@ -518,11 +516,12 @@
             this.buttonAjouter.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonAjouter.BackColor = System.Drawing.Color.MidnightBlue;
             this.buttonAjouter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonAjouter.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAjouter.Font = new System.Drawing.Font("Montserrat SemiBold", 10.25F, System.Drawing.FontStyle.Bold);
             this.buttonAjouter.ForeColor = System.Drawing.Color.White;
-            this.buttonAjouter.Location = new System.Drawing.Point(977, 344);
+            this.buttonAjouter.Location = new System.Drawing.Point(993, 296);
             this.buttonAjouter.Name = "buttonAjouter";
-            this.buttonAjouter.Size = new System.Drawing.Size(132, 45);
+            this.buttonAjouter.Size = new System.Drawing.Size(132, 35);
             this.buttonAjouter.TabIndex = 89;
             this.buttonAjouter.Text = "Ajouter";
             this.buttonAjouter.UseVisualStyleBackColor = false;
@@ -533,11 +532,12 @@
             this.buttonEffacer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonEffacer.BackColor = System.Drawing.Color.Orange;
             this.buttonEffacer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonEffacer.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEffacer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEffacer.Font = new System.Drawing.Font("Montserrat SemiBold", 10.25F, System.Drawing.FontStyle.Bold);
             this.buttonEffacer.ForeColor = System.Drawing.Color.White;
-            this.buttonEffacer.Location = new System.Drawing.Point(810, 344);
+            this.buttonEffacer.Location = new System.Drawing.Point(826, 296);
             this.buttonEffacer.Name = "buttonEffacer";
-            this.buttonEffacer.Size = new System.Drawing.Size(132, 45);
+            this.buttonEffacer.Size = new System.Drawing.Size(132, 35);
             this.buttonEffacer.TabIndex = 88;
             this.buttonEffacer.Text = "Effacer";
             this.buttonEffacer.UseVisualStyleBackColor = false;
@@ -545,10 +545,10 @@
             // label25
             // 
             this.label25.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label25.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(124, 24);
+            this.label25.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label25.Location = new System.Drawing.Point(165, 26);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(101, 30);
+            this.label25.Size = new System.Drawing.Size(110, 26);
             this.label25.TabIndex = 48;
             this.label25.Text = "Entreprise :";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -557,40 +557,40 @@
             // 
             this.DataGridView_Charge.AllowUserToAddRows = false;
             this.DataGridView_Charge.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle37.BackColor = System.Drawing.Color.White;
-            this.DataGridView_Charge.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.DataGridView_Charge.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DataGridView_Charge.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DataGridView_Charge.BackgroundColor = System.Drawing.Color.MidnightBlue;
             this.DataGridView_Charge.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DataGridView_Charge.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle38.BackColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle38.ForeColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridView_Charge.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.MidnightBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.MidnightBlue;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridView_Charge.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DataGridView_Charge.ColumnHeadersHeight = 50;
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle39.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridView_Charge.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridView_Charge.DefaultCellStyle = dataGridViewCellStyle3;
             this.DataGridView_Charge.GridColor = System.Drawing.Color.MidnightBlue;
             this.DataGridView_Charge.Location = new System.Drawing.Point(1, 3);
             this.DataGridView_Charge.Name = "DataGridView_Charge";
             this.DataGridView_Charge.ReadOnly = true;
             this.DataGridView_Charge.RowHeadersVisible = false;
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DataGridView_Charge.RowsDefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DataGridView_Charge.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridView_Charge.RowTemplate.Height = 100;
-            this.DataGridView_Charge.Size = new System.Drawing.Size(1133, 245);
+            this.DataGridView_Charge.Size = new System.Drawing.Size(1195, 264);
             this.DataGridView_Charge.TabIndex = 2;
             this.DataGridView_Charge.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.DataGridView_Charge.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -850,7 +850,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1146, 655);
+            this.tabPage2.Size = new System.Drawing.Size(1208, 614);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Gestion";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -885,7 +885,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(3, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1140, 649);
+            this.panel6.Size = new System.Drawing.Size(1202, 608);
             this.panel6.TabIndex = 4;
             // 
             // panel7
@@ -901,12 +901,12 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1140, 649);
+            this.panel7.Size = new System.Drawing.Size(1202, 608);
             this.panel7.TabIndex = 26;
             // 
             // label75
             // 
-            this.label75.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label75.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
             this.label75.Location = new System.Drawing.Point(181, 9);
             this.label75.Name = "label75";
             this.label75.Size = new System.Drawing.Size(102, 30);
@@ -922,15 +922,16 @@
             this.textBoxMatricule.Location = new System.Drawing.Point(288, 9);
             this.textBoxMatricule.MaximumSize = new System.Drawing.Size(100, 30);
             this.textBoxMatricule.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxMatricule.Multiline = true;
             this.textBoxMatricule.Name = "textBoxMatricule";
-            this.textBoxMatricule.Size = new System.Drawing.Size(100, 26);
+            this.textBoxMatricule.Size = new System.Drawing.Size(100, 30);
             this.textBoxMatricule.TabIndex = 106;
             this.textBoxMatricule.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBoxMatricule.TextChanged += new System.EventHandler(this.textBoxMatricule_TextChanged);
             // 
             // label66
             // 
-            this.label66.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label66.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
             this.label66.Location = new System.Drawing.Point(10, 9);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(64, 30);
@@ -946,8 +947,9 @@
             this.textBoxID.Location = new System.Drawing.Point(66, 9);
             this.textBoxID.MaximumSize = new System.Drawing.Size(100, 30);
             this.textBoxID.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxID.Multiline = true;
             this.textBoxID.Name = "textBoxID";
-            this.textBoxID.Size = new System.Drawing.Size(100, 26);
+            this.textBoxID.Size = new System.Drawing.Size(100, 30);
             this.textBoxID.TabIndex = 104;
             this.textBoxID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -961,15 +963,15 @@
             this.textBoxSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxSearch.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxSearch.Font = new System.Drawing.Font("Montserrat", 9.749999F);
             this.textBoxSearch.ForeColor = System.Drawing.Color.Black;
             this.textBoxSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxSearch.Location = new System.Drawing.Point(707, 4);
+            this.textBoxSearch.Location = new System.Drawing.Point(769, 7);
             this.textBoxSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.PlaceholderText = "";
             this.textBoxSearch.SelectedText = "";
-            this.textBoxSearch.Size = new System.Drawing.Size(285, 40);
+            this.textBoxSearch.Size = new System.Drawing.Size(285, 30);
             this.textBoxSearch.TabIndex = 101;
             // 
             // panel8
@@ -993,17 +995,17 @@
             this.panel8.Controls.Add(this.panel9);
             this.panel8.Controls.Add(this.button_Supprimer);
             this.panel8.Controls.Add(this.buttonModifier);
-            this.panel8.Location = new System.Drawing.Point(5, 270);
+            this.panel8.Location = new System.Drawing.Point(5, 275);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1132, 379);
+            this.panel8.Size = new System.Drawing.Size(1194, 333);
             this.panel8.TabIndex = 53;
             this.panel8.Paint += new System.Windows.Forms.PaintEventHandler(this.panel8_Paint);
             // 
             // label15
             // 
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label15.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(305, 283);
+            this.label15.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label15.Location = new System.Drawing.Point(336, 237);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(159, 30);
             this.label15.TabIndex = 226;
@@ -1020,15 +1022,15 @@
             this.ComboBoxScolarisationGestion.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ComboBoxScolarisationGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxScolarisationGestion.ForeColor = System.Drawing.Color.Black;
-            this.ComboBoxScolarisationGestion.ItemHeight = 30;
+            this.ComboBoxScolarisationGestion.ItemHeight = 26;
             this.ComboBoxScolarisationGestion.Items.AddRange(new object[] {
             "***",
             "Oui",
             "Non"});
-            this.ComboBoxScolarisationGestion.Location = new System.Drawing.Point(470, 283);
+            this.ComboBoxScolarisationGestion.Location = new System.Drawing.Point(501, 237);
             this.ComboBoxScolarisationGestion.MinimumSize = new System.Drawing.Size(240, 0);
             this.ComboBoxScolarisationGestion.Name = "ComboBoxScolarisationGestion";
-            this.ComboBoxScolarisationGestion.Size = new System.Drawing.Size(305, 36);
+            this.ComboBoxScolarisationGestion.Size = new System.Drawing.Size(305, 32);
             this.ComboBoxScolarisationGestion.StartIndex = 0;
             this.ComboBoxScolarisationGestion.TabIndex = 225;
             // 
@@ -1040,21 +1042,21 @@
             this.dateNaissanceGestionPicker.FillColor = System.Drawing.Color.White;
             this.dateNaissanceGestionPicker.Font = new System.Drawing.Font("Montserrat Medium", 9.999999F, System.Drawing.FontStyle.Bold);
             this.dateNaissanceGestionPicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dateNaissanceGestionPicker.Location = new System.Drawing.Point(470, 174);
+            this.dateNaissanceGestionPicker.Location = new System.Drawing.Point(501, 151);
             this.dateNaissanceGestionPicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dateNaissanceGestionPicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dateNaissanceGestionPicker.Name = "dateNaissanceGestionPicker";
-            this.dateNaissanceGestionPicker.Size = new System.Drawing.Size(305, 36);
+            this.dateNaissanceGestionPicker.Size = new System.Drawing.Size(305, 30);
             this.dateNaissanceGestionPicker.TabIndex = 224;
             this.dateNaissanceGestionPicker.Value = new System.DateTime(2025, 8, 27, 9, 58, 12, 0);
             // 
             // label16
             // 
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label16.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(301, 174);
+            this.label16.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label16.Location = new System.Drawing.Point(336, 151);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(163, 30);
+            this.label16.Size = new System.Drawing.Size(159, 30);
             this.label16.TabIndex = 223;
             this.label16.Text = "Date naissance ";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1065,7 +1067,7 @@
             this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel11.Controls.Add(this.CheckBoxEnfantGestion);
             this.panel11.Controls.Add(this.CheckBoxEpouseGestion);
-            this.panel11.Location = new System.Drawing.Point(481, 71);
+            this.panel11.Location = new System.Drawing.Point(512, 64);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(228, 35);
             this.panel11.TabIndex = 222;
@@ -1080,12 +1082,12 @@
             this.CheckBoxEnfantGestion.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.CheckBoxEnfantGestion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CheckBoxEnfantGestion.Enabled = false;
-            this.CheckBoxEnfantGestion.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheckBoxEnfantGestion.Font = new System.Drawing.Font("Montserrat SemiBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CheckBoxEnfantGestion.Location = new System.Drawing.Point(117, -2);
             this.CheckBoxEnfantGestion.MinimumSize = new System.Drawing.Size(60, 36);
             this.CheckBoxEnfantGestion.Name = "CheckBoxEnfantGestion";
             this.CheckBoxEnfantGestion.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.CheckBoxEnfantGestion.Size = new System.Drawing.Size(71, 36);
+            this.CheckBoxEnfantGestion.Size = new System.Drawing.Size(70, 36);
             this.CheckBoxEnfantGestion.TabIndex = 147;
             this.CheckBoxEnfantGestion.Text = "Enfant ";
             this.CheckBoxEnfantGestion.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
@@ -1102,11 +1104,11 @@
             this.CheckBoxEpouseGestion.CheckedState.BorderThickness = 0;
             this.CheckBoxEpouseGestion.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.CheckBoxEpouseGestion.Enabled = false;
-            this.CheckBoxEpouseGestion.Font = new System.Drawing.Font("Montserrat", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheckBoxEpouseGestion.Font = new System.Drawing.Font("Montserrat SemiBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CheckBoxEpouseGestion.Location = new System.Drawing.Point(24, -2);
             this.CheckBoxEpouseGestion.MinimumSize = new System.Drawing.Size(60, 36);
             this.CheckBoxEpouseGestion.Name = "CheckBoxEpouseGestion";
-            this.CheckBoxEpouseGestion.Size = new System.Drawing.Size(73, 36);
+            this.CheckBoxEpouseGestion.Size = new System.Drawing.Size(72, 36);
             this.CheckBoxEpouseGestion.TabIndex = 146;
             this.CheckBoxEpouseGestion.Text = "Epouse";
             this.CheckBoxEpouseGestion.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
@@ -1123,22 +1125,22 @@
             this.ComboBoxEmployeGestion.Enabled = false;
             this.ComboBoxEmployeGestion.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ComboBoxEmployeGestion.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.ComboBoxEmployeGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxEmployeGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold);
             this.ComboBoxEmployeGestion.ForeColor = System.Drawing.Color.Black;
-            this.ComboBoxEmployeGestion.ItemHeight = 30;
-            this.ComboBoxEmployeGestion.Location = new System.Drawing.Point(702, 20);
+            this.ComboBoxEmployeGestion.ItemHeight = 26;
+            this.ComboBoxEmployeGestion.Location = new System.Drawing.Point(720, 23);
             this.ComboBoxEmployeGestion.MinimumSize = new System.Drawing.Size(305, 0);
             this.ComboBoxEmployeGestion.Name = "ComboBoxEmployeGestion";
-            this.ComboBoxEmployeGestion.Size = new System.Drawing.Size(305, 36);
+            this.ComboBoxEmployeGestion.Size = new System.Drawing.Size(305, 32);
             this.ComboBoxEmployeGestion.TabIndex = 221;
             // 
             // label18
             // 
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label18.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(595, 20);
+            this.label18.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label18.Location = new System.Drawing.Point(586, 23);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(101, 30);
+            this.label18.Size = new System.Drawing.Size(128, 26);
             this.label18.TabIndex = 220;
             this.label18.Text = "Employe :";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1156,21 +1158,21 @@
             this.textBoxIdentificationGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxIdentificationGestion.ForeColor = System.Drawing.Color.Black;
             this.textBoxIdentificationGestion.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxIdentificationGestion.Location = new System.Drawing.Point(470, 227);
+            this.textBoxIdentificationGestion.Location = new System.Drawing.Point(501, 194);
             this.textBoxIdentificationGestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxIdentificationGestion.Name = "textBoxIdentificationGestion";
             this.textBoxIdentificationGestion.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxIdentificationGestion.PlaceholderText = "Reference Cnib ";
             this.textBoxIdentificationGestion.SelectedText = "";
-            this.textBoxIdentificationGestion.Size = new System.Drawing.Size(305, 36);
+            this.textBoxIdentificationGestion.Size = new System.Drawing.Size(305, 30);
             this.textBoxIdentificationGestion.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxIdentificationGestion.TabIndex = 219;
             // 
             // label21
             // 
             this.label21.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label21.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(305, 227);
+            this.label21.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label21.Location = new System.Drawing.Point(336, 194);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(159, 30);
             this.label21.TabIndex = 218;
@@ -1190,13 +1192,13 @@
             this.textBoxNomPrenomGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNomPrenomGestion.ForeColor = System.Drawing.Color.Black;
             this.textBoxNomPrenomGestion.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNomPrenomGestion.Location = new System.Drawing.Point(470, 118);
+            this.textBoxNomPrenomGestion.Location = new System.Drawing.Point(501, 109);
             this.textBoxNomPrenomGestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxNomPrenomGestion.Name = "textBoxNomPrenomGestion";
             this.textBoxNomPrenomGestion.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxNomPrenomGestion.PlaceholderText = "Saisir le Nom et Prenom";
             this.textBoxNomPrenomGestion.SelectedText = "";
-            this.textBoxNomPrenomGestion.Size = new System.Drawing.Size(305, 36);
+            this.textBoxNomPrenomGestion.Size = new System.Drawing.Size(305, 30);
             this.textBoxNomPrenomGestion.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxNomPrenomGestion.TabIndex = 217;
             // 
@@ -1211,20 +1213,20 @@
             this.ComboBoxEntrepriseGestion.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.ComboBoxEntrepriseGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxEntrepriseGestion.ForeColor = System.Drawing.Color.Black;
-            this.ComboBoxEntrepriseGestion.ItemHeight = 30;
-            this.ComboBoxEntrepriseGestion.Location = new System.Drawing.Point(219, 20);
+            this.ComboBoxEntrepriseGestion.ItemHeight = 26;
+            this.ComboBoxEntrepriseGestion.Location = new System.Drawing.Point(250, 23);
             this.ComboBoxEntrepriseGestion.MinimumSize = new System.Drawing.Size(305, 0);
             this.ComboBoxEntrepriseGestion.Name = "ComboBoxEntrepriseGestion";
-            this.ComboBoxEntrepriseGestion.Size = new System.Drawing.Size(305, 36);
+            this.ComboBoxEntrepriseGestion.Size = new System.Drawing.Size(305, 32);
             this.ComboBoxEntrepriseGestion.TabIndex = 216;
             // 
             // label22
             // 
             this.label22.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label22.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(301, 118);
+            this.label22.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label22.Location = new System.Drawing.Point(336, 109);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(163, 30);
+            this.label22.Size = new System.Drawing.Size(159, 30);
             this.label22.TabIndex = 215;
             this.label22.Text = "Nom Prenom (s) :";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1232,10 +1234,10 @@
             // label23
             // 
             this.label23.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label23.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(112, 20);
+            this.label23.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label23.Location = new System.Drawing.Point(116, 23);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(101, 30);
+            this.label23.Size = new System.Drawing.Size(128, 26);
             this.label23.TabIndex = 214;
             this.label23.Text = "Entreprise :";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1245,11 +1247,12 @@
             this.buttonEffacerGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonEffacerGestion.BackColor = System.Drawing.Color.Orange;
             this.buttonEffacerGestion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonEffacerGestion.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEffacerGestion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEffacerGestion.Font = new System.Drawing.Font("Montserrat SemiBold", 10.25F, System.Drawing.FontStyle.Bold);
             this.buttonEffacerGestion.ForeColor = System.Drawing.Color.White;
-            this.buttonEffacerGestion.Location = new System.Drawing.Point(631, 329);
+            this.buttonEffacerGestion.Location = new System.Drawing.Point(662, 289);
             this.buttonEffacerGestion.Name = "buttonEffacerGestion";
-            this.buttonEffacerGestion.Size = new System.Drawing.Size(132, 45);
+            this.buttonEffacerGestion.Size = new System.Drawing.Size(132, 35);
             this.buttonEffacerGestion.TabIndex = 93;
             this.buttonEffacerGestion.Text = "Effacer";
             this.buttonEffacerGestion.UseVisualStyleBackColor = false;
@@ -1259,9 +1262,9 @@
             this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel9.BackColor = System.Drawing.Color.MidnightBlue;
-            this.panel9.Location = new System.Drawing.Point(3, 3);
+            this.panel9.Location = new System.Drawing.Point(3, 7);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1122, 10);
+            this.panel9.Size = new System.Drawing.Size(1184, 10);
             this.panel9.TabIndex = 92;
             // 
             // button_Supprimer
@@ -1270,11 +1273,12 @@
             this.button_Supprimer.BackColor = System.Drawing.Color.Crimson;
             this.button_Supprimer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_Supprimer.Enabled = false;
-            this.button_Supprimer.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Supprimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_Supprimer.Font = new System.Drawing.Font("Montserrat SemiBold", 10.25F, System.Drawing.FontStyle.Bold);
             this.button_Supprimer.ForeColor = System.Drawing.Color.White;
-            this.button_Supprimer.Location = new System.Drawing.Point(967, 329);
+            this.button_Supprimer.Location = new System.Drawing.Point(998, 289);
             this.button_Supprimer.Name = "button_Supprimer";
-            this.button_Supprimer.Size = new System.Drawing.Size(132, 45);
+            this.button_Supprimer.Size = new System.Drawing.Size(132, 35);
             this.button_Supprimer.TabIndex = 90;
             this.button_Supprimer.Text = "Supprimer";
             this.button_Supprimer.UseVisualStyleBackColor = false;
@@ -1286,11 +1290,12 @@
             this.buttonModifier.BackColor = System.Drawing.Color.OrangeRed;
             this.buttonModifier.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonModifier.Enabled = false;
-            this.buttonModifier.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonModifier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonModifier.Font = new System.Drawing.Font("Montserrat SemiBold", 10.25F, System.Drawing.FontStyle.Bold);
             this.buttonModifier.ForeColor = System.Drawing.Color.White;
-            this.buttonModifier.Location = new System.Drawing.Point(800, 329);
+            this.buttonModifier.Location = new System.Drawing.Point(831, 289);
             this.buttonModifier.Name = "buttonModifier";
-            this.buttonModifier.Size = new System.Drawing.Size(132, 45);
+            this.buttonModifier.Size = new System.Drawing.Size(132, 35);
             this.buttonModifier.TabIndex = 89;
             this.buttonModifier.Text = "Modifier";
             this.buttonModifier.UseVisualStyleBackColor = false;
@@ -1300,11 +1305,12 @@
             // 
             this.buttonRechercher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonRechercher.BackColor = System.Drawing.Color.MidnightBlue;
-            this.buttonRechercher.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRechercher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRechercher.Font = new System.Drawing.Font("Montserrat SemiBold", 10.25F, System.Drawing.FontStyle.Bold);
             this.buttonRechercher.ForeColor = System.Drawing.Color.White;
-            this.buttonRechercher.Location = new System.Drawing.Point(996, 2);
+            this.buttonRechercher.Location = new System.Drawing.Point(1058, 2);
             this.buttonRechercher.Name = "buttonRechercher";
-            this.buttonRechercher.Size = new System.Drawing.Size(132, 45);
+            this.buttonRechercher.Size = new System.Drawing.Size(132, 35);
             this.buttonRechercher.TabIndex = 50;
             this.buttonRechercher.Text = "Rechercher";
             this.buttonRechercher.UseVisualStyleBackColor = false;
@@ -1314,40 +1320,40 @@
             // 
             this.DataGridView_Charge_Gestion.AllowUserToAddRows = false;
             this.DataGridView_Charge_Gestion.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle33.BackColor = System.Drawing.Color.White;
-            this.DataGridView_Charge_Gestion.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            this.DataGridView_Charge_Gestion.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DataGridView_Charge_Gestion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DataGridView_Charge_Gestion.BackgroundColor = System.Drawing.Color.MidnightBlue;
             this.DataGridView_Charge_Gestion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DataGridView_Charge_Gestion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle34.BackColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle34.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle34.ForeColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridView_Charge_Gestion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.MidnightBlue;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.MidnightBlue;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridView_Charge_Gestion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.DataGridView_Charge_Gestion.ColumnHeadersHeight = 50;
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle35.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridView_Charge_Gestion.DefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridView_Charge_Gestion.DefaultCellStyle = dataGridViewCellStyle7;
             this.DataGridView_Charge_Gestion.GridColor = System.Drawing.Color.MidnightBlue;
             this.DataGridView_Charge_Gestion.Location = new System.Drawing.Point(2, 48);
             this.DataGridView_Charge_Gestion.Name = "DataGridView_Charge_Gestion";
             this.DataGridView_Charge_Gestion.ReadOnly = true;
             this.DataGridView_Charge_Gestion.RowHeadersVisible = false;
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DataGridView_Charge_Gestion.RowsDefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DataGridView_Charge_Gestion.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.DataGridView_Charge_Gestion.RowTemplate.Height = 100;
-            this.DataGridView_Charge_Gestion.Size = new System.Drawing.Size(1137, 216);
+            this.DataGridView_Charge_Gestion.Size = new System.Drawing.Size(1199, 229);
             this.DataGridView_Charge_Gestion.TabIndex = 2;
             this.DataGridView_Charge_Gestion.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.DataGridView_Charge_Gestion.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -1607,28 +1613,27 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1154, 60);
+            this.panel2.Size = new System.Drawing.Size(1216, 47);
             this.panel2.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.SystemColors.Highlight;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Montserrat Medium", 13F, System.Drawing.FontStyle.Bold);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Montserrat Medium", 11F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1154, 60);
-            this.label1.TabIndex = 1;
+            this.label1.Size = new System.Drawing.Size(1216, 45);
+            this.label1.TabIndex = 2;
             this.label1.Text = ">> Charge";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // GestionChargeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1154, 741);
+            this.ClientSize = new System.Drawing.Size(1216, 687);
             this.Controls.Add(this.panel1);
             this.Name = "GestionChargeForm";
             this.Text = "GestionChargeForm";
@@ -1737,7 +1742,6 @@
         private System.Windows.Forms.TextBox textBox43;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2ComboBox ComboBoxEmploye;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Panel panel12;
@@ -1766,5 +1770,6 @@
         private System.Windows.Forms.TextBox textBoxMatricule;
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.TextBox textBoxID;
+        private System.Windows.Forms.Label label1;
     }
 }

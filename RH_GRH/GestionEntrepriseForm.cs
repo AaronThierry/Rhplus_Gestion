@@ -782,6 +782,7 @@ namespace RH_GRH
 
                     if (saveDialog.ShowDialog() == DialogResult.OK)
                     {
+
                         var document = new BulletinDocument(model);
                         document.GeneratePdf(saveDialog.FileName);
 
@@ -800,6 +801,16 @@ namespace RH_GRH
             {
                 MessageBox.Show($"Une erreur est survenue :\n{ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
         }
 
         //*******************Fin Bouton supprimer Entreprise************************

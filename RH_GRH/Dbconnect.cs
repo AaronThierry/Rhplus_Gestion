@@ -10,8 +10,8 @@ namespace RH_GRH
 {
     internal class Dbconnect
     {
-        MySqlConnection connect = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=rhplusCshrp");
-       // MySqlConnection connect = new MySqlConnection("server=localhost;port=3306;user=root;password=;database=rhplusCshrp;");
+        //MySqlConnection connect = new MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=rhplusCshrp");
+       MySqlConnection connect = new MySqlConnection("datasource=srv1909.hstgr.io;port=3306;username=u694924489_csharprhplus;password=Root@508050;database=u694924489_csharprhplus");
 
         public MySqlConnection getconnection
         {

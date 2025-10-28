@@ -30,21 +30,24 @@ namespace RH_GRH
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tabControlEntreprise = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel_center = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label67 = new System.Windows.Forms.Label();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.pictureBox_logo = new System.Windows.Forms.PictureBox();
             this.buttonAjouter = new System.Windows.Forms.Button();
@@ -119,6 +122,8 @@ namespace RH_GRH
             this.panel7 = new System.Windows.Forms.Panel();
             this.textBoxSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.label68 = new System.Windows.Forms.Label();
+            this.textBoxEmailGestion = new System.Windows.Forms.TextBox();
             this.buttonEffacerGestion = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
             this.pictureBoxGestion = new System.Windows.Forms.PictureBox();
@@ -196,10 +201,6 @@ namespace RH_GRH
             this.button_Imprimer = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.label68 = new System.Windows.Forms.Label();
-            this.textBoxEmailGestion = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabControlEntreprise.SuspendLayout();
@@ -226,7 +227,7 @@ namespace RH_GRH
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1154, 741);
+            this.panel1.Size = new System.Drawing.Size(1216, 687);
             this.panel1.TabIndex = 0;
             // 
             // panel3
@@ -235,7 +236,7 @@ namespace RH_GRH
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 60);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1154, 681);
+            this.panel3.Size = new System.Drawing.Size(1216, 627);
             this.panel3.TabIndex = 1;
             // 
             // tabControlEntreprise
@@ -247,7 +248,7 @@ namespace RH_GRH
             this.tabControlEntreprise.Location = new System.Drawing.Point(0, 0);
             this.tabControlEntreprise.Name = "tabControlEntreprise";
             this.tabControlEntreprise.SelectedIndex = 0;
-            this.tabControlEntreprise.Size = new System.Drawing.Size(1154, 681);
+            this.tabControlEntreprise.Size = new System.Drawing.Size(1216, 627);
             this.tabControlEntreprise.TabIndex = 0;
             // 
             // tabPage1
@@ -257,7 +258,7 @@ namespace RH_GRH
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1146, 648);
+            this.tabPage1.Size = new System.Drawing.Size(1208, 594);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Inscription";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -292,18 +293,29 @@ namespace RH_GRH
             this.panel_center.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_center.Location = new System.Drawing.Point(3, 3);
             this.panel_center.Name = "panel_center";
-            this.panel_center.Size = new System.Drawing.Size(1136, 638);
+            this.panel_center.Size = new System.Drawing.Size(1198, 584);
             this.panel_center.TabIndex = 3;
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.panel11);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.DataGridView_Entreprise);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1136, 638);
+            this.panel4.Size = new System.Drawing.Size(1198, 584);
             this.panel4.TabIndex = 26;
+            // 
+            // panel11
+            // 
+            this.panel11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel11.BackColor = System.Drawing.Color.MidnightBlue;
+            this.panel11.Location = new System.Drawing.Point(7, 206);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1184, 10);
+            this.panel11.TabIndex = 93;
             // 
             // panel5
             // 
@@ -355,26 +367,48 @@ namespace RH_GRH
             this.panel5.Controls.Add(this.label24);
             this.panel5.Controls.Add(this.textBoxnomEntreprise);
             this.panel5.Controls.Add(this.label25);
-            this.panel5.Location = new System.Drawing.Point(0, 198);
+            this.panel5.Location = new System.Drawing.Point(0, 202);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1136, 437);
+            this.panel5.Size = new System.Drawing.Size(1198, 380);
             this.panel5.TabIndex = 3;
+            // 
+            // label67
+            // 
+            this.label67.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label67.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label67.Location = new System.Drawing.Point(492, 255);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(157, 26);
+            this.label67.TabIndex = 93;
+            this.label67.Text = "Email :";
+            this.label67.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBoxEmail
+            // 
+            this.textBoxEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBoxEmail.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxEmail.Location = new System.Drawing.Point(655, 251);
+            this.textBoxEmail.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxEmail.Multiline = true;
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(200, 30);
+            this.textBoxEmail.TabIndex = 92;
             // 
             // panel10
             // 
             this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel10.BackColor = System.Drawing.Color.MidnightBlue;
-            this.panel10.Location = new System.Drawing.Point(3, 1);
+            this.panel10.Location = new System.Drawing.Point(3, -56);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1130, 10);
+            this.panel10.Size = new System.Drawing.Size(1192, 10);
             this.panel10.TabIndex = 91;
             // 
             // pictureBox_logo
             // 
             this.pictureBox_logo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox_logo.BackColor = System.Drawing.Color.Gainsboro;
-            this.pictureBox_logo.Location = new System.Drawing.Point(950, 193);
+            this.pictureBox_logo.Location = new System.Drawing.Point(981, 180);
             this.pictureBox_logo.Name = "pictureBox_logo";
             this.pictureBox_logo.Size = new System.Drawing.Size(117, 111);
             this.pictureBox_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -386,11 +420,12 @@ namespace RH_GRH
             this.buttonAjouter.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonAjouter.BackColor = System.Drawing.Color.MidnightBlue;
             this.buttonAjouter.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonAjouter.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAjouter.Font = new System.Drawing.Font("Montserrat SemiBold", 10.25F, System.Drawing.FontStyle.Bold);
             this.buttonAjouter.ForeColor = System.Drawing.Color.White;
-            this.buttonAjouter.Location = new System.Drawing.Point(945, 386);
+            this.buttonAjouter.Location = new System.Drawing.Point(976, 341);
             this.buttonAjouter.Name = "buttonAjouter";
-            this.buttonAjouter.Size = new System.Drawing.Size(132, 45);
+            this.buttonAjouter.Size = new System.Drawing.Size(132, 35);
             this.buttonAjouter.TabIndex = 89;
             this.buttonAjouter.Text = "Ajouter";
             this.buttonAjouter.UseVisualStyleBackColor = false;
@@ -401,11 +436,12 @@ namespace RH_GRH
             this.buttonEffacer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonEffacer.BackColor = System.Drawing.Color.Orange;
             this.buttonEffacer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonEffacer.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEffacer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEffacer.Font = new System.Drawing.Font("Montserrat SemiBold", 10.25F, System.Drawing.FontStyle.Bold);
             this.buttonEffacer.ForeColor = System.Drawing.Color.White;
-            this.buttonEffacer.Location = new System.Drawing.Point(778, 386);
+            this.buttonEffacer.Location = new System.Drawing.Point(809, 341);
             this.buttonEffacer.Name = "buttonEffacer";
-            this.buttonEffacer.Size = new System.Drawing.Size(132, 45);
+            this.buttonEffacer.Size = new System.Drawing.Size(132, 35);
             this.buttonEffacer.TabIndex = 88;
             this.buttonEffacer.Text = "Effacer";
             this.buttonEffacer.UseVisualStyleBackColor = false;
@@ -414,11 +450,11 @@ namespace RH_GRH
             // label33
             // 
             this.label33.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label33.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
             this.label33.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.label33.Location = new System.Drawing.Point(926, 169);
+            this.label33.Location = new System.Drawing.Point(981, 159);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(166, 21);
+            this.label33.Size = new System.Drawing.Size(117, 21);
             this.label33.TabIndex = 87;
             this.label33.Text = "Logo";
             this.label33.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -428,11 +464,12 @@ namespace RH_GRH
             this.buttonparcourir.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonparcourir.BackColor = System.Drawing.Color.Green;
             this.buttonparcourir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonparcourir.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonparcourir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonparcourir.Font = new System.Drawing.Font("Montserrat SemiBold", 10.25F, System.Drawing.FontStyle.Bold);
             this.buttonparcourir.ForeColor = System.Drawing.Color.White;
-            this.buttonparcourir.Location = new System.Drawing.Point(943, 317);
+            this.buttonparcourir.Location = new System.Drawing.Point(974, 297);
             this.buttonparcourir.Name = "buttonparcourir";
-            this.buttonparcourir.Size = new System.Drawing.Size(132, 45);
+            this.buttonparcourir.Size = new System.Drawing.Size(132, 35);
             this.buttonparcourir.TabIndex = 86;
             this.buttonparcourir.Text = "Parcourir...";
             this.buttonparcourir.UseVisualStyleBackColor = false;
@@ -441,10 +478,10 @@ namespace RH_GRH
             // label32
             // 
             this.label32.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label32.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(5, 281);
+            this.label32.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label32.Location = new System.Drawing.Point(120, 257);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(163, 30);
+            this.label32.Size = new System.Drawing.Size(133, 26);
             this.label32.TabIndex = 85;
             this.label32.Text = "Tpa :";
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -453,29 +490,31 @@ namespace RH_GRH
             // 
             this.textBoxTPA.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxTPA.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTPA.Location = new System.Drawing.Point(174, 281);
-            this.textBoxTPA.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxTPA.Location = new System.Drawing.Point(257, 253);
+            this.textBoxTPA.MinimumSize = new System.Drawing.Size(100, 26);
+            this.textBoxTPA.Multiline = true;
             this.textBoxTPA.Name = "textBoxTPA";
-            this.textBoxTPA.Size = new System.Drawing.Size(286, 23);
+            this.textBoxTPA.Size = new System.Drawing.Size(200, 30);
             this.textBoxTPA.TabIndex = 84;
             // 
             // textBoxNumeroBancaire
             // 
             this.textBoxNumeroBancaire.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxNumeroBancaire.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNumeroBancaire.Location = new System.Drawing.Point(641, 245);
+            this.textBoxNumeroBancaire.Location = new System.Drawing.Point(656, 217);
             this.textBoxNumeroBancaire.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxNumeroBancaire.Multiline = true;
             this.textBoxNumeroBancaire.Name = "textBoxNumeroBancaire";
-            this.textBoxNumeroBancaire.Size = new System.Drawing.Size(252, 23);
+            this.textBoxNumeroBancaire.Size = new System.Drawing.Size(200, 30);
             this.textBoxNumeroBancaire.TabIndex = 83;
             // 
             // label30
             // 
             this.label30.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label30.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(467, 245);
+            this.label30.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label30.Location = new System.Drawing.Point(492, 221);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(168, 30);
+            this.label30.Size = new System.Drawing.Size(160, 26);
             this.label30.TabIndex = 82;
             this.label30.Text = "Compte bancaire :";
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -484,19 +523,20 @@ namespace RH_GRH
             // 
             this.textBoxIFU.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxIFU.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxIFU.Location = new System.Drawing.Point(174, 245);
+            this.textBoxIFU.Location = new System.Drawing.Point(257, 219);
             this.textBoxIFU.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxIFU.Multiline = true;
             this.textBoxIFU.Name = "textBoxIFU";
-            this.textBoxIFU.Size = new System.Drawing.Size(286, 23);
+            this.textBoxIFU.Size = new System.Drawing.Size(200, 30);
             this.textBoxIFU.TabIndex = 81;
             // 
             // label31
             // 
             this.label31.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label31.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(4, 245);
+            this.label31.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label31.Location = new System.Drawing.Point(119, 223);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(164, 30);
+            this.label31.Size = new System.Drawing.Size(134, 26);
             this.label31.TabIndex = 80;
             this.label31.Text = "Numero ifu :";
             this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -505,19 +545,20 @@ namespace RH_GRH
             // 
             this.textBoxFormeJuridique.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxFormeJuridique.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxFormeJuridique.Location = new System.Drawing.Point(639, 206);
+            this.textBoxFormeJuridique.Location = new System.Drawing.Point(655, 183);
             this.textBoxFormeJuridique.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxFormeJuridique.Multiline = true;
             this.textBoxFormeJuridique.Name = "textBoxFormeJuridique";
-            this.textBoxFormeJuridique.Size = new System.Drawing.Size(255, 23);
+            this.textBoxFormeJuridique.Size = new System.Drawing.Size(200, 30);
             this.textBoxFormeJuridique.TabIndex = 79;
             // 
             // label29
             // 
             this.label29.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label29.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(463, 206);
+            this.label29.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label29.Location = new System.Drawing.Point(492, 183);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(172, 30);
+            this.label29.Size = new System.Drawing.Size(159, 30);
             this.label29.TabIndex = 78;
             this.label29.Text = "Forme juridique :";
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -526,19 +567,20 @@ namespace RH_GRH
             // 
             this.textBoxRegimeFiscal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxRegimeFiscal.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRegimeFiscal.Location = new System.Drawing.Point(174, 206);
+            this.textBoxRegimeFiscal.Location = new System.Drawing.Point(257, 185);
             this.textBoxRegimeFiscal.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxRegimeFiscal.Multiline = true;
             this.textBoxRegimeFiscal.Name = "textBoxRegimeFiscal";
-            this.textBoxRegimeFiscal.Size = new System.Drawing.Size(286, 23);
+            this.textBoxRegimeFiscal.Size = new System.Drawing.Size(200, 30);
             this.textBoxRegimeFiscal.TabIndex = 77;
             // 
             // label26
             // 
             this.label26.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label26.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(4, 206);
+            this.label26.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label26.Location = new System.Drawing.Point(119, 185);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(164, 30);
+            this.label26.Size = new System.Drawing.Size(134, 30);
             this.label26.TabIndex = 76;
             this.label26.Text = "Regime fiscal :";
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -547,40 +589,42 @@ namespace RH_GRH
             // 
             this.textBoxCNSS.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxCNSS.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCNSS.Location = new System.Drawing.Point(639, 170);
-            this.textBoxCNSS.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxCNSS.Location = new System.Drawing.Point(656, 151);
+            this.textBoxCNSS.Multiline = true;
             this.textBoxCNSS.Name = "textBoxCNSS";
-            this.textBoxCNSS.Size = new System.Drawing.Size(255, 23);
+            this.textBoxCNSS.Size = new System.Drawing.Size(200, 30);
             this.textBoxCNSS.TabIndex = 75;
             // 
             // label27
             // 
             this.label27.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label27.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(463, 170);
+            this.label27.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label27.Location = new System.Drawing.Point(488, 151);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(172, 30);
+            this.label27.Size = new System.Drawing.Size(168, 30);
             this.label27.TabIndex = 74;
             this.label27.Text = "Numero cnss :";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label27.Click += new System.EventHandler(this.label27_Click);
             // 
             // textBoxRegistreCommerce
             // 
             this.textBoxRegistreCommerce.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxRegistreCommerce.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRegistreCommerce.Location = new System.Drawing.Point(174, 167);
+            this.textBoxRegistreCommerce.Location = new System.Drawing.Point(257, 151);
             this.textBoxRegistreCommerce.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxRegistreCommerce.Multiline = true;
             this.textBoxRegistreCommerce.Name = "textBoxRegistreCommerce";
-            this.textBoxRegistreCommerce.Size = new System.Drawing.Size(286, 23);
+            this.textBoxRegistreCommerce.Size = new System.Drawing.Size(200, 30);
             this.textBoxRegistreCommerce.TabIndex = 73;
             // 
             // label28
             // 
             this.label28.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label28.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(4, 167);
+            this.label28.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label28.Location = new System.Drawing.Point(119, 151);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(176, 30);
+            this.label28.Size = new System.Drawing.Size(135, 30);
             this.label28.TabIndex = 72;
             this.label28.Text = "Registre commerce :";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -589,19 +633,20 @@ namespace RH_GRH
             // 
             this.textBoxCentreImpots.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxCentreImpots.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCentreImpots.Location = new System.Drawing.Point(899, 131);
+            this.textBoxCentreImpots.Location = new System.Drawing.Point(898, 117);
             this.textBoxCentreImpots.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxCentreImpots.Multiline = true;
             this.textBoxCentreImpots.Name = "textBoxCentreImpots";
-            this.textBoxCentreImpots.Size = new System.Drawing.Size(235, 23);
+            this.textBoxCentreImpots.Size = new System.Drawing.Size(200, 30);
             this.textBoxCentreImpots.TabIndex = 71;
             // 
             // label14
             // 
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label14.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(773, 131);
+            this.label14.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label14.Location = new System.Drawing.Point(773, 117);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(135, 30);
+            this.label14.Size = new System.Drawing.Size(119, 30);
             this.label14.TabIndex = 70;
             this.label14.Text = "Centre impot :";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -610,40 +655,41 @@ namespace RH_GRH
             // 
             this.textBoxLot.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxLot.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLot.Location = new System.Drawing.Point(528, 131);
+            this.textBoxLot.Location = new System.Drawing.Point(561, 118);
             this.textBoxLot.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxLot.Name = "textBoxLot";
-            this.textBoxLot.Size = new System.Drawing.Size(235, 23);
+            this.textBoxLot.Size = new System.Drawing.Size(200, 30);
             this.textBoxLot.TabIndex = 69;
             // 
             // label15
             // 
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label15.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(392, 131);
+            this.label15.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label15.Location = new System.Drawing.Point(435, 117);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(135, 30);
+            this.label15.Size = new System.Drawing.Size(121, 30);
             this.label15.TabIndex = 68;
             this.label15.Text = "Lot : ";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
             // textBoxRue
             // 
             this.textBoxRue.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxRue.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRue.Location = new System.Drawing.Point(149, 131);
+            this.textBoxRue.Location = new System.Drawing.Point(226, 117);
             this.textBoxRue.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxRue.Name = "textBoxRue";
-            this.textBoxRue.Size = new System.Drawing.Size(235, 23);
+            this.textBoxRue.Size = new System.Drawing.Size(200, 30);
             this.textBoxRue.TabIndex = 67;
             // 
             // label16
             // 
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label16.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(4, 131);
+            this.label16.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label16.Location = new System.Drawing.Point(92, 117);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(139, 30);
+            this.label16.Size = new System.Drawing.Size(130, 30);
             this.label16.TabIndex = 66;
             this.label16.Text = "Rue :";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -652,19 +698,20 @@ namespace RH_GRH
             // 
             this.textBoxCommune.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxCommune.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCommune.Location = new System.Drawing.Point(899, 95);
+            this.textBoxCommune.Location = new System.Drawing.Point(898, 84);
             this.textBoxCommune.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxCommune.Multiline = true;
             this.textBoxCommune.Name = "textBoxCommune";
-            this.textBoxCommune.Size = new System.Drawing.Size(235, 23);
+            this.textBoxCommune.Size = new System.Drawing.Size(200, 30);
             this.textBoxCommune.TabIndex = 65;
             // 
             // label17
             // 
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label17.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(773, 95);
+            this.label17.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label17.Location = new System.Drawing.Point(773, 84);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(135, 30);
+            this.label17.Size = new System.Drawing.Size(129, 30);
             this.label17.TabIndex = 64;
             this.label17.Text = "Commune :";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -673,19 +720,19 @@ namespace RH_GRH
             // 
             this.textBoxQuartier.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxQuartier.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxQuartier.Location = new System.Drawing.Point(528, 95);
+            this.textBoxQuartier.Location = new System.Drawing.Point(561, 85);
             this.textBoxQuartier.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxQuartier.Name = "textBoxQuartier";
-            this.textBoxQuartier.Size = new System.Drawing.Size(235, 23);
+            this.textBoxQuartier.Size = new System.Drawing.Size(200, 30);
             this.textBoxQuartier.TabIndex = 63;
             // 
             // label18
             // 
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label18.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(392, 95);
+            this.label18.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label18.Location = new System.Drawing.Point(435, 84);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(135, 30);
+            this.label18.Size = new System.Drawing.Size(121, 30);
             this.label18.TabIndex = 62;
             this.label18.Text = "Quartier :";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -694,19 +741,19 @@ namespace RH_GRH
             // 
             this.textBoxTelephone.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxTelephone.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTelephone.Location = new System.Drawing.Point(149, 95);
+            this.textBoxTelephone.Location = new System.Drawing.Point(226, 84);
             this.textBoxTelephone.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxTelephone.Name = "textBoxTelephone";
-            this.textBoxTelephone.Size = new System.Drawing.Size(235, 23);
+            this.textBoxTelephone.Size = new System.Drawing.Size(200, 30);
             this.textBoxTelephone.TabIndex = 61;
             // 
             // label19
             // 
             this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label19.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(4, 95);
+            this.label19.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label19.Location = new System.Drawing.Point(92, 84);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(139, 30);
+            this.label19.Size = new System.Drawing.Size(130, 30);
             this.label19.TabIndex = 60;
             this.label19.Text = "Telephone :";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -715,19 +762,20 @@ namespace RH_GRH
             // 
             this.textBoxAdrPostale.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxAdrPostale.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAdrPostale.Location = new System.Drawing.Point(899, 59);
+            this.textBoxAdrPostale.Location = new System.Drawing.Point(898, 52);
             this.textBoxAdrPostale.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxAdrPostale.Multiline = true;
             this.textBoxAdrPostale.Name = "textBoxAdrPostale";
-            this.textBoxAdrPostale.Size = new System.Drawing.Size(235, 23);
+            this.textBoxAdrPostale.Size = new System.Drawing.Size(200, 30);
             this.textBoxAdrPostale.TabIndex = 59;
             // 
             // label20
             // 
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label20.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(773, 59);
+            this.label20.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label20.Location = new System.Drawing.Point(773, 52);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(135, 30);
+            this.label20.Size = new System.Drawing.Size(129, 30);
             this.label20.TabIndex = 58;
             this.label20.Text = " Adr postale :";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -736,19 +784,19 @@ namespace RH_GRH
             // 
             this.textBoxAdrPhysique.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxAdrPhysique.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAdrPhysique.Location = new System.Drawing.Point(528, 59);
+            this.textBoxAdrPhysique.Location = new System.Drawing.Point(561, 53);
             this.textBoxAdrPhysique.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxAdrPhysique.Name = "textBoxAdrPhysique";
-            this.textBoxAdrPhysique.Size = new System.Drawing.Size(235, 23);
+            this.textBoxAdrPhysique.Size = new System.Drawing.Size(200, 30);
             this.textBoxAdrPhysique.TabIndex = 57;
             // 
             // label21
             // 
             this.label21.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label21.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(392, 59);
+            this.label21.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label21.Location = new System.Drawing.Point(435, 52);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(135, 30);
+            this.label21.Size = new System.Drawing.Size(121, 30);
             this.label21.TabIndex = 56;
             this.label21.Text = "Adr physique :";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -757,19 +805,19 @@ namespace RH_GRH
             // 
             this.textBoxCodeActivite.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxCodeActivite.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCodeActivite.Location = new System.Drawing.Point(149, 59);
+            this.textBoxCodeActivite.Location = new System.Drawing.Point(226, 52);
             this.textBoxCodeActivite.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxCodeActivite.Name = "textBoxCodeActivite";
-            this.textBoxCodeActivite.Size = new System.Drawing.Size(235, 23);
+            this.textBoxCodeActivite.Size = new System.Drawing.Size(200, 30);
             this.textBoxCodeActivite.TabIndex = 55;
             // 
             // label22
             // 
             this.label22.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label22.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(4, 59);
+            this.label22.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label22.Location = new System.Drawing.Point(92, 52);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(139, 30);
+            this.label22.Size = new System.Drawing.Size(130, 30);
             this.label22.TabIndex = 54;
             this.label22.Text = "Code activite :";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -778,19 +826,20 @@ namespace RH_GRH
             // 
             this.textBoxActivite.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxActivite.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxActivite.Location = new System.Drawing.Point(899, 23);
+            this.textBoxActivite.Location = new System.Drawing.Point(898, 19);
             this.textBoxActivite.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxActivite.Multiline = true;
             this.textBoxActivite.Name = "textBoxActivite";
-            this.textBoxActivite.Size = new System.Drawing.Size(235, 23);
+            this.textBoxActivite.Size = new System.Drawing.Size(200, 30);
             this.textBoxActivite.TabIndex = 53;
             // 
             // label23
             // 
             this.label23.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label23.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(773, 23);
+            this.label23.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label23.Location = new System.Drawing.Point(773, 19);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(135, 30);
+            this.label23.Size = new System.Drawing.Size(119, 30);
             this.label23.TabIndex = 52;
             this.label23.Text = " Activite :";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -799,19 +848,19 @@ namespace RH_GRH
             // 
             this.textBoxSigle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxSigle.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSigle.Location = new System.Drawing.Point(528, 23);
+            this.textBoxSigle.Location = new System.Drawing.Point(561, 20);
             this.textBoxSigle.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxSigle.Name = "textBoxSigle";
-            this.textBoxSigle.Size = new System.Drawing.Size(235, 23);
+            this.textBoxSigle.Size = new System.Drawing.Size(200, 30);
             this.textBoxSigle.TabIndex = 51;
             // 
             // label24
             // 
             this.label24.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label24.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(392, 23);
+            this.label24.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label24.Location = new System.Drawing.Point(435, 19);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(135, 30);
+            this.label24.Size = new System.Drawing.Size(121, 30);
             this.label24.TabIndex = 50;
             this.label24.Text = "Sigle :";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -820,19 +869,19 @@ namespace RH_GRH
             // 
             this.textBoxnomEntreprise.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxnomEntreprise.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxnomEntreprise.Location = new System.Drawing.Point(149, 23);
+            this.textBoxnomEntreprise.Location = new System.Drawing.Point(226, 19);
             this.textBoxnomEntreprise.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxnomEntreprise.Name = "textBoxnomEntreprise";
-            this.textBoxnomEntreprise.Size = new System.Drawing.Size(235, 23);
+            this.textBoxnomEntreprise.Size = new System.Drawing.Size(200, 30);
             this.textBoxnomEntreprise.TabIndex = 49;
             // 
             // label25
             // 
             this.label25.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label25.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(4, 23);
+            this.label25.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
+            this.label25.Location = new System.Drawing.Point(92, 19);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(139, 30);
+            this.label25.Size = new System.Drawing.Size(130, 30);
             this.label25.TabIndex = 48;
             this.label25.Text = "Nom entreprise :";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -841,40 +890,40 @@ namespace RH_GRH
             // 
             this.DataGridView_Entreprise.AllowUserToAddRows = false;
             this.DataGridView_Entreprise.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.DataGridView_Entreprise.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            this.DataGridView_Entreprise.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.DataGridView_Entreprise.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DataGridView_Entreprise.BackgroundColor = System.Drawing.Color.MidnightBlue;
             this.DataGridView_Entreprise.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DataGridView_Entreprise.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridView_Entreprise.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.MidnightBlue;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.MidnightBlue;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridView_Entreprise.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.DataGridView_Entreprise.ColumnHeadersHeight = 50;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridView_Entreprise.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridView_Entreprise.DefaultCellStyle = dataGridViewCellStyle11;
             this.DataGridView_Entreprise.GridColor = System.Drawing.Color.MidnightBlue;
             this.DataGridView_Entreprise.Location = new System.Drawing.Point(1, -2);
             this.DataGridView_Entreprise.Name = "DataGridView_Entreprise";
             this.DataGridView_Entreprise.ReadOnly = true;
             this.DataGridView_Entreprise.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DataGridView_Entreprise.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DataGridView_Entreprise.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.DataGridView_Entreprise.RowTemplate.Height = 100;
-            this.DataGridView_Entreprise.Size = new System.Drawing.Size(1133, 198);
+            this.DataGridView_Entreprise.Size = new System.Drawing.Size(1195, 198);
             this.DataGridView_Entreprise.TabIndex = 2;
             this.DataGridView_Entreprise.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.DataGridView_Entreprise.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -1133,7 +1182,7 @@ namespace RH_GRH
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1146, 648);
+            this.tabPage2.Size = new System.Drawing.Size(1208, 594);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Gestion";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1168,7 +1217,7 @@ namespace RH_GRH
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(3, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1140, 642);
+            this.panel6.Size = new System.Drawing.Size(1202, 588);
             this.panel6.TabIndex = 4;
             // 
             // panel7
@@ -1182,7 +1231,7 @@ namespace RH_GRH
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1140, 642);
+            this.panel7.Size = new System.Drawing.Size(1202, 588);
             this.panel7.TabIndex = 26;
             // 
             // textBoxSearch
@@ -1198,7 +1247,7 @@ namespace RH_GRH
             this.textBoxSearch.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxSearch.ForeColor = System.Drawing.Color.Black;
             this.textBoxSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxSearch.Location = new System.Drawing.Point(705, 4);
+            this.textBoxSearch.Location = new System.Drawing.Point(767, 4);
             this.textBoxSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.PlaceholderText = "";
@@ -1257,10 +1306,31 @@ namespace RH_GRH
             this.panel8.Controls.Add(this.label52);
             this.panel8.Controls.Add(this.textBoxnomEntrepriseGestion);
             this.panel8.Controls.Add(this.label53);
-            this.panel8.Location = new System.Drawing.Point(5, 216);
+            this.panel8.Location = new System.Drawing.Point(5, 162);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1132, 426);
+            this.panel8.Size = new System.Drawing.Size(1194, 426);
             this.panel8.TabIndex = 53;
+            // 
+            // label68
+            // 
+            this.label68.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label68.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label68.Location = new System.Drawing.Point(503, 277);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(163, 30);
+            this.label68.TabIndex = 95;
+            this.label68.Text = "Email :";
+            this.label68.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBoxEmailGestion
+            // 
+            this.textBoxEmailGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBoxEmailGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxEmailGestion.Location = new System.Drawing.Point(672, 277);
+            this.textBoxEmailGestion.MinimumSize = new System.Drawing.Size(100, 30);
+            this.textBoxEmailGestion.Name = "textBoxEmailGestion";
+            this.textBoxEmailGestion.Size = new System.Drawing.Size(254, 23);
+            this.textBoxEmailGestion.TabIndex = 94;
             // 
             // buttonEffacerGestion
             // 
@@ -1269,7 +1339,7 @@ namespace RH_GRH
             this.buttonEffacerGestion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonEffacerGestion.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEffacerGestion.ForeColor = System.Drawing.Color.White;
-            this.buttonEffacerGestion.Location = new System.Drawing.Point(611, 372);
+            this.buttonEffacerGestion.Location = new System.Drawing.Point(642, 372);
             this.buttonEffacerGestion.Name = "buttonEffacerGestion";
             this.buttonEffacerGestion.Size = new System.Drawing.Size(132, 45);
             this.buttonEffacerGestion.TabIndex = 93;
@@ -1284,14 +1354,14 @@ namespace RH_GRH
             this.panel9.BackColor = System.Drawing.Color.MidnightBlue;
             this.panel9.Location = new System.Drawing.Point(1, 9);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1122, 10);
+            this.panel9.Size = new System.Drawing.Size(1184, 10);
             this.panel9.TabIndex = 92;
             // 
             // pictureBoxGestion
             // 
             this.pictureBoxGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxGestion.BackColor = System.Drawing.Color.Gainsboro;
-            this.pictureBoxGestion.Location = new System.Drawing.Point(952, 196);
+            this.pictureBoxGestion.Location = new System.Drawing.Point(983, 196);
             this.pictureBoxGestion.Name = "pictureBoxGestion";
             this.pictureBoxGestion.Size = new System.Drawing.Size(117, 111);
             this.pictureBoxGestion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1305,7 +1375,7 @@ namespace RH_GRH
             this.button_Supprimer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_Supprimer.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Supprimer.ForeColor = System.Drawing.Color.White;
-            this.button_Supprimer.Location = new System.Drawing.Point(947, 372);
+            this.button_Supprimer.Location = new System.Drawing.Point(978, 372);
             this.button_Supprimer.Name = "button_Supprimer";
             this.button_Supprimer.Size = new System.Drawing.Size(132, 45);
             this.button_Supprimer.TabIndex = 90;
@@ -1320,7 +1390,7 @@ namespace RH_GRH
             this.buttonModifier.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonModifier.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonModifier.ForeColor = System.Drawing.Color.White;
-            this.buttonModifier.Location = new System.Drawing.Point(780, 372);
+            this.buttonModifier.Location = new System.Drawing.Point(811, 372);
             this.buttonModifier.Name = "buttonModifier";
             this.buttonModifier.Size = new System.Drawing.Size(132, 45);
             this.buttonModifier.TabIndex = 89;
@@ -1333,7 +1403,7 @@ namespace RH_GRH
             this.label34.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label34.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label34.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.label34.Location = new System.Drawing.Point(928, 172);
+            this.label34.Location = new System.Drawing.Point(959, 172);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(166, 21);
             this.label34.TabIndex = 88;
@@ -1347,7 +1417,7 @@ namespace RH_GRH
             this.buttonParcourrirGestion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonParcourrirGestion.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonParcourrirGestion.ForeColor = System.Drawing.Color.White;
-            this.buttonParcourrirGestion.Location = new System.Drawing.Point(945, 320);
+            this.buttonParcourrirGestion.Location = new System.Drawing.Point(976, 320);
             this.buttonParcourrirGestion.Name = "buttonParcourrirGestion";
             this.buttonParcourrirGestion.Size = new System.Drawing.Size(132, 45);
             this.buttonParcourrirGestion.TabIndex = 87;
@@ -1359,7 +1429,7 @@ namespace RH_GRH
             // 
             this.label35.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label35.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(7, 284);
+            this.label35.Location = new System.Drawing.Point(38, 284);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(163, 30);
             this.label35.TabIndex = 86;
@@ -1370,7 +1440,7 @@ namespace RH_GRH
             // 
             this.textBoxTPAGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxTPAGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTPAGestion.Location = new System.Drawing.Point(176, 284);
+            this.textBoxTPAGestion.Location = new System.Drawing.Point(207, 284);
             this.textBoxTPAGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxTPAGestion.Name = "textBoxTPAGestion";
             this.textBoxTPAGestion.Size = new System.Drawing.Size(286, 23);
@@ -1380,7 +1450,7 @@ namespace RH_GRH
             // 
             this.textBoxNumeroBancaireGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxNumeroBancaireGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNumeroBancaireGestion.Location = new System.Drawing.Point(643, 248);
+            this.textBoxNumeroBancaireGestion.Location = new System.Drawing.Point(674, 248);
             this.textBoxNumeroBancaireGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxNumeroBancaireGestion.Name = "textBoxNumeroBancaireGestion";
             this.textBoxNumeroBancaireGestion.Size = new System.Drawing.Size(252, 23);
@@ -1390,7 +1460,7 @@ namespace RH_GRH
             // 
             this.label36.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label36.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(469, 248);
+            this.label36.Location = new System.Drawing.Point(500, 248);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(168, 30);
             this.label36.TabIndex = 83;
@@ -1401,7 +1471,7 @@ namespace RH_GRH
             // 
             this.textBoxIFUGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxIFUGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxIFUGestion.Location = new System.Drawing.Point(176, 248);
+            this.textBoxIFUGestion.Location = new System.Drawing.Point(207, 248);
             this.textBoxIFUGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxIFUGestion.Name = "textBoxIFUGestion";
             this.textBoxIFUGestion.Size = new System.Drawing.Size(286, 23);
@@ -1411,7 +1481,7 @@ namespace RH_GRH
             // 
             this.label37.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label37.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(6, 248);
+            this.label37.Location = new System.Drawing.Point(37, 248);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(164, 30);
             this.label37.TabIndex = 81;
@@ -1422,7 +1492,7 @@ namespace RH_GRH
             // 
             this.textBoxFormeJuridiqueGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxFormeJuridiqueGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxFormeJuridiqueGestion.Location = new System.Drawing.Point(641, 209);
+            this.textBoxFormeJuridiqueGestion.Location = new System.Drawing.Point(672, 209);
             this.textBoxFormeJuridiqueGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxFormeJuridiqueGestion.Name = "textBoxFormeJuridiqueGestion";
             this.textBoxFormeJuridiqueGestion.Size = new System.Drawing.Size(255, 23);
@@ -1432,7 +1502,7 @@ namespace RH_GRH
             // 
             this.label38.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label38.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(465, 209);
+            this.label38.Location = new System.Drawing.Point(496, 209);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(172, 30);
             this.label38.TabIndex = 79;
@@ -1443,7 +1513,7 @@ namespace RH_GRH
             // 
             this.textBoxRegimeFiscalGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxRegimeFiscalGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRegimeFiscalGestion.Location = new System.Drawing.Point(176, 209);
+            this.textBoxRegimeFiscalGestion.Location = new System.Drawing.Point(207, 209);
             this.textBoxRegimeFiscalGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxRegimeFiscalGestion.Name = "textBoxRegimeFiscalGestion";
             this.textBoxRegimeFiscalGestion.Size = new System.Drawing.Size(286, 23);
@@ -1453,7 +1523,7 @@ namespace RH_GRH
             // 
             this.label39.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label39.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(6, 209);
+            this.label39.Location = new System.Drawing.Point(37, 209);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(164, 30);
             this.label39.TabIndex = 77;
@@ -1464,7 +1534,7 @@ namespace RH_GRH
             // 
             this.textBoxCNSSGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxCNSSGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCNSSGestion.Location = new System.Drawing.Point(641, 173);
+            this.textBoxCNSSGestion.Location = new System.Drawing.Point(672, 173);
             this.textBoxCNSSGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxCNSSGestion.Name = "textBoxCNSSGestion";
             this.textBoxCNSSGestion.Size = new System.Drawing.Size(255, 23);
@@ -1474,7 +1544,7 @@ namespace RH_GRH
             // 
             this.label40.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label40.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(465, 173);
+            this.label40.Location = new System.Drawing.Point(496, 173);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(172, 30);
             this.label40.TabIndex = 75;
@@ -1485,7 +1555,7 @@ namespace RH_GRH
             // 
             this.textBoxRegistreCommerceGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxRegistreCommerceGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRegistreCommerceGestion.Location = new System.Drawing.Point(176, 170);
+            this.textBoxRegistreCommerceGestion.Location = new System.Drawing.Point(207, 170);
             this.textBoxRegistreCommerceGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxRegistreCommerceGestion.Name = "textBoxRegistreCommerceGestion";
             this.textBoxRegistreCommerceGestion.Size = new System.Drawing.Size(286, 23);
@@ -1495,7 +1565,7 @@ namespace RH_GRH
             // 
             this.label41.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label41.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(6, 170);
+            this.label41.Location = new System.Drawing.Point(37, 170);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(176, 30);
             this.label41.TabIndex = 73;
@@ -1506,7 +1576,7 @@ namespace RH_GRH
             // 
             this.textBoxCentreImpotsGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxCentreImpotsGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCentreImpotsGestion.Location = new System.Drawing.Point(901, 134);
+            this.textBoxCentreImpotsGestion.Location = new System.Drawing.Point(932, 134);
             this.textBoxCentreImpotsGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxCentreImpotsGestion.Name = "textBoxCentreImpotsGestion";
             this.textBoxCentreImpotsGestion.Size = new System.Drawing.Size(235, 23);
@@ -1516,7 +1586,7 @@ namespace RH_GRH
             // 
             this.label42.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label42.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(775, 134);
+            this.label42.Location = new System.Drawing.Point(806, 134);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(135, 30);
             this.label42.TabIndex = 71;
@@ -1527,7 +1597,7 @@ namespace RH_GRH
             // 
             this.textBoxLotGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxLotGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLotGestion.Location = new System.Drawing.Point(530, 134);
+            this.textBoxLotGestion.Location = new System.Drawing.Point(561, 134);
             this.textBoxLotGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxLotGestion.Name = "textBoxLotGestion";
             this.textBoxLotGestion.Size = new System.Drawing.Size(235, 23);
@@ -1537,7 +1607,7 @@ namespace RH_GRH
             // 
             this.label43.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label43.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(394, 134);
+            this.label43.Location = new System.Drawing.Point(425, 134);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(135, 30);
             this.label43.TabIndex = 69;
@@ -1548,7 +1618,7 @@ namespace RH_GRH
             // 
             this.textBoxRueGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxRueGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRueGestion.Location = new System.Drawing.Point(151, 134);
+            this.textBoxRueGestion.Location = new System.Drawing.Point(182, 134);
             this.textBoxRueGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxRueGestion.Name = "textBoxRueGestion";
             this.textBoxRueGestion.Size = new System.Drawing.Size(235, 23);
@@ -1558,7 +1628,7 @@ namespace RH_GRH
             // 
             this.label44.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label44.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(6, 134);
+            this.label44.Location = new System.Drawing.Point(37, 134);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(139, 30);
             this.label44.TabIndex = 67;
@@ -1569,7 +1639,7 @@ namespace RH_GRH
             // 
             this.textBoxCommuneGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxCommuneGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCommuneGestion.Location = new System.Drawing.Point(901, 98);
+            this.textBoxCommuneGestion.Location = new System.Drawing.Point(932, 98);
             this.textBoxCommuneGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxCommuneGestion.Name = "textBoxCommuneGestion";
             this.textBoxCommuneGestion.Size = new System.Drawing.Size(235, 23);
@@ -1579,7 +1649,7 @@ namespace RH_GRH
             // 
             this.label45.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label45.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(775, 98);
+            this.label45.Location = new System.Drawing.Point(806, 98);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(135, 30);
             this.label45.TabIndex = 65;
@@ -1590,7 +1660,7 @@ namespace RH_GRH
             // 
             this.textBoxQuartierGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxQuartierGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxQuartierGestion.Location = new System.Drawing.Point(530, 98);
+            this.textBoxQuartierGestion.Location = new System.Drawing.Point(561, 98);
             this.textBoxQuartierGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxQuartierGestion.Name = "textBoxQuartierGestion";
             this.textBoxQuartierGestion.Size = new System.Drawing.Size(235, 23);
@@ -1600,7 +1670,7 @@ namespace RH_GRH
             // 
             this.label46.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label46.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(394, 98);
+            this.label46.Location = new System.Drawing.Point(425, 98);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(135, 30);
             this.label46.TabIndex = 63;
@@ -1611,7 +1681,7 @@ namespace RH_GRH
             // 
             this.textBoxTelephoneGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxTelephoneGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTelephoneGestion.Location = new System.Drawing.Point(151, 98);
+            this.textBoxTelephoneGestion.Location = new System.Drawing.Point(182, 98);
             this.textBoxTelephoneGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxTelephoneGestion.Name = "textBoxTelephoneGestion";
             this.textBoxTelephoneGestion.Size = new System.Drawing.Size(235, 23);
@@ -1621,7 +1691,7 @@ namespace RH_GRH
             // 
             this.label47.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label47.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(6, 98);
+            this.label47.Location = new System.Drawing.Point(37, 98);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(139, 30);
             this.label47.TabIndex = 61;
@@ -1632,7 +1702,7 @@ namespace RH_GRH
             // 
             this.textBoxAdrPostaleGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxAdrPostaleGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAdrPostaleGestion.Location = new System.Drawing.Point(901, 62);
+            this.textBoxAdrPostaleGestion.Location = new System.Drawing.Point(932, 62);
             this.textBoxAdrPostaleGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxAdrPostaleGestion.Name = "textBoxAdrPostaleGestion";
             this.textBoxAdrPostaleGestion.Size = new System.Drawing.Size(235, 23);
@@ -1642,7 +1712,7 @@ namespace RH_GRH
             // 
             this.label48.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label48.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(775, 62);
+            this.label48.Location = new System.Drawing.Point(806, 62);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(135, 30);
             this.label48.TabIndex = 59;
@@ -1653,7 +1723,7 @@ namespace RH_GRH
             // 
             this.textBoxAdrPhysiqueGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxAdrPhysiqueGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAdrPhysiqueGestion.Location = new System.Drawing.Point(530, 62);
+            this.textBoxAdrPhysiqueGestion.Location = new System.Drawing.Point(561, 62);
             this.textBoxAdrPhysiqueGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxAdrPhysiqueGestion.Name = "textBoxAdrPhysiqueGestion";
             this.textBoxAdrPhysiqueGestion.Size = new System.Drawing.Size(235, 23);
@@ -1663,7 +1733,7 @@ namespace RH_GRH
             // 
             this.label49.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label49.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(394, 62);
+            this.label49.Location = new System.Drawing.Point(425, 62);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(135, 30);
             this.label49.TabIndex = 57;
@@ -1674,7 +1744,7 @@ namespace RH_GRH
             // 
             this.textBoxCodeActiviteGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxCodeActiviteGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCodeActiviteGestion.Location = new System.Drawing.Point(151, 62);
+            this.textBoxCodeActiviteGestion.Location = new System.Drawing.Point(182, 62);
             this.textBoxCodeActiviteGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxCodeActiviteGestion.Name = "textBoxCodeActiviteGestion";
             this.textBoxCodeActiviteGestion.Size = new System.Drawing.Size(235, 23);
@@ -1684,7 +1754,7 @@ namespace RH_GRH
             // 
             this.label50.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label50.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(6, 62);
+            this.label50.Location = new System.Drawing.Point(37, 62);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(139, 30);
             this.label50.TabIndex = 55;
@@ -1695,7 +1765,7 @@ namespace RH_GRH
             // 
             this.textBoxActiviteGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxActiviteGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxActiviteGestion.Location = new System.Drawing.Point(901, 26);
+            this.textBoxActiviteGestion.Location = new System.Drawing.Point(932, 26);
             this.textBoxActiviteGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxActiviteGestion.Name = "textBoxActiviteGestion";
             this.textBoxActiviteGestion.Size = new System.Drawing.Size(235, 23);
@@ -1705,7 +1775,7 @@ namespace RH_GRH
             // 
             this.label51.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label51.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.Location = new System.Drawing.Point(775, 26);
+            this.label51.Location = new System.Drawing.Point(806, 26);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(135, 30);
             this.label51.TabIndex = 53;
@@ -1716,7 +1786,7 @@ namespace RH_GRH
             // 
             this.textBoxSigleGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxSigleGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSigleGestion.Location = new System.Drawing.Point(530, 26);
+            this.textBoxSigleGestion.Location = new System.Drawing.Point(561, 26);
             this.textBoxSigleGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxSigleGestion.Name = "textBoxSigleGestion";
             this.textBoxSigleGestion.Size = new System.Drawing.Size(235, 23);
@@ -1726,7 +1796,7 @@ namespace RH_GRH
             // 
             this.label52.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label52.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.Location = new System.Drawing.Point(394, 26);
+            this.label52.Location = new System.Drawing.Point(425, 26);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(135, 30);
             this.label52.TabIndex = 51;
@@ -1737,7 +1807,7 @@ namespace RH_GRH
             // 
             this.textBoxnomEntrepriseGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxnomEntrepriseGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxnomEntrepriseGestion.Location = new System.Drawing.Point(151, 26);
+            this.textBoxnomEntrepriseGestion.Location = new System.Drawing.Point(182, 26);
             this.textBoxnomEntrepriseGestion.MinimumSize = new System.Drawing.Size(100, 30);
             this.textBoxnomEntrepriseGestion.Name = "textBoxnomEntrepriseGestion";
             this.textBoxnomEntrepriseGestion.Size = new System.Drawing.Size(235, 23);
@@ -1747,7 +1817,7 @@ namespace RH_GRH
             // 
             this.label53.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label53.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(6, 26);
+            this.label53.Location = new System.Drawing.Point(37, 26);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(139, 30);
             this.label53.TabIndex = 49;
@@ -1783,7 +1853,7 @@ namespace RH_GRH
             this.buttonRechercher.BackColor = System.Drawing.Color.MidnightBlue;
             this.buttonRechercher.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRechercher.ForeColor = System.Drawing.Color.White;
-            this.buttonRechercher.Location = new System.Drawing.Point(996, 2);
+            this.buttonRechercher.Location = new System.Drawing.Point(1058, 2);
             this.buttonRechercher.Name = "buttonRechercher";
             this.buttonRechercher.Size = new System.Drawing.Size(132, 45);
             this.buttonRechercher.TabIndex = 50;
@@ -1795,40 +1865,40 @@ namespace RH_GRH
             // 
             this.DataGridView_Entreprise_Gestion.AllowUserToAddRows = false;
             this.DataGridView_Entreprise_Gestion.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            this.DataGridView_Entreprise_Gestion.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            this.DataGridView_Entreprise_Gestion.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.DataGridView_Entreprise_Gestion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DataGridView_Entreprise_Gestion.BackgroundColor = System.Drawing.Color.MidnightBlue;
             this.DataGridView_Entreprise_Gestion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DataGridView_Entreprise_Gestion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridView_Entreprise_Gestion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.MidnightBlue;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.MidnightBlue;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridView_Entreprise_Gestion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.DataGridView_Entreprise_Gestion.ColumnHeadersHeight = 50;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridView_Entreprise_Gestion.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridView_Entreprise_Gestion.DefaultCellStyle = dataGridViewCellStyle15;
             this.DataGridView_Entreprise_Gestion.GridColor = System.Drawing.Color.MidnightBlue;
             this.DataGridView_Entreprise_Gestion.Location = new System.Drawing.Point(0, 48);
             this.DataGridView_Entreprise_Gestion.Name = "DataGridView_Entreprise_Gestion";
             this.DataGridView_Entreprise_Gestion.ReadOnly = true;
             this.DataGridView_Entreprise_Gestion.RowHeadersVisible = false;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DataGridView_Entreprise_Gestion.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DataGridView_Entreprise_Gestion.RowsDefaultCellStyle = dataGridViewCellStyle16;
             this.DataGridView_Entreprise_Gestion.RowTemplate.Height = 100;
-            this.DataGridView_Entreprise_Gestion.Size = new System.Drawing.Size(1137, 171);
+            this.DataGridView_Entreprise_Gestion.Size = new System.Drawing.Size(1199, 117);
             this.DataGridView_Entreprise_Gestion.TabIndex = 2;
             this.DataGridView_Entreprise_Gestion.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.DataGridView_Entreprise_Gestion.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -2087,7 +2157,7 @@ namespace RH_GRH
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1146, 648);
+            this.tabPage3.Size = new System.Drawing.Size(1208, 594);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Impression";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -2114,7 +2184,7 @@ namespace RH_GRH
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1154, 60);
+            this.panel2.Size = new System.Drawing.Size(1216, 60);
             this.panel2.TabIndex = 0;
             // 
             // label1
@@ -2125,58 +2195,16 @@ namespace RH_GRH
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1154, 60);
+            this.label1.Size = new System.Drawing.Size(1216, 60);
             this.label1.TabIndex = 1;
             this.label1.Text = ">> Entreprise";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label67
-            // 
-            this.label67.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label67.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.Location = new System.Drawing.Point(470, 274);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(163, 30);
-            this.label67.TabIndex = 93;
-            this.label67.Text = "Email :";
-            this.label67.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textBoxEmail
-            // 
-            this.textBoxEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxEmail.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxEmail.Location = new System.Drawing.Point(639, 274);
-            this.textBoxEmail.MinimumSize = new System.Drawing.Size(100, 30);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(254, 30);
-            this.textBoxEmail.TabIndex = 92;
-            // 
-            // label68
-            // 
-            this.label68.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label68.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.Location = new System.Drawing.Point(472, 277);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(163, 30);
-            this.label68.TabIndex = 95;
-            this.label68.Text = "Email :";
-            this.label68.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textBoxEmailGestion
-            // 
-            this.textBoxEmailGestion.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxEmailGestion.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxEmailGestion.Location = new System.Drawing.Point(641, 277);
-            this.textBoxEmailGestion.MinimumSize = new System.Drawing.Size(100, 30);
-            this.textBoxEmailGestion.Name = "textBoxEmailGestion";
-            this.textBoxEmailGestion.Size = new System.Drawing.Size(254, 30);
-            this.textBoxEmailGestion.TabIndex = 94;
             // 
             // GestionEntrepriseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1154, 741);
+            this.ClientSize = new System.Drawing.Size(1216, 687);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -2378,5 +2406,6 @@ namespace RH_GRH
         private System.Windows.Forms.TextBox textBoxEmail;
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.TextBox textBoxEmailGestion;
+        private System.Windows.Forms.Panel panel11;
     }
 }

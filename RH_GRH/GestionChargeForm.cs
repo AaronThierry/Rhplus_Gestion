@@ -268,7 +268,7 @@ namespace RH_GRH
             DataGridViewCellStyle headerStyle = new DataGridViewCellStyle();
             headerStyle.BackColor = Color.MidnightBlue;
             headerStyle.ForeColor = Color.White;
-            headerStyle.Font = new Font("Montserrat", 10f, FontStyle.Bold);
+            headerStyle.Font = new Font("Montserrat", 9f, FontStyle.Bold);
             headerStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             headerStyle.WrapMode = DataGridViewTriState.True;
             headerStyle.SelectionBackColor = Color.MidnightBlue;     // ← Empêche le changement au clic
@@ -282,7 +282,7 @@ namespace RH_GRH
             DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
             cellStyle.BackColor = Color.White;
             cellStyle.ForeColor = Color.Black;
-            cellStyle.Font = new Font("Montserrat", 9.5f, FontStyle.Regular);
+            cellStyle.Font = new Font("Montserrat", 9f, FontStyle.Regular);
             cellStyle.SelectionBackColor = Color.LightSteelBlue;
             cellStyle.SelectionForeColor = Color.Black;
             DataGridView_Charge.DefaultCellStyle = cellStyle;
@@ -322,7 +322,7 @@ namespace RH_GRH
             {
                 BackColor = Color.MidnightBlue,
                 ForeColor = Color.White,
-                Font = new Font("Montserrat", 10f, FontStyle.Bold),
+                Font = new Font("Montserrat", 9f, FontStyle.Bold),
                 Alignment = DataGridViewContentAlignment.MiddleCenter,
                 WrapMode = DataGridViewTriState.True,
                 SelectionBackColor = Color.MidnightBlue, // Empêche changement au clic
@@ -338,7 +338,7 @@ namespace RH_GRH
             {
                 BackColor = Color.White,
                 ForeColor = Color.Black,
-                Font = new Font("Montserrat", 9.5f),
+                Font = new Font("Montserrat", 9f),
                 SelectionBackColor = Color.LightSteelBlue,
                 SelectionForeColor = Color.Black
             };
@@ -961,6 +961,12 @@ LIMIT 1;";
         private void GestionChargeForm_Load(object sender, EventArgs e)
         {
             tabControlCharge.SelectedIndexChanged += tabControlCharge_SelectedIndexChanged;
+            EntrepriseClass.ChargerEntreprises(ComboBoxEntreprise);
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

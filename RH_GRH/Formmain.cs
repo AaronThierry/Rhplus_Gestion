@@ -30,6 +30,9 @@ namespace RH_GRH
 
         }
 
+
+
+
         public void count()
         {
             //Display count entreprie employe 

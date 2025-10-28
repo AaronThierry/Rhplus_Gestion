@@ -425,11 +425,12 @@ namespace RH_GRH
             // Formmain
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel_slide);
             this.Name = "Formmain";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Formmain_Load);
             this.panel_slide.ResumeLayout(false);
             this.panel_administration_submenu.ResumeLayout(false);
