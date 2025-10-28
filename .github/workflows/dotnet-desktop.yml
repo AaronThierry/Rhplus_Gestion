@@ -56,17 +56,25 @@ jobs:
       Project_Path: RH_GRH\RH_GRH.csproj
       Configuration: ${{ matrix.configuration }}
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+        steps:
+      - uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
+      - uses: actions/setup-dotnet@v4
+        with: { dotnet-version: '8.0.x' }
 
-      - name: Restore dependencies
-        run: dotnet restore $env:Solution_Name
+      # RESTORE legacy (packages.config) si présent
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: NuGet restore (legacy)
+        run: nuget restore RH_GRH.sln -NonInteractive -Source https://api.nuget.org/v3/index.json
+
+      # RESTORE moderne (PackageReference) – sans risque
+      - name: dotnet restore
+        run: dotnet restore RH_GRH.sln
+
+      - name: Build
+        run: dotnet build RH_GRH.sln --configuration Release --no-restore
 
       - name: Build
         run: dotnet build $env:Solution_Name --configuration $env:Configuration --no-restore
