@@ -337,7 +337,7 @@ ORDER BY p.nomPrenom, i.type;";
             DataGridViewCellStyle headerStyle = new DataGridViewCellStyle();
             headerStyle.BackColor = Color.MidnightBlue;
             headerStyle.ForeColor = Color.White;
-            headerStyle.Font = new Font("Montserrat", 10f, FontStyle.Bold);
+            headerStyle.Font = new Font("Montserrat", 9f, FontStyle.Bold);
             headerStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             headerStyle.WrapMode = DataGridViewTriState.True;
             headerStyle.SelectionBackColor = Color.MidnightBlue;     // ← Empêche le changement au clic
@@ -351,7 +351,7 @@ ORDER BY p.nomPrenom, i.type;";
             DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
             cellStyle.BackColor = Color.White;
             cellStyle.ForeColor = Color.Black;
-            cellStyle.Font = new Font("Montserrat", 9.5f, FontStyle.Regular);
+            cellStyle.Font = new Font("Montserrat", 8.5f, FontStyle.Regular);
             cellStyle.SelectionBackColor = Color.LightSteelBlue;
             cellStyle.SelectionForeColor = Color.Black;
             DataGridView_Indemnite.DefaultCellStyle = cellStyle;
@@ -391,7 +391,7 @@ ORDER BY p.nomPrenom, i.type;";
             {
                 BackColor = Color.MidnightBlue,
                 ForeColor = Color.White,
-                Font = new Font("Montserrat", 10f, FontStyle.Bold),
+                Font = new Font("Montserrat", 9f, FontStyle.Bold),
                 Alignment = DataGridViewContentAlignment.MiddleCenter,
                 WrapMode = DataGridViewTriState.True,
                 SelectionBackColor = Color.MidnightBlue, // Empêche changement au clic
@@ -407,7 +407,7 @@ ORDER BY p.nomPrenom, i.type;";
             {
                 BackColor = Color.White,
                 ForeColor = Color.Black,
-                Font = new Font("Montserrat", 9.5f),
+                Font = new Font("Montserrat", 8.5f),
                 SelectionBackColor = Color.LightSteelBlue,
                 SelectionForeColor = Color.Black
             };
@@ -954,6 +954,11 @@ LIMIT 1;";
         private void buttonEffacerGestion_Click(object sender, EventArgs e)
         {
             dataClearGestion();
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

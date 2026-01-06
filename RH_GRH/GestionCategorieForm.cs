@@ -1,10 +1,9 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,35 +15,34 @@ namespace RH_GRH
     public partial class GestionCategorieForm : Form
     {
         EntrepriseClass Entreprise = new EntrepriseClass();
-        Categorie Categorie = new Categorie();
+        Categorie CategorieObj = new Categorie();
         Dbconnect connect = new Dbconnect();
+
         public GestionCategorieForm()
         {
             InitializeComponent();
-            StyliserDataGridView();
             StyliserDataGridViewGestion();
-            StyliserTabControl();
-            ShowTableCategorie();
             ShowTableCategorieGestion();
+
+            // Attacher les événements pour les boutons personnalisés
+            DataGridView_Categorie_Gestion.CellPainting += DataGridView_Categorie_Gestion_CellPainting;
+            DataGridView_Categorie_Gestion.CellClick += DataGridView_Categorie_Gestion_CellClick;
+            DataGridView_Categorie_Gestion.CellMouseMove += DataGridView_Categorie_Gestion_CellMouseMove;
+
+            // Recherche en temps réel
+            textBoxSearch.TextChanged += textBoxSearch_TextChanged;
         }
 
+        // Variables pour suivre le bouton survolé
+        private int hoverRowIndex = -1;
+        private string hoverButton = "";
 
         ///////////////////////////////////////////////////////////////////////////
-        private void tabControlService_SelectedIndexChanged(object sender, EventArgs e)
+        private void tabControlCategorie_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControlCategorie.SelectedIndex == 1) // Onglet n°2 (index 1)
-            {
-                ChargerTablePage2();
-                EntrepriseClass.ChargerEntreprises(ComboBoxEntrepriseGestion);
-                StyliserDataGridViewGestion();
-                ShowTableCategorieGestion();
-                ClearCategorieForm();
-            }
-            else if (tabControlCategorie.SelectedIndex == 0)
-            {
-                ClearCategorieForm();
-                ShowTableCategorie();
-            }
+            ChargerTablePage2();
+            StyliserDataGridViewGestion();
+            ShowTableCategorieGestion();
         }
 
         ////////////////////////////////////////////////////////////////////////////
@@ -58,17 +56,16 @@ namespace RH_GRH
 
             try
             {
-                EntrepriseClass.ChargerEntreprises(ComboBoxEntrepriseGestion);
                 UseWaitCursor = true;
 
                 // 1) Récupération des données
-                DataTable dt = Categorie.GetCategorieList() ?? new DataTable();
+                DataTable dt = CategorieObj.GetCategorieList() ?? new DataTable();
 
                 // 2) Tri par défaut si dispo
-                if (dt.Columns.Contains("Entreprise") && dt.Columns.Contains("Direction"))
+                if (dt.Columns.Contains("Entreprise") && dt.Columns.Contains("Categorie"))
                 {
                     var dv = dt.DefaultView;
-                    dv.Sort = "[Entreprise] ASC, [Direction] ASC";
+                    dv.Sort = "[Entreprise] ASC, [Categorie] ASC";
                     dt = dv.ToTable();
                 }
 
@@ -77,20 +74,18 @@ namespace RH_GRH
                 grid.AutoGenerateColumns = true;
                 grid.DataSource = dt;
 
-                // (optionnel) masquer les IDs si présents
+                // Masquer les IDs
                 if (grid.Columns.Contains("ID")) grid.Columns["ID"].Visible = false;
-                if (grid.Columns.Contains("ID Entreprise")) grid.Columns["ID Entreprise"].Visible = false;
+                if (grid.Columns.Contains("ID_Entreprise")) grid.Columns["ID_Entreprise"].Visible = false;
 
-                // Style perso si tu as une méthode dédiée
-                StyliserDataGridView();
+                StyliserDataGridViewGestion();
 
                 tablePage2Chargee = true;
-                EntrepriseClass.ChargerEntreprises(ComboBoxEntreprise);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur de chargement : " + ex.Message, "Erreur",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show("Erreur de chargement : " + ex.Message, "Erreur",
+                                CustomMessageBox.MessageType.Error);
             }
             finally
             {
@@ -98,94 +93,37 @@ namespace RH_GRH
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-
-        private void ClearCategorieForm()
-        {
-            textBoxNomCategorie.Clear();
-            ComboBoxEntreprise.SelectedIndex = 0;
-            textBoxMontant.Clear();
-        }
-
         ////////////////////////////////////////////////////////////////////////////
         private void ClearCategorieFormGestion()
         {
-            textBoxCategorieGestion.Clear();
-            ComboBoxEntrepriseGestion.SelectedIndex = 0;
-            textBoxMontantGestion.Clear();
-            textBoxID.Clear();
-        }
-
-        ////////////////////////////////////////////////////////////////////////////
-
-        private void ShowTableCategorie()
-        {
-            var dt = Categorie.GetCategorieList();
-            DataGridView_Categorie.AutoGenerateColumns = true;
-            DataGridView_Categorie.DataSource = dt;
-            // Masquer les IDs si tu veux une vue clean
-            if (DataGridView_Categorie.Columns.Contains("ID"))
-                DataGridView_Categorie.Columns["ID"].Visible = false;
+            // Plus de champs à nettoyer
         }
 
         ///////////////////////////////////////////////////////////////////////////
         private void ShowTableCategorieGestion()
         {
-            EntrepriseClass.ChargerEntreprises(ComboBoxEntreprise);
-            var dt = Categorie.GetCategorieList();
+            var dt = CategorieObj.GetCategorieList();
             DataGridView_Categorie_Gestion.AutoGenerateColumns = true;
             DataGridView_Categorie_Gestion.DataSource = dt;
-            // Masquer les IDs si tu veux une vue clean
+
+            // Masquer les IDs
             if (DataGridView_Categorie_Gestion.Columns.Contains("ID"))
-                DataGridView_Categorie.Columns["ID"].Visible = false;
-        }
+                DataGridView_Categorie_Gestion.Columns["ID"].Visible = false;
+            if (DataGridView_Categorie_Gestion.Columns.Contains("ID_Entreprise"))
+                DataGridView_Categorie_Gestion.Columns["ID_Entreprise"].Visible = false;
 
-        ///////////////////////////////////////////////////////////////////////////
-        private void StyliserDataGridView()
-        {
-            // Fond général de la grille
-            DataGridView_Categorie.BackgroundColor = Color.White;
+            // Supprimer la colonne d'actions existante pour éviter les doublons
+            if (DataGridView_Categorie_Gestion.Columns.Contains("Actions"))
+                DataGridView_Categorie_Gestion.Columns.Remove("Actions");
 
-            // Désactiver le style visuel Windows
-            DataGridView_Categorie.EnableHeadersVisualStyles = false;
-
-            // Style de l'en-tête
-            DataGridViewCellStyle headerStyle = new DataGridViewCellStyle();
-            headerStyle.BackColor = Color.MidnightBlue;
-            headerStyle.ForeColor = Color.White;
-            headerStyle.Font = new Font("Montserrat", 10f, FontStyle.Bold);
-            headerStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            headerStyle.WrapMode = DataGridViewTriState.True;
-            headerStyle.SelectionBackColor = Color.MidnightBlue;     // ← Empêche le changement au clic
-            headerStyle.SelectionForeColor = Color.White;            // ← Texte toujours blanc
-
-            DataGridView_Categorie.EnableHeadersVisualStyles = false;
-            DataGridView_Categorie.ColumnHeadersDefaultCellStyle = headerStyle;
-            DataGridView_Categorie.ColumnHeadersHeight = 35;
-
-            // Style des cellules normales
-            DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
-            cellStyle.BackColor = Color.White;
-            cellStyle.ForeColor = Color.Black;
-            cellStyle.Font = new Font("Montserrat", 9.5f, FontStyle.Regular);
-            cellStyle.SelectionBackColor = Color.LightSteelBlue;
-            cellStyle.SelectionForeColor = Color.Black;
-            DataGridView_Categorie.DefaultCellStyle = cellStyle;
-
-            // Style des lignes alternées
-            DataGridView_Categorie.AlternatingRowsDefaultCellStyle.BackColor = Color.Gainsboro;
-
-            // Supprimer les bordures
-            DataGridView_Categorie.BorderStyle = BorderStyle.None;
-            DataGridView_Categorie.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            DataGridView_Categorie.GridColor = Color.LightGray;
-
-            // Masquer l'entête de ligne à gauche
-            DataGridView_Categorie.RowHeadersVisible = false;
-
-            // Autres options d’esthétique
-            DataGridView_Categorie.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DataGridView_Categorie.MultiSelect = false;
+            // Ajouter colonne Actions (texte simple, rendu personnalisé)
+            DataGridViewTextBoxColumn colActions = new DataGridViewTextBoxColumn();
+            colActions.Name = "Actions";
+            colActions.HeaderText = "Actions";
+            colActions.Width = 180;
+            colActions.ReadOnly = true;
+            colActions.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            DataGridView_Categorie_Gestion.Columns.Add(colActions);
         }
 
         ////////////////////////////////////////////////////////////////////////////
@@ -210,27 +148,31 @@ namespace RH_GRH
                 Font = new Font("Montserrat", 10f, FontStyle.Bold),
                 Alignment = DataGridViewContentAlignment.MiddleCenter,
                 WrapMode = DataGridViewTriState.True,
-                SelectionBackColor = Color.MidnightBlue, // Empêche changement au clic
+                SelectionBackColor = Color.MidnightBlue,
                 SelectionForeColor = Color.White
             };
 
             DataGridView_Categorie_Gestion.EnableHeadersVisualStyles = false;
             DataGridView_Categorie_Gestion.ColumnHeadersDefaultCellStyle = headerStyle;
-            DataGridView_Categorie_Gestion.ColumnHeadersHeight = 35;
+            DataGridView_Categorie_Gestion.ColumnHeadersHeight = 40;
 
             // Cellules normales
             var cellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.White,
                 ForeColor = Color.Black,
-                Font = new Font("Montserrat", 9.5f),
+                Font = new Font("Montserrat", 10f),
                 SelectionBackColor = Color.LightSteelBlue,
-                SelectionForeColor = Color.Black
+                SelectionForeColor = Color.Black,
+                Padding = new Padding(5)
             };
             DataGridView_Categorie_Gestion.DefaultCellStyle = cellStyle;
 
+            // Hauteur des lignes
+            DataGridView_Categorie_Gestion.RowTemplate.Height = 45;
+
             // Lignes alternées
-            DataGridView_Categorie_Gestion.AlternatingRowsDefaultCellStyle.BackColor = Color.Gainsboro;
+            DataGridView_Categorie_Gestion.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);
 
             // Bordures & style
             DataGridView_Categorie_Gestion.BorderStyle = BorderStyle.None;
@@ -241,391 +183,314 @@ namespace RH_GRH
             // Sélection
             DataGridView_Categorie_Gestion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             DataGridView_Categorie_Gestion.MultiSelect = false;
+            DataGridView_Categorie_Gestion.AllowUserToResizeRows = false;
         }
 
         ////////////////////////////////////////////////////////////////////////////
 
-        private void StyliserTabControl()
+        private void GestionCategorieForm_Load(object sender, EventArgs e)
         {
-            tabControlCategorie.Appearance = TabAppearance.Normal;
-            tabControlCategorie.DrawMode = TabDrawMode.OwnerDrawFixed;
-            tabControlCategorie.ItemSize = new Size(150, 35); // largeur, hauteur des onglets
-            tabControlCategorie.SizeMode = TabSizeMode.Fixed;
-            tabControlCategorie.DrawItem += TabControlEntreprise_DrawItem;
+            tabControlCategorie.SelectedIndexChanged += tabControlCategorie_SelectedIndexChanged;
         }
 
-        ////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////
 
-        private void TabControlEntreprise_DrawItem(object sender, DrawItemEventArgs e)
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            TabPage page = tabControlCategorie.TabPages[e.Index];
-            Rectangle rect = tabControlCategorie.GetTabRect(e.Index);
-            bool isSelected = (e.Index == tabControlCategorie.SelectedIndex);
+            // Recherche en temps réel
+            string searchText = textBoxSearch.Text?.Trim();
 
-            // Couleur de fond
-            Color backColor = isSelected ? Color.MidnightBlue : Color.LightGray;
-            Color foreColor = isSelected ? Color.White : Color.Black;
-
-            using (SolidBrush brush = new SolidBrush(backColor))
+            if (string.IsNullOrEmpty(searchText))
             {
-                e.Graphics.FillRectangle(brush, rect);
-            }
-
-            // Texte centré
-
-            StringFormat format = new StringFormat();
-            format.Alignment = StringAlignment.Center;
-            format.LineAlignment = StringAlignment.Center;
-
-            using (Font font = new Font("Montserrat", 10f, FontStyle.Bold))
-            using (Brush textBrush = new SolidBrush(foreColor))
-            {
-                e.Graphics.DrawString(page.Text, font, textBrush, rect, format);
-            }
-        }
-
-        ///////////////////////////////////////////////////////////////////////////
-        private void panel8_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-
-        private void panel9_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        //////////////////////////////////////////////////////////////////////////
-
-        private static bool TryParseMontant(string input, out decimal montant)
-        {
-            montant = 0m;
-            if (string.IsNullOrWhiteSpace(input)) return false;
-
-            // 1) Normaliser : retirer espaces (normales, insécables, fines) et lettres (ex. "fcfa")
-            string s = input.Trim();
-
-            // Supprimer différents types d'espaces fréquemment utilisés comme séparateurs de milliers
-            s = s.Replace(" ", "")
-                 .Replace("\u00A0", "") // NBSP
-                 .Replace("\u202F", "") // NARROW NBSP (fr souvent)
-                 .Replace("\u2009", "") // THIN SPACE
-                 .Replace("\u2007", ""); // FIGURE SPACE
-
-            // Retirer toute lettre/symbole monétaire éventuel (FCFA, f, cfa, etc.)
-            s = new string(s.Where(ch => char.IsDigit(ch) || ch == ',' || ch == '.').ToArray());
-
-            // 2) Gérer les cas avec virgule et/ou point
-            int lastComma = s.LastIndexOf(',');
-            int lastDot = s.LastIndexOf('.');
-            char dec = '\0';
-            if (lastComma >= 0 || lastDot >= 0)
-                dec = (lastComma > lastDot) ? ',' : '.';
-
-            // Si les deux existent, on considère le dernier comme séparateur décimal
-            if (dec != '\0')
-            {
-                // Supprimer l’autre séparateur (servait aux milliers)
-                char other = (dec == ',') ? '.' : ',';
-                s = s.Replace(other.ToString(), "");
-                // Uniformiser en point pour InvariantCulture
-                if (dec == ',') s = s.Replace(',', '.');
-            }
-
-            // 3) Parse en invariant (plus prévisible)
-            return decimal.TryParse(s, NumberStyles.Number, CultureInfo.InvariantCulture, out montant);
-        }
-
-        ///////////////////////////////////////////////////////////////////////////
-        private void buttonAjouter_Click(object sender, EventArgs e)
-    {
-        // 1) Récupération + validations
-        string nomService = textBoxNomCategorie.Text?.Trim();
-        if (string.IsNullOrWhiteSpace(nomService))
-        {
-            MessageBox.Show("Veuillez saisir le nom du service.", "Information",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-            textBoxNomCategorie.Focus();
-            return;
-        }
-
-            decimal montant;
-            if (!TryParseMontant(textBoxMontant.Text, out montant) || montant < 0m)
-            {
-                MessageBox.Show("Veuillez saisir un montant valide (nombre positif).",
-                                "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                textBoxMontant.Focus();
-                textBoxMontant.SelectAll();
-                return;
-            }
-
-            int? idEntreprise = EntrepriseClass.GetIdEntrepriseSelectionnee(ComboBoxEntreprise);
-        if (!idEntreprise.HasValue)
-        {
-            MessageBox.Show("Veuillez sélectionner une entreprise.", "Information",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ComboBoxEntreprise.DroppedDown = true;
-            return;
-        }
-
-        // 2) Exécution
-        try
-        {
-            UseWaitCursor = true;
-            buttonAjouter.Enabled = false;
-
-            // ⚠️ Assure-toi que la méthode attend bien (string nom, decimal montant, int idEntreprise)
-            Categorie.EnregistrerCategorie(nomService, montant, idEntreprise.Value);
-
-            // Rafraîchir l'affichage
-            ShowTableCategorie();
-
-                // 3) Reset UI (on garde l’entreprise sélectionnée)
-                ClearCategorieForm();
-                ComboBoxEntreprise.Focus();
-            // Si tu préfères vider le combo :
-            // ComboBoxEntreprise.SelectedIndex = -1;
-            // ComboBoxEntreprise.Text = string.Empty;
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Erreur inattendue : " + ex.Message, "Erreur",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        finally
-        {
-            UseWaitCursor = false;
-            buttonAjouter.Enabled = true;
-        }
-    }
-
-        ////////////////////////////////////////////////////////////////////////////
-        private void buttonEffacer_Click(object sender, EventArgs e)
-        {
-            ClearCategorieForm();
-        }
-
-        ////////////////////////////////////////////////////////////////////////////
-
-        private void ChargerDetailsCategorieParId(string id)
-        {
-            try
-            {
-                // Jointure pour récupérer aussi le nom de l'entreprise
-                const string sql = @"
-            SELECT 
-                d.nomCategorie,
-                d.montant,
-                d.id_entreprise,
-                e.nomEntreprise
-            FROM categorie d
-            INNER JOIN entreprise e ON e.id_entreprise = d.id_entreprise
-            WHERE d.id_categorie = @id;";
-
-                // ⚠️ IMPORTANT :
-                // - Si getconnection retourne MySqlConnection, utilisez .ConnectionString :
-                using (var con = new MySqlConnection(connect.getconnection.ConnectionString))
-                // - Si getconnection retourne une chaîne de connexion, utilisez :
-                // using (var con = new MySqlConnection(connect.getconnection))
-                using (var cmd = new MySqlCommand(sql, con))
-                {
-                    // id numérique en base : on paramètre en Int32 (même si on reçoit une string)
-                    if (!int.TryParse(id, out int idCategorie))
-                    {
-                        MessageBox.Show("Identifiant de la categorie invalide.");
-                        return;
-                    }
-
-                    cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = idCategorie;
-
-                    con.Open();
-                    using (var reader = cmd.ExecuteReader(CommandBehavior.SingleRow))
-                    {
-                        if (reader.Read())
-                        {
-                            // Nom de la direction
-                            textBoxCategorieGestion.Text = reader["nomCategorie"]?.ToString();
-                            textBoxMontantGestion.Text = reader["montant"]?.ToString();
-
-                            // Sélectionner l'entreprise dans le ComboBox (s'il est déjà bindé)
-                            if (!reader.IsDBNull(reader.GetOrdinal("id_entreprise")))
-                            {
-                                int idEnt = reader.GetInt32(reader.GetOrdinal("id_entreprise"));
-
-                                // Si le Combo n'est pas encore chargé, on peut le charger ici (optionnel)
-                                if (ComboBoxEntrepriseGestion.DataSource == null)
-                                {
-                                    EntrepriseClass.ChargerEntreprises(ComboBoxEntrepriseGestion, idEnt, ajouterPlaceholder: true);
-                                }
-                                else
-                                {
-                                    ComboBoxEntrepriseGestion.SelectedValue = idEnt;
-                                }
-                            }
-
-                            // (Optionnel) Afficher le nom de l'entreprise dans un label si tu en as un
-                            // labelEntreprise.Text = reader["nomEntreprise"]?.ToString();
-                        }
-                        else
-                        {
-                            // Rien trouvé : on nettoie les champs
-                            ClearCategorieFormGestion();
-                            if (ComboBoxEntreprise.DataSource != null)
-                                ComboBoxEntreprise.SelectedIndex = -1;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur chargement infos direction : " + ex.Message,
-                                "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        ////////////////////////////////////////////////////////////////////////////
-
-        private void DataGridView_Categorie_Gestion_Click(object sender, EventArgs e)
-        {
-            if (DataGridView_Categorie_Gestion.CurrentRow != null)
-            {
-                string id = DataGridView_Categorie_Gestion.CurrentRow.Cells[0].Value?.ToString();
-                if (!string.IsNullOrEmpty(id))
-                {
-                    textBoxID.Text = id;
-                    ChargerDetailsCategorieParId(id);
-                    ComboBoxEntrepriseGestion.Enabled = false;
-                }
-            }
-        }
-
-        ////////////////////////////////////////////////////////////////////////////
-        private void buttonModifier_Click(object sender, EventArgs e)
-    {
-        // 1) Validations rapides
-        string nomCategorie = textBoxCategorieGestion.Text?.Trim();
-        if (string.IsNullOrWhiteSpace(nomCategorie))
-        {
-            MessageBox.Show("Veuillez saisir le nom de la catégorie.", "Info",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-            textBoxCategorieGestion.Focus();
-            return;
-        }
-
-        if (!int.TryParse(textBoxID.Text?.Trim(), out int idCategorie) || idCategorie <= 0)
-        {
-            MessageBox.Show("ID catégorie invalide.", "Info",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-            return;
-        }
-
-        // Montant
-        if (!TryParseMontant(textBoxMontantGestion.Text, out decimal montant) || montant < 0m)
-        {
-            MessageBox.Show("Veuillez saisir un montant valide (nombre positif).", "Information",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-            textBoxMontantGestion.Focus();
-            textBoxMontantGestion.SelectAll();
-            return;
-        }
-
-        // 2) Confirmation
-        var confirm = MessageBox.Show(
-            $"Confirmer la modification de la catégorie #{idCategorie} en « {nomCategorie} » (montant : {montant:N0}) ?",
-            "Confirmation",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question,
-            MessageBoxDefaultButton.Button2);
-
-        if (confirm != DialogResult.Yes) return;
-
-        // 3) Exécution + actualisation
-        try
-        {
-            buttonModifier.Enabled = false;
-            UseWaitCursor = true;
-
-                // Appelle ta méthode métier pour modifier la catégorie (adapter le nom si besoin)
-                Categorie.ModifierCategorie(idCategorie, nomCategorie, montant);
-                // Si ta logique exige aussi l'entreprise, ajoute idEntreprise:
-                // int? idEntreprise = EntrepriseClass.GetIdEntrepriseSelectionnee(ComboBoxEntreprise);
-                // CategorieClass.ModifierCategorie(idCategorie, nomCategorie, montant, idEntreprise.Value);
-
-                // Rafraîchir l'affichage + nettoyage
+                // Si la recherche est vide, afficher toutes les catégories
                 ShowTableCategorieGestion();
-                ClearCategorieFormGestion();
-
-            // (Optionnel) Re-sélectionner la ligne modifiée si souhaité
-            // ReSelectRowById(DataGridView_Categorie_Gestion, "ID", idCategorie);
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Erreur lors de la modification : " + ex.Message, "Erreur",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        finally
-        {
-            UseWaitCursor = false;
-            buttonModifier.Enabled = true;
-        }
-    }
-
-        private void button_Supprimer_Click(object sender, EventArgs e)
-        {
-            // Récupère l'ID (depuis la grille ou un TextBox)
-            if (!int.TryParse(textBoxID.Text?.Trim(), out int idCategorie) || idCategorie <= 0)
-            {
-                MessageBox.Show("Veuillez sélectionner une categorie valide.", "Info",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
+            else
+            {
+                // Effectuer la recherche
+                DataGridView_Categorie_Gestion.DataSource = CategorieObj.RechercheCategorieConcat(searchText);
 
+                // Re-masquer les colonnes ID après la recherche
+                if (DataGridView_Categorie_Gestion.Columns.Contains("ID"))
+                    DataGridView_Categorie_Gestion.Columns["ID"].Visible = false;
+                if (DataGridView_Categorie_Gestion.Columns.Contains("ID_Entreprise"))
+                    DataGridView_Categorie_Gestion.Columns["ID_Entreprise"].Visible = false;
+
+                // Supprimer et recréer la colonne Actions
+                if (DataGridView_Categorie_Gestion.Columns.Contains("Actions"))
+                    DataGridView_Categorie_Gestion.Columns.Remove("Actions");
+
+                DataGridViewTextBoxColumn colActions = new DataGridViewTextBoxColumn();
+                colActions.Name = "Actions";
+                colActions.HeaderText = "Actions";
+                colActions.Width = 180;
+                colActions.ReadOnly = true;
+                colActions.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridView_Categorie_Gestion.Columns.Add(colActions);
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////////////////
+
+        private void DataGridView_Categorie_Gestion_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
+
+            // Vérifier si c'est la colonne Actions
+            if (DataGridView_Categorie_Gestion.Columns[e.ColumnIndex].Name == "Actions")
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
+
+                // Calculer les dimensions des boutons
+                int buttonWidth = 75;
+                int buttonHeight = 32;
+                int spacing = 10;
+                int totalWidth = (buttonWidth * 2) + spacing;
+                int startX = e.CellBounds.X + (e.CellBounds.Width - totalWidth) / 2;
+                int startY = e.CellBounds.Y + (e.CellBounds.Height - buttonHeight) / 2;
+
+                // Bouton Modifier (doré)
+                Rectangle btnModifier = new Rectangle(startX, startY, buttonWidth, buttonHeight);
+                bool modifierHover = (hoverRowIndex == e.RowIndex && hoverButton == "Modifier");
+                Color modifierColor = modifierHover ? Color.FromArgb(218, 165, 32) : Color.FromArgb(255, 215, 0);
+
+                using (SolidBrush brush = new SolidBrush(modifierColor))
+                using (Pen borderPen = new Pen(Color.FromArgb(184, 134, 11), 1))
+                {
+                    e.Graphics.FillRoundedRectangle(brush, btnModifier, 6);
+                    e.Graphics.DrawRoundedRectangle(borderPen, btnModifier, 6);
+                }
+
+                // Icône et texte Modifier
+                using (Font iconFont = new Font("Segoe UI Emoji", 10f, FontStyle.Regular))
+                using (Font textFont = new Font("Montserrat", 8f, FontStyle.Bold))
+                using (SolidBrush iconBrush = new SolidBrush(Color.FromArgb(64, 64, 64)))
+                using (SolidBrush textBrush = new SolidBrush(Color.FromArgb(64, 64, 64)))
+                {
+                    StringFormat sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+
+                    Rectangle iconRect = new Rectangle(btnModifier.X, btnModifier.Y + 2, btnModifier.Width, btnModifier.Height / 2);
+                    e.Graphics.DrawString("✏", iconFont, iconBrush, iconRect, sf);
+
+                    Rectangle textRect = new Rectangle(btnModifier.X, btnModifier.Y + btnModifier.Height / 2 - 2, btnModifier.Width, btnModifier.Height / 2);
+                    e.Graphics.DrawString("Modifier", textFont, textBrush, textRect, sf);
+                }
+
+                // Bouton Supprimer (rouge)
+                Rectangle btnSupprimer = new Rectangle(startX + buttonWidth + spacing, startY, buttonWidth, buttonHeight);
+                bool supprimerHover = (hoverRowIndex == e.RowIndex && hoverButton == "Supprimer");
+                Color supprimerColor = supprimerHover ? Color.FromArgb(200, 35, 51) : Color.FromArgb(220, 53, 69);
+
+                using (SolidBrush brush = new SolidBrush(supprimerColor))
+                using (Pen borderPen = new Pen(Color.FromArgb(180, 30, 45), 1))
+                {
+                    e.Graphics.FillRoundedRectangle(brush, btnSupprimer, 6);
+                    e.Graphics.DrawRoundedRectangle(borderPen, btnSupprimer, 6);
+                }
+
+                // Icône et texte Supprimer
+                using (Font iconFont = new Font("Segoe UI Emoji", 10f, FontStyle.Regular))
+                using (Font textFont = new Font("Montserrat", 8f, FontStyle.Bold))
+                using (SolidBrush iconBrush = new SolidBrush(Color.White))
+                using (SolidBrush textBrush = new SolidBrush(Color.White))
+                {
+                    StringFormat sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+
+                    Rectangle iconRect = new Rectangle(btnSupprimer.X, btnSupprimer.Y + 2, btnSupprimer.Width, btnSupprimer.Height / 2);
+                    e.Graphics.DrawString("🗑", iconFont, iconBrush, iconRect, sf);
+
+                    Rectangle textRect = new Rectangle(btnSupprimer.X, btnSupprimer.Y + btnSupprimer.Height / 2 - 2, btnSupprimer.Width, btnSupprimer.Height / 2);
+                    e.Graphics.DrawString("Supprimer", textFont, textBrush, textRect, sf);
+                }
+
+                e.Handled = true;
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////////////////
+
+        private void DataGridView_Categorie_Gestion_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            if (DataGridView_Categorie_Gestion.Columns[e.ColumnIndex].Name == "Actions")
+            {
+                var cellBounds = DataGridView_Categorie_Gestion.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+
+                int buttonWidth = 75;
+                int buttonHeight = 32;
+                int spacing = 10;
+                int totalWidth = (buttonWidth * 2) + spacing;
+                int startX = cellBounds.X + (cellBounds.Width - totalWidth) / 2;
+                int startY = cellBounds.Y + (cellBounds.Height - buttonHeight) / 2;
+
+                Rectangle btnModifier = new Rectangle(startX, startY, buttonWidth, buttonHeight);
+                Rectangle btnSupprimer = new Rectangle(startX + buttonWidth + spacing, startY, buttonWidth, buttonHeight);
+
+                Point mousePos = DataGridView_Categorie_Gestion.PointToClient(Cursor.Position);
+
+                string newHoverButton = "";
+                if (btnModifier.Contains(mousePos.X, mousePos.Y))
+                    newHoverButton = "Modifier";
+                else if (btnSupprimer.Contains(mousePos.X, mousePos.Y))
+                    newHoverButton = "Supprimer";
+
+                if (hoverRowIndex != e.RowIndex || hoverButton != newHoverButton)
+                {
+                    hoverRowIndex = e.RowIndex;
+                    hoverButton = newHoverButton;
+                    DataGridView_Categorie_Gestion.InvalidateCell(e.ColumnIndex, e.RowIndex);
+                    DataGridView_Categorie_Gestion.Cursor = string.IsNullOrEmpty(newHoverButton) ? Cursors.Default : Cursors.Hand;
+                }
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////////////////
+
+        private void DataGridView_Categorie_Gestion_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            if (DataGridView_Categorie_Gestion.Columns[e.ColumnIndex].Name == "Actions")
+            {
+                var grid = DataGridView_Categorie_Gestion;
+
+                // Récupérer les données
+                var idCell = grid.Rows[e.RowIndex].Cells["ID"];
+                if (idCell.Value == null || !int.TryParse(idCell.Value.ToString(), out int idCategorie))
+                {
+                    CustomMessageBox.Show("Impossible de récupérer l'ID de la catégorie.", "Erreur",
+                                    CustomMessageBox.MessageType.Error);
+                    return;
+                }
+
+                string nomCategorie = grid.Rows[e.RowIndex].Cells["Categorie"]?.Value?.ToString() ?? "";
+
+                var montantCell = grid.Rows[e.RowIndex].Cells["Montant"];
+                if (montantCell.Value == null || !decimal.TryParse(montantCell.Value.ToString(), out decimal montant))
+                {
+                    CustomMessageBox.Show("Impossible de récupérer le montant de la catégorie.", "Erreur",
+                                    CustomMessageBox.MessageType.Error);
+                    return;
+                }
+
+                var idEntrepriseCell = grid.Rows[e.RowIndex].Cells["ID_Entreprise"];
+                if (idEntrepriseCell.Value == null || !int.TryParse(idEntrepriseCell.Value.ToString(), out int idEntreprise))
+                {
+                    CustomMessageBox.Show("Impossible de récupérer l'ID de l'entreprise.", "Erreur",
+                                    CustomMessageBox.MessageType.Error);
+                    return;
+                }
+
+                // Déterminer quel bouton a été cliqué
+                Point mousePos = grid.PointToClient(Cursor.Position);
+                var cellBounds = grid.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+
+                int buttonWidth = 75;
+                int buttonHeight = 32;
+                int spacing = 10;
+                int totalWidth = (buttonWidth * 2) + spacing;
+                int startX = cellBounds.X + (cellBounds.Width - totalWidth) / 2;
+                int startY = cellBounds.Y + (cellBounds.Height - buttonHeight) / 2;
+
+                Rectangle btnModifier = new Rectangle(startX, startY, buttonWidth, buttonHeight);
+                Rectangle btnSupprimer = new Rectangle(startX + buttonWidth + spacing, startY, buttonWidth, buttonHeight);
+
+                if (btnModifier.Contains(mousePos))
+                {
+                    ModifierCategorieAvecModale(idCategorie, nomCategorie, montant, idEntreprise);
+                }
+                else if (btnSupprimer.Contains(mousePos))
+                {
+                    SupprimerCategorie(idCategorie, nomCategorie);
+                }
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////////////////
+
+        private void ModifierCategorieAvecModale(int idCategorie, string nomActuel, decimal montantActuel, int idEntreprise)
+        {
+            using (var formModifier = new ModifierCategorieForm(idCategorie, nomActuel, montantActuel, idEntreprise))
+            {
+                var result = formModifier.ShowDialog(this);
+
+                if (result == DialogResult.OK)
+                {
+                    // Rafraîchir la table après la modification
+                    ShowTableCategorieGestion();
+                }
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////////////////
+
+        private void SupprimerCategorie(int idCategorie, string nomCategorie)
+        {
             // Confirmation
-            var confirm = MessageBox.Show(
-                $"Supprimer définitivement la categorie #{idCategorie} ?",
-                "Confirmation",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            var confirm = CustomMessageBox.Show(
+                $"Êtes-vous sûr de vouloir supprimer la catégorie « {nomCategorie} » ?\n\nCette action est irréversible.",
+                "Confirmation de suppression",
+                CustomMessageBox.MessageType.Question,
+                CustomMessageBox.MessageButtons.YesNo);
 
-            if (confirm != DialogResult.Yes) return;
+            if (confirm != DialogResult.Yes)
+                return;
 
             try
             {
                 UseWaitCursor = true;
-                button_Supprimer.Enabled = false;
-
                 if (Categorie.SupprimerCategorie(idCategorie))
                 {
-                    // Rafraîchir la table après suppression
                     ShowTableCategorieGestion();
                     ClearCategorieFormGestion();
                 }
             }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show("Erreur lors de la suppression : " + ex.Message, "Erreur",
+                                CustomMessageBox.MessageType.Error);
+            }
             finally
             {
-                button_Supprimer.Enabled = true;
                 UseWaitCursor = false;
             }
         }
 
-        private void buttonRechercher_Click(object sender, EventArgs e)
+        ////////////////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// Ouvre la modale pour ajouter une nouvelle catégorie
+        /// </summary>
+        public void AfficherModaleAjouterCategorie()
         {
-            DataGridView_Categorie_Gestion.DataSource = Categorie.RechercheCategorieConcat(textBoxSearch.Text);
+            using (var formAjouter = new AjouterCategorieForm())
+            {
+                var result = formAjouter.ShowDialog(this);
+
+                if (result == DialogResult.OK)
+                {
+                    // Rafraîchir les tables après l'ajout
+                    ShowTableCategorieGestion();
+                }
+            }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void buttonAjouterCategorie_Click(object sender, EventArgs e)
+        {
+            AfficherModaleAjouterCategorie();
+        }
+
+        private void DataGridView_Categorie_Gestion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void GestionCategorieForm_Load(object sender, EventArgs e)
+        private void DataGridView_Categorie_Gestion_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        // Helper pour re-sélectionner une ligne par ID
-
+        ////////////////////////////////////////////////////////////////////////////
     }
 }
-

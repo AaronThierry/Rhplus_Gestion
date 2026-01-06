@@ -1109,7 +1109,11 @@ public static class IUTS
 
                 decimal IndemNat = (decimal)sums["somme_nature"];
                 //Salaire Net 
-                var res = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, IndemNat, tauxEffort: 0.01m, arrondirNetAPayerCeil: true);
+                decimal ValeurDette = ParseDecimal(textBoxDette.Text);
+                //var res = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, IndemNat, tauxEffort: 0.01m, arrondirNetAPayerCeil: true,ValeurDette);
+
+                // Par cette ligne correcte :
+                var res = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, IndemNat, ValeurDette, 0.01m, true);
                 // (Optionnel)affichage UI
                 var fr = System.Globalization.CultureInfo.GetCultureInfo("fr-FR");
 

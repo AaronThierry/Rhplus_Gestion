@@ -120,11 +120,13 @@ namespace RH_GRH
 
 
 
-        //SALAIRE NET ET EFFORT DE PAIX
+        //SALAIRE NET,FINAL ET EFFORT DE PAIX ET DETTE
 
              public decimal SalaireNet { get; set; }
              public decimal EffortDePaix { get; set; }
              public decimal SalaireNetaPayer { get; set; }
+             public decimal ValeurDette { get; set; }
+             public decimal SalaireNetaPayerFinal { get; set; }
 
 
         public string Periode { get; set; }

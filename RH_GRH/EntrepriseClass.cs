@@ -15,7 +15,7 @@ namespace RH_GRH
         //Enregistrer
         public bool insertEntreprise(string nomEntreprise, string formeJuridique, string sigle, string activite, string adressePhysique, string adressePostale, string telephone, string commune, string quartier, string rue, string lot, string centreImpots, string numeroIfu, string numeroCnss, string codeActivite, string regimeFiscal, string registreCommerce, string numeroBancaire, decimal? tpa, byte[] logoEntreprise,string email)
         {
-            MySqlCommand command = new MySqlCommand("INSERT INTO `entreprise`(`nomEntreprise`, `forme_juridique`, `sigle`, `activite`, `adresse_physique`, `adresse_postale`, `telephone`, `commune`, `quartier`, `rue`, `lot`, `centre_impots`, `numero_ifu`, `numero_cnss`, `code_activite`, `regime_fiscal`, `registre_commerce`, `numero_bancaire`, `tpa`, `logo_entreprise, 'email'`) VALUES (@nomEntreprise, @forme_juridique, @sigle, @activite, @adresse_physique, @adresse_postale, @telephone, @commune, @quartier, @rue, @lot, @centre_impots, @numero_ifu, @numero_cnss, @code_activite, @regime_fiscal, @registre_commerce, @numero_bancaire, @tpa, @logo_entreprise,@email)", connect.getconnection);
+            MySqlCommand command = new MySqlCommand("INSERT INTO `entreprise`(`nomEntreprise`, `forme_juridique`, `sigle`, `activite`, `adresse_physique`, `adresse_postale`, `telephone`, `commune`, `quartier`, `rue`, `lot`, `centre_impots`, `numero_ifu`, `numero_cnss`, `code_activite`, `regime_fiscal`, `registre_commerce`, `numero_bancaire`, `tpa`, `logo_entreprise`, `email`) VALUES (@nomEntreprise, @forme_juridique, @sigle, @activite, @adresse_physique, @adresse_postale, @telephone, @commune, @quartier, @rue, @lot, @centre_impots, @numero_ifu, @numero_cnss, @code_activite, @regime_fiscal, @registre_commerce, @numero_bancaire, @tpa, @logo_entreprise, @email)", connect.getconnection);
             command.Parameters.Add("@nomEntreprise", MySqlDbType.VarChar).Value = nomEntreprise;
             command.Parameters.Add("@forme_juridique", MySqlDbType.VarChar).Value = formeJuridique;
             command.Parameters.Add("@sigle", MySqlDbType.VarChar).Value = sigle;
@@ -223,7 +223,15 @@ namespace RH_GRH
             }
             else
             {
-                combo.SelectedIndex = ajouterPlaceholder ? 0 : -1;
+                // Vérifier qu'il y a des éléments avant de définir SelectedIndex
+                if (dt.Rows.Count > 0)
+                {
+                    combo.SelectedIndex = ajouterPlaceholder ? 0 : -1;
+                }
+                else
+                {
+                    combo.SelectedIndex = -1;
+                }
             }
         }
 

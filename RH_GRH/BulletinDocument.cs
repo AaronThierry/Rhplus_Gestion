@@ -576,6 +576,18 @@ private static byte[] GenerateQrPngBytes(string payload, int pixelsPerModule = 6
 
 
 
+                    // 30 Remboursement dette
+                    table.Cell().Element(BodyCell).AlignCenter().Text("21").FontSize(8).FontFamily("Montserrat");
+                    table.Cell().Element(BodyCell).Text("Remboursement dette").FontSize(8).FontFamily("Montserrat").AlignCenter();
+                    table.Cell().Element(BodyCell).AlignCenter().Text(model.ValeurDette.ToString("N2")).FontSize(8).FontFamily("Montserrat");
+                    table.Cell().Element(BodyCell).AlignCenter().Text("1").FontSize(8).FontFamily("Montserrat");
+                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                    table.Cell().Element(BodyCell).AlignCenter().Text(model.ValeurDette.ToString("N2")).FontSize(8).FontFamily("Montserrat");
+                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                    table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
+
+
+
                     // 28 Salaire net a payer
                     table.Cell().Element(BodyCell).AlignCenter().Text("28").FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).Text("Salaire net a payer").FontSize(8).FontFamily("Montserrat").AlignRight().SemiBold();

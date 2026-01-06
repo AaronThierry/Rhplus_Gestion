@@ -129,6 +129,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -216,6 +217,61 @@
     <Compile Include="GestionServiceForm.Designer.cs">
       <DependentUpon>GestionServiceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AjouterServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterServiceForm.Designer.cs">
+      <DependentUpon>AjouterServiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifierServiceForm.Designer.cs">
+      <DependentUpon>ModifierServiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsExtensions.cs" />
+    <Compile Include="CustomMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomMessageBox.Designer.cs">
+      <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AjouterDirectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterDirectionForm.Designer.cs">
+      <DependentUpon>AjouterDirectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierDirectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifierDirectionForm.Designer.cs">
+      <DependentUpon>ModifierDirectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AjouterCategorieForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterCategorieForm.Designer.cs">
+      <DependentUpon>AjouterCategorieForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierCategorieForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifierCategorieForm.Designer.cs">
+      <DependentUpon>ModifierCategorieForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AjouterEntrepriseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterEntrepriseForm.Designer.cs">
+      <DependentUpon>AjouterEntrepriseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierEntrepriseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifierEntrepriseForm.Designer.cs">
+      <DependentUpon>ModifierEntrepriseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GestionDirectionForm.cs">
@@ -251,6 +307,15 @@
     <EmbeddedResource Include="GestionServiceForm.resx">
       <DependentUpon>GestionServiceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AjouterServiceForm.resx">
+      <DependentUpon>AjouterServiceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifierServiceForm.resx">
+      <DependentUpon>ModifierServiceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomMessageBox.resx">
+      <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -263,6 +328,24 @@
     </Compile>
     <EmbeddedResource Include="GestionDirectionForm.resx">
       <DependentUpon>GestionDirectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AjouterDirectionForm.resx">
+      <DependentUpon>AjouterDirectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifierDirectionForm.resx">
+      <DependentUpon>ModifierDirectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AjouterCategorieForm.resx">
+      <DependentUpon>AjouterCategorieForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifierCategorieForm.resx">
+      <DependentUpon>ModifierCategorieForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AjouterEntrepriseForm.resx">
+      <DependentUpon>AjouterEntrepriseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifierEntrepriseForm.resx">
+      <DependentUpon>ModifierEntrepriseForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

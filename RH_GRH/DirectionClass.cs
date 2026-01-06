@@ -43,18 +43,18 @@ namespace RH_GRH
                                 insertCmd.ExecuteNonQuery();
                             }
 
-                            MessageBox.Show("Direction enregistrée avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CustomMessageBox.Show("Direction enregistrée avec succès !", "Succès", CustomMessageBox.MessageType.Success);
                         }
                         else
                         {
-                            MessageBox.Show($"La direction '{nomDirection}' existe déjà pour l'entreprise sélectionnée.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            CustomMessageBox.Show($"La direction '{nomDirection}' existe déjà pour l'entreprise sélectionnée.", "Information", CustomMessageBox.MessageType.Warning);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show("Erreur : " + ex.Message, "Erreur", CustomMessageBox.MessageType.Error);
             }
         }
 
@@ -76,10 +76,11 @@ namespace RH_GRH
             using (var da = new MySqlDataAdapter(cmd))
             {
                 cmd.CommandText = @"
-                SELECT 
+                SELECT
                     d.id_direction  AS `ID`,
                     e.nomEntreprise AS `Entreprise`,
-                    d.nomDirection  AS `Direction`
+                    d.nomDirection  AS `Direction`,
+                    d.id_entreprise AS `ID_Entreprise`
                 FROM direction d
                 INNER JOIN entreprise e ON e.id_entreprise = d.id_entreprise
                 ORDER BY e.nomEntreprise, d.nomDirection;";
@@ -165,19 +166,98 @@ namespace RH_GRH
         ////////////////////////////////////////////////////////////////////////////////
 
 
-        public static void ModifierDirection(int idDirection, string nomDirection)
+        // Surcharge avec entreprise (utilisée par ModifierDirectionForm)
+        public static void ModifierDirection(int idDirection, string nomDirection, int idEntreprise)
         {
             if (idDirection <= 0)
             {
-                MessageBox.Show("Identifiant de direction invalide.", "Information",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CustomMessageBox.Show("Identifiant de direction invalide.", "Information",
+                                CustomMessageBox.MessageType.Info);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(nomDirection))
             {
-                MessageBox.Show("Veuillez saisir le nom de la direction.", "Information",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CustomMessageBox.Show("Veuillez saisir le nom de la direction.", "Information",
+                                CustomMessageBox.MessageType.Info);
+                return;
+            }
+
+            try
+            {
+                var connect = new Dbconnect();
+                using (var con = new MySqlConnection(connect.getconnection.ConnectionString))
+                {
+                    con.Open();
+
+                    string nom = nomDirection.Trim();
+
+                    // Vérifier l'unicité du nom dans la nouvelle entreprise
+                    const string checkSql = @"
+                    SELECT COUNT(*)
+                    FROM direction
+                    WHERE id_entreprise = @idEntreprise
+                      AND id_direction <> @id
+                      AND nomDirection = @nom;";
+
+                    using (var checkCmd = new MySqlCommand(checkSql, con))
+                    {
+                        checkCmd.Parameters.Add("@id", MySqlDbType.Int32).Value = idDirection;
+                        checkCmd.Parameters.Add("@idEntreprise", MySqlDbType.Int32).Value = idEntreprise;
+                        checkCmd.Parameters.Add("@nom", MySqlDbType.VarChar).Value = nom;
+
+                        int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
+                        if (exists > 0)
+                        {
+                            CustomMessageBox.Show($"Une autre direction porte déjà le nom « {nom} » dans cette entreprise.",
+                                            "Doublon", CustomMessageBox.MessageType.Warning);
+                            return;
+                        }
+                    }
+
+                    // Mettre à jour le nom ET l'entreprise
+                    const string updateSql = @"
+                    UPDATE direction
+                    SET nomDirection = @nom, id_entreprise = @idEntreprise
+                    WHERE id_direction = @id;";
+
+                    using (var upd = new MySqlCommand(updateSql, con))
+                    {
+                        upd.Parameters.Add("@nom", MySqlDbType.VarChar).Value = nom;
+                        upd.Parameters.Add("@idEntreprise", MySqlDbType.Int32).Value = idEntreprise;
+                        upd.Parameters.Add("@id", MySqlDbType.Int32).Value = idDirection;
+
+                        int rows = upd.ExecuteNonQuery();
+                        if (rows > 0)
+                            CustomMessageBox.Show("Direction modifiée avec succès !", "Succès",
+                                            CustomMessageBox.MessageType.Success);
+                        else
+                            CustomMessageBox.Show("Aucune modification effectuée (enregistrement introuvable).", "Information",
+                                            CustomMessageBox.MessageType.Info);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show("Erreur lors de la modification : " + ex.Message, "Erreur",
+                                CustomMessageBox.MessageType.Error);
+            }
+        }
+
+        // Surcharge sans entreprise (compatibilité avec code existant)
+        public static void ModifierDirection(int idDirection, string nomDirection)
+        {
+            if (idDirection <= 0)
+            {
+                CustomMessageBox.Show("Identifiant de direction invalide.", "Information",
+                                CustomMessageBox.MessageType.Info);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(nomDirection))
+            {
+                CustomMessageBox.Show("Veuillez saisir le nom de la direction.", "Information",
+                                CustomMessageBox.MessageType.Info);
                 return;
             }
 
@@ -208,8 +288,8 @@ namespace RH_GRH
                         int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
                         if (exists > 0)
                         {
-                            MessageBox.Show($"Une autre direction porte déjà le nom « {nom} » dans la même entreprise.",
-                                            "Doublon", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            CustomMessageBox.Show($"Une autre direction porte déjà le nom « {nom} » dans la même entreprise.",
+                                            "Doublon", CustomMessageBox.MessageType.Warning);
                             return;
                         }
                     }
@@ -227,18 +307,18 @@ namespace RH_GRH
 
                         int rows = upd.ExecuteNonQuery();
                         if (rows > 0)
-                            MessageBox.Show("Direction modifiée avec succès !", "Succès",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CustomMessageBox.Show("Direction modifiée avec succès !", "Succès",
+                                            CustomMessageBox.MessageType.Success);
                         else
-                            MessageBox.Show("Aucune modification effectuée (enregistrement introuvable).", "Information",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CustomMessageBox.Show("Aucune modification effectuée (enregistrement introuvable).", "Information",
+                                            CustomMessageBox.MessageType.Info);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de la modification : " + ex.Message, "Erreur",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show("Erreur lors de la modification : " + ex.Message, "Erreur",
+                                CustomMessageBox.MessageType.Error);
             }
         }
 
@@ -249,8 +329,8 @@ namespace RH_GRH
         {
             if (idDirection <= 0)
             {
-                MessageBox.Show("Identifiant de direction invalide.", "Information",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CustomMessageBox.Show("Identifiant de direction invalide.", "Information",
+                                CustomMessageBox.MessageType.Info);
                 return false;
             }
 
@@ -269,14 +349,14 @@ namespace RH_GRH
 
                     if (rows > 0)
                     {
-                        MessageBox.Show("Direction supprimée avec succès.", "Succès",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CustomMessageBox.Show("Direction supprimée avec succès.", "Succès",
+                                        CustomMessageBox.MessageType.Success);
                         return true;
                     }
                     else
                     {
-                        MessageBox.Show("Aucune suppression effectuée (enregistrement introuvable).", "Information",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CustomMessageBox.Show("Aucune suppression effectuée (enregistrement introuvable).", "Information",
+                                        CustomMessageBox.MessageType.Info);
                         return false;
                     }
                 }
@@ -284,16 +364,16 @@ namespace RH_GRH
             catch (MySqlException ex) when (ex.Number == 1451 || ex.Number == 1452)
             {
                 // 1451: Cannot delete or update a parent row: a foreign key constraint fails
-                MessageBox.Show(
+                CustomMessageBox.Show(
                     "Impossible de supprimer cette direction car elle est utilisée ailleurs (contrainte de clé étrangère). " +
                     "Vérifiez les enregistrements liés (départements, services, etc.).",
-                    "Opération interdite", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "Opération interdite", CustomMessageBox.MessageType.Warning);
                 return false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de la suppression : " + ex.Message, "Erreur",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show("Erreur lors de la suppression : " + ex.Message, "Erreur",
+                                CustomMessageBox.MessageType.Error);
                 return false;
             }
         }

@@ -45,18 +45,18 @@ namespace RH_GRH
                                 insertCmd.ExecuteNonQuery();
                             }
 
-                            MessageBox.Show("Categorie enregistrée avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CustomMessageBox.Show("Categorie enregistrée avec succès !", "Succès", CustomMessageBox.MessageType.Success);
                         }
                         else
                         {
-                            MessageBox.Show($"La categorie '{nomCategorie}' existe déjà pour l'entreprise sélectionnée.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            CustomMessageBox.Show($"La categorie '{nomCategorie}' existe déjà pour l'entreprise sélectionnée.", "Information", CustomMessageBox.MessageType.Warning);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show("Erreur : " + ex.Message, "Erreur", CustomMessageBox.MessageType.Error);
             }
         }
 
@@ -78,11 +78,12 @@ namespace RH_GRH
             using (var da = new MySqlDataAdapter(cmd))
             {
                 cmd.CommandText = @"
-                SELECT 
+                SELECT
                     d.id_categorie  AS `ID`,
                     e.nomEntreprise AS `Entreprise`,
                     d.nomCategorie  AS `Categorie`,
-                    d.montant       AS `Montant`
+                    d.montant       AS `Montant`,
+                    d.id_entreprise AS `ID_Entreprise`
                 FROM categorie d
                 INNER JOIN entreprise e ON e.id_entreprise = d.id_entreprise
                 ORDER BY e.nomEntreprise, d.nomCategorie;";
@@ -171,26 +172,27 @@ namespace RH_GRH
         ////////////////////////////////////////////////////////////////////////////////
 
 
-        public static void ModifierCategorie(int idCategorie, string nomCategorie, decimal montant)
+        // Surcharge avec entreprise (utilisée par ModifierCategorieForm)
+        public static void ModifierCategorie(int idCategorie, string nomCategorie, decimal montant, int idEntreprise)
         {
             if (idCategorie <= 0)
             {
-                MessageBox.Show("Identifiant de la catégorie invalide.", "Information",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CustomMessageBox.Show("Identifiant de la catégorie invalide.", "Information",
+                                CustomMessageBox.MessageType.Info);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(nomCategorie))
             {
-                MessageBox.Show("Veuillez saisir le nom de la catégorie.", "Information",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CustomMessageBox.Show("Veuillez saisir le nom de la catégorie.", "Information",
+                                CustomMessageBox.MessageType.Info);
                 return;
             }
 
             if (montant < 0m)
             {
-                MessageBox.Show("Le montant doit être positif.", "Information",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CustomMessageBox.Show("Le montant doit être positif.", "Information",
+                                CustomMessageBox.MessageType.Info);
                 return;
             }
 
@@ -198,7 +200,95 @@ namespace RH_GRH
             {
                 var connect = new Dbconnect();
 
-                // ⚠️ Si getconnection retourne une chaîne, utilisez: new MySqlConnection(connect.getconnection)
+                using (var con = new MySqlConnection(connect.getconnection.ConnectionString))
+                {
+                    con.Open();
+
+                    string nom = nomCategorie.Trim();
+
+                    // Vérifier l'unicité du nom dans la nouvelle entreprise
+                    const string checkSql = @"
+                    SELECT COUNT(*)
+                    FROM categorie
+                    WHERE id_entreprise = @idEntreprise
+                      AND id_categorie <> @id
+                      AND nomCategorie = @nom;";
+
+                    using (var check = new MySqlCommand(checkSql, con))
+                    {
+                        check.Parameters.Add("@id", MySqlDbType.Int32).Value = idCategorie;
+                        check.Parameters.Add("@idEntreprise", MySqlDbType.Int32).Value = idEntreprise;
+                        check.Parameters.Add("@nom", MySqlDbType.VarChar).Value = nom;
+
+                        int exists = Convert.ToInt32(check.ExecuteScalar());
+                        if (exists > 0)
+                        {
+                            CustomMessageBox.Show($"Une autre catégorie porte déjà le nom « {nom} » dans cette entreprise.",
+                                            "Doublon", CustomMessageBox.MessageType.Warning);
+                            return;
+                        }
+                    }
+
+                    // Mettre à jour le nom, montant ET l'entreprise
+                    const string updateSql = @"
+                    UPDATE categorie
+                    SET nomCategorie = @nom,
+                        montant      = @montant,
+                        id_entreprise = @idEntreprise
+                    WHERE id_categorie = @id;";
+
+                    using (var upd = new MySqlCommand(updateSql, con))
+                    {
+                        upd.Parameters.Add("@nom", MySqlDbType.VarChar).Value = nom;
+                        upd.Parameters.Add("@montant", MySqlDbType.Decimal).Value = montant;
+                        upd.Parameters.Add("@idEntreprise", MySqlDbType.Int32).Value = idEntreprise;
+                        upd.Parameters.Add("@id", MySqlDbType.Int32).Value = idCategorie;
+
+                        int rows = upd.ExecuteNonQuery();
+                        if (rows > 0)
+                            CustomMessageBox.Show("Catégorie modifiée avec succès !", "Succès",
+                                            CustomMessageBox.MessageType.Success);
+                        else
+                            CustomMessageBox.Show("Aucune modification effectuée (enregistrement introuvable).", "Information",
+                                            CustomMessageBox.MessageType.Info);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show("Erreur lors de la modification : " + ex.Message, "Erreur",
+                                CustomMessageBox.MessageType.Error);
+            }
+        }
+
+        // Surcharge sans entreprise (compatibilité avec code existant)
+        public static void ModifierCategorie(int idCategorie, string nomCategorie, decimal montant)
+        {
+            if (idCategorie <= 0)
+            {
+                CustomMessageBox.Show("Identifiant de la catégorie invalide.", "Information",
+                                CustomMessageBox.MessageType.Info);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(nomCategorie))
+            {
+                CustomMessageBox.Show("Veuillez saisir le nom de la catégorie.", "Information",
+                                CustomMessageBox.MessageType.Info);
+                return;
+            }
+
+            if (montant < 0m)
+            {
+                CustomMessageBox.Show("Le montant doit être positif.", "Information",
+                                CustomMessageBox.MessageType.Info);
+                return;
+            }
+
+            try
+            {
+                var connect = new Dbconnect();
+
                 using (var con = new MySqlConnection(connect.getconnection.ConnectionString))
                 {
                     con.Open();
@@ -223,8 +313,8 @@ namespace RH_GRH
                         int exists = Convert.ToInt32(check.ExecuteScalar());
                         if (exists > 0)
                         {
-                            MessageBox.Show($"Une autre catégorie porte déjà le nom « {nom} » dans la même entreprise.",
-                                            "Doublon", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            CustomMessageBox.Show($"Une autre catégorie porte déjà le nom « {nom} » dans la même entreprise.",
+                                            "Doublon", CustomMessageBox.MessageType.Warning);
                             return;
                         }
                     }
@@ -244,18 +334,18 @@ namespace RH_GRH
 
                         int rows = upd.ExecuteNonQuery();
                         if (rows > 0)
-                            MessageBox.Show("Catégorie modifiée avec succès !", "Succès",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CustomMessageBox.Show("Catégorie modifiée avec succès !", "Succès",
+                                            CustomMessageBox.MessageType.Success);
                         else
-                            MessageBox.Show("Aucune modification effectuée (enregistrement introuvable).", "Information",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CustomMessageBox.Show("Aucune modification effectuée (enregistrement introuvable).", "Information",
+                                            CustomMessageBox.MessageType.Info);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de la modification : " + ex.Message, "Erreur",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show("Erreur lors de la modification : " + ex.Message, "Erreur",
+                                CustomMessageBox.MessageType.Error);
             }
         }
 
@@ -266,8 +356,8 @@ namespace RH_GRH
         {
             if (idCategorie <= 0)
             {
-                MessageBox.Show("Identifiant de la catégorie invalide.", "Information",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CustomMessageBox.Show("Identifiant de la catégorie invalide.", "Information",
+                                CustomMessageBox.MessageType.Info);
                 return false;
             }
 
@@ -275,7 +365,6 @@ namespace RH_GRH
             {
                 var connect = new Dbconnect();
 
-                // Si getconnection retourne une chaîne, utilisez: new MySqlConnection(connect.getconnection)
                 using (var con = new MySqlConnection(connect.getconnection.ConnectionString))
                 using (var cmd = new MySqlCommand("DELETE FROM categorie WHERE id_categorie = @id;", con))
                 {
@@ -286,14 +375,14 @@ namespace RH_GRH
 
                     if (rows > 0)
                     {
-                        MessageBox.Show("Catégorie supprimée avec succès.", "Succès",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CustomMessageBox.Show("Catégorie supprimée avec succès.", "Succès",
+                                        CustomMessageBox.MessageType.Success);
                         return true;
                     }
                     else
                     {
-                        MessageBox.Show("Aucune suppression effectuée (enregistrement introuvable).", "Information",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CustomMessageBox.Show("Aucune suppression effectuée (enregistrement introuvable).", "Information",
+                                        CustomMessageBox.MessageType.Info);
                         return false;
                     }
                 }
@@ -301,16 +390,16 @@ namespace RH_GRH
             catch (MySqlException ex) when (ex.Number == 1451 || ex.Number == 1452)
             {
                 // 1451/1452 : contrainte de clé étrangère
-                MessageBox.Show(
+                CustomMessageBox.Show(
                     "Impossible de supprimer cette catégorie car elle est référencée ailleurs (contrainte de clé étrangère). " +
                     "Vérifiez les enregistrements liés (produits/services, etc.).",
-                    "Opération interdite", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "Opération interdite", CustomMessageBox.MessageType.Warning);
                 return false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de la suppression : " + ex.Message, "Erreur",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show("Erreur lors de la suppression : " + ex.Message, "Erreur",
+                                CustomMessageBox.MessageType.Error);
                 return false;
             }
         }

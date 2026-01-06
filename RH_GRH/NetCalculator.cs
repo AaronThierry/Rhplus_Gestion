@@ -11,6 +11,7 @@ namespace RH_GRH
         public decimal SalaireNet { get; set; }        // Brut - CNSS(E) - IUTS(Final) - Indemnités Nature
         public decimal Effort { get; set; }            // 1% du SalaireNet (par défaut)
         public decimal NetAPayer { get; set; }         // SalaireNet - Effort, arrondi au supérieur (Ceiling)
+        public decimal NetAPayerFinal { get; set; }         // SalaireNet - Effort - dette, arrondi au supérieur (Ceiling)
     }
 
     public static class NetCalculator
@@ -24,6 +25,7 @@ namespace RH_GRH
             decimal cnssEmploye,
             decimal iutsFinal,
             decimal avantagesNature,
+            decimal Valeurdette,
             decimal tauxEffort = 0.01m,       // 1%
             bool arrondirNetAPayerCeil = true // ceil comme dans ton Java (Math.ceil)
         )
@@ -40,11 +42,17 @@ namespace RH_GRH
             if (arrondirNetAPayerCeil)
                 netAPayer = decimal.Ceiling(netAPayer);   // équivalent Math.ceil pour decimal
 
+            //4) Net final
+            decimal netAPayerFinal = netAPayer - Valeurdette;
+            if (arrondirNetAPayerCeil)
+                netAPayerFinal = decimal.Ceiling(netAPayerFinal);   // équivalent Math.ceil pour decimal
+
             return new NetResult
             {
                 SalaireNet = decimal.Round(salaireNet, 2, MidpointRounding.AwayFromZero),
                 Effort = decimal.Round(effort, 2, MidpointRounding.AwayFromZero),
-                NetAPayer = netAPayer // déjà ceiling
+                NetAPayer = netAPayer, // déjà ceiling
+                NetAPayerFinal = netAPayerFinal
             };
         }
     }

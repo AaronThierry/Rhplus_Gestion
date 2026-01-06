@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tabControlPersonnel = new System.Windows.Forms.TabControl();
@@ -395,7 +395,7 @@
             "***",
             "Oui",
             "Non"});
-            this.ComboBoxCadre.Location = new System.Drawing.Point(184, 238);
+            this.ComboBoxCadre.Location = new System.Drawing.Point(206, 238);
             this.ComboBoxCadre.Name = "ComboBoxCadre";
             this.ComboBoxCadre.Size = new System.Drawing.Size(220, 26);
             this.ComboBoxCadre.StartIndex = 0;
@@ -460,7 +460,7 @@
             this.textBoxNumeroBancaire.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNumeroBancaire.ForeColor = System.Drawing.Color.Black;
             this.textBoxNumeroBancaire.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNumeroBancaire.Location = new System.Drawing.Point(906, 306);
+            this.textBoxNumeroBancaire.Location = new System.Drawing.Point(893, 306);
             this.textBoxNumeroBancaire.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxNumeroBancaire.Name = "textBoxNumeroBancaire";
             this.textBoxNumeroBancaire.PlaceholderForeColor = System.Drawing.Color.DimGray;
@@ -483,7 +483,7 @@
             this.textBoxJourContrat.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxJourContrat.ForeColor = System.Drawing.Color.Black;
             this.textBoxJourContrat.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxJourContrat.Location = new System.Drawing.Point(906, 270);
+            this.textBoxJourContrat.Location = new System.Drawing.Point(893, 270);
             this.textBoxJourContrat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxJourContrat.Name = "textBoxJourContrat";
             this.textBoxJourContrat.PlaceholderForeColor = System.Drawing.Color.DimGray;
@@ -529,7 +529,7 @@
             this.textBoxCnss.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxCnss.ForeColor = System.Drawing.Color.Black;
             this.textBoxCnss.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxCnss.Location = new System.Drawing.Point(184, 349);
+            this.textBoxCnss.Location = new System.Drawing.Point(206, 349);
             this.textBoxCnss.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxCnss.Name = "textBoxCnss";
             this.textBoxCnss.PlaceholderForeColor = System.Drawing.Color.DimGray;
@@ -552,7 +552,7 @@
             this.textBoxTelephone.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxTelephone.ForeColor = System.Drawing.Color.Black;
             this.textBoxTelephone.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxTelephone.Location = new System.Drawing.Point(906, 126);
+            this.textBoxTelephone.Location = new System.Drawing.Point(893, 126);
             this.textBoxTelephone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxTelephone.Name = "textBoxTelephone";
             this.textBoxTelephone.PlaceholderForeColor = System.Drawing.Color.DimGray;
@@ -595,7 +595,7 @@
             this.dateSortiePicker.FillColor = System.Drawing.Color.White;
             this.dateSortiePicker.Font = new System.Drawing.Font("Montserrat Medium", 9.999999F, System.Drawing.FontStyle.Bold);
             this.dateSortiePicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dateSortiePicker.Location = new System.Drawing.Point(906, 234);
+            this.dateSortiePicker.Location = new System.Drawing.Point(893, 234);
             this.dateSortiePicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dateSortiePicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dateSortiePicker.Name = "dateSortiePicker";
@@ -627,7 +627,7 @@
             this.dateNaissancePicker.FillColor = System.Drawing.Color.White;
             this.dateNaissancePicker.Font = new System.Drawing.Font("Montserrat Medium", 9.999999F, System.Drawing.FontStyle.Bold);
             this.dateNaissancePicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dateNaissancePicker.Location = new System.Drawing.Point(184, 127);
+            this.dateNaissancePicker.Location = new System.Drawing.Point(206, 127);
             this.dateNaissancePicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dateNaissancePicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dateNaissancePicker.Name = "dateNaissancePicker";
@@ -719,9 +719,9 @@
             // 
             this.label39.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label39.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label39.Location = new System.Drawing.Point(411, 347);
+            this.label39.Location = new System.Drawing.Point(427, 347);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(135, 26);
+            this.label39.Size = new System.Drawing.Size(119, 26);
             this.label39.TabIndex = 143;
             this.label39.Text = "salaire moyen";
             this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -730,7 +730,7 @@
             // 
             this.label40.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label40.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label40.Location = new System.Drawing.Point(51, 350);
+            this.label40.Location = new System.Drawing.Point(73, 350);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(135, 26);
             this.label40.TabIndex = 142;
@@ -741,9 +741,9 @@
             // 
             this.label35.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label35.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label35.Location = new System.Drawing.Point(773, 306);
+            this.label35.Location = new System.Drawing.Point(772, 306);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(135, 26);
+            this.label35.Size = new System.Drawing.Size(123, 26);
             this.label35.TabIndex = 138;
             this.label35.Text = "N° bancaire";
             this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -752,9 +752,9 @@
             // 
             this.label36.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label36.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label36.Location = new System.Drawing.Point(411, 310);
+            this.label36.Location = new System.Drawing.Point(427, 310);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(135, 26);
+            this.label36.Size = new System.Drawing.Size(119, 26);
             this.label36.TabIndex = 137;
             this.label36.Text = "Banque";
             this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -763,7 +763,7 @@
             // 
             this.label37.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label37.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label37.Location = new System.Drawing.Point(51, 313);
+            this.label37.Location = new System.Drawing.Point(73, 313);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(135, 26);
             this.label37.TabIndex = 136;
@@ -786,7 +786,7 @@
             "Especes ",
             "Mobile money",
             "Virement"});
-            this.ComboBoxModePayement.Location = new System.Drawing.Point(184, 312);
+            this.ComboBoxModePayement.Location = new System.Drawing.Point(206, 312);
             this.ComboBoxModePayement.Name = "ComboBoxModePayement";
             this.ComboBoxModePayement.Size = new System.Drawing.Size(220, 26);
             this.ComboBoxModePayement.StartIndex = 0;
@@ -796,9 +796,9 @@
             // 
             this.label32.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label32.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label32.Location = new System.Drawing.Point(773, 270);
+            this.label32.Location = new System.Drawing.Point(772, 270);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(135, 26);
+            this.label32.Size = new System.Drawing.Size(123, 26);
             this.label32.TabIndex = 132;
             this.label32.Text = "Jour contrat";
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -807,9 +807,9 @@
             // 
             this.label33.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label33.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label33.Location = new System.Drawing.Point(411, 273);
+            this.label33.Location = new System.Drawing.Point(427, 273);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(135, 26);
+            this.label33.Size = new System.Drawing.Size(119, 26);
             this.label33.TabIndex = 131;
             this.label33.Text = "Heure contrat";
             this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -818,7 +818,7 @@
             // 
             this.label34.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label34.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label34.Location = new System.Drawing.Point(51, 276);
+            this.label34.Location = new System.Drawing.Point(73, 276);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(135, 26);
             this.label34.TabIndex = 130;
@@ -840,7 +840,7 @@
             "***",
             "Horaire",
             "Journalier"});
-            this.ComboBoxtypecontrat.Location = new System.Drawing.Point(184, 275);
+            this.ComboBoxtypecontrat.Location = new System.Drawing.Point(206, 275);
             this.ComboBoxtypecontrat.Name = "ComboBoxtypecontrat";
             this.ComboBoxtypecontrat.Size = new System.Drawing.Size(220, 26);
             this.ComboBoxtypecontrat.StartIndex = 0;
@@ -850,9 +850,9 @@
             // 
             this.label29.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label29.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label29.Location = new System.Drawing.Point(773, 234);
+            this.label29.Location = new System.Drawing.Point(772, 234);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(135, 26);
+            this.label29.Size = new System.Drawing.Size(123, 26);
             this.label29.TabIndex = 126;
             this.label29.Text = "Date de sortie";
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -861,9 +861,9 @@
             // 
             this.label30.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label30.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label30.Location = new System.Drawing.Point(411, 236);
+            this.label30.Location = new System.Drawing.Point(427, 236);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(135, 26);
+            this.label30.Size = new System.Drawing.Size(119, 26);
             this.label30.TabIndex = 125;
             this.label30.Text = "Date d\'entree";
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -872,7 +872,7 @@
             // 
             this.label31.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label31.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label31.Location = new System.Drawing.Point(51, 239);
+            this.label31.Location = new System.Drawing.Point(73, 239);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(135, 26);
             this.label31.TabIndex = 124;
@@ -890,7 +890,7 @@
             this.ComboBoxService.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxService.ForeColor = System.Drawing.Color.Black;
             this.ComboBoxService.ItemHeight = 20;
-            this.ComboBoxService.Location = new System.Drawing.Point(906, 198);
+            this.ComboBoxService.Location = new System.Drawing.Point(893, 198);
             this.ComboBoxService.Name = "ComboBoxService";
             this.ComboBoxService.Size = new System.Drawing.Size(220, 26);
             this.ComboBoxService.TabIndex = 121;
@@ -915,9 +915,9 @@
             // 
             this.label26.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label26.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label26.Location = new System.Drawing.Point(773, 198);
+            this.label26.Location = new System.Drawing.Point(772, 198);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(135, 26);
+            this.label26.Size = new System.Drawing.Size(123, 26);
             this.label26.TabIndex = 119;
             this.label26.Text = "Service";
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -926,9 +926,9 @@
             // 
             this.label27.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label27.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label27.Location = new System.Drawing.Point(411, 199);
+            this.label27.Location = new System.Drawing.Point(427, 199);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(135, 26);
+            this.label27.Size = new System.Drawing.Size(119, 26);
             this.label27.TabIndex = 118;
             this.label27.Text = "Direction";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -937,7 +937,7 @@
             // 
             this.label28.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label28.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label28.Location = new System.Drawing.Point(51, 202);
+            this.label28.Location = new System.Drawing.Point(73, 202);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(127, 26);
             this.label28.TabIndex = 116;
@@ -964,7 +964,7 @@
             "Etudiant",
             "Volontaire National",
             "Fonctaionaire detache"});
-            this.ComboBoxContrat.Location = new System.Drawing.Point(906, 162);
+            this.ComboBoxContrat.Location = new System.Drawing.Point(893, 162);
             this.ComboBoxContrat.Name = "ComboBoxContrat";
             this.ComboBoxContrat.Size = new System.Drawing.Size(220, 26);
             this.ComboBoxContrat.StartIndex = 0;
@@ -974,9 +974,9 @@
             // 
             this.label22.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label22.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label22.Location = new System.Drawing.Point(773, 162);
+            this.label22.Location = new System.Drawing.Point(772, 162);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(135, 26);
+            this.label22.Size = new System.Drawing.Size(123, 26);
             this.label22.TabIndex = 113;
             this.label22.Text = "Contrat";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -985,9 +985,9 @@
             // 
             this.label23.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label23.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label23.Location = new System.Drawing.Point(411, 162);
+            this.label23.Location = new System.Drawing.Point(427, 162);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(135, 26);
+            this.label23.Size = new System.Drawing.Size(119, 26);
             this.label23.TabIndex = 112;
             this.label23.Text = "Poste";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1005,7 +1005,7 @@
             this.textBoxIdentification.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxIdentification.ForeColor = System.Drawing.Color.Black;
             this.textBoxIdentification.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxIdentification.Location = new System.Drawing.Point(184, 164);
+            this.textBoxIdentification.Location = new System.Drawing.Point(206, 164);
             this.textBoxIdentification.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxIdentification.Name = "textBoxIdentification";
             this.textBoxIdentification.PlaceholderForeColor = System.Drawing.Color.DimGray;
@@ -1019,7 +1019,7 @@
             // 
             this.label24.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label24.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label24.Location = new System.Drawing.Point(51, 165);
+            this.label24.Location = new System.Drawing.Point(73, 165);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(135, 26);
             this.label24.TabIndex = 110;
@@ -1037,7 +1037,7 @@
             this.ComboBoxCategorie.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold);
             this.ComboBoxCategorie.ForeColor = System.Drawing.Color.Black;
             this.ComboBoxCategorie.ItemHeight = 20;
-            this.ComboBoxCategorie.Location = new System.Drawing.Point(184, 201);
+            this.ComboBoxCategorie.Location = new System.Drawing.Point(206, 201);
             this.ComboBoxCategorie.Name = "ComboBoxCategorie";
             this.ComboBoxCategorie.Size = new System.Drawing.Size(220, 26);
             this.ComboBoxCategorie.TabIndex = 109;
@@ -1046,9 +1046,9 @@
             // 
             this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label19.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label19.Location = new System.Drawing.Point(773, 126);
+            this.label19.Location = new System.Drawing.Point(772, 126);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(135, 26);
+            this.label19.Size = new System.Drawing.Size(123, 26);
             this.label19.TabIndex = 106;
             this.label19.Text = "Telephone ";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1058,9 +1058,9 @@
             // 
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label20.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label20.Location = new System.Drawing.Point(411, 125);
+            this.label20.Location = new System.Drawing.Point(427, 125);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(135, 26);
+            this.label20.Size = new System.Drawing.Size(119, 26);
             this.label20.TabIndex = 105;
             this.label20.Text = "Adresse ";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1069,7 +1069,7 @@
             // 
             this.label21.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label21.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label21.Location = new System.Drawing.Point(51, 128);
+            this.label21.Location = new System.Drawing.Point(73, 128);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(135, 26);
             this.label21.TabIndex = 103;
@@ -1091,7 +1091,7 @@
             "***",
             "Masculin",
             "Feminin"});
-            this.ComboBoxSexe.Location = new System.Drawing.Point(906, 90);
+            this.ComboBoxSexe.Location = new System.Drawing.Point(893, 90);
             this.ComboBoxSexe.Name = "ComboBoxSexe";
             this.ComboBoxSexe.Size = new System.Drawing.Size(220, 26);
             this.ComboBoxSexe.StartIndex = 0;
@@ -1125,9 +1125,9 @@
             // 
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label18.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label18.Location = new System.Drawing.Point(773, 90);
+            this.label18.Location = new System.Drawing.Point(772, 90);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(135, 26);
+            this.label18.Size = new System.Drawing.Size(123, 26);
             this.label18.TabIndex = 99;
             this.label18.Text = "Sexe ";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1136,9 +1136,9 @@
             // 
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label17.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label17.Location = new System.Drawing.Point(411, 88);
+            this.label17.Location = new System.Drawing.Point(427, 88);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(135, 26);
+            this.label17.Size = new System.Drawing.Size(119, 26);
             this.label17.TabIndex = 97;
             this.label17.Text = "Civilite ";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1157,7 +1157,7 @@
             this.textBoxNomPrenom.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold);
             this.textBoxNomPrenom.ForeColor = System.Drawing.Color.Black;
             this.textBoxNomPrenom.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNomPrenom.Location = new System.Drawing.Point(184, 90);
+            this.textBoxNomPrenom.Location = new System.Drawing.Point(206, 90);
             this.textBoxNomPrenom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxNomPrenom.Name = "textBoxNomPrenom";
             this.textBoxNomPrenom.PlaceholderForeColor = System.Drawing.Color.DimGray;
@@ -1189,7 +1189,7 @@
             // 
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label14.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label14.Location = new System.Drawing.Point(51, 91);
+            this.label14.Location = new System.Drawing.Point(73, 91);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(135, 26);
             this.label14.TabIndex = 92;
@@ -1254,39 +1254,39 @@
             // 
             this.DataGridView_Personnel.AllowUserToAddRows = false;
             this.DataGridView_Personnel.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
-            this.DataGridView_Personnel.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            this.DataGridView_Personnel.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.DataGridView_Personnel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DataGridView_Personnel.BackgroundColor = System.Drawing.Color.MidnightBlue;
             this.DataGridView_Personnel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DataGridView_Personnel.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridView_Personnel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.MidnightBlue;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.MidnightBlue;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridView_Personnel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.DataGridView_Personnel.ColumnHeadersHeight = 50;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridView_Personnel.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridView_Personnel.DefaultCellStyle = dataGridViewCellStyle15;
             this.DataGridView_Personnel.GridColor = System.Drawing.Color.MidnightBlue;
             this.DataGridView_Personnel.Location = new System.Drawing.Point(1, 3);
             this.DataGridView_Personnel.Name = "DataGridView_Personnel";
             this.DataGridView_Personnel.ReadOnly = true;
             this.DataGridView_Personnel.RowHeadersVisible = false;
             this.DataGridView_Personnel.RowHeadersWidth = 51;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DataGridView_Personnel.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DataGridView_Personnel.RowsDefaultCellStyle = dataGridViewCellStyle16;
             this.DataGridView_Personnel.RowTemplate.Height = 100;
             this.DataGridView_Personnel.Size = new System.Drawing.Size(1195, 185);
             this.DataGridView_Personnel.TabIndex = 2;
@@ -1721,7 +1721,7 @@
             "***",
             "Oui",
             "Non"});
-            this.ComboBoxCadreGestion.Location = new System.Drawing.Point(199, 228);
+            this.ComboBoxCadreGestion.Location = new System.Drawing.Point(216, 228);
             this.ComboBoxCadreGestion.MinimumSize = new System.Drawing.Size(220, 0);
             this.ComboBoxCadreGestion.Name = "ComboBoxCadreGestion";
             this.ComboBoxCadreGestion.Size = new System.Drawing.Size(220, 26);
@@ -1787,7 +1787,7 @@
             this.textBoxNumeroBancaireGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNumeroBancaireGestion.ForeColor = System.Drawing.Color.Black;
             this.textBoxNumeroBancaireGestion.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNumeroBancaireGestion.Location = new System.Drawing.Point(913, 316);
+            this.textBoxNumeroBancaireGestion.Location = new System.Drawing.Point(902, 316);
             this.textBoxNumeroBancaireGestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxNumeroBancaireGestion.Name = "textBoxNumeroBancaireGestion";
             this.textBoxNumeroBancaireGestion.PlaceholderForeColor = System.Drawing.Color.DimGray;
@@ -1810,7 +1810,7 @@
             this.textBoxJourContratGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxJourContratGestion.ForeColor = System.Drawing.Color.Black;
             this.textBoxJourContratGestion.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxJourContratGestion.Location = new System.Drawing.Point(913, 278);
+            this.textBoxJourContratGestion.Location = new System.Drawing.Point(902, 278);
             this.textBoxJourContratGestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxJourContratGestion.Name = "textBoxJourContratGestion";
             this.textBoxJourContratGestion.PlaceholderForeColor = System.Drawing.Color.DimGray;
@@ -1856,7 +1856,7 @@
             this.textBoxCnssGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxCnssGestion.ForeColor = System.Drawing.Color.Black;
             this.textBoxCnssGestion.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxCnssGestion.Location = new System.Drawing.Point(199, 333);
+            this.textBoxCnssGestion.Location = new System.Drawing.Point(216, 333);
             this.textBoxCnssGestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxCnssGestion.Name = "textBoxCnssGestion";
             this.textBoxCnssGestion.PlaceholderForeColor = System.Drawing.Color.DimGray;
@@ -1879,7 +1879,7 @@
             this.textBoxTelephoneGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxTelephoneGestion.ForeColor = System.Drawing.Color.Black;
             this.textBoxTelephoneGestion.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxTelephoneGestion.Location = new System.Drawing.Point(913, 126);
+            this.textBoxTelephoneGestion.Location = new System.Drawing.Point(902, 126);
             this.textBoxTelephoneGestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxTelephoneGestion.Name = "textBoxTelephoneGestion";
             this.textBoxTelephoneGestion.PlaceholderForeColor = System.Drawing.Color.DimGray;
@@ -1922,7 +1922,7 @@
             this.dateSortieGestionPicker.FillColor = System.Drawing.Color.White;
             this.dateSortieGestionPicker.Font = new System.Drawing.Font("Montserrat Medium", 9.999999F, System.Drawing.FontStyle.Bold);
             this.dateSortieGestionPicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dateSortieGestionPicker.Location = new System.Drawing.Point(913, 240);
+            this.dateSortieGestionPicker.Location = new System.Drawing.Point(902, 240);
             this.dateSortieGestionPicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dateSortieGestionPicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dateSortieGestionPicker.Name = "dateSortieGestionPicker";
@@ -1954,7 +1954,7 @@
             this.dateNaissanceGestionPicker.FillColor = System.Drawing.Color.White;
             this.dateNaissanceGestionPicker.Font = new System.Drawing.Font("Montserrat Medium", 9.999999F, System.Drawing.FontStyle.Bold);
             this.dateNaissanceGestionPicker.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dateNaissanceGestionPicker.Location = new System.Drawing.Point(199, 123);
+            this.dateNaissanceGestionPicker.Location = new System.Drawing.Point(216, 123);
             this.dateNaissanceGestionPicker.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dateNaissanceGestionPicker.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dateNaissanceGestionPicker.Name = "dateNaissanceGestionPicker";
@@ -2042,9 +2042,9 @@
             // 
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label15.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label15.Location = new System.Drawing.Point(424, 333);
+            this.label15.Location = new System.Drawing.Point(437, 333);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(135, 26);
+            this.label15.Size = new System.Drawing.Size(117, 26);
             this.label15.TabIndex = 197;
             this.label15.Text = "salaire moyen";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2053,7 +2053,7 @@
             // 
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label16.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label16.Location = new System.Drawing.Point(57, 333);
+            this.label16.Location = new System.Drawing.Point(74, 333);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(135, 26);
             this.label16.TabIndex = 196;
@@ -2064,9 +2064,9 @@
             // 
             this.label38.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label38.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label38.Location = new System.Drawing.Point(789, 316);
+            this.label38.Location = new System.Drawing.Point(785, 316);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(125, 26);
+            this.label38.Size = new System.Drawing.Size(118, 26);
             this.label38.TabIndex = 195;
             this.label38.Text = "N° bancaire";
             this.label38.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2075,9 +2075,9 @@
             // 
             this.label41.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label41.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label41.Location = new System.Drawing.Point(424, 298);
+            this.label41.Location = new System.Drawing.Point(437, 298);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(135, 26);
+            this.label41.Size = new System.Drawing.Size(117, 26);
             this.label41.TabIndex = 194;
             this.label41.Text = "Banque";
             this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2086,7 +2086,7 @@
             // 
             this.label42.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label42.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label42.Location = new System.Drawing.Point(57, 298);
+            this.label42.Location = new System.Drawing.Point(74, 298);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(135, 26);
             this.label42.TabIndex = 193;
@@ -2109,7 +2109,7 @@
             "Especes ",
             "Mobile money",
             "Virement"});
-            this.ComboBoxModePayementGestion.Location = new System.Drawing.Point(199, 298);
+            this.ComboBoxModePayementGestion.Location = new System.Drawing.Point(216, 298);
             this.ComboBoxModePayementGestion.MinimumSize = new System.Drawing.Size(220, 0);
             this.ComboBoxModePayementGestion.Name = "ComboBoxModePayementGestion";
             this.ComboBoxModePayementGestion.Size = new System.Drawing.Size(220, 26);
@@ -2120,9 +2120,9 @@
             // 
             this.label43.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label43.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label43.Location = new System.Drawing.Point(789, 278);
+            this.label43.Location = new System.Drawing.Point(785, 278);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(125, 26);
+            this.label43.Size = new System.Drawing.Size(118, 26);
             this.label43.TabIndex = 191;
             this.label43.Text = "Jour contrat";
             this.label43.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2131,9 +2131,9 @@
             // 
             this.label44.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label44.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label44.Location = new System.Drawing.Point(424, 263);
+            this.label44.Location = new System.Drawing.Point(437, 263);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(135, 26);
+            this.label44.Size = new System.Drawing.Size(117, 26);
             this.label44.TabIndex = 190;
             this.label44.Text = "Heure contrat";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2142,7 +2142,7 @@
             // 
             this.label45.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label45.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label45.Location = new System.Drawing.Point(57, 263);
+            this.label45.Location = new System.Drawing.Point(74, 263);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(135, 26);
             this.label45.TabIndex = 189;
@@ -2164,7 +2164,7 @@
             "***",
             "Horaire",
             "Journalier"});
-            this.ComboBoxtypecontratGestion.Location = new System.Drawing.Point(199, 263);
+            this.ComboBoxtypecontratGestion.Location = new System.Drawing.Point(216, 263);
             this.ComboBoxtypecontratGestion.MinimumSize = new System.Drawing.Size(220, 0);
             this.ComboBoxtypecontratGestion.Name = "ComboBoxtypecontratGestion";
             this.ComboBoxtypecontratGestion.Size = new System.Drawing.Size(220, 26);
@@ -2175,9 +2175,9 @@
             // 
             this.label46.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label46.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label46.Location = new System.Drawing.Point(789, 240);
+            this.label46.Location = new System.Drawing.Point(785, 240);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(125, 26);
+            this.label46.Size = new System.Drawing.Size(118, 26);
             this.label46.TabIndex = 187;
             this.label46.Text = "Date de sortie";
             this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2186,9 +2186,9 @@
             // 
             this.label47.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label47.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label47.Location = new System.Drawing.Point(424, 228);
+            this.label47.Location = new System.Drawing.Point(437, 228);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(135, 26);
+            this.label47.Size = new System.Drawing.Size(117, 26);
             this.label47.TabIndex = 186;
             this.label47.Text = "Date d\'entree";
             this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2197,7 +2197,7 @@
             // 
             this.label48.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label48.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label48.Location = new System.Drawing.Point(57, 228);
+            this.label48.Location = new System.Drawing.Point(74, 228);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(135, 26);
             this.label48.TabIndex = 185;
@@ -2215,7 +2215,7 @@
             this.ComboBoxServiceGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxServiceGestion.ForeColor = System.Drawing.Color.Black;
             this.ComboBoxServiceGestion.ItemHeight = 20;
-            this.ComboBoxServiceGestion.Location = new System.Drawing.Point(913, 202);
+            this.ComboBoxServiceGestion.Location = new System.Drawing.Point(902, 202);
             this.ComboBoxServiceGestion.Name = "ComboBoxServiceGestion";
             this.ComboBoxServiceGestion.Size = new System.Drawing.Size(220, 26);
             this.ComboBoxServiceGestion.TabIndex = 184;
@@ -2240,9 +2240,9 @@
             // 
             this.label49.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label49.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label49.Location = new System.Drawing.Point(789, 202);
+            this.label49.Location = new System.Drawing.Point(785, 202);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(125, 26);
+            this.label49.Size = new System.Drawing.Size(118, 26);
             this.label49.TabIndex = 182;
             this.label49.Text = "Service";
             this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2251,9 +2251,9 @@
             // 
             this.label50.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label50.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label50.Location = new System.Drawing.Point(424, 193);
+            this.label50.Location = new System.Drawing.Point(437, 193);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(135, 26);
+            this.label50.Size = new System.Drawing.Size(117, 26);
             this.label50.TabIndex = 181;
             this.label50.Text = "Direction";
             this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2262,7 +2262,7 @@
             // 
             this.label51.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label51.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label51.Location = new System.Drawing.Point(57, 193);
+            this.label51.Location = new System.Drawing.Point(74, 193);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(135, 26);
             this.label51.TabIndex = 180;
@@ -2289,7 +2289,7 @@
             "Etudiant",
             "Volontaire National",
             "Fonctaionaire detache"});
-            this.ComboBoxContratGestion.Location = new System.Drawing.Point(913, 164);
+            this.ComboBoxContratGestion.Location = new System.Drawing.Point(902, 164);
             this.ComboBoxContratGestion.Name = "ComboBoxContratGestion";
             this.ComboBoxContratGestion.Size = new System.Drawing.Size(220, 26);
             this.ComboBoxContratGestion.StartIndex = 0;
@@ -2299,9 +2299,9 @@
             // 
             this.label52.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label52.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label52.Location = new System.Drawing.Point(789, 164);
+            this.label52.Location = new System.Drawing.Point(785, 164);
             this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(125, 26);
+            this.label52.Size = new System.Drawing.Size(118, 26);
             this.label52.TabIndex = 178;
             this.label52.Text = "Contrat";
             this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2310,9 +2310,9 @@
             // 
             this.label53.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label53.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label53.Location = new System.Drawing.Point(424, 158);
+            this.label53.Location = new System.Drawing.Point(437, 158);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(135, 26);
+            this.label53.Size = new System.Drawing.Size(117, 26);
             this.label53.TabIndex = 177;
             this.label53.Text = "Poste";
             this.label53.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2330,7 +2330,7 @@
             this.textBoxIdentificationGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxIdentificationGestion.ForeColor = System.Drawing.Color.Black;
             this.textBoxIdentificationGestion.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxIdentificationGestion.Location = new System.Drawing.Point(199, 158);
+            this.textBoxIdentificationGestion.Location = new System.Drawing.Point(216, 158);
             this.textBoxIdentificationGestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxIdentificationGestion.Name = "textBoxIdentificationGestion";
             this.textBoxIdentificationGestion.PlaceholderForeColor = System.Drawing.Color.DimGray;
@@ -2344,7 +2344,7 @@
             // 
             this.label67.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label67.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label67.Location = new System.Drawing.Point(57, 158);
+            this.label67.Location = new System.Drawing.Point(74, 158);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(135, 26);
             this.label67.TabIndex = 175;
@@ -2362,7 +2362,7 @@
             this.ComboBoxCategorieGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold);
             this.ComboBoxCategorieGestion.ForeColor = System.Drawing.Color.Black;
             this.ComboBoxCategorieGestion.ItemHeight = 20;
-            this.ComboBoxCategorieGestion.Location = new System.Drawing.Point(199, 193);
+            this.ComboBoxCategorieGestion.Location = new System.Drawing.Point(216, 193);
             this.ComboBoxCategorieGestion.MinimumSize = new System.Drawing.Size(220, 0);
             this.ComboBoxCategorieGestion.Name = "ComboBoxCategorieGestion";
             this.ComboBoxCategorieGestion.Size = new System.Drawing.Size(220, 26);
@@ -2372,9 +2372,9 @@
             // 
             this.label68.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label68.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label68.Location = new System.Drawing.Point(789, 126);
+            this.label68.Location = new System.Drawing.Point(785, 126);
             this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(125, 26);
+            this.label68.Size = new System.Drawing.Size(118, 26);
             this.label68.TabIndex = 173;
             this.label68.Text = "Telephone ";
             this.label68.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2383,9 +2383,9 @@
             // 
             this.label69.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label69.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label69.Location = new System.Drawing.Point(424, 123);
+            this.label69.Location = new System.Drawing.Point(437, 123);
             this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(135, 26);
+            this.label69.Size = new System.Drawing.Size(117, 26);
             this.label69.TabIndex = 172;
             this.label69.Text = "Adresse ";
             this.label69.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2394,7 +2394,7 @@
             // 
             this.label70.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label70.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label70.Location = new System.Drawing.Point(57, 123);
+            this.label70.Location = new System.Drawing.Point(74, 123);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(135, 26);
             this.label70.TabIndex = 171;
@@ -2416,7 +2416,7 @@
             "***",
             "Masculin",
             "Feminin"});
-            this.ComboBoxSexeGestion.Location = new System.Drawing.Point(913, 88);
+            this.ComboBoxSexeGestion.Location = new System.Drawing.Point(902, 88);
             this.ComboBoxSexeGestion.Name = "ComboBoxSexeGestion";
             this.ComboBoxSexeGestion.Size = new System.Drawing.Size(220, 26);
             this.ComboBoxSexeGestion.StartIndex = 0;
@@ -2450,9 +2450,9 @@
             // 
             this.label71.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label71.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label71.Location = new System.Drawing.Point(789, 88);
+            this.label71.Location = new System.Drawing.Point(785, 88);
             this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(125, 26);
+            this.label71.Size = new System.Drawing.Size(118, 26);
             this.label71.TabIndex = 168;
             this.label71.Text = "Sexe ";
             this.label71.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2461,9 +2461,9 @@
             // 
             this.label72.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label72.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label72.Location = new System.Drawing.Point(424, 88);
+            this.label72.Location = new System.Drawing.Point(437, 88);
             this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(135, 26);
+            this.label72.Size = new System.Drawing.Size(117, 26);
             this.label72.TabIndex = 167;
             this.label72.Text = "Civilite ";
             this.label72.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2482,7 +2482,7 @@
             this.textBoxNomPrenomGestion.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold);
             this.textBoxNomPrenomGestion.ForeColor = System.Drawing.Color.Black;
             this.textBoxNomPrenomGestion.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNomPrenomGestion.Location = new System.Drawing.Point(199, 88);
+            this.textBoxNomPrenomGestion.Location = new System.Drawing.Point(216, 88);
             this.textBoxNomPrenomGestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxNomPrenomGestion.Name = "textBoxNomPrenomGestion";
             this.textBoxNomPrenomGestion.PlaceholderForeColor = System.Drawing.Color.DimGray;
@@ -2514,7 +2514,7 @@
             // 
             this.label73.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label73.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label73.Location = new System.Drawing.Point(57, 88);
+            this.label73.Location = new System.Drawing.Point(74, 88);
             this.label73.Name = "label73";
             this.label73.Size = new System.Drawing.Size(135, 26);
             this.label73.TabIndex = 164;
@@ -2631,39 +2631,39 @@
             // 
             this.DataGridView_Personnel_Gestion.AllowUserToAddRows = false;
             this.DataGridView_Personnel_Gestion.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.White;
-            this.DataGridView_Personnel_Gestion.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            this.DataGridView_Personnel_Gestion.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.DataGridView_Personnel_Gestion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DataGridView_Personnel_Gestion.BackgroundColor = System.Drawing.Color.MidnightBlue;
             this.DataGridView_Personnel_Gestion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DataGridView_Personnel_Gestion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridView_Personnel_Gestion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.MidnightBlue;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.MidnightBlue;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridView_Personnel_Gestion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.DataGridView_Personnel_Gestion.ColumnHeadersHeight = 50;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridView_Personnel_Gestion.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridView_Personnel_Gestion.DefaultCellStyle = dataGridViewCellStyle11;
             this.DataGridView_Personnel_Gestion.GridColor = System.Drawing.Color.MidnightBlue;
             this.DataGridView_Personnel_Gestion.Location = new System.Drawing.Point(0, 38);
             this.DataGridView_Personnel_Gestion.Name = "DataGridView_Personnel_Gestion";
             this.DataGridView_Personnel_Gestion.ReadOnly = true;
             this.DataGridView_Personnel_Gestion.RowHeadersVisible = false;
             this.DataGridView_Personnel_Gestion.RowHeadersWidth = 51;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DataGridView_Personnel_Gestion.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DataGridView_Personnel_Gestion.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.DataGridView_Personnel_Gestion.RowTemplate.Height = 100;
             this.DataGridView_Personnel_Gestion.Size = new System.Drawing.Size(1199, 158);
             this.DataGridView_Personnel_Gestion.TabIndex = 2;
@@ -2923,7 +2923,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1208, 601);
+            this.tabPage3.Size = new System.Drawing.Size(1208, 619);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Impression";
             this.tabPage3.UseVisualStyleBackColor = true;

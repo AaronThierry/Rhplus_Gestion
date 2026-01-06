@@ -78,6 +78,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBoxDette = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -93,8 +94,9 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1216, 687);
+            this.panel1.Size = new System.Drawing.Size(1621, 846);
             this.panel1.TabIndex = 4;
             // 
             // panel3
@@ -106,9 +108,10 @@
             this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 45);
+            this.panel3.Location = new System.Drawing.Point(0, 55);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1216, 642);
+            this.panel3.Size = new System.Drawing.Size(1621, 791);
             this.panel3.TabIndex = 1;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
@@ -120,9 +123,10 @@
             this.buttonPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPrint.Font = new System.Drawing.Font("Montserrat SemiBold", 10.25F, System.Drawing.FontStyle.Bold);
             this.buttonPrint.ForeColor = System.Drawing.Color.White;
-            this.buttonPrint.Location = new System.Drawing.Point(408, 560);
+            this.buttonPrint.Location = new System.Drawing.Point(544, 690);
+            this.buttonPrint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(400, 35);
+            this.buttonPrint.Size = new System.Drawing.Size(533, 43);
             this.buttonPrint.TabIndex = 222;
             this.buttonPrint.Text = "Enregistrer et Imprimer";
             this.buttonPrint.UseVisualStyleBackColor = false;
@@ -136,9 +140,10 @@
             this.buttonAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAjouter.Font = new System.Drawing.Font("Montserrat SemiBold", 10.25F, System.Drawing.FontStyle.Bold);
             this.buttonAjouter.ForeColor = System.Drawing.Color.White;
-            this.buttonAjouter.Location = new System.Drawing.Point(635, 515);
+            this.buttonAjouter.Location = new System.Drawing.Point(847, 635);
+            this.buttonAjouter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAjouter.Name = "buttonAjouter";
-            this.buttonAjouter.Size = new System.Drawing.Size(173, 35);
+            this.buttonAjouter.Size = new System.Drawing.Size(231, 43);
             this.buttonAjouter.TabIndex = 221;
             this.buttonAjouter.Text = "Ajouter";
             this.buttonAjouter.UseVisualStyleBackColor = false;
@@ -151,9 +156,10 @@
             this.buttonValider.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonValider.Font = new System.Drawing.Font("Montserrat SemiBold", 10.25F, System.Drawing.FontStyle.Bold);
             this.buttonValider.ForeColor = System.Drawing.Color.White;
-            this.buttonValider.Location = new System.Drawing.Point(408, 515);
+            this.buttonValider.Location = new System.Drawing.Point(544, 635);
+            this.buttonValider.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonValider.Name = "buttonValider";
-            this.buttonValider.Size = new System.Drawing.Size(173, 35);
+            this.buttonValider.Size = new System.Drawing.Size(231, 43);
             this.buttonValider.TabIndex = 220;
             this.buttonValider.Text = "Valider";
             this.buttonValider.UseVisualStyleBackColor = false;
@@ -165,6 +171,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BackColor = System.Drawing.Color.MidnightBlue;
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel7.Controls.Add(this.textBoxDette);
             this.panel7.Controls.Add(this.label16);
             this.panel7.Controls.Add(this.textBoxJourHSF);
             this.panel7.Controls.Add(this.label11);
@@ -179,9 +186,10 @@
             this.panel7.Controls.Add(this.label17);
             this.panel7.Controls.Add(this.textBoxNuitNo);
             this.panel7.Controls.Add(this.panel8);
-            this.panel7.Location = new System.Drawing.Point(8, 339);
+            this.panel7.Location = new System.Drawing.Point(11, 418);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1208, 138);
+            this.panel7.Size = new System.Drawing.Size(1609, 169);
             this.panel7.TabIndex = 219;
             this.panel7.Paint += new System.Windows.Forms.PaintEventHandler(this.panel7_Paint);
             // 
@@ -190,9 +198,10 @@
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label16.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(371, 69);
+            this.label16.Location = new System.Drawing.Point(495, 85);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(50, 22);
+            this.label16.Size = new System.Drawing.Size(67, 27);
             this.label16.TabIndex = 209;
             this.label16.Text = "Nuit";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -211,13 +220,13 @@
             this.textBoxJourHSF.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxJourHSF.ForeColor = System.Drawing.Color.Black;
             this.textBoxJourHSF.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxJourHSF.Location = new System.Drawing.Point(760, 88);
-            this.textBoxJourHSF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxJourHSF.Location = new System.Drawing.Point(1013, 108);
+            this.textBoxJourHSF.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.textBoxJourHSF.Name = "textBoxJourHSF";
             this.textBoxJourHSF.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxJourHSF.PlaceholderText = "";
             this.textBoxJourHSF.SelectedText = "";
-            this.textBoxJourHSF.Size = new System.Drawing.Size(119, 26);
+            this.textBoxJourHSF.Size = new System.Drawing.Size(159, 32);
             this.textBoxJourHSF.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxJourHSF.TabIndex = 221;
             this.textBoxJourHSF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -227,9 +236,10 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label11.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(792, 68);
+            this.label11.Location = new System.Drawing.Point(1056, 84);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(50, 20);
+            this.label11.Size = new System.Drawing.Size(67, 25);
             this.label11.TabIndex = 222;
             this.label11.Text = "Jour";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -239,9 +249,10 @@
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label13.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(943, 68);
+            this.label13.Location = new System.Drawing.Point(1257, 84);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(50, 20);
+            this.label13.Size = new System.Drawing.Size(67, 25);
             this.label13.TabIndex = 223;
             this.label13.Text = "Nuit";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -252,9 +263,10 @@
             this.label14.BackColor = System.Drawing.Color.White;
             this.label14.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
             this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(724, 45);
+            this.label14.Location = new System.Drawing.Point(965, 55);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(330, 20);
+            this.label14.Size = new System.Drawing.Size(440, 25);
             this.label14.TabIndex = 220;
             this.label14.Text = "Heure Supplementaires Ferie et Dimanche";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -274,13 +286,13 @@
             this.textBoxNuitHSF.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNuitHSF.ForeColor = System.Drawing.Color.Black;
             this.textBoxNuitHSF.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNuitHSF.Location = new System.Drawing.Point(908, 88);
-            this.textBoxNuitHSF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxNuitHSF.Location = new System.Drawing.Point(1211, 108);
+            this.textBoxNuitHSF.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.textBoxNuitHSF.Name = "textBoxNuitHSF";
             this.textBoxNuitHSF.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxNuitHSF.PlaceholderText = "";
             this.textBoxNuitHSF.SelectedText = "";
-            this.textBoxNuitHSF.Size = new System.Drawing.Size(119, 26);
+            this.textBoxNuitHSF.Size = new System.Drawing.Size(159, 32);
             this.textBoxNuitHSF.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxNuitHSF.TabIndex = 224;
             this.textBoxNuitHSF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -289,9 +301,10 @@
             // 
             this.panel9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel9.Location = new System.Drawing.Point(719, 53);
+            this.panel9.Location = new System.Drawing.Point(959, 65);
+            this.panel9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(340, 71);
+            this.panel9.Size = new System.Drawing.Size(452, 86);
             this.panel9.TabIndex = 225;
             // 
             // textboxJourNo
@@ -308,13 +321,13 @@
             this.textboxJourNo.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textboxJourNo.ForeColor = System.Drawing.Color.Black;
             this.textboxJourNo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textboxJourNo.Location = new System.Drawing.Point(188, 92);
-            this.textboxJourNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textboxJourNo.Location = new System.Drawing.Point(251, 113);
+            this.textboxJourNo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.textboxJourNo.Name = "textboxJourNo";
             this.textboxJourNo.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textboxJourNo.PlaceholderText = "";
             this.textboxJourNo.SelectedText = "";
-            this.textboxJourNo.Size = new System.Drawing.Size(119, 26);
+            this.textboxJourNo.Size = new System.Drawing.Size(159, 32);
             this.textboxJourNo.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textboxJourNo.TabIndex = 208;
             this.textboxJourNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -333,13 +346,13 @@
             this.textBoxAbsences.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxAbsences.ForeColor = System.Drawing.Color.Black;
             this.textBoxAbsences.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxAbsences.Location = new System.Drawing.Point(535, 32);
-            this.textBoxAbsences.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAbsences.Location = new System.Drawing.Point(713, 39);
+            this.textBoxAbsences.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.textBoxAbsences.Name = "textBoxAbsences";
             this.textBoxAbsences.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxAbsences.PlaceholderText = "";
             this.textBoxAbsences.SelectedText = "";
-            this.textBoxAbsences.Size = new System.Drawing.Size(126, 26);
+            this.textBoxAbsences.Size = new System.Drawing.Size(168, 32);
             this.textBoxAbsences.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxAbsences.TabIndex = 207;
             this.textBoxAbsences.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -350,9 +363,10 @@
             this.label15.BackColor = System.Drawing.Color.Crimson;
             this.label15.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(534, 4);
+            this.label15.Location = new System.Drawing.Point(712, 5);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(127, 26);
+            this.label15.Size = new System.Drawing.Size(169, 32);
             this.label15.TabIndex = 206;
             this.label15.Text = "Absences";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -362,9 +376,10 @@
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(221, 70);
+            this.label12.Location = new System.Drawing.Point(295, 86);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(50, 22);
+            this.label12.Size = new System.Drawing.Size(67, 27);
             this.label12.TabIndex = 209;
             this.label12.Text = "Jour";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -375,9 +390,10 @@
             this.label17.BackColor = System.Drawing.Color.White;
             this.label17.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
             this.label17.ForeColor = System.Drawing.Color.Red;
-            this.label17.Location = new System.Drawing.Point(183, 47);
+            this.label17.Location = new System.Drawing.Point(244, 58);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(274, 20);
+            this.label17.Size = new System.Drawing.Size(365, 25);
             this.label17.TabIndex = 206;
             this.label17.Text = "Heure Supplementaires Normaux";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -396,13 +412,13 @@
             this.textBoxNuitNo.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNuitNo.ForeColor = System.Drawing.Color.Black;
             this.textBoxNuitNo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNuitNo.Location = new System.Drawing.Point(332, 92);
-            this.textBoxNuitNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxNuitNo.Location = new System.Drawing.Point(443, 113);
+            this.textBoxNuitNo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.textBoxNuitNo.Name = "textBoxNuitNo";
             this.textBoxNuitNo.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxNuitNo.PlaceholderText = "";
             this.textBoxNuitNo.SelectedText = "";
-            this.textBoxNuitNo.Size = new System.Drawing.Size(119, 26);
+            this.textBoxNuitNo.Size = new System.Drawing.Size(159, 32);
             this.textBoxNuitNo.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxNuitNo.TabIndex = 210;
             this.textBoxNuitNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -411,9 +427,10 @@
             // 
             this.panel8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel8.Location = new System.Drawing.Point(146, 56);
+            this.panel8.Location = new System.Drawing.Point(195, 69);
+            this.panel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(340, 71);
+            this.panel8.Size = new System.Drawing.Size(452, 86);
             this.panel8.TabIndex = 219;
             // 
             // panel6
@@ -437,9 +454,10 @@
             this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.label5);
             this.panel6.Controls.Add(this.textBoxContrat);
-            this.panel6.Location = new System.Drawing.Point(8, 159);
+            this.panel6.Location = new System.Drawing.Point(11, 196);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1208, 157);
+            this.panel6.Size = new System.Drawing.Size(1611, 194);
             this.panel6.TabIndex = 207;
             // 
             // textBoxNP
@@ -455,14 +473,14 @@
             this.textBoxNP.Font = new System.Drawing.Font("Montserrat SemiBold", 10F, System.Drawing.FontStyle.Bold);
             this.textBoxNP.ForeColor = System.Drawing.Color.Red;
             this.textBoxNP.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNP.Location = new System.Drawing.Point(698, 23);
-            this.textBoxNP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxNP.Location = new System.Drawing.Point(931, 29);
+            this.textBoxNP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxNP.Name = "textBoxNP";
             this.textBoxNP.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxNP.PlaceholderText = "";
             this.textBoxNP.ReadOnly = true;
             this.textBoxNP.SelectedText = "";
-            this.textBoxNP.Size = new System.Drawing.Size(284, 26);
+            this.textBoxNP.Size = new System.Drawing.Size(379, 32);
             this.textBoxNP.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxNP.TabIndex = 220;
             this.textBoxNP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -472,9 +490,10 @@
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label18.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold);
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(528, 23);
+            this.label18.Location = new System.Drawing.Point(704, 29);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(164, 25);
+            this.label18.Size = new System.Drawing.Size(219, 31);
             this.label18.TabIndex = 219;
             this.label18.Text = "Nom et prenom(s)";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -492,14 +511,14 @@
             this.textBoxSalaire.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxSalaire.ForeColor = System.Drawing.Color.Black;
             this.textBoxSalaire.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxSalaire.Location = new System.Drawing.Point(870, 107);
-            this.textBoxSalaire.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxSalaire.Location = new System.Drawing.Point(1160, 133);
+            this.textBoxSalaire.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.textBoxSalaire.Name = "textBoxSalaire";
             this.textBoxSalaire.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxSalaire.PlaceholderText = "";
             this.textBoxSalaire.ReadOnly = true;
             this.textBoxSalaire.SelectedText = "";
-            this.textBoxSalaire.Size = new System.Drawing.Size(200, 26);
+            this.textBoxSalaire.Size = new System.Drawing.Size(267, 32);
             this.textBoxSalaire.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxSalaire.TabIndex = 218;
             this.textBoxSalaire.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -508,9 +527,10 @@
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(748, 107);
+            this.label10.Location = new System.Drawing.Point(997, 133);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(123, 26);
+            this.label10.Size = new System.Drawing.Size(164, 32);
             this.label10.TabIndex = 217;
             this.label10.Text = "Salaire :";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -528,14 +548,14 @@
             this.textBoxHcontrat.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxHcontrat.ForeColor = System.Drawing.Color.Black;
             this.textBoxHcontrat.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxHcontrat.Location = new System.Drawing.Point(523, 107);
-            this.textBoxHcontrat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxHcontrat.Location = new System.Drawing.Point(697, 133);
+            this.textBoxHcontrat.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.textBoxHcontrat.Name = "textBoxHcontrat";
             this.textBoxHcontrat.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxHcontrat.PlaceholderText = "";
             this.textBoxHcontrat.ReadOnly = true;
             this.textBoxHcontrat.SelectedText = "";
-            this.textBoxHcontrat.Size = new System.Drawing.Size(200, 26);
+            this.textBoxHcontrat.Size = new System.Drawing.Size(267, 32);
             this.textBoxHcontrat.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxHcontrat.TabIndex = 216;
             this.textBoxHcontrat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -544,9 +564,10 @@
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(411, 107);
+            this.label9.Location = new System.Drawing.Point(548, 133);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(108, 26);
+            this.label9.Size = new System.Drawing.Size(144, 32);
             this.label9.TabIndex = 215;
             this.label9.Text = " H Contrat :";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -564,14 +585,14 @@
             this.textBoxCategorie.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxCategorie.ForeColor = System.Drawing.Color.Black;
             this.textBoxCategorie.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxCategorie.Location = new System.Drawing.Point(194, 107);
-            this.textBoxCategorie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxCategorie.Location = new System.Drawing.Point(259, 133);
+            this.textBoxCategorie.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.textBoxCategorie.Name = "textBoxCategorie";
             this.textBoxCategorie.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxCategorie.PlaceholderText = "";
             this.textBoxCategorie.ReadOnly = true;
             this.textBoxCategorie.SelectedText = "";
-            this.textBoxCategorie.Size = new System.Drawing.Size(200, 26);
+            this.textBoxCategorie.Size = new System.Drawing.Size(267, 32);
             this.textBoxCategorie.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxCategorie.TabIndex = 214;
             this.textBoxCategorie.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -580,9 +601,10 @@
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(94, 107);
+            this.label8.Location = new System.Drawing.Point(125, 133);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(101, 26);
+            this.label8.Size = new System.Drawing.Size(135, 32);
             this.label8.TabIndex = 213;
             this.label8.Text = "Categorie :";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -600,14 +622,14 @@
             this.textBoxPoste.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPoste.ForeColor = System.Drawing.Color.Black;
             this.textBoxPoste.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxPoste.Location = new System.Drawing.Point(194, 69);
-            this.textBoxPoste.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxPoste.Location = new System.Drawing.Point(259, 86);
+            this.textBoxPoste.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.textBoxPoste.Name = "textBoxPoste";
             this.textBoxPoste.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxPoste.PlaceholderText = "";
             this.textBoxPoste.ReadOnly = true;
             this.textBoxPoste.SelectedText = "";
-            this.textBoxPoste.Size = new System.Drawing.Size(200, 26);
+            this.textBoxPoste.Size = new System.Drawing.Size(267, 32);
             this.textBoxPoste.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxPoste.TabIndex = 208;
             this.textBoxPoste.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -616,9 +638,10 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(748, 69);
+            this.label7.Location = new System.Drawing.Point(997, 86);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(123, 26);
+            this.label7.Size = new System.Drawing.Size(164, 32);
             this.label7.TabIndex = 211;
             this.label7.Text = "Type Contrat :";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -636,14 +659,14 @@
             this.textBoxMatricule.Font = new System.Drawing.Font("Montserrat SemiBold", 10F, System.Drawing.FontStyle.Bold);
             this.textBoxMatricule.ForeColor = System.Drawing.Color.Red;
             this.textBoxMatricule.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxMatricule.Location = new System.Drawing.Point(363, 23);
-            this.textBoxMatricule.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxMatricule.Location = new System.Drawing.Point(484, 29);
+            this.textBoxMatricule.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxMatricule.Name = "textBoxMatricule";
             this.textBoxMatricule.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxMatricule.PlaceholderText = "";
             this.textBoxMatricule.ReadOnly = true;
             this.textBoxMatricule.SelectedText = "";
-            this.textBoxMatricule.Size = new System.Drawing.Size(120, 26);
+            this.textBoxMatricule.Size = new System.Drawing.Size(160, 32);
             this.textBoxMatricule.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxMatricule.TabIndex = 207;
             this.textBoxMatricule.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -661,14 +684,14 @@
             this.textBoxtypeContrat.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxtypeContrat.ForeColor = System.Drawing.Color.Black;
             this.textBoxtypeContrat.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxtypeContrat.Location = new System.Drawing.Point(870, 69);
-            this.textBoxtypeContrat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxtypeContrat.Location = new System.Drawing.Point(1160, 86);
+            this.textBoxtypeContrat.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.textBoxtypeContrat.Name = "textBoxtypeContrat";
             this.textBoxtypeContrat.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxtypeContrat.PlaceholderText = "";
             this.textBoxtypeContrat.ReadOnly = true;
             this.textBoxtypeContrat.SelectedText = "";
-            this.textBoxtypeContrat.Size = new System.Drawing.Size(200, 26);
+            this.textBoxtypeContrat.Size = new System.Drawing.Size(267, 32);
             this.textBoxtypeContrat.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxtypeContrat.TabIndex = 212;
             this.textBoxtypeContrat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -678,9 +701,10 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.Font = new System.Drawing.Font("Montserrat SemiBold", 9.749999F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(258, 23);
+            this.label4.Location = new System.Drawing.Point(344, 29);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 25);
+            this.label4.Size = new System.Drawing.Size(132, 31);
             this.label4.TabIndex = 206;
             this.label4.Text = "Matricule";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -690,9 +714,10 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(414, 69);
+            this.label6.Location = new System.Drawing.Point(552, 86);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(105, 26);
+            this.label6.Size = new System.Drawing.Size(140, 32);
             this.label6.TabIndex = 209;
             this.label6.Text = "Contrat :";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -701,9 +726,10 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(98, 69);
+            this.label5.Location = new System.Drawing.Point(131, 86);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 26);
+            this.label5.Size = new System.Drawing.Size(129, 32);
             this.label5.TabIndex = 206;
             this.label5.Text = "Poste :";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -721,14 +747,14 @@
             this.textBoxContrat.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxContrat.ForeColor = System.Drawing.Color.Black;
             this.textBoxContrat.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxContrat.Location = new System.Drawing.Point(522, 69);
-            this.textBoxContrat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxContrat.Location = new System.Drawing.Point(696, 86);
+            this.textBoxContrat.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.textBoxContrat.Name = "textBoxContrat";
             this.textBoxContrat.PlaceholderForeColor = System.Drawing.Color.DimGray;
             this.textBoxContrat.PlaceholderText = "";
             this.textBoxContrat.ReadOnly = true;
             this.textBoxContrat.SelectedText = "";
-            this.textBoxContrat.Size = new System.Drawing.Size(200, 26);
+            this.textBoxContrat.Size = new System.Drawing.Size(267, 32);
             this.textBoxContrat.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.textBoxContrat.TabIndex = 210;
             this.textBoxContrat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -742,9 +768,10 @@
             this.panel5.Controls.Add(this.label25);
             this.panel5.Controls.Add(this.ComboBoxEmploye);
             this.panel5.Controls.Add(this.label19);
-            this.panel5.Location = new System.Drawing.Point(8, 6);
+            this.panel5.Location = new System.Drawing.Point(11, 7);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1208, 134);
+            this.panel5.Size = new System.Drawing.Size(1611, 165);
             this.panel5.TabIndex = 206;
             this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
@@ -759,10 +786,11 @@
             this.ComboBoxEntreprise.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxEntreprise.ForeColor = System.Drawing.Color.Black;
             this.ComboBoxEntreprise.ItemHeight = 25;
-            this.ComboBoxEntreprise.Location = new System.Drawing.Point(271, 5);
-            this.ComboBoxEntreprise.MinimumSize = new System.Drawing.Size(305, 0);
+            this.ComboBoxEntreprise.Location = new System.Drawing.Point(361, 6);
+            this.ComboBoxEntreprise.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBoxEntreprise.MinimumSize = new System.Drawing.Size(405, 0);
             this.ComboBoxEntreprise.Name = "ComboBoxEntreprise";
-            this.ComboBoxEntreprise.Size = new System.Drawing.Size(305, 31);
+            this.ComboBoxEntreprise.Size = new System.Drawing.Size(405, 31);
             this.ComboBoxEntreprise.TabIndex = 102;
             this.ComboBoxEntreprise.SelectedIndexChanged += new System.EventHandler(this.ComboBoxEntreprise_SelectedIndexChanged_1);
             // 
@@ -775,10 +803,10 @@
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.guna2DateTimePickerDebut);
             this.panel4.Controls.Add(this.label70);
-            this.panel4.Location = new System.Drawing.Point(313, 52);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 200, 3, 3);
+            this.panel4.Location = new System.Drawing.Point(417, 64);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 246, 4, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(571, 67);
+            this.panel4.Size = new System.Drawing.Size(761, 82);
             this.panel4.TabIndex = 205;
             // 
             // label3
@@ -786,9 +814,10 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.Font = new System.Drawing.Font("Montserrat", 9.25F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(256, 1);
+            this.label3.Location = new System.Drawing.Point(341, 1);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 30);
+            this.label3.Size = new System.Drawing.Size(85, 37);
             this.label3.TabIndex = 207;
             this.label3.Text = "Periode";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -803,11 +832,12 @@
             this.guna2DateTimePickerFin.FillColor = System.Drawing.SystemColors.ControlLightLight;
             this.guna2DateTimePickerFin.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold);
             this.guna2DateTimePickerFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.guna2DateTimePickerFin.Location = new System.Drawing.Point(310, 30);
+            this.guna2DateTimePickerFin.Location = new System.Drawing.Point(413, 37);
+            this.guna2DateTimePickerFin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.guna2DateTimePickerFin.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.guna2DateTimePickerFin.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.guna2DateTimePickerFin.Name = "guna2DateTimePickerFin";
-            this.guna2DateTimePickerFin.Size = new System.Drawing.Size(243, 25);
+            this.guna2DateTimePickerFin.Size = new System.Drawing.Size(324, 31);
             this.guna2DateTimePickerFin.TabIndex = 206;
             this.guna2DateTimePickerFin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.guna2DateTimePickerFin.Value = new System.DateTime(2025, 8, 27, 9, 58, 12, 0);
@@ -818,9 +848,10 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.Font = new System.Drawing.Font("Montserrat", 9.25F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(414, 7);
+            this.label2.Location = new System.Drawing.Point(552, 9);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 30);
+            this.label2.Size = new System.Drawing.Size(51, 37);
             this.label2.TabIndex = 205;
             this.label2.Text = "Fin";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -835,11 +866,12 @@
             this.guna2DateTimePickerDebut.FillColor = System.Drawing.SystemColors.ControlLightLight;
             this.guna2DateTimePickerDebut.Font = new System.Drawing.Font("Montserrat Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2DateTimePickerDebut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.guna2DateTimePickerDebut.Location = new System.Drawing.Point(23, 31);
+            this.guna2DateTimePickerDebut.Location = new System.Drawing.Point(31, 38);
+            this.guna2DateTimePickerDebut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.guna2DateTimePickerDebut.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.guna2DateTimePickerDebut.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.guna2DateTimePickerDebut.Name = "guna2DateTimePickerDebut";
-            this.guna2DateTimePickerDebut.Size = new System.Drawing.Size(242, 25);
+            this.guna2DateTimePickerDebut.Size = new System.Drawing.Size(323, 31);
             this.guna2DateTimePickerDebut.TabIndex = 204;
             this.guna2DateTimePickerDebut.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.guna2DateTimePickerDebut.Value = new System.DateTime(2025, 8, 27, 9, 58, 12, 0);
@@ -850,9 +882,10 @@
             this.label70.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label70.Font = new System.Drawing.Font("Montserrat", 9.25F, System.Drawing.FontStyle.Bold);
             this.label70.ForeColor = System.Drawing.Color.White;
-            this.label70.Location = new System.Drawing.Point(113, 7);
+            this.label70.Location = new System.Drawing.Point(151, 9);
+            this.label70.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(60, 30);
+            this.label70.Size = new System.Drawing.Size(80, 37);
             this.label70.TabIndex = 203;
             this.label70.Text = "Debut ";
             this.label70.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -861,9 +894,10 @@
             // 
             this.label25.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label25.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label25.Location = new System.Drawing.Point(164, 5);
+            this.label25.Location = new System.Drawing.Point(219, 6);
+            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(101, 30);
+            this.label25.Size = new System.Drawing.Size(135, 37);
             this.label25.TabIndex = 101;
             this.label25.Text = "Entreprise :";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -880,10 +914,11 @@
             this.ComboBoxEmploye.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxEmploye.ForeColor = System.Drawing.Color.Black;
             this.ComboBoxEmploye.ItemHeight = 25;
-            this.ComboBoxEmploye.Location = new System.Drawing.Point(730, 5);
-            this.ComboBoxEmploye.MinimumSize = new System.Drawing.Size(305, 0);
+            this.ComboBoxEmploye.Location = new System.Drawing.Point(973, 6);
+            this.ComboBoxEmploye.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBoxEmploye.MinimumSize = new System.Drawing.Size(405, 0);
             this.ComboBoxEmploye.Name = "ComboBoxEmploye";
-            this.ComboBoxEmploye.Size = new System.Drawing.Size(305, 31);
+            this.ComboBoxEmploye.Size = new System.Drawing.Size(405, 31);
             this.ComboBoxEmploye.TabIndex = 104;
             this.ComboBoxEmploye.SelectedIndexChanged += new System.EventHandler(this.ComboBoxEmploye_SelectedIndexChanged);
             // 
@@ -891,9 +926,10 @@
             // 
             this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label19.Font = new System.Drawing.Font("Montserrat Medium", 9.25F, System.Drawing.FontStyle.Bold);
-            this.label19.Location = new System.Drawing.Point(623, 5);
+            this.label19.Location = new System.Drawing.Point(831, 6);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(101, 30);
+            this.label19.Size = new System.Drawing.Size(135, 37);
             this.label19.TabIndex = 103;
             this.label19.Text = "Employe :";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -904,8 +940,9 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1216, 45);
+            this.panel2.Size = new System.Drawing.Size(1621, 55);
             this.panel2.TabIndex = 0;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -916,19 +953,46 @@
             this.label1.Font = new System.Drawing.Font("Montserrat Medium", 11F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1216, 45);
+            this.label1.Size = new System.Drawing.Size(1621, 55);
             this.label1.TabIndex = 1;
             this.label1.Text = ">> Salaire Horaire";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // textBoxDette
+            // 
+            this.textBoxDette.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBoxDette.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textBoxDette.DefaultText = "";
+            this.textBoxDette.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.textBoxDette.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.textBoxDette.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.textBoxDette.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.textBoxDette.Enabled = false;
+            this.textBoxDette.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.textBoxDette.Font = new System.Drawing.Font("Montserrat Medium", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxDette.ForeColor = System.Drawing.Color.Black;
+            this.textBoxDette.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.textBoxDette.Location = new System.Drawing.Point(713, 86);
+            this.textBoxDette.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxDette.Name = "textBoxDette";
+            this.textBoxDette.PlaceholderForeColor = System.Drawing.Color.DimGray;
+            this.textBoxDette.PlaceholderText = "";
+            this.textBoxDette.SelectedText = "";
+            this.textBoxDette.Size = new System.Drawing.Size(168, 32);
+            this.textBoxDette.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
+            this.textBoxDette.TabIndex = 226;
+            this.textBoxDette.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // GestionSalaireHoraireForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 687);
+            this.ClientSize = new System.Drawing.Size(1621, 846);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "GestionSalaireHoraireForm";
             this.Text = "GestionSalaireHoraireForm";
             this.Load += new System.EventHandler(this.GestionSalaireHoraireForm_Load);
@@ -995,5 +1059,6 @@
         private Guna.UI2.WinForms.Guna2TextBox textBoxNP;
         private System.Windows.Forms.Label label18;
         private Guna.UI2.WinForms.Guna2TextBox textBoxAbsences;
+        private Guna.UI2.WinForms.Guna2TextBox textBoxDette;
     }
 }

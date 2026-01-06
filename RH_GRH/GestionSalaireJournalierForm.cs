@@ -954,7 +954,7 @@ namespace RH_GRH
 
 
 
-
+               
                 //***********************************************************************
                 //***********************************************************************
                 //Calculer les cotisations CNSS et la TPA
@@ -1059,7 +1059,7 @@ namespace RH_GRH
 
                 decimal IndemNat = (decimal)sums["somme_nature"];
                 //Salaire Net 
-                var res = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, IndemNat, tauxEffort: 0.01m, arrondirNetAPayerCeil: true);
+               // var res = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, IndemNat, tauxEffort: 0.01m, arrondirNetAPayerCeil: true);
                 // (Optionnel)affichage UI
                 var fr = System.Globalization.CultureInfo.GetCultureInfo("fr-FR");
 
@@ -1163,9 +1163,9 @@ namespace RH_GRH
                     PrimeAnciennete = prime,
 
                     //SALAIRE NET A PAYER
-                    SalaireNet = res.SalaireNet,
-                    EffortPaix = res.Effort,
-                    SalaireNetaPayer = res.NetAPayer
+                  //  SalaireNet = res.SalaireNet,
+                  //  EffortPaix = res.Effort,
+                  //  SalaireNetaPayer = res.NetAPayer
 
                 };
 
