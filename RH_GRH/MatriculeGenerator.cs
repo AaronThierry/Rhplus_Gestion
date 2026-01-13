@@ -68,6 +68,54 @@ namespace RH_GRH
 
             return $"{prefix}{num:000}{lettre}";
         }
+
+        // Méthode synchrone pour générer un matricule (version simplifiée)
+        public static string GenererMatricule(int idEntreprise)
+        {
+            string logPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "rh_debug_log.txt");
+            try
+            {
+                System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: [MAT] Début GenererMatricule, idEntreprise={idEntreprise}\n");
+                var dbconnect = new Dbconnect();
+                System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: [MAT] Dbconnect créé\n");
+
+                using (MySqlConnection cn = dbconnect.getconnection)
+                {
+                    System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: [MAT] Connection obtenue, State={cn.State}\n");
+                    if (cn.State != System.Data.ConnectionState.Open)
+                    {
+                        System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: [MAT] Ouverture connexion...\n");
+                        cn.Open();
+                        System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: [MAT] Connexion ouverte\n");
+                    }
+
+                    // Récupérer le nom de l'entreprise
+                    string nomEntreprise = "";
+                    System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: [MAT] Avant SELECT nomEntreprise\n");
+                    using (var cmd = new MySqlCommand("SELECT nomEntreprise FROM entreprise WHERE id_entreprise = @id", cn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", idEntreprise);
+                        System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: [MAT] Avant ExecuteScalar\n");
+                        var result = cmd.ExecuteScalar();
+                        System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: [MAT] Après ExecuteScalar, result={result}\n");
+                        nomEntreprise = result?.ToString() ?? "XX";
+                        System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: [MAT] nomEntreprise={nomEntreprise}\n");
+                    }
+
+                    // Utiliser la méthode asynchrone de manière synchrone avec Task.Run pour éviter deadlock
+                    System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: [MAT] Avant Task.Run NextAsync\n");
+                    var matricule = System.Threading.Tasks.Task.Run(async () => await NextAsync(cn, nomEntreprise)).Result;
+                    System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: [MAT] Après NextAsync, matricule={matricule}\n");
+                    return matricule;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: [MAT] EXCEPTION: {ex.ToString()}\n");
+                // En cas d'erreur, retourner un matricule temporaire
+                return $"TEMP{DateTime.Now.Ticks % 10000:0000}";
+            }
+        }
     }
 
 }

@@ -119,8 +119,8 @@ namespace RH_GRH
             this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
             // 
             // panel_administration_submenu
-            // 
-            this.panel_administration_submenu.BackColor = System.Drawing.SystemColors.Highlight;
+            //
+            this.panel_administration_submenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(37)))), ((int)(((byte)(80)))));
             this.panel_administration_submenu.Controls.Add(this.button_profil);
             this.panel_administration_submenu.Controls.Add(this.button_utilisateur);
             this.panel_administration_submenu.Controls.Add(this.button_categorie);
@@ -128,6 +128,8 @@ namespace RH_GRH
             this.panel_administration_submenu.Controls.Add(this.button_direction);
             this.panel_administration_submenu.Controls.Add(this.button_entreprise);
             resources.ApplyResources(this.panel_administration_submenu, "panel_administration_submenu");
+            this.panel_administration_submenu.AutoSize = false;
+            this.panel_administration_submenu.AutoScroll = false;
             this.panel_administration_submenu.Name = "panel_administration_submenu";
             // 
             // button_profil
@@ -194,11 +196,13 @@ namespace RH_GRH
             this.button_administration.Click += new System.EventHandler(this.button_administration_Click);
             // 
             // panel_salaire_submenu
-            // 
-            this.panel_salaire_submenu.BackColor = System.Drawing.SystemColors.Highlight;
+            //
+            this.panel_salaire_submenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(37)))), ((int)(((byte)(80)))));
             this.panel_salaire_submenu.Controls.Add(this.button_journalier);
             this.panel_salaire_submenu.Controls.Add(this.button_horaire);
             resources.ApplyResources(this.panel_salaire_submenu, "panel_salaire_submenu");
+            this.panel_salaire_submenu.AutoSize = false;
+            this.panel_salaire_submenu.AutoScroll = false;
             this.panel_salaire_submenu.Name = "panel_salaire_submenu";
             // 
             // button_journalier
@@ -229,12 +233,14 @@ namespace RH_GRH
             this.button_salaire.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel_personnel_submenu
-            // 
-            this.panel_personnel_submenu.BackColor = System.Drawing.SystemColors.Highlight;
+            //
+            this.panel_personnel_submenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(37)))), ((int)(((byte)(80)))));
             this.panel_personnel_submenu.Controls.Add(this.button_indemnite);
             this.panel_personnel_submenu.Controls.Add(this.button_charge);
             this.panel_personnel_submenu.Controls.Add(this.button_employe);
             resources.ApplyResources(this.panel_personnel_submenu, "panel_personnel_submenu");
+            this.panel_personnel_submenu.AutoSize = false;
+            this.panel_personnel_submenu.AutoScroll = false;
             this.panel_personnel_submenu.Name = "panel_personnel_submenu";
             // 
             // button_indemnite

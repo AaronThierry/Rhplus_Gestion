@@ -32,7 +32,7 @@ namespace RH_GRH
             //
             // panelIcon
             //
-            this.panelIcon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.panelIcon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(245)))), ((int)(((byte)(251)))));
             this.panelIcon.Controls.Add(this.labelIcon);
             this.panelIcon.Location = new System.Drawing.Point(175, 30);
             this.panelIcon.Name = "panelIcon";
@@ -88,7 +88,7 @@ namespace RH_GRH
             //
             // panelButtons
             //
-            this.panelButtons.BackColor = System.Drawing.Color.White;
+            this.panelButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
             this.panelButtons.Controls.Add(this.buttonOK);
             this.panelButtons.Controls.Add(this.buttonCancel);
             this.panelButtons.Controls.Add(this.buttonYes);
@@ -195,7 +195,7 @@ namespace RH_GRH
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(450, 320);
             this.Controls.Add(this.panelButtons);
             this.Controls.Add(this.labelMessage);

@@ -14,27 +14,24 @@ using static FastReport.Utils.CompilerException;
 
 namespace RH_GRH
 {
+    /// <summary>
+    /// Générateur de bulletin de paie avec QR code
+    /// </summary>
     public class BulletinDocument : IDocument
     {
 
 
-private static byte[] GenerateQrPngBytes(string payload, int pixelsPerModule = 6)
-    {
-         var generator = new QRCodeGenerator();
-         var data = generator.CreateQrCode(payload, QRCodeGenerator.ECCLevel.Q); // Q = robuste
-         var qr = new PngByteQRCode(data);
-        // Retourne des bytes PNG compatibles avec QuestPDF Image(bytes)
-        return qr.GetGraphic(pixelsPerModule);
-    }
+        /// <summary>
+        /// Génère un QR code PNG simple
+        /// </summary>
+        private static byte[] GenerateQrPngBytes(string payload, int pixelsPerModule = 8)
+        {
+            var generator = new QRCodeGenerator();
+            var data = generator.CreateQrCode(payload, QRCodeGenerator.ECCLevel.Q);
+            var qr = new PngByteQRCode(data);
+            return qr.GetGraphic(pixelsPerModule);
+        }
 
-    private static string ComputeSha256(string raw)
-    {
-         var sha = SHA256.Create();
-        var hash = sha.ComputeHash(Encoding.UTF8.GetBytes(raw));
-        var sb = new StringBuilder(hash.Length * 2);
-        foreach (var b in hash) sb.Append(b.ToString("x2"));
-        return sb.ToString();
-    }
 
 
 
@@ -116,60 +113,35 @@ private static byte[] GenerateQrPngBytes(string payload, int pixelsPerModule = 6
 
 
 
-                        // --- QR payload à partir du model ---
+                        // --- QR PAYLOAD SIMPLE (VERSION ORIGINALE) ---
                         var fr = System.Globalization.CultureInfo.GetCultureInfo("fr-FR");
 
-
-
-
-                        // 1) Données structurées
-                        var doc = "Bulletin";                 // type de document
-                        var ent = model.NomEntreprise?.Trim();
-                        var emp = model.NomEmploye?.Trim();
-                        var mat = model.Matricule?.Trim();
-                        var per = model.Periode?.Trim();
-                        var net = Math.Round(model.SalaireNetaPayer, 2);   // valeur numérique stable
+                        // Données simples pour le QR code
+                        var doc = "BULLETIN_PAIE";
+                        var ent = model.NomEntreprise?.Trim() ?? "";
+                        var emp = model.NomEmploye?.Trim() ?? "";
+                        var mat = model.Matricule?.Trim() ?? "";
+                        var per = model.Periode?.Trim() ?? "";
+                        var net = Math.Round(model.SalaireNetaPayerFinal, 2);
+                        var netInvariant = net.ToString("0.00", CultureInfo.InvariantCulture);
                         var currency = "XOF";
                         var issuedAt = DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:ss'Z'", CultureInfo.InvariantCulture);
 
-                        // 2) Chaîne canonique pour signature (pas d'espaces, ordre fixe, invariant)
-                        // 2) Chaîne canonique pour la signature (⚠️ sans espaces, ordre fixe, invariant)
-                        var netInvariant = net.ToString("0.00", CultureInfo.InvariantCulture);
+                        // Payload simple pipe-delimited
+                        string qrPayload = $"{doc}|{ent}|{emp}|{mat}|{per}|{netInvariant}|{currency}|{issuedAt}";
 
-                        string[] canonicalParts =
-                        {
-                        doc,                                        // type de document ("bulletin")
-                        ent,                                        // entreprise
-                        emp,                                        // employé
-                        mat,                                        // matricule
-                        per,                                        // période
-                        netInvariant,                               // net à payer (invariant, 2 décimales)
-                        currency,                                   // devise (ex: XOF)
-                        issuedAt                                    // date ISO-8601 UTC
-                    };
-
-                        // Concaténation canonique avec séparateur pipe
-                        string canonical = string.Join("|", canonicalParts);
-
-
-                        // 3) Signature SHA-256 (hex uppercase)
-                        string signature = ComputeSha256(canonical).ToUpperInvariant();
-
-                        // 4) Texte final du QR (lisible + signé)
-                        string qrPayload = $"{canonical}| Signature ={signature}";
-
-                        // 5) Génération du QR (PNG en mémoire)
-                        byte[] qrPng = GenerateQrPngBytes(qrPayload, pixelsPerModule: 6);
+                        // Génération du QR (PNG en mémoire) résolution standard
+                        byte[] qrPng = GenerateQrPngBytes(qrPayload, pixelsPerModule: 8);
 
 
 
                         // Ligne 2 : QR + Infos employé
                         col.Item().Row(row =>
                         {
-                            // --- QR à gauche ---
+                            // --- QR à gauche (VERSION SIMPLE ORIGINALE) ---
                             row.AutoItem().Container()
                                 .PaddingTop(10)
-                                .Width(70).Height(70)                     // ajuste la taille visuelle
+                                .Width(70).Height(70)
                                 .Border(1).BorderColor(Colors.Grey.Lighten1)
                                 .Padding(3)
                                 .AlignCenter().AlignMiddle()
@@ -188,7 +160,7 @@ private static byte[] GenerateQrPngBytes(string payload, int pixelsPerModule = 6
                                 .Column(info =>
                                 {
                                     info.Spacing(1);
-                                    info.Item().Text(t => t.Span(model.Civilite + " . " + model.NomEmploye)
+                                    info.Item().Text(t => t.Span(model.Civilite + " " + model.NomEmploye)
                                         .FontColor(Colors.Blue.Medium).Bold().FontFamily("Montserrat").FontSize(10));
                                     info.Item().Text(t => t.Span(model.Matricule)
                                         .FontColor(Colors.Red.Medium).SemiBold().FontFamily("Montserrat").FontSize(10));
@@ -594,7 +566,7 @@ private static byte[] GenerateQrPngBytes(string payload, int pixelsPerModule = 6
                     table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
                     var fr = System.Globalization.CultureInfo.GetCultureInfo("fr-FR");
-                    table.Cell().Element(BodyCell).Background(Colors.Grey.Lighten4).AlignCenter().Text(b => b.Span($"{Convert.ToDecimal(model.SalaireNetaPayer).ToString("N2", fr)} FCFA").FontFamily("Montserrat").SemiBold().FontSize(8));
+                    table.Cell().Element(BodyCell).Background(Colors.Grey.Lighten4).AlignCenter().Text(b => b.Span($"{Convert.ToDecimal(model.SalaireNetaPayerFinal).ToString("N2", fr)} FCFA").FontFamily("Montserrat").SemiBold().FontSize(8));
 
                     table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
@@ -670,4 +642,7 @@ private static byte[] GenerateQrPngBytes(string payload, int pixelsPerModule = 6
                      .BorderColor(Colors.Grey.Lighten2);
     }
 }
+
+
+
 

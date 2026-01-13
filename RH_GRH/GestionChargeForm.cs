@@ -1,9 +1,10 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,246 +17,114 @@ namespace RH_GRH
     {
         Dbconnect connect = new Dbconnect();
 
-        // Champ privé du form pour éviter la récursion
-        private bool _changingType;
+        // Variables pour suivre le bouton survolé
+        private int hoverRowIndex = -1;
+        private string hoverButton = "";
+
         public GestionChargeForm()
         {
             InitializeComponent();
-             
+
+            // Attacher les gestionnaires d'événements pour les Actions
+            DataGridView_Charge.CellPainting += DataGridView_Charge_CellPainting;
+            DataGridView_Charge.CellClick += DataGridView_Charge_CellClick;
+            DataGridView_Charge.CellMouseMove += DataGridView_Charge_CellMouseMove;
+
             StyliserDataGridView();
-            StyliserDataGridViewGestion();
-            StyliserTabControl();
             ShowTableCategorie();
-            GetChargeList(null);
-            ShowTableCategorieGestion();
-            CheckBoxEpouse.CheckedChanged += CheckBoxEpouse_CheckedChanged;
-            CheckBoxEnfant.CheckedChanged += CheckBoxEnfant_CheckedChanged;
 
-            // (Optionnel) état par défaut : rien coché
-            CheckBoxEpouse.Checked = false;
-            CheckBoxEnfant.Checked = false;
+            // Styliser le header avec un design moderne
+            StyliserHeader();
         }
 
-
-        
-
-        private void CheckBoxEpouse_CheckedChanged(object sender, EventArgs e)
+        private void StyliserHeader()
         {
-            if (_changingType) return;
-            try
+            // Configurer le panel2 (header)
+            panel2.Height = 70;
+            panel2.Paint += (s, e) =>
             {
-                _changingType = true;
-
-                if (CheckBoxEpouse.Checked)
+                // Dégradé corporate élégant - Rouge bordeaux professionnel
+                using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(
+                    panel2.ClientRectangle,
+                    Color.FromArgb(130, 40, 50),    // Bordeaux profond
+                    Color.FromArgb(170, 60, 75),    // Rouge corporate
+                    System.Drawing.Drawing2D.LinearGradientMode.Horizontal))
                 {
-                    // exclusivité
-                    CheckBoxEnfant.Checked = false;
-                    ComboBoxScolarisation.Enabled = false;
-                    textBoxIdentification.Enabled = true;
-                }
-                else
-                {
-                    // si on décoche tout, on laisse les deux à false (ou forcer Enfant si tu veux un défaut)
-                    // CheckBoxEnfant.Checked = true;
-                }
-            }
-            finally { _changingType = false; }
-        }
-
-        private void CheckBoxEnfant_CheckedChanged(object sender, EventArgs e)
-        {
-            if (_changingType) return;
-            try
-            {
-                _changingType = true;
-
-                if (CheckBoxEnfant.Checked)
-                {
-                    // exclusivité
-                    CheckBoxEpouse.Checked = false;
-                    textBoxIdentification.Enabled = false;
-                    ComboBoxScolarisation.Enabled = true;
-                }
-                else
-                {
-                    // idem remarque ci-dessus
-                    // CheckBoxEpouse.Checked = true;
-                }
-            }
-            finally { _changingType = false; }
-        }
-
-
-
-
-
-
-
-
-
-
-
-        private void tabControlCharge_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabControlCharge.SelectedIndex == 1) // Onglet n°2 (index 1)
-            {
-                ChargerTablePage2();
-                EntrepriseClass.ChargerEntreprises(ComboBoxEntrepriseGestion);
-                StyliserDataGridViewGestion();
-                ShowTableCategorieGestion();
-                ClearChargeForm();
-            }
-            else if (tabControlCharge.SelectedIndex == 0)
-            {
-                ClearChargeForm();
-                ShowTableCategorie();
-                EntrepriseClass.ChargerEntreprises(ComboBoxEntreprise);
-            }
-        }
-
-        ////////////////////////////////////////////////////////////////////////////
-
-        private bool tablePage2Chargee = false;
-
-        ///////////////////////////////////////////////////////////////////////////
-        private void ChargerTablePage2(bool forcer = false)
-        {
-            if (tablePage2Chargee && !forcer) return;
-
-            try
-            {
-                EntrepriseClass.ChargerEntreprises(ComboBoxEntrepriseGestion);
-                UseWaitCursor = true;
-
-                // 1) Récupération des données
-                //DataTable dt = Categorie.GetCategorieList() ?? new DataTable();
-
-                // 2) Tri par défaut si dispo
-                // if (dt.Columns.Contains("Entreprise") && dt.Columns.Contains("Direction"))
-                {
-                    //  var dv = dt.DefaultView;
-                    //  dv.Sort = "[Entreprise] ASC, [Direction] ASC";
-                    //  dt = dv.ToTable();
+                    e.Graphics.FillRectangle(brush, panel2.ClientRectangle);
                 }
 
-                // 3) Binding
-                var grid = DataGridView_Charge_Gestion;
-                grid.AutoGenerateColumns = true;
-                //    grid.DataSource = dt;
+                // Barre accent subtile
+                using (var accentBrush = new SolidBrush(Color.FromArgb(210, 80, 95)))
+                {
+                    e.Graphics.FillRectangle(accentBrush, 0, panel2.Height - 3, panel2.Width, 3);
+                }
+            };
 
-                // (optionnel) masquer les IDs si présents
-                if (grid.Columns.Contains("ID")) grid.Columns["ID"].Visible = false;
-                if (grid.Columns.Contains("ID Entreprise")) grid.Columns["ID Entreprise"].Visible = false;
+            // Styliser label1 (titre principal)
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Montserrat", 15F, FontStyle.Bold);
+            label1.ForeColor = Color.White;
+            label1.Text = "CHARGES";
+            label1.Padding = new Padding(70, 0, 0, 0);  // Espace pour l'icône
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            label1.Dock = DockStyle.Fill;
+            label1.AutoSize = false;
 
-                // Style perso si tu as une méthode dédiée
-                StyliserDataGridView();
-
-                tablePage2Chargee = true;
-                EntrepriseClass.ChargerEntreprises(ComboBoxEntreprise);
-            }
-            catch (Exception ex)
+            // Dessiner une icône personnalisée
+            label1.Paint += (s, e) =>
             {
-                MessageBox.Show("Erreur de chargement : " + ex.Message, "Erreur",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                UseWaitCursor = false;
-            }
+                // Dessiner l'icône pièces de monnaie empilées
+                int iconSize = 28;
+                int iconX = 30;
+                int iconY = (label1.Height - iconSize) / 2;
+
+                using (var brush = new SolidBrush(Color.FromArgb(210, 80, 95)))
+                using (var pen = new Pen(Color.FromArgb(210, 80, 95), 2f))
+                {
+                    // 3 pièces empilées (cercles)
+                    e.Graphics.DrawEllipse(pen, iconX + 8, iconY + 2, 12, 12);
+                    e.Graphics.DrawEllipse(pen, iconX + 4, iconY + 8, 12, 12);
+                    e.Graphics.DrawEllipse(pen, iconX + 12, iconY + 8, 12, 12);
+
+                    // Symboles $ au centre des pièces
+                    using (var font = new Font("Arial", 8F, FontStyle.Bold))
+                    {
+                        e.Graphics.DrawString("$", font, brush, iconX + 11, iconY + 4);
+                        e.Graphics.DrawString("$", font, brush, iconX + 7, iconY + 10);
+                        e.Graphics.DrawString("$", font, brush, iconX + 15, iconY + 10);
+                    }
+                }
+            };
+
+            panel2.Invalidate();
         }
-
-        ///////////////////////////////////////////////////////////////////////////
-
-        private void ClearChargeForm()
-        {
-            ComboBoxEntreprise.SelectedIndex = -1;
-            ComboBoxEmploye.SelectedIndex = -1;
-            ComboBoxScolarisation.SelectedIndex = -1;
-
-            CheckBoxEnfant.Checked = false;
-            CheckBoxEpouse.Checked = false;
-
-            textBoxNomPrenom.Clear();
-            textBoxIdentification.Clear();
-
-        }
-
-
-
-        private void DisableChamps()
-        {
-            ComboBoxEntreprise.Enabled = true;
-            ComboBoxEmploye.Enabled = false;
-            ComboBoxScolarisation.Enabled = false;
-
-            CheckBoxEnfant.Enabled = false;
-            CheckBoxEpouse.Enabled = false;
-
-            textBoxNomPrenom.Enabled = false;
-            textBoxIdentification.Enabled = false;
-
-            dateNaissanceGestionPicker.Enabled = false;
-        }
-
-
-
-        private void EnableChamps()
-        {
-            ComboBoxEmploye.Enabled = true;
-            ComboBoxScolarisation.Enabled = true;
-
-            CheckBoxEnfant.Enabled = true;
-            CheckBoxEpouse.Enabled = true;
-
-            textBoxNomPrenom.Enabled = true;
-            textBoxIdentification.Enabled = true;
-
-            dateNaissanceGestionPicker.Enabled = true;
-        }
-
-
-
-        ////////////////////////////////////////////////////////////////////////////
-        private void ClearChargeFormGestion()
-        {
-            ComboBoxEntrepriseGestion.SelectedIndex = 0;
-            ComboBoxEmployeGestion.SelectedIndex = 0;
-            ComboBoxScolarisationGestion.SelectedIndex = 0;
-
-            CheckBoxEnfantGestion.Checked = false;
-            CheckBoxEpouseGestion.Checked = false;
-
-            textBoxNomPrenomGestion.Clear();
-            textBoxMatricule.Clear();
-            textBoxID.Clear();
-            textBoxIdentificationGestion.Clear();
-        }
-
-        ////////////////////////////////////////////////////////////////////////////
 
         private void ShowTableCategorie()
         {
             var dt = ChargeClass.GetChargeList(null);
+
+            // Ajouter la colonne "Actions" en tant que texte
+            if (!dt.Columns.Contains("Actions"))
+            {
+                dt.Columns.Add("Actions", typeof(string));
+            }
+
             DataGridView_Charge.AutoGenerateColumns = true;
             DataGridView_Charge.DataSource = dt;
+
             // Masquer les IDs si tu veux une vue clean
-            if (DataGridView_Charge.Columns.Contains("ID"))
-                DataGridView_Charge.Columns["ID"].Visible = false;
+            if (DataGridView_Charge.Columns.Contains("Id"))
+                DataGridView_Charge.Columns["Id"].Visible = false;
+
+            // Configurer la colonne Actions
+            if (DataGridView_Charge.Columns["Actions"] != null)
+            {
+                DataGridView_Charge.Columns["Actions"].Width = 180;
+                DataGridView_Charge.Columns["Actions"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridView_Charge.Columns["Actions"].HeaderText = "Actions";
+            }
         }
 
-        ///////////////////////////////////////////////////////////////////////////
-        private void ShowTableCategorieGestion()
-        {
-            EntrepriseClass.ChargerEntreprises(ComboBoxEntrepriseGestion);
-            var dt = ChargeClass.GetChargeList();
-            DataGridView_Charge_Gestion.AutoGenerateColumns = true;
-            DataGridView_Charge_Gestion.DataSource = dt;
-           // Masquer les IDs si tu veux une vue clean
-            if (DataGridView_Charge_Gestion.Columns.Contains("ID"))
-                DataGridView_Charge_Gestion.Columns["ID"].Visible = false;
-        }
-
-        ///////////////////////////////////////////////////////////////////////////
         private void StyliserDataGridView()
         {
             // Fond général de la grille
@@ -298,675 +167,257 @@ namespace RH_GRH
             // Masquer l'entête de ligne à gauche
             DataGridView_Charge.RowHeadersVisible = false;
 
-            // Autres options d’esthétique
+            // Autres options d'esthétique
             DataGridView_Charge.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             DataGridView_Charge.MultiSelect = false;
         }
 
-        ////////////////////////////////////////////////////////////////////////////
-
-        private void StyliserDataGridViewGestion()
-        {
-            // Améliorer le rendu (anti-scintillement)
-            typeof(DataGridView).InvokeMember("DoubleBuffered",
-                System.Reflection.BindingFlags.NonPublic |
-                System.Reflection.BindingFlags.Instance |
-                System.Reflection.BindingFlags.SetProperty,
-                null, DataGridView_Charge_Gestion, new object[] { true });
-
-            // Fond général
-            DataGridView_Charge_Gestion.BackgroundColor = Color.White;
-
-            // En-tête (header)
-            var headerStyle = new DataGridViewCellStyle
-            {
-                BackColor = Color.MidnightBlue,
-                ForeColor = Color.White,
-                Font = new Font("Montserrat", 9f, FontStyle.Bold),
-                Alignment = DataGridViewContentAlignment.MiddleCenter,
-                WrapMode = DataGridViewTriState.True,
-                SelectionBackColor = Color.MidnightBlue, // Empêche changement au clic
-                SelectionForeColor = Color.White
-            };
-
-            DataGridView_Charge_Gestion.EnableHeadersVisualStyles = false;
-            DataGridView_Charge_Gestion.ColumnHeadersDefaultCellStyle = headerStyle;
-            DataGridView_Charge_Gestion.ColumnHeadersHeight = 35;
-
-            // Cellules normales
-            var cellStyle = new DataGridViewCellStyle
-            {
-                BackColor = Color.White,
-                ForeColor = Color.Black,
-                Font = new Font("Montserrat", 9f),
-                SelectionBackColor = Color.LightSteelBlue,
-                SelectionForeColor = Color.Black
-            };
-            DataGridView_Charge_Gestion.DefaultCellStyle = cellStyle;
-
-            // Lignes alternées
-            DataGridView_Charge_Gestion.AlternatingRowsDefaultCellStyle.BackColor = Color.Gainsboro;
-
-            // Bordures & style
-            DataGridView_Charge_Gestion.BorderStyle = BorderStyle.None;
-            DataGridView_Charge_Gestion.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            DataGridView_Charge_Gestion.GridColor = Color.LightGray;
-            DataGridView_Charge_Gestion.RowHeadersVisible = false;
-
-            // Sélection
-            DataGridView_Charge_Gestion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DataGridView_Charge_Gestion.MultiSelect = false;
-        }
-
-        ////////////////////////////////////////////////////////////////////////////
-
-        private void StyliserTabControl()
-        {
-            tabControlCharge.Appearance = TabAppearance.Normal;
-            tabControlCharge.DrawMode = TabDrawMode.OwnerDrawFixed;
-            tabControlCharge.ItemSize = new Size(150, 35); // largeur, hauteur des onglets
-            tabControlCharge.SizeMode = TabSizeMode.Fixed;
-            tabControlCharge.DrawItem += TabControlEntreprise_DrawItem;
-        }
-
-        ////////////////////////////////////////////////////////////////////////////
-
-        private void TabControlEntreprise_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            TabPage page = tabControlCharge.TabPages[e.Index];
-            Rectangle rect = tabControlCharge.GetTabRect(e.Index);
-            bool isSelected = (e.Index == tabControlCharge.SelectedIndex);
-
-            // Couleur de fond
-            Color backColor = isSelected ? Color.MidnightBlue : Color.LightGray;
-            Color foreColor = isSelected ? Color.White : Color.Black;
-
-            using (SolidBrush brush = new SolidBrush(backColor))
-            {
-                e.Graphics.FillRectangle(brush, rect);
-            }
-
-            // Texte centré
-
-            StringFormat format = new StringFormat();
-            format.Alignment = StringAlignment.Center;
-            format.LineAlignment = StringAlignment.Center;
-
-            using (Font font = new Font("Montserrat", 10f, FontStyle.Bold))
-            using (Brush textBrush = new SolidBrush(foreColor))
-            {
-                e.Graphics.DrawString(page.Text, font, textBrush, rect, format);
-            }
-        }
-
-
-
-
-
-
-
-
-        private void CheckBoxCDIGestion_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DataGridView_Categorie_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void panel8_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBoxMatricule_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ComboBoxEntreprise_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int? idEnt = GetSelectedIntOrNull(ComboBoxEntreprise, "id_entreprise");
-            if (idEnt == null || idEnt.Value <= 0)
-            {
-                // rien de sélectionné / placeholder
-                ComboBoxEmploye.DataSource = null;
-                return;
-            }
-
-            // Charge les employés filtrés par entreprise
-            EmployeClass.ChargerEmployesParEntreprise(ComboBoxEmploye, idEnt.Value, null, true);
-            EnableChamps();
-        }
-
-        /// <summary>
-        /// Récupère l'ID sélectionné d'un ComboBox même si SelectedValue est un DataRowView.
-        /// </summary>
-        private static int? GetSelectedIntOrNull(ComboBox combo, string valueColumnName)
-        {
-            if (combo.SelectedValue == null) return null;
-
-            // Cas normal : déjà un int
-            if (combo.SelectedValue is int i) return i;
-
-            // Certaines configs renvoient un DataRowView
-            if (combo.SelectedValue is DataRowView drv)
-            {
-                var val = drv[valueColumnName];
-                return val == DBNull.Value ? (int?)null : Convert.ToInt32(val);
-            }
-
-            // Fallback: essayer de parser
-            if (int.TryParse(combo.SelectedValue.ToString(), out var parsed))
-                return parsed;
-
-            return null;
-        }
-
-
-
-
-
-        private void RefreshGridCharges()
-        {
-            if (ComboBoxEmploye.SelectedValue == null) return;
-            int empId = Convert.ToInt32(ComboBoxEmploye.SelectedValue);
-            var list = ChargeClass.GetChargeList(empId);
-            DataGridView_Charge.DataSource = list;
-            DataGridView_Charge.ClearSelection();
-        }
-
-
-
-
-
-        private void ChargerDetailsChargeParId(string idCharge)
-        {
-            try
-            {
-                const string sql = @"
-SELECT
-    c.id_charge,
-    c.id_personnel,
-    c.type,             
-    c.nom_prenom,
-    c.date_naissance,
-    c.identification,
-    c.scolarisation,
-    p.nomPrenom      AS NomPersonnel,
-    p.id_entreprise  AS IdEntreprise,
-    e.nomEntreprise  AS NomEntreprise,
-    p.matricule
-FROM charge c
-LEFT JOIN personnel p  ON p.id_personnel  = c.id_personnel
-LEFT JOIN entreprise e ON e.id_entreprise = p.id_entreprise
-WHERE c.id_charge = @id
-LIMIT 1;";
-
-                var connect = new Dbconnect();
-                using (var con = new MySqlConnection(connect.getconnection.ConnectionString))
-                using (var cmd = new MySqlCommand(sql, con))
-                {
-                    if (!int.TryParse(idCharge, out int idc))
-                    {
-                        MessageBox.Show("Identifiant de la charge invalide.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-
-                    cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = idc;
-
-                    con.Open();
-                    using (var reader = cmd.ExecuteReader(CommandBehavior.SingleRow))
-                    {
-                        if (!reader.Read())
-                        {
-                            // Nettoyage minimal
-                            textBoxNomPrenomGestion.Text = "";
-                            ComboBoxEntrepriseGestion.SelectedIndex = -1;
-                            ComboBoxEmployeGestion.SelectedIndex = -1;
-                            return;
-                        }
-
-                        // ----- Infos de la charge -----
-                        string type = reader["type"]?.ToString();
-                        textBoxNomPrenomGestion.Text = reader["nom_prenom"]?.ToString() ?? "";
-                        textBoxMatricule.Text = reader["matricule"]?.ToString() ?? "";
-                        textBoxIdentificationGestion.Text = reader["identification"]?.ToString() ?? "";
-
-                        if (!reader.IsDBNull(reader.GetOrdinal("date_naissance")))
-                            dateNaissanceGestionPicker.Value = Convert.ToDateTime(reader["date_naissance"]);
-                        else
-                            dateNaissanceGestionPicker.Value = DateTime.Today;
-
-                        // Type = Epouse/Enfant
-                        bool isEpouse = string.Equals(type, "Épouse", StringComparison.OrdinalIgnoreCase) ||
-                                        string.Equals(type, "Epouse", StringComparison.OrdinalIgnoreCase);
-                        CheckBoxEpouseGestion.Checked = isEpouse;
-                        CheckBoxEnfantGestion.Checked = !isEpouse;
-
-                        // Scolarisation
-                        if (isEpouse)
-                        {
-                            ComboBoxScolarisationGestion.SelectedIndex = -1;
-                            ComboBoxScolarisationGestion.Enabled = false;
-                        }
-                        else
-                        {
-                            ComboBoxScolarisationGestion.Enabled = true;
-                            string scolarisationDb = reader["scolarisation"]?.ToString();
-                            if (scolarisationDb == "Oui") ComboBoxScolarisationGestion.SelectedItem = "Oui";
-                            else if (scolarisationDb == "Non") ComboBoxScolarisationGestion.SelectedItem = "Non";
-                            else ComboBoxScolarisationGestion.SelectedIndex = -1;
-                        }
-
-                        // ----- Combo Entreprise -----
-                        if (!reader.IsDBNull(reader.GetOrdinal("IdEntreprise")))
-                        {
-                            int idEnt = Convert.ToInt32(reader["IdEntreprise"]);
-                            // Charger la liste d’entreprises si nécessaire
-                            if (ComboBoxEntrepriseGestion.DataSource == null)
-                                EntrepriseClass.ChargerEntreprises(ComboBoxEntrepriseGestion, idEnt, true);
-                            else
-                                ComboBoxEntrepriseGestion.SelectedValue = idEnt;
-                        }
-                        else
-                        {
-                            ComboBoxEntrepriseGestion.SelectedIndex = -1;
-                        }
-
-                        // ----- Combo Employé -----
-                        if (!reader.IsDBNull(reader.GetOrdinal("id_personnel")))
-                        {
-                            int idPers = Convert.ToInt32(reader["id_personnel"]);
-                            if (ComboBoxEmployeGestion.DataSource == null)
-                                GestionEmployeForm.ChargerPersonnels(ComboBoxEmployeGestion, idPers, true); // tu dois avoir une méthode similaire à ChargerEntreprises
-                            else
-                                ComboBoxEmployeGestion.SelectedValue = idPers;
-                        }
-                        else
-                        {
-                            ComboBoxEmployeGestion.SelectedIndex = -1;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur lors du chargement de la charge : " + ex.Message,
-                                "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-
-
-
-
-        private void buttonAjouter_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-                // Sélection des valeurs d'entreprise et employé
-                int? idEnt = GetSelectedIntOrNull(ComboBoxEntreprise, "id_entreprise");
-                if (idEnt == null || idEnt <= 0)
-                {
-                    MessageBox.Show("Sélectionnez une entreprise.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                int? idEmp = GetSelectedIntOrNull(ComboBoxEmploye, "id_personnel");
-                if (idEmp == null || idEmp <= 0)
-                {
-                    MessageBox.Show("Sélectionnez un employé.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                // Validation du type (épouse ou enfant)
-                bool isEpouse = CheckBoxEpouse.Checked;
-                bool isEnfant = CheckBoxEnfant.Checked;
-
-                if (isEpouse == isEnfant) // Cas où aucune case ou les deux cases sont cochées
-                {
-                    MessageBox.Show("Sélectionnez exactement une option : Épouse ou Enfant.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                // Récupérer les informations saisies
-                string nomPrenom = textBoxNomPrenom.Text.Trim();
-                if (string.IsNullOrWhiteSpace(nomPrenom))
-                {
-                    MessageBox.Show("Saisissez le Nom & Prénom.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                DateTime dateNaissance = dateNaissancePicker.Value;
-                string identification = textBoxIdentification.Text.Trim();
-
-                string scolarisation = ComboBoxScolarisation.SelectedItem?.ToString();
-
-
-                if (string.IsNullOrWhiteSpace(identification) && isEpouse == true)
-                {
-                    MessageBox.Show(
-                        "Veuillez renseigner les coordonnées d'identification de l'épouse",
-                        "Info",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    );
-                    return;
-                }
-
-
-                if (isEpouse == true)
-                {
-                   scolarisation="";
-                }
-
-
-                // Appeler la méthode d'enregistrement avec la validation métier
-                ChargeType type = isEpouse ? ChargeType.Epouse : ChargeType.Enfant;
-                ChargeClass.EnregistrerCharge(idEmp.Value, type, nomPrenom, dateNaissance, identification, scolarisation);
-
-                MessageBox.Show("Charge ajoutée avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                RefreshGridCharges();  // Rafraîchir la grille des charges
-                ClearChargeForm();      // Vider les champs du formulaire
-                DisableChamps();    
-            }
-            catch (InvalidOperationException ex)
-            {
-                MessageBox.Show(ex.Message, "Règle métier", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-
-
-
-
-
-
-
-        private void DataGridView_Categorie_Gestion_Click(object sender, EventArgs e)
-        {
-            if (DataGridView_Charge_Gestion.CurrentRow != null)
-            {
-                string id = DataGridView_Charge_Gestion.CurrentRow.Cells[0].Value?.ToString();
-                if (!string.IsNullOrEmpty(id))
-                {
-                    textBoxID.Text = id;
-                    ChargerDetailsChargeParId(id);
-                    ComboBoxEntrepriseGestion.Enabled = false;
-                    button_Supprimer.Enabled = true;
-                    EnableChargeFormForEdit();
-                }
-            }
-        }
-
-        private void buttonModifier_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // --- Id charge ---
-                if (!int.TryParse(textBoxID.Text, out int idCharge) || idCharge <= 0)
-                {
-                    MessageBox.Show("Identifiant de la charge invalide.", "Info",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                // Type (Épouse / Enfant)
-                bool isEpouse = CheckBoxEpouseGestion.Checked;
-                var typeEnum = isEpouse ? ChargeType.Epouse : ChargeType.Enfant;
-
-                // Saisie
-                string nomPrenom = (textBoxNomPrenomGestion.Text ?? "").Trim();
-                string identification = (textBoxIdentificationGestion.Text ?? "").Trim();
-
-                // Scolarisation (string)
-                string scolarisation = null; // null par défaut
-                if (!isEpouse)
-                {
-                    var s = ComboBoxScolarisationGestion.SelectedItem?.ToString();
-                    if (s == "Oui") scolarisation = "Oui";
-                    else if (s == "Non") scolarisation = "Non";
-                } // si épouse => reste null
-
-                // Date de naissance
-                DateTime dateNaissance = dateNaissanceGestionPicker.Value;
-
-                // --- Validations minimales UI ---
-                if (string.IsNullOrWhiteSpace(nomPrenom))
-                {
-                    MessageBox.Show("Le nom/prénom de la charge est requis.", "Info",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                if (isEpouse && string.IsNullOrWhiteSpace(identification))
-                {
-                    MessageBox.Show("Veuillez renseigner les coordonnées d'identification de l'épouse.", "Info",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                // --- Construction de l'objet à modifier ---
-                var charge = new Charge
-                {
-                    IdCharge = idCharge,
-                    Type = typeEnum,
-                    NomPrenom = nomPrenom,
-                    DateNaissance = dateNaissance,
-                    Identification = identification,
-                    Scolarisation = scolarisation  // "Oui" / "Non" / null
-                };
-
-                // --- Confirmation utilisateur ---
-                var confirm = MessageBox.Show(
-                    "Voulez-vous vraiment enregistrer ces modifications ?",
-                    "Confirmation",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button2);
-
-                if (confirm != DialogResult.Yes)
-                {
-                    // L'utilisateur a annulé
-                    return;
-                }
-
-                // (Optionnel) désactiver le bouton le temps de l'opération
-                buttonModifier.Enabled = false;
-
-                try
-                {
-                    // --- Update repo ---
-                    ChargeRepository.ModifierCharge(charge);
-
-                    MessageBox.Show("Modification enregistrée avec succès.", "Succès",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ShowTableCategorieGestion();
-
-                    // --- Rafraîchir la liste (si vous avez une grille) ---
-                    // ReloadChargesGrid();  // décommentez si vous avez une méthode de reload
-
-                    // --- Nettoyer & désactiver le formulaire ---
-                    ClearAndDisableChargeForm();
-                }
-                catch (InvalidOperationException ex) // règles métier (épouse unique, max 4, etc.)
-                {
-                    MessageBox.Show(ex.Message, "Règle métier",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur lors de la modification : " + ex.Message, "Erreur",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    buttonModifier.Enabled = true; // on réactive le bouton
-                }
-
-            }
-            catch (InvalidOperationException ex) // règles métier (épouse unique, max 4, etc.)
-            {
-                MessageBox.Show(ex.Message, "Règle métier",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur lors de la modification : " + ex.Message, "Erreur",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        private void ClearAndDisableChargeForm()
-        {
-            // Vider
-            textBoxID.Text = "";
-            textBoxMatricule.Text = "";
-            textBoxNomPrenomGestion.Text = "";
-            textBoxIdentificationGestion.Text = "";
-            if (ComboBoxScolarisationGestion != null)
-            {
-                ComboBoxScolarisationGestion.SelectedIndex = -1;
-                ComboBoxScolarisationGestion.Enabled = false; // par défaut on laisse désactivé après update
-            }
-
-            CheckBoxEpouseGestion.Checked = false;
-            CheckBoxEnfantGestion.Checked = false;
-
-            dateNaissanceGestionPicker.Value = DateTime.Today;
-
-            if (ComboBoxEntrepriseGestion != null) ComboBoxEntrepriseGestion.SelectedIndex = -1;
-            if (ComboBoxEmployeGestion != null) ComboBoxEmployeGestion.SelectedIndex = -1;
-
-            // Désactiver
-            SetChargeInputsEnabled(false);
-        }
-
-        private void SetChargeInputsEnabled(bool enabled)
-        {
-            textBoxNomPrenomGestion.Enabled = enabled;
-            textBoxIdentificationGestion.Enabled = enabled;
-
-            // La combo scolarisation ne s’active que si Enfant
-            if (enabled)
-                ComboBoxScolarisationGestion.Enabled = CheckBoxEnfantGestion.Checked;
-            else
-                ComboBoxScolarisationGestion.Enabled = false;
-
-            dateNaissanceGestionPicker.Enabled = enabled;
-
-            // Selon votre UX, vous pouvez aussi désactiver ces combos après update
-            if (ComboBoxEntrepriseGestion != null) ComboBoxEntrepriseGestion.Enabled = enabled;
-            if (ComboBoxEmployeGestion != null) ComboBoxEmployeGestion.Enabled = enabled;
-
-            CheckBoxEpouseGestion.Enabled = enabled;
-            CheckBoxEnfantGestion.Enabled = enabled;
-
-            // Boutons (au choix)
-            buttonModifier.Enabled = enabled;
-            // btnAjouter.Enabled = enabled; // adaptez selon votre flux
-        }
-
-        private void EnableChargeFormForEdit()
-        {
-            // Active uniquement les champs autorisés
-            textBoxNomPrenomGestion.Enabled = true;
-            textBoxIdentificationGestion.Enabled = true;
-            dateNaissanceGestionPicker.Enabled = true;
-
-            // Gestion scolarisation : activée seulement si Enfant
-            if (CheckBoxEnfantGestion.Checked)
-            {
-                ComboBoxScolarisationGestion.Enabled = true;
-            }
-            else
-            {
-                ComboBoxScolarisationGestion.SelectedIndex = -1;
-                ComboBoxScolarisationGestion.Enabled = false; // épouse => null
-            }
-
-            // Ces champs restent désactivés en mode édition
-            if (ComboBoxEntrepriseGestion != null) ComboBoxEntrepriseGestion.Enabled = false;
-            if (ComboBoxEmployeGestion != null) ComboBoxEmployeGestion.Enabled = false;
-            CheckBoxEpouseGestion.Enabled = false;
-            CheckBoxEnfantGestion.Enabled = false;
-
-            // Boutons d’action
-            buttonModifier.Enabled = true;
-            // buttonAjouter.Enabled = false; // si tu veux bloquer l'ajout pendant modification
-        }
-
-        private void button_Supprimer_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Vérifier qu’un ID est bien présent
-                if (!int.TryParse(textBoxID.Text, out int idCharge) || idCharge <= 0)
-                {
-                    MessageBox.Show("Veuillez sélectionner une charge valide à supprimer.",
-                        "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                // Confirmation
-                var confirm = MessageBox.Show(
-                    "Voulez-vous vraiment supprimer cette charge ?",
-                    "Confirmation",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning,
-                    MessageBoxDefaultButton.Button2);
-
-                if (confirm != DialogResult.Yes)
-                    return; // Annulation utilisateur
-
-                // Suppression via repository
-                ChargeRepository.Supprimer(idCharge);
-
-                MessageBox.Show("Charge supprimée avec succès.",
-                    "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Rafraîchir la liste si tu as une DataGridView
-                ShowTableCategorieGestion();
-
-                // Vider et désactiver les champs
-                ClearAndDisableChargeForm();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur lors de la suppression : " + ex.Message,
-                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void buttonRechercher_Click(object sender, EventArgs e)
-        {
-           DataGridView_Charge_Gestion.DataSource = ChargeClass.RechercheCharge(textBoxSearch.Text);
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void GestionChargeForm_Load(object sender, EventArgs e)
         {
-            tabControlCharge.SelectedIndexChanged += tabControlCharge_SelectedIndexChanged;
-            EntrepriseClass.ChargerEntreprises(ComboBoxEntreprise);
+            ShowTableCategorie();
         }
 
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
+        // ============ GESTION DES ACTIONS DANS DATAGRIDVIEW_CHARGE ============
 
+        private void DataGridView_Charge_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
+
+            if (DataGridView_Charge.Columns[e.ColumnIndex].Name == "Actions")
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
+
+                // Calculer les dimensions des deux boutons
+                int buttonWidth = 80;
+                int buttonHeight = 32;
+                int buttonSpacing = 5;
+                int totalWidth = (buttonWidth * 2) + buttonSpacing;
+                int startX = e.CellBounds.X + (e.CellBounds.Width - totalWidth) / 2;
+                int startY = e.CellBounds.Y + (e.CellBounds.Height - buttonHeight) / 2;
+
+                // Bouton Modifier (or/gold)
+                Rectangle btnModifier = new Rectangle(startX, startY, buttonWidth, buttonHeight);
+                bool modifierHover = (hoverRowIndex == e.RowIndex && hoverButton == "Modifier");
+                Color modifierColor = modifierHover ? Color.FromArgb(255, 179, 0) : Color.FromArgb(255, 193, 7);
+
+                using (SolidBrush brush = new SolidBrush(modifierColor))
+                using (Pen borderPen = new Pen(Color.FromArgb(230, 170, 0), 1))
+                {
+                    e.Graphics.FillRoundedRectangle(brush, btnModifier, 6);
+                    e.Graphics.DrawRoundedRectangle(borderPen, btnModifier, 6);
+                }
+
+                // Icône et texte Modifier
+                using (Font iconFont = new Font("Segoe UI Emoji", 10f, FontStyle.Regular))
+                using (Font textFont = new Font("Montserrat", 8f, FontStyle.Bold))
+                using (SolidBrush textBrush = new SolidBrush(Color.FromArgb(51, 51, 51)))
+                {
+                    StringFormat sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+
+                    // Dessiner l'icône ✏
+                    Rectangle iconRect = new Rectangle(btnModifier.X, btnModifier.Y + 2, btnModifier.Width, btnModifier.Height / 2);
+                    e.Graphics.DrawString("✏", iconFont, textBrush, iconRect, sf);
+
+                    // Dessiner le texte
+                    Rectangle textRect = new Rectangle(btnModifier.X, btnModifier.Y + btnModifier.Height / 2 - 2, btnModifier.Width, btnModifier.Height / 2);
+                    e.Graphics.DrawString("Modifier", textFont, textBrush, textRect, sf);
+                }
+
+                // Bouton Supprimer (rouge)
+                Rectangle btnSupprimer = new Rectangle(startX + buttonWidth + buttonSpacing, startY, buttonWidth, buttonHeight);
+                bool supprimerHover = (hoverRowIndex == e.RowIndex && hoverButton == "Supprimer");
+                Color supprimerColor = supprimerHover ? Color.FromArgb(211, 47, 47) : Color.FromArgb(244, 67, 54);
+
+                using (SolidBrush brush = new SolidBrush(supprimerColor))
+                using (Pen borderPen = new Pen(Color.FromArgb(198, 40, 40), 1))
+                {
+                    e.Graphics.FillRoundedRectangle(brush, btnSupprimer, 6);
+                    e.Graphics.DrawRoundedRectangle(borderPen, btnSupprimer, 6);
+                }
+
+                // Icône et texte Supprimer
+                using (Font iconFont = new Font("Segoe UI Emoji", 10f, FontStyle.Regular))
+                using (Font textFont = new Font("Montserrat", 8f, FontStyle.Bold))
+                using (SolidBrush iconBrush = new SolidBrush(Color.White))
+                using (SolidBrush textBrush = new SolidBrush(Color.White))
+                {
+                    StringFormat sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+
+                    // Dessiner l'icône 🗑
+                    Rectangle iconRect = new Rectangle(btnSupprimer.X, btnSupprimer.Y + 2, btnSupprimer.Width, btnSupprimer.Height / 2);
+                    e.Graphics.DrawString("🗑", iconFont, iconBrush, iconRect, sf);
+
+                    // Dessiner le texte
+                    Rectangle textRect = new Rectangle(btnSupprimer.X, btnSupprimer.Y + btnSupprimer.Height / 2 - 2, btnSupprimer.Width, btnSupprimer.Height / 2);
+                    e.Graphics.DrawString("Supprimer", textFont, textBrush, textRect, sf);
+                }
+
+                e.Handled = true;
+            }
+        }
+
+        private void DataGridView_Charge_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            if (DataGridView_Charge.Columns[e.ColumnIndex].Name == "Actions")
+            {
+                var cellBounds = DataGridView_Charge.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+
+                int buttonWidth = 80;
+                int buttonHeight = 32;
+                int buttonSpacing = 5;
+                int totalWidth = (buttonWidth * 2) + buttonSpacing;
+                int startX = cellBounds.X + (cellBounds.Width - totalWidth) / 2;
+                int startY = cellBounds.Y + (cellBounds.Height - buttonHeight) / 2;
+
+                Rectangle btnModifier = new Rectangle(startX, startY, buttonWidth, buttonHeight);
+                Rectangle btnSupprimer = new Rectangle(startX + buttonWidth + buttonSpacing, startY, buttonWidth, buttonHeight);
+
+                Point mousePos = DataGridView_Charge.PointToClient(Cursor.Position);
+
+                string newHoverButton = "";
+                if (btnModifier.Contains(mousePos.X, mousePos.Y))
+                    newHoverButton = "Modifier";
+                else if (btnSupprimer.Contains(mousePos.X, mousePos.Y))
+                    newHoverButton = "Supprimer";
+
+                if (hoverRowIndex != e.RowIndex || hoverButton != newHoverButton)
+                {
+                    hoverRowIndex = e.RowIndex;
+                    hoverButton = newHoverButton;
+                    DataGridView_Charge.InvalidateCell(e.ColumnIndex, e.RowIndex);
+                    DataGridView_Charge.Cursor = string.IsNullOrEmpty(newHoverButton) ? Cursors.Default : Cursors.Hand;
+                }
+            }
+        }
+
+        private void DataGridView_Charge_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            if (DataGridView_Charge.Columns[e.ColumnIndex].Name == "Actions")
+            {
+                // Récupérer l'ID de la charge depuis la colonne Id
+                var cellValue = DataGridView_Charge.Rows[e.RowIndex].Cells["Id"].Value;
+                if (cellValue == null || cellValue == DBNull.Value)
+                {
+                    CustomMessageBox.Show("Impossible de récupérer l'ID de la charge.", "Erreur",
+                                    CustomMessageBox.MessageType.Error);
+                    return;
+                }
+
+                int idCharge = Convert.ToInt32(cellValue);
+
+                // Déterminer quel bouton a été cliqué
+                Point mousePos = DataGridView_Charge.PointToClient(Cursor.Position);
+                var cellBounds = DataGridView_Charge.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+
+                int buttonWidth = 80;
+                int buttonHeight = 32;
+                int buttonSpacing = 5;
+                int totalWidth = (buttonWidth * 2) + buttonSpacing;
+                int startX = cellBounds.X + (cellBounds.Width - totalWidth) / 2;
+                int startY = cellBounds.Y + (cellBounds.Height - buttonHeight) / 2;
+
+                Rectangle btnModifier = new Rectangle(startX, startY, buttonWidth, buttonHeight);
+                Rectangle btnSupprimer = new Rectangle(startX + buttonWidth + buttonSpacing, startY, buttonWidth, buttonHeight);
+
+                if (btnModifier.Contains(mousePos.X, mousePos.Y))
+                {
+                    // Action: Modifier - Ouvrir le formulaire modal ModifierChargeForm
+                    ModifierChargeForm modifierForm = new ModifierChargeForm(idCharge);
+                    if (modifierForm.ShowDialog() == DialogResult.OK)
+                    {
+                        // Rafraîchir les données après modification
+                        ShowTableCategorie();
+                    }
+                }
+                else if (btnSupprimer.Contains(mousePos.X, mousePos.Y))
+                {
+                    // Récupérer les informations de la charge pour le message de confirmation
+                    string nomPrenom = DataGridView_Charge.Rows[e.RowIndex].Cells["Nom et Prenom "].Value?.ToString();
+                    string typeCharge = DataGridView_Charge.Rows[e.RowIndex].Cells["Type"].Value?.ToString();
+
+                    // Action: Supprimer
+                    var confirm = CustomMessageBox.Show(
+                        $"Êtes-vous sûr de vouloir supprimer cette charge ?\n\n" +
+                        $"Nom : {nomPrenom}\n" +
+                        $"Type : {typeCharge}\n\n" +
+                        $"Cette action est irréversible.",
+                        "Confirmer la suppression",
+                        CustomMessageBox.MessageType.Warning,
+                        CustomMessageBox.MessageButtons.YesNo);
+
+                    if (confirm == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            ChargeRepository.Supprimer(idCharge);
+                            CustomMessageBox.Show(
+                                $"La charge de {nomPrenom} a été supprimée avec succès.",
+                                "Succès",
+                                CustomMessageBox.MessageType.Success);
+
+                            // Rafraîchir les données
+                            ShowTableCategorie();
+                        }
+                        catch (Exception ex)
+                        {
+                            CustomMessageBox.Show($"Erreur lors de la suppression :\n{ex.Message}", "Erreur",
+                                            CustomMessageBox.MessageType.Error);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Handler pour le bouton Ajouter Charge
+        private void buttonAjouterCharge_Click(object sender, EventArgs e)
+        {
+            AjouterChargeForm ajouterForm = new AjouterChargeForm();
+            if (ajouterForm.ShowDialog() == DialogResult.OK)
+            {
+                // Rafraîchir les données après ajout
+                ShowTableCategorie();
+            }
+        }
+
+        // Handler pour la recherche
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = textBoxSearch.Text.Trim();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                // Si le champ de recherche est vide, afficher toutes les charges
+                ShowTableCategorie();
+            }
+            else
+            {
+                // Rechercher les charges
+                DataTable dt = ChargeClass.RechercheCharge(searchText);
+
+                // Ajouter la colonne Actions si elle n'existe pas
+                if (!dt.Columns.Contains("Actions"))
+                {
+                    dt.Columns.Add("Actions", typeof(string));
+                }
+
+                DataGridView_Charge.DataSource = dt;
+
+                // Masquer la colonne Id
+                if (DataGridView_Charge.Columns.Contains("Id"))
+                    DataGridView_Charge.Columns["Id"].Visible = false;
+
+                // Configurer la colonne Actions
+                if (DataGridView_Charge.Columns["Actions"] != null)
+                {
+                    DataGridView_Charge.Columns["Actions"].Width = 180;
+                    DataGridView_Charge.Columns["Actions"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    DataGridView_Charge.Columns["Actions"].HeaderText = "Actions";
+                }
+            }
         }
     }
 }

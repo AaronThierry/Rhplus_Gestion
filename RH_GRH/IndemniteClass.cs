@@ -113,12 +113,15 @@ WHERE id_indemnite = @id;";
 SELECT
     i.id_indemnite           AS `Id`,
     p.nomPrenom              AS `Employe`,
+    p.matricule              AS `Matricule`,
+    e.nomEntreprise          AS `Entreprise`,
     i.type                   AS `Type`,
     i.valeur                 AS `Valeur`
 FROM indemnite i
 LEFT JOIN personnel p ON p.id_personnel = i.id_personnel
+LEFT JOIN entreprise e ON e.id_entreprise = p.id_entreprise
 WHERE (@idPersonnel IS NULL OR i.id_personnel = @idPersonnel)
-ORDER BY i.type;";
+ORDER BY e.nomEntreprise, p.nomPrenom, i.type;";
 
                 using (var cmd = new MySqlCommand(sql, con))
                 {

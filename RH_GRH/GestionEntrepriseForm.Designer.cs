@@ -20,6 +20,7 @@ namespace RH_GRH
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tabControlEntreprise = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -28,22 +29,38 @@ namespace RH_GRH
             this.buttonAjouterEntreprise = new Guna.UI2.WinForms.Guna2Button();
             this.textBoxSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.DataGridView_Entreprise_Gestion = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.labelBandeEntreprise = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabControlEntreprise.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Entreprise_Gestion)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
+            //
+            // panel1
+            //
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1584, 861);
+            this.panel1.TabIndex = 2;
             //
             // panel3
             //
             this.panel3.Controls.Add(this.tabControlEntreprise);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Location = new System.Drawing.Point(0, 74);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1584, 861);
-            this.panel3.TabIndex = 2;
+            this.panel3.Size = new System.Drawing.Size(1584, 787);
+            this.panel3.TabIndex = 1;
             //
             // tabControlEntreprise
             //
@@ -160,7 +177,7 @@ namespace RH_GRH
             this.DataGridView_Entreprise_Gestion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.MidnightBlue;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
@@ -169,7 +186,7 @@ namespace RH_GRH
             this.DataGridView_Entreprise_Gestion.ColumnHeadersHeight = 35;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSteelBlue;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
@@ -183,7 +200,7 @@ namespace RH_GRH
             this.DataGridView_Entreprise_Gestion.ReadOnly = true;
             this.DataGridView_Entreprise_Gestion.RowHeadersVisible = false;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Montserrat", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightSteelBlue;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
@@ -196,26 +213,55 @@ namespace RH_GRH
             this.DataGridView_Entreprise_Gestion.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView_Entreprise_Gestion_CellMouseMove);
             this.DataGridView_Entreprise_Gestion.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DataGridView_Entreprise_Gestion_CellPainting);
             //
+            // panel2
+            //
+            this.panel2.BackColor = System.Drawing.SystemColors.Highlight;
+            this.panel2.Controls.Add(this.labelBandeEntreprise);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1584, 74);
+            this.panel2.TabIndex = 0;
+            //
+            // labelBandeEntreprise
+            //
+            this.labelBandeEntreprise.BackColor = System.Drawing.SystemColors.Highlight;
+            this.labelBandeEntreprise.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelBandeEntreprise.Font = new System.Drawing.Font("Montserrat Medium", 13F, System.Drawing.FontStyle.Bold);
+            this.labelBandeEntreprise.ForeColor = System.Drawing.Color.White;
+            this.labelBandeEntreprise.Location = new System.Drawing.Point(0, 0);
+            this.labelBandeEntreprise.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelBandeEntreprise.Name = "labelBandeEntreprise";
+            this.labelBandeEntreprise.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.labelBandeEntreprise.Size = new System.Drawing.Size(1584, 74);
+            this.labelBandeEntreprise.TabIndex = 1;
+            this.labelBandeEntreprise.Text = ">> Entreprise";
+            this.labelBandeEntreprise.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            //
             // GestionEntrepriseForm
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1584, 861);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GestionEntrepriseForm";
             this.Text = "Gestion des entreprises";
+            this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.tabControlEntreprise.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Entreprise_Gestion)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
         }
 
         #endregion
 
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TabControl tabControlEntreprise;
         private System.Windows.Forms.TabPage tabPage2;
@@ -224,5 +270,7 @@ namespace RH_GRH
         private Guna.UI2.WinForms.Guna2Button buttonAjouterEntreprise;
         private Guna.UI2.WinForms.Guna2TextBox textBoxSearch;
         private System.Windows.Forms.DataGridView DataGridView_Entreprise_Gestion;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label labelBandeEntreprise;
     }
 }

@@ -103,6 +103,8 @@
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=9.0.0.8, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.9.0.8\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
@@ -152,6 +154,14 @@
     <Compile Include="EmployeClass.cs" />
     <Compile Include="EmployeData.cs" />
     <Compile Include="EmployeDetail.cs" />
+    <Compile Include="ExcelImportService.cs" />
+    <Compile Include="ExcelImportServiceV2.cs" />
+    <Compile Include="ImportEmployeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportEmployeForm.Designer.cs">
+      <DependentUpon>ImportEmployeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestionChargeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +205,7 @@
     <Compile Include="IUTSCalculator.cs" />
     <Compile Include="MatriculeGenerator.cs" />
     <Compile Include="NetCalculator.cs" />
+    <Compile Include="PayrollSnapshot.cs" />
     <Compile Include="ServiceClass.cs" />
     <Compile Include="DirectionClass.cs" />
     <Compile Include="EntrepriseClass.cs" />
@@ -272,6 +283,80 @@
     <Compile Include="ModifierEntrepriseForm.Designer.cs">
       <DependentUpon>ModifierEntrepriseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AjouterEmployeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterEmployeForm.Designer.cs">
+      <DependentUpon>AjouterEmployeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierEmployeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifierEmployeForm.Designer.cs">
+      <DependentUpon>ModifierEmployeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AjouterChargeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterChargeForm.Designer.cs">
+      <DependentUpon>AjouterChargeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierChargeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifierChargeForm.Designer.cs">
+      <DependentUpon>ModifierChargeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AjouterIndemniteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterIndemniteForm.Designer.cs">
+      <DependentUpon>AjouterIndemniteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AjouterIndemniteFormV3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterIndemniteFormV3.Designer.cs">
+      <DependentUpon>AjouterIndemniteFormV3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierIndemniteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifierIndemniteForm.Designer.cs">
+      <DependentUpon>ModifierIndemniteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BatchBulletinService.cs" />
+    <Compile Include="BulletinConsolideDocument.cs" />
+    <Compile Include="SelectionEmployesImpressionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectionEmployesImpressionForm.Designer.cs">
+      <DependentUpon>SelectionEmployesImpressionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgressionImpressionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgressionImpressionForm.Designer.cs">
+      <DependentUpon>ProgressionImpressionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SaisiePayeLotForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaisiePayeLotForm.Designer.cs">
+      <DependentUpon>SaisiePayeLotForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectionEntrepriseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectionEntrepriseForm.Designer.cs">
+      <DependentUpon>SelectionEntrepriseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResultatsModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResultatsModal.Designer.cs">
+      <DependentUpon>ResultatsModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GestionDirectionForm.cs">
@@ -280,6 +365,12 @@
     <Compile Include="GestionDirectionForm.Designer.cs">
       <DependentUpon>GestionDirectionForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AjouterEmployeForm.resx">
+      <DependentUpon>AjouterEmployeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportEmployeForm.resx">
+      <DependentUpon>ImportEmployeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GestionChargeForm.resx">
       <DependentUpon>GestionChargeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -346,6 +437,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModifierEntrepriseForm.resx">
       <DependentUpon>ModifierEntrepriseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AjouterChargeForm.resx">
+      <DependentUpon>AjouterChargeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifierChargeForm.resx">
+      <DependentUpon>ModifierChargeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AjouterIndemniteForm.resx">
+      <DependentUpon>AjouterIndemniteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AjouterIndemniteFormV3.resx">
+      <DependentUpon>AjouterIndemniteFormV3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifierIndemniteForm.resx">
+      <DependentUpon>ModifierIndemniteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectionEmployesImpressionForm.resx">
+      <DependentUpon>SelectionEmployesImpressionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressionImpressionForm.resx">
+      <DependentUpon>ProgressionImpressionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaisiePayeLotForm.resx">
+      <DependentUpon>SaisiePayeLotForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectionEntrepriseForm.resx">
+      <DependentUpon>SelectionEntrepriseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultatsModal.resx">
+      <DependentUpon>ResultatsModal.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

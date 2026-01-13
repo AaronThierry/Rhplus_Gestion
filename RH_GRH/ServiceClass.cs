@@ -518,6 +518,57 @@ namespace RH_GRH
             }
         }
 
+        // Surcharge pour Guna2ComboBox
+        public static void ChargerServices(
+            Guna.UI2.WinForms.Guna2ComboBox combo,
+            int idEntreprise,
+            int? idSelection = null,
+            bool ajouterPlaceholder = false)
+        {
+            var connect = new Dbconnect();
+            using (var con = connect.getconnection)
+            {
+                con.Open();
+                string sql = @"
+            SELECT id_service, nomService
+            FROM service
+            WHERE id_entreprise = @idEnt
+            ORDER BY nomService;";
+
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.Add("@idEnt", MySqlDbType.Int32).Value = idEntreprise;
+
+                    using (var da = new MySqlDataAdapter(cmd))
+                    {
+                        var dt = new DataTable();
+                        da.Fill(dt);
+
+                        if (ajouterPlaceholder)
+                        {
+                            var row = dt.NewRow();
+                            row["id_service"] = 0;
+                            row["nomService"] = "--- Sélectionner service ---";
+                            dt.Rows.InsertAt(row, 0);
+                        }
+
+                        combo.ValueMember = "id_service";
+                        combo.DisplayMember = "nomService";
+                        combo.DataSource = dt;
+
+                        if (idSelection.HasValue && idSelection.Value > 0)
+                        {
+                            bool exists = dt.Select("id_service = " + idSelection.Value).Length > 0;
+                            combo.SelectedValue = exists ? (object)idSelection.Value : (ajouterPlaceholder ? 0 : -1);
+                        }
+                        else
+                        {
+                            combo.SelectedValue = ajouterPlaceholder ? 0 : -1;
+                        }
+                    }
+                }
+            }
+        }
 
 
 

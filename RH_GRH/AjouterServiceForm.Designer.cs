@@ -20,17 +20,17 @@ namespace RH_GRH
             this.panelMain = new System.Windows.Forms.Panel();
             this.labelTitre = new System.Windows.Forms.Label();
             this.labelNomService = new System.Windows.Forms.Label();
-            this.textBoxNomService = new System.Windows.Forms.TextBox();
+            this.textBoxNomService = new Guna.UI2.WinForms.Guna2TextBox();
             this.labelEntreprise = new System.Windows.Forms.Label();
-            this.comboBoxEntreprise = new System.Windows.Forms.ComboBox();
-            this.buttonAjouter = new System.Windows.Forms.Button();
-            this.buttonAnnuler = new System.Windows.Forms.Button();
+            this.comboBoxEntreprise = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.buttonAjouter = new Guna.UI2.WinForms.Guna2Button();
+            this.buttonAnnuler = new Guna.UI2.WinForms.Guna2Button();
             this.panelMain.SuspendLayout();
             this.SuspendLayout();
             //
             // panelMain
             //
-            this.panelMain.BackColor = System.Drawing.Color.White;
+            this.panelMain.BackColor = System.Drawing.Color.FromArgb(250, 250, 250);
             this.panelMain.Controls.Add(this.buttonAnnuler);
             this.panelMain.Controls.Add(this.buttonAjouter);
             this.panelMain.Controls.Add(this.comboBoxEntreprise);
@@ -70,10 +70,22 @@ namespace RH_GRH
             //
             // textBoxNomService
             //
+            this.textBoxNomService.BorderRadius = 0;
+            this.textBoxNomService.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textBoxNomService.DefaultText = "";
+            this.textBoxNomService.DisabledState.BorderColor = System.Drawing.Color.FromArgb(208, 208, 208);
+            this.textBoxNomService.DisabledState.FillColor = System.Drawing.Color.FromArgb(226, 226, 226);
+            this.textBoxNomService.DisabledState.ForeColor = System.Drawing.Color.FromArgb(138, 138, 138);
+            this.textBoxNomService.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(138, 138, 138);
+            this.textBoxNomService.FocusedState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
             this.textBoxNomService.Font = new System.Drawing.Font("Montserrat", 10F);
+            this.textBoxNomService.HoverState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
             this.textBoxNomService.Location = new System.Drawing.Point(30, 105);
             this.textBoxNomService.Name = "textBoxNomService";
-            this.textBoxNomService.Size = new System.Drawing.Size(440, 24);
+            this.textBoxNomService.PasswordChar = '\0';
+            this.textBoxNomService.PlaceholderText = "";
+            this.textBoxNomService.SelectedText = "";
+            this.textBoxNomService.Size = new System.Drawing.Size(440, 36);
             this.textBoxNomService.TabIndex = 2;
             //
             // labelEntreprise
@@ -88,19 +100,28 @@ namespace RH_GRH
             //
             // comboBoxEntreprise
             //
+            this.comboBoxEntreprise.BackColor = System.Drawing.Color.Transparent;
+            this.comboBoxEntreprise.BorderRadius = 0;
+            this.comboBoxEntreprise.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboBoxEntreprise.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEntreprise.FocusedColor = System.Drawing.Color.FromArgb(94, 148, 255);
+            this.comboBoxEntreprise.FocusedState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
             this.comboBoxEntreprise.Font = new System.Drawing.Font("Montserrat", 10F);
-            this.comboBoxEntreprise.FormattingEnabled = true;
+            this.comboBoxEntreprise.ForeColor = System.Drawing.Color.FromArgb(68, 88, 112);
+            this.comboBoxEntreprise.ItemHeight = 30;
             this.comboBoxEntreprise.Location = new System.Drawing.Point(30, 170);
             this.comboBoxEntreprise.Name = "comboBoxEntreprise";
-            this.comboBoxEntreprise.Size = new System.Drawing.Size(440, 26);
+            this.comboBoxEntreprise.Size = new System.Drawing.Size(440, 36);
             this.comboBoxEntreprise.TabIndex = 4;
             //
             // buttonAjouter
             //
-            this.buttonAjouter.BackColor = System.Drawing.Color.MidnightBlue;
-            this.buttonAjouter.FlatAppearance.BorderSize = 0;
-            this.buttonAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAjouter.BorderRadius = 0;
+            this.buttonAjouter.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.buttonAjouter.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.buttonAjouter.DisabledState.FillColor = System.Drawing.Color.FromArgb(169, 169, 169);
+            this.buttonAjouter.DisabledState.ForeColor = System.Drawing.Color.FromArgb(141, 141, 141);
+            this.buttonAjouter.FillColor = System.Drawing.Color.MidnightBlue;
             this.buttonAjouter.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
             this.buttonAjouter.ForeColor = System.Drawing.Color.White;
             this.buttonAjouter.Location = new System.Drawing.Point(250, 230);
@@ -108,14 +129,16 @@ namespace RH_GRH
             this.buttonAjouter.Size = new System.Drawing.Size(110, 40);
             this.buttonAjouter.TabIndex = 5;
             this.buttonAjouter.Text = "Ajouter";
-            this.buttonAjouter.UseVisualStyleBackColor = false;
             this.buttonAjouter.Click += new System.EventHandler(this.buttonAjouter_Click);
             //
             // buttonAnnuler
             //
-            this.buttonAnnuler.BackColor = System.Drawing.Color.Gray;
-            this.buttonAnnuler.FlatAppearance.BorderSize = 0;
-            this.buttonAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAnnuler.BorderRadius = 0;
+            this.buttonAnnuler.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.buttonAnnuler.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.buttonAnnuler.DisabledState.FillColor = System.Drawing.Color.FromArgb(169, 169, 169);
+            this.buttonAnnuler.DisabledState.ForeColor = System.Drawing.Color.FromArgb(141, 141, 141);
+            this.buttonAnnuler.FillColor = System.Drawing.Color.Gray;
             this.buttonAnnuler.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
             this.buttonAnnuler.ForeColor = System.Drawing.Color.White;
             this.buttonAnnuler.Location = new System.Drawing.Point(370, 230);
@@ -123,7 +146,6 @@ namespace RH_GRH
             this.buttonAnnuler.Size = new System.Drawing.Size(100, 40);
             this.buttonAnnuler.TabIndex = 6;
             this.buttonAnnuler.Text = "Annuler";
-            this.buttonAnnuler.UseVisualStyleBackColor = false;
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
             //
             // AjouterServiceForm
@@ -132,7 +154,7 @@ namespace RH_GRH
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 300);
             this.Controls.Add(this.panelMain);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AjouterServiceForm";
@@ -150,10 +172,10 @@ namespace RH_GRH
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Label labelTitre;
         private System.Windows.Forms.Label labelNomService;
-        private System.Windows.Forms.TextBox textBoxNomService;
+        private Guna.UI2.WinForms.Guna2TextBox textBoxNomService;
         private System.Windows.Forms.Label labelEntreprise;
-        private System.Windows.Forms.ComboBox comboBoxEntreprise;
-        private System.Windows.Forms.Button buttonAjouter;
-        private System.Windows.Forms.Button buttonAnnuler;
+        private Guna.UI2.WinForms.Guna2ComboBox comboBoxEntreprise;
+        private Guna.UI2.WinForms.Guna2Button buttonAjouter;
+        private Guna.UI2.WinForms.Guna2Button buttonAnnuler;
     }
 }

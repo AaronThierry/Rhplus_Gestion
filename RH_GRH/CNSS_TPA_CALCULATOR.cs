@@ -50,10 +50,20 @@ namespace RH_GRH
         // Employé : 5,5% pour les contrats éligibles (même logique que ton Java)
         public static decimal CalculerCNSSEmploye(decimal salaireBrut, string contrat)
         {
-            if (salaireBrut <= 0) return 0m;
+            if (salaireBrut <= 0)
+            {
+                Debug.WriteLine($"[CNSS] Salaire brut <= 0: {salaireBrut}");
+                return 0m;
+            }
 
-            if (string.IsNullOrWhiteSpace(contrat)) return 0m;
+            if (string.IsNullOrWhiteSpace(contrat))
+            {
+                Debug.WriteLine($"[CNSS] Contrat vide ou null pour salaire: {salaireBrut}");
+                return 0m;
+            }
+
             var c = contrat.Trim().ToLowerInvariant();
+            Debug.WriteLine($"[CNSS] Calcul CNSS Employé - Contrat: '{contrat}' -> '{c}', Salaire brut: {salaireBrut}");
 
             switch (c)
             {
@@ -62,8 +72,11 @@ namespace RH_GRH
                 case "occasionnel":
                 case "volontaire national":
                 case "stagiaire":
-                    return Math.Round(salaireBrut * 0.055m, 0, MidpointRounding.AwayFromZero);
+                    decimal cnss = Math.Round(salaireBrut * 0.055m, 0, MidpointRounding.AwayFromZero);
+                    Debug.WriteLine($"[CNSS] CNSS Employé calculé: {cnss}");
+                    return cnss;
                 default:
+                    Debug.WriteLine($"[CNSS] Contrat non éligible: '{c}'");
                     return 0m;
             }
         }

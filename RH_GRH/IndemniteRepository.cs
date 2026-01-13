@@ -102,6 +102,41 @@ ORDER BY type;";
             return list;
         }
 
+        // --- RÉCUPÉRER UNE INDEMNITE PAR ID ---
+        public static Indemnite GetById(int idIndemnite)
+        {
+            var db = new Dbconnect();
+            using (var con = db.getconnection)
+            {
+                con.Open();
+
+                const string sql = @"
+SELECT id_indemnite, id_personnel, type, valeur
+FROM indemnite
+WHERE id_indemnite = @id_indemnite
+LIMIT 1;";
+
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@id_indemnite", idIndemnite);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Indemnite
+                            {
+                                IdIndemnite = Convert.ToInt32(reader["id_indemnite"]),
+                                IdPersonnel = Convert.ToInt32(reader["id_personnel"]),
+                                Type = FromDbType(reader["type"]?.ToString()),
+                                Valeur = reader["valeur"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["valeur"])
+                            };
+                        }
+                    }
+                }
+            }
+            return null; // Indemnité non trouvée
+        }
+
         // --- SUPPRESSION ---
         public static void Supprimer(int idIndemnite)
         {
@@ -158,7 +193,7 @@ WHERE id_indemnite = @id;";
         }
 
         // --- MAPPING TYPE <-> DB (string) ---
-        private static string ToDbType(IndemniteType t)
+        public static string ToDbType(IndemniteType t)
         {
             switch (t)
             {

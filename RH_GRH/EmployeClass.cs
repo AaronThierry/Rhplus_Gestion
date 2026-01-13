@@ -153,9 +153,7 @@ public static class EmployeClass
                     p.nomPrenom                       AS `Nom Prenom`,
                     p.poste                           AS `Poste`,
                     p.dureeContrat                    AS `Contrat`,
-                    p.telephone                       AS `Telephone`,
-                    p.date_entree                     AS `Date entrée`,
-                    p.date_sortie                     AS `Date sortie`
+                    p.telephone                       AS `Telephone`
                 FROM personnel p
                 LEFT JOIN direction  d ON d.id_direction  = p.id_direction
                 LEFT JOIN service    s ON s.id_service    = p.id_service
@@ -199,16 +197,14 @@ public static class EmployeClass
                 con.Open();
 
                 const string sql = @"
-    SELECT 
+    SELECT
                     p.id_personnel                    AS `Id`,
                     e.nomEntreprise                   AS `Entreprise`,
                     p.matricule                       AS `Matricule`,
                     p.nomPrenom                       AS `Nom Prenom`,
                     p.poste                           AS `Poste`,
                     p.dureeContrat                    AS `Contrat`,
-                    p.telephone                       AS `Telephone`,
-                    p.date_entree                     AS `Date entrée`,
-                    p.date_sortie                     AS `Date sortie`
+                    p.telephone                       AS `Telephone`
     FROM personnel p
     LEFT JOIN direction  d ON d.id_direction  = p.id_direction
     LEFT JOIN service    s ON s.id_service    = p.id_service
@@ -260,6 +256,14 @@ public static class EmployeClass
 
 
     //************************//********************//*****************************/**************************
+
+    /// <summary>
+    /// Alias pour RecherchePersonnel - permet la recherche d'employés
+    /// </summary>
+    public static DataTable RechercheEmploye(string recherche, int? idEntreprise = null)
+    {
+        return RecherchePersonnel(recherche, idEntreprise);
+    }
 
 
 

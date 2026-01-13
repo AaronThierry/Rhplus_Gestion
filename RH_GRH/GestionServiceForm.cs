@@ -31,6 +31,67 @@ namespace RH_GRH
 
             // Recherche en temps réel
             textBoxSearch.TextChanged += textBoxSearch_TextChanged;
+
+            // Styliser le header avec un design moderne
+            StyliserHeader();
+        }
+
+        private void StyliserHeader()
+        {
+            // Configurer le panel2 (header)
+            panel2.Height = 70;
+            panel2.Paint += (s, e) =>
+            {
+                // Dégradé corporate élégant - Bleu marine professionnel
+                using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(
+                    panel2.ClientRectangle,
+                    Color.FromArgb(31, 58, 96),    // Bleu marine foncé
+                    Color.FromArgb(44, 82, 130),   // Bleu marine moderne
+                    System.Drawing.Drawing2D.LinearGradientMode.Horizontal))
+                {
+                    e.Graphics.FillRectangle(brush, panel2.ClientRectangle);
+                }
+
+                // Barre accent subtile
+                using (var accentBrush = new SolidBrush(Color.FromArgb(66, 139, 202)))
+                {
+                    e.Graphics.FillRectangle(accentBrush, 0, panel2.Height - 3, panel2.Width, 3);
+                }
+            };
+
+            // Styliser label1 (titre principal)
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Montserrat", 15F, FontStyle.Bold);
+            label1.ForeColor = Color.White;
+            label1.Text = "SERVICES";
+            label1.Padding = new Padding(70, 0, 0, 0);  // Espace pour l'icône
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            label1.Dock = DockStyle.Fill;
+            label1.AutoSize = false;
+
+            // Dessiner une icône personnalisée
+            label1.Paint += (s, e) =>
+            {
+                // Dessiner l'icône engrenage
+                int iconSize = 28;
+                int iconX = 30;
+                int iconY = (label1.Height - iconSize) / 2;
+
+                using (var pen = new Pen(Color.FromArgb(66, 139, 202), 2.5f))
+                {
+                    // Cercle extérieur de l'engrenage
+                    e.Graphics.DrawEllipse(pen, iconX, iconY, iconSize, iconSize);
+                    // Cercle intérieur
+                    e.Graphics.DrawEllipse(pen, iconX + 8, iconY + 8, iconSize - 16, iconSize - 16);
+                    // Dents de l'engrenage (4 lignes)
+                    e.Graphics.DrawLine(pen, iconX + iconSize / 2, iconY - 3, iconX + iconSize / 2, iconY + 5);
+                    e.Graphics.DrawLine(pen, iconX + iconSize / 2, iconY + iconSize - 5, iconX + iconSize / 2, iconY + iconSize + 3);
+                    e.Graphics.DrawLine(pen, iconX - 3, iconY + iconSize / 2, iconX + 5, iconY + iconSize / 2);
+                    e.Graphics.DrawLine(pen, iconX + iconSize - 5, iconY + iconSize / 2, iconX + iconSize + 3, iconY + iconSize / 2);
+                }
+            };
+
+            panel2.Invalidate();
         }
 
         // Variables pour suivre le bouton survolé
@@ -594,6 +655,7 @@ namespace RH_GRH
                     CustomMessageBox.Show("Impossible de récupérer l'ID de l'entreprise.", "Erreur",
                                     CustomMessageBox.MessageType.Error);
                     return;
+
                 }
 
                 // Déterminer quel bouton a été cliqué

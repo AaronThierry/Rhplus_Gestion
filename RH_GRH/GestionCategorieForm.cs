@@ -31,6 +31,65 @@ namespace RH_GRH
 
             // Recherche en temps réel
             textBoxSearch.TextChanged += textBoxSearch_TextChanged;
+
+            // Styliser le header avec un design moderne
+            StyliserHeader();
+        }
+
+        private void StyliserHeader()
+        {
+            // Configurer le panel1 (header)
+            panel1.Height = 70;
+            panel1.Paint += (s, e) =>
+            {
+                // Dégradé corporate élégant - Violet/prune professionnel
+                using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(
+                    panel1.ClientRectangle,
+                    Color.FromArgb(71, 50, 93),    // Prune profond
+                    Color.FromArgb(96, 70, 122),   // Violet corporate
+                    System.Drawing.Drawing2D.LinearGradientMode.Horizontal))
+                {
+                    e.Graphics.FillRectangle(brush, panel1.ClientRectangle);
+                }
+
+                // Barre accent subtile
+                using (var accentBrush = new SolidBrush(Color.FromArgb(123, 97, 155)))
+                {
+                    e.Graphics.FillRectangle(accentBrush, 0, panel1.Height - 3, panel1.Width, 3);
+                }
+            };
+
+            // Styliser label1 (titre principal)
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Montserrat", 15F, FontStyle.Bold);
+            label1.ForeColor = Color.White;
+            label1.Text = "CATÉGORIES DE SALAIRE";
+            label1.Padding = new Padding(70, 0, 0, 0);  // Espace pour l'icône
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            label1.Dock = DockStyle.Fill;
+            label1.AutoSize = false;
+
+            // Dessiner une icône personnalisée
+            label1.Paint += (s, e) =>
+            {
+                // Dessiner l'icône grille (4 carrés)
+                int iconSize = 28;
+                int iconX = 30;
+                int iconY = (label1.Height - iconSize) / 2;
+                int cellSize = 12;
+                int gap = 4;
+
+                using (var brush = new SolidBrush(Color.FromArgb(123, 97, 155)))
+                {
+                    // 4 carrés en grille 2x2
+                    e.Graphics.FillRectangle(brush, iconX, iconY, cellSize, cellSize);
+                    e.Graphics.FillRectangle(brush, iconX + cellSize + gap, iconY, cellSize, cellSize);
+                    e.Graphics.FillRectangle(brush, iconX, iconY + cellSize + gap, cellSize, cellSize);
+                    e.Graphics.FillRectangle(brush, iconX + cellSize + gap, iconY + cellSize + gap, cellSize, cellSize);
+                }
+            };
+
+            panel1.Invalidate();
         }
 
         // Variables pour suivre le bouton survolé

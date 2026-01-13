@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static RH_GRH.GestionSalaireHoraireForm;
+// using static RH_GRH.GestionSalaireHoraireForm; // ⚠️ SUPPRIMÉ - plus nécessaire
 
 namespace RH_GRH
 {
@@ -25,8 +25,65 @@ namespace RH_GRH
         public GestionSalaireHoraireForm()
         {
             InitializeComponent();
+            StyliserHeader();
             InitPeriode();
-            
+            ConfigurerValidation();
+        }
+
+        private void StyliserHeader()
+        {
+            panel2.Height = 70;
+            panel2.Paint += (s, e) =>
+            {
+                using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(
+                    panel2.ClientRectangle,
+                    Color.FromArgb(41, 128, 185),    // Bleu vif
+                    Color.FromArgb(52, 152, 219),    // Bleu ciel
+                    System.Drawing.Drawing2D.LinearGradientMode.Horizontal))
+                {
+                    e.Graphics.FillRectangle(brush, panel2.ClientRectangle);
+                }
+            };
+
+            label1.Text = "SALAIRE HORAIRE";
+            label1.Font = new Font("Montserrat", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.White;
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            label1.Padding = new Padding(70, 0, 0, 0);
+
+            label1.Paint += (s, e) =>
+            {
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+                int iconX = 15;
+                int iconY = (label1.Height - 32) / 2;
+
+                // Icône : Horloge
+                using (var pen = new Pen(Color.White, 2.2f))
+                using (var brush = new SolidBrush(Color.White))
+                {
+                    // Cercle extérieur (cadran)
+                    e.Graphics.DrawEllipse(pen, iconX + 4, iconY + 4, 28, 28);
+
+                    // Aiguille des heures (courte, vers 3h)
+                    e.Graphics.DrawLine(pen, iconX + 18, iconY + 18, iconX + 26, iconY + 18);
+
+                    // Aiguille des minutes (longue, vers 12h)
+                    e.Graphics.DrawLine(pen, iconX + 18, iconY + 18, iconX + 18, iconY + 8);
+
+                    // Point central
+                    e.Graphics.FillEllipse(brush, iconX + 16, iconY + 16, 4, 4);
+
+                    // Marques 12, 3, 6, 9
+                    e.Graphics.FillRectangle(brush, iconX + 17, iconY + 5, 2, 4);    // 12
+                    e.Graphics.FillRectangle(brush, iconX + 29, iconY + 17, 4, 2);   // 3
+                    e.Graphics.FillRectangle(brush, iconX + 17, iconY + 27, 2, 4);   // 6
+                    e.Graphics.FillRectangle(brush, iconX + 5, iconY + 17, 4, 2);    // 9
+                }
+            };
+
+            panel2.Invalidate();
+            label1.Invalidate();
         }
 
 
@@ -609,107 +666,8 @@ public static class IUTS
 
 
 
-        public sealed class PayrollSnapshot
-        {
-            // Identifiants
-            public int IdEntreprise { get; set; }
-            public int IdEmploye { get; set; }
-            public string AncienneteStr { get; set; } = "";
-
-
-
-            //Salaire Base
-            public decimal BaseUnitaire { get; set; }
-            public decimal SalaireBase { get; set; }
-            public decimal TauxSalaireDeBase { get; set; }
-            //****************************************
-
-
-            //HEURES SUPPLEMENTAIRES
-            public decimal PrimeHeuressupp { get; set; }
-            public decimal TauxHeureSupp { get; set; }
-            //******************************************
-
-
-            //PRIME ANCIENNETE
-            public decimal PrimeAnciennete { get; set; }
-            //******************************************
-
-
-
-
-
-            //Infos Employe 
-            public string NomPrenom { get; set; } = "";
-            public string Civilite { get; set; } = "";
-            public string Poste { get; set; } = "";
-            public string Matricule { get; set; } = "";
-            public string NumeroEmploye { get; set; } = "";
-            public string AdresseEmploye { get; set; } = "";
-            public string PeriodeSalaire { get; set; } = "";
-            public string Contrat { get; set; } = "";
-            public string Sexe { get; set; } = "";
-            public string DureeContrat { get; set; } = "";
-            public int HeureContrat { get; set; }
-
-
-
-            public string Sigle { get; set; } = "";
-            public string NomEntreprise { get; set; } = "";
-            public string TelephoneEntreprise { get; set; } = "";
-            public string EmailEntreprise { get; set; } = "";
-            public string AdressePhysiqueEntreprise { get; set; } = "";
-            public string AdressePostaleEntreprise { get; set; } = "";
-
-
-            public DateTime DateNaissance { get; set; } // Utilisation de DateTime pour les dates
-            public DateTime DateEntree { get; set; } // Utilisation de DateTime pour les dates
-            public DateTime? DateSortie { get; set; } // Nullable DateTime pour la sortie
-
-
-            // Composantes de gains
-
-            public decimal HeuresSupp { get; set; }
-            public decimal IndemNum { get; set; }
-            public decimal IndemNat { get; set; }
-
-            // Totaux bruts / sociaux
-            public decimal SalaireBrut { get; set; }
-            public decimal SalaireBrutSocial { get; set; }
-
-            // CNSS & TPA (employé / employeur)
-            public decimal CNSS_Employe { get; set; }
-            public decimal PensionEmployeur { get; set; }
-            public decimal RisqueProEmployeur { get; set; }
-            public decimal PFEmployeur { get; set; }
-            public decimal CNSS_Employeur_Total { get; set; }
-            public decimal TPA { get; set; }
-
-            // IUTS
-            public decimal DeductibiliteIndemnites { get; set; }
-            public decimal BaseIUTS { get; set; }
-            public decimal BaseIUTS_Arrondie { get; set; }
-            public int NombreCharges { get; set; }
-            public decimal IUTS_Brut { get; set; }
-            public decimal IUTS_Final { get; set; }
-
-            // Net
-            public decimal SalaireNet { get; set; }
-            public decimal EffortPaix { get; set; }
-            public decimal SalaireNetaPayer { get; set; }
-
-            // Méta (facultatif)
-            public string Categorie { get; set; } = "";
-            public string Direction { get; set; } = "";
-            public string Service { get; set; } = "";
-            public string NumeroCnssEmploye { get; set; } = "";
-            public decimal TauxTPA { get; set; }
-            public string StatutCadre { get; set; } = ""; // "oui"/"non"
-
-
-        }
-
-
+        // ⚠️ SUPPRIMÉ: Utilisation de la classe PayrollSnapshot globale (PayrollSnapshot.cs)
+        // La définition locale a été retirée pour éviter les conflits de type
 
 
 
@@ -744,9 +702,177 @@ public static class IUTS
 
 
 
+        private DataTable tousLesEmployesHoraires;
+
         private void GestionSalaireHoraireForm_Load(object sender, EventArgs e)
         {
-            EntrepriseClass.ChargerEntreprises(ComboBoxEntreprise);
+            // Masquer la sélection d'entreprise - plus nécessaire
+            // ComboBoxEntreprise.Visible = false; // Contrôle supprimé du formulaire
+            // label18.Visible = false; // Label "Entreprise"
+
+            // Charger tous les employés horaires
+            ChargerTousLesEmployesHoraires();
+        }
+
+        private void ChargerTousLesEmployesHoraires()
+        {
+            try
+            {
+                var dbConnect = new Dbconnect();
+                using (var con = dbConnect.getconnection)
+                {
+                    con.Open();
+
+                    string query = @"
+                        SELECT
+                            p.id_personnel,
+                            p.nomPrenom AS Nom,
+                            p.matricule AS Matricule,
+                            e.nomEntreprise AS Entreprise,
+                            p.poste AS Poste,
+                            p.telephone AS Telephone,
+                            p.adresse AS Adresse,
+                            p.contrat AS Contrat,
+                            p.identification AS Identification,
+                            p.cadre AS Cadre,
+                            p.civilite AS Civilite,
+                            p.sexe AS Sexe,
+                            s.nomService AS Service,
+                            d.nomDirection AS Direction,
+                            c.nomCategorie AS Categorie,
+                            p.numerocnss AS NumeroCNSS,
+                            CONCAT(p.nomPrenom, ' (', p.matricule, ') - ', e.nomEntreprise) AS Display
+                        FROM personnel p
+                        INNER JOIN entreprise e ON p.id_entreprise = e.id_entreprise
+                        LEFT JOIN service s ON s.id_service = p.id_service
+                        LEFT JOIN direction d ON d.id_direction = p.id_direction
+                        LEFT JOIN categorie c ON c.id_categorie = p.id_categorie
+                        WHERE p.typeContrat = 'Horaire'
+                        ORDER BY p.nomPrenom";
+
+                    using (var cmd = new MySqlCommand(query, con))
+                    {
+                        var adapter = new MySqlDataAdapter(cmd);
+                        tousLesEmployesHoraires = new DataTable();
+                        adapter.Fill(tousLesEmployesHoraires);
+
+                        // Afficher tous au départ
+                        AfficherEmployesFiltres(tousLesEmployesHoraires);
+
+                        // Activer tous les champs une fois les données chargées
+                        ActiverTousLesChamps();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show($"Erreur lors du chargement :\n{ex.Message}", "Erreur", CustomMessageBox.MessageType.Error);
+            }
+        }
+
+        private void ActiverTousLesChamps()
+        {
+            // Activer les champs de recherche et sélection
+            textBoxRechercheEmploye.Enabled = true;
+            ComboBoxEmploye.Enabled = true;
+
+            // Activer tous les champs de saisie
+            textBoxMatricule.Enabled = true;
+            textBoxPoste.Enabled = true;
+            textBoxtypeContrat.Enabled = true;
+            textBoxContrat.Enabled = true;
+            textBoxCategorie.Enabled = true;
+            textBoxSalaire.Enabled = true;
+            textBoxHcontrat.Enabled = true;
+            textBoxNP.Enabled = true;
+            textboxJourNo.Enabled = true;
+            textBoxNuitNo.Enabled = true;
+            textBoxAbsences.Enabled = true;
+            textBoxJourHSF.Enabled = true;
+            textBoxNuitHSF.Enabled = true;
+            textBoxDette.Enabled = true;
+
+            // Activer les boutons
+            buttonAjouter.Enabled = true;
+            buttonCalculer.Enabled = true;
+        }
+
+        private void TextBoxRechercheEmploye_TextChanged(object sender, EventArgs e)
+        {
+            if (tousLesEmployesHoraires == null) return;
+
+            string recherche = textBoxRechercheEmploye.Text.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(recherche))
+            {
+                // Afficher tous si recherche vide
+                AfficherEmployesFiltres(tousLesEmployesHoraires);
+                return;
+            }
+
+            // Filtrer les résultats sur TOUS les champs possibles
+            var filtres = tousLesEmployesHoraires.AsEnumerable()
+                .Where(row =>
+                    // Informations principales
+                    row.Field<string>("Nom")?.ToLower().Contains(recherche) == true ||
+                    row.Field<string>("Matricule")?.ToLower().Contains(recherche) == true ||
+                    row.Field<string>("Entreprise")?.ToLower().Contains(recherche) == true ||
+
+                    // Informations professionnelles
+                    row.Field<string>("Poste")?.ToLower().Contains(recherche) == true ||
+                    row.Field<string>("Service")?.ToLower().Contains(recherche) == true ||
+                    row.Field<string>("Direction")?.ToLower().Contains(recherche) == true ||
+                    row.Field<string>("Categorie")?.ToLower().Contains(recherche) == true ||
+
+                    // Informations contractuelles
+                    row.Field<string>("Contrat")?.ToLower().Contains(recherche) == true ||
+                    row.Field<string>("Cadre")?.ToLower().Contains(recherche) == true ||
+
+                    // Informations personnelles
+                    row.Field<string>("Telephone")?.ToLower().Contains(recherche) == true ||
+                    row.Field<string>("Adresse")?.ToLower().Contains(recherche) == true ||
+                    row.Field<string>("Identification")?.ToLower().Contains(recherche) == true ||
+                    row.Field<string>("NumeroCNSS")?.ToLower().Contains(recherche) == true ||
+                    row.Field<string>("Civilite")?.ToLower().Contains(recherche) == true ||
+                    row.Field<string>("Sexe")?.ToLower().Contains(recherche) == true
+                );
+
+            DataTable dtFiltre;
+            if (filtres.Any())
+            {
+                dtFiltre = filtres.CopyToDataTable();
+            }
+            else
+            {
+                // Table vide avec même structure
+                dtFiltre = tousLesEmployesHoraires.Clone();
+            }
+
+            AfficherEmployesFiltres(dtFiltre);
+        }
+
+        private void AfficherEmployesFiltres(DataTable dt)
+        {
+            // Ajouter ligne par défaut
+            var dtAvecDefault = dt.Copy();
+            var defaultRow = dtAvecDefault.NewRow();
+            defaultRow["id_personnel"] = 0;
+            defaultRow["Display"] = $"-- {dtAvecDefault.Rows.Count} employé(s) trouvé(s) --";
+            dtAvecDefault.Rows.InsertAt(defaultRow, 0);
+
+            ComboBoxEmploye.DataSource = dtAvecDefault;
+            ComboBoxEmploye.DisplayMember = "Display";
+            ComboBoxEmploye.ValueMember = "id_personnel";
+
+            // Si un seul employé trouvé, le sélectionner automatiquement
+            if (dt.Rows.Count == 1)
+            {
+                ComboBoxEmploye.SelectedIndex = 1; // Index 1 car 0 est la ligne par défaut
+            }
+            else
+            {
+                ComboBoxEmploye.SelectedIndex = 0; // Sinon afficher la ligne par défaut
+            }
         }
 
 
@@ -776,19 +902,11 @@ public static class IUTS
             return null;
         }
 
+        // Méthode plus nécessaire - sélection directe d'employé sans filtrage par entreprise
         private void ComboBoxEntreprise_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            int? idEnt = GetSelectedIntOrNull(ComboBoxEntreprise, "id_entreprise");
-            if (idEnt == null || idEnt.Value <= 0)
-            {
-                // rien de sélectionné / placeholder
-                ComboBoxEmploye.DataSource = null;
-                return;
-            }
-            ComboBoxEmploye.Enabled = true;
-            // Charge les employés filtrés par entreprise
-            EmployeClass.ChargerEmployesParEntrepriseHoraire(ComboBoxEmploye, idEnt.Value, null, true);
-
+            // Désactivé - la sélection d'entreprise n'est plus utilisée
+            return;
         }
 
 
@@ -798,32 +916,22 @@ public static class IUTS
 
         private void ComboBoxEmploye_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Vérifier si un employé a été sélectionné (valeur valide, pas l'option par défaut)
-            if (ComboBoxEmploye.SelectedIndex == -1 || ComboBoxEmploye.SelectedValue == null || Convert.ToInt32(ComboBoxEmploye.SelectedValue) == 0)
+            // Utiliser la méthode helper pour gérer DataRowView correctement
+            int? idEmploye = GetSelectedIntOrNull(ComboBoxEmploye, "id_personnel");
+
+            if (idEmploye == null || idEmploye.Value <= 0)
             {
-                // Si aucune sélection n'est faite ou si la sélection est invalide (par exemple, l'option par défaut)
+                // Aucune sélection valide
                 return;
             }
 
             try
             {
-                // Récupérer l'ID de l'employé sélectionné
-                var selectedValue = ComboBoxEmploye.SelectedValue.ToString();
-                int idEmploye;
-
-                Console.WriteLine($"Valeur sélectionnée : {selectedValue}"); // Log de la valeur sélectionnée
-
-                // Vérifier si la valeur peut être convertie en entier
-                if (!int.TryParse(selectedValue, out idEmploye) || idEmploye <= 0)
-                {
-                    Console.WriteLine("L'ID de l'employé est invalide ou nul.");
-                    MessageBox.Show("Sélectionnez un employé valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                Console.WriteLine($"Valeur sélectionnée : {idEmploye.Value}"); // Log de la valeur sélectionnée
 
                 // Récupérer les informations de l'employé sélectionné
-                Console.WriteLine($"Récupération des informations de l'employé avec ID : {idEmploye}");
-                var employe = EmployeService.GetEmployeDetails(idEmploye);
+                Console.WriteLine($"Récupération des informations de l'employé avec ID : {idEmploye.Value}");
+                var employe = EmployeService.GetEmployeDetails(idEmploye.Value);
 
 
                 if (employe != null)
@@ -838,11 +946,11 @@ public static class IUTS
                     textBoxCategorie.Text = employe.Categorie?.ToString() ?? string.Empty;
                     textBoxNP.Text = employe.Nom ?? string.Empty;
                     textBoxtypeContrat.Text = employe.TypeContrat ?? string.Empty;
-                    textBoxHcontrat.Text = employe.HeureContrat.ToString();
+                    textBoxHcontrat.Text = employe.HeureContrat > 0 ? employe.HeureContrat.ToString() : string.Empty;
                     // Montant nullable
-                    textBoxSalaire.Text = employe.Montant.HasValue? employe.Montant.Value.ToString("N2", CultureInfo.CurrentCulture): string.Empty;
+                    textBoxSalaire.Text = employe.Montant.HasValue ? employe.Montant.Value.ToString("N2", CultureInfo.CurrentCulture) : string.Empty;
 
-                    var sums = GetSommeIndemnitesParIds(idEmploye);
+                    var sums = GetSommeIndemnitesParIds(idEmploye.Value);
 
                     // Exemples d’usage
                     System.Diagnostics.Debug.WriteLine($"Num={sums["somme_numeraire"]:N2} | Nat={sums["somme_nature"]:N2} FCFA");
@@ -855,14 +963,14 @@ public static class IUTS
                 else
                 {
                     Console.WriteLine("Aucun employé trouvé avec l'ID spécifié.");
-                    MessageBox.Show("L'employé sélectionné n'a pas été trouvé.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    CustomMessageBox.Show("L'employé sélectionné n'a pas été trouvé.", "Erreur", CustomMessageBox.MessageType.Error);
                 }
             }
             catch (Exception ex)
             {
                 // En cas d'erreur, afficher un message d'erreur et loguer l'exception
                 Console.WriteLine($"Erreur lors de la récupération des informations de l'employé : {ex.Message}");
-                MessageBox.Show($"Erreur lors de la récupération des informations de l'employé : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show($"Erreur lors de la récupération des informations de l'employé :\n{ex.Message}", "Erreur", CustomMessageBox.MessageType.Error);
             }
         }
 
@@ -898,20 +1006,25 @@ public static class IUTS
 
 
 
-        /// Bouton "Calculer"
         /// <summary>
-        /// Bouton "Calculer"
+        /// Bouton "Calculer" - Effectue le calcul du salaire horaire
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        private void buttonCalculer_Click(object sender, EventArgs e)
+        {
+            // 0) Valider tous les champs numériques
+            if (!ValiderTousLesChamps())
+            {
+                CustomMessageBox.Show("Veuillez corriger les erreurs de saisie avant de calculer.",
+                    "Validation", CustomMessageBox.MessageType.Warning);
+                return;
+            }
 
-        private void buttonEffacer_Click(object sender, EventArgs e)
-        {// 0) Sélection employé valide
+            // 1) Sélection employé valide
             if (ComboBoxEmploye.SelectedValue == null
                 || !int.TryParse(ComboBoxEmploye.SelectedValue.ToString(), out int idEmploye)
                 || idEmploye <= 0)
             {
-                MessageBox.Show("Sélectionnez un employé valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show("Veuillez sélectionner un employé valide.", "Validation", CustomMessageBox.MessageType.Warning);
                 return;
             }
 
@@ -919,7 +1032,7 @@ public static class IUTS
             var employe = EmployeService.GetEmployeDetails(idEmploye);
             if (employe == null)
             {
-                MessageBox.Show("L'employé sélectionné n'a pas été trouvé.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show("L'employé sélectionné n'a pas été trouvé.", "Erreur", CustomMessageBox.MessageType.Error);
                 return;
             }
 
@@ -938,12 +1051,12 @@ public static class IUTS
 
             if (salaireCategoriel <= 0m)
             {
-                MessageBox.Show("Le salaire catégoriel de l'employé est invalide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show("Le salaire catégoriel de l'employé est invalide.", "Erreur", CustomMessageBox.MessageType.Error);
                 return;
             }
             if (unitesTotales <= 0m)
             {
-                MessageBox.Show("Le nombre d’unités contractuelles doit être > 0.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show("Le nombre d'unités contractuelles doit être supérieur à 0.", "Erreur", CustomMessageBox.MessageType.Error);
                 return;
             }
 
@@ -1015,25 +1128,25 @@ public static class IUTS
                 var emp = EmployeService.GetEmployeDetails(idEmploye); // Doit fournir emp.Contrat (string) et emp.TPA (decimal?) si dispo
                 if (emp == null)
                 {
-                    MessageBox.Show("Aucune donnée trouvée pour cet employé.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    CustomMessageBox.Show("Aucune donnée trouvée pour cet employé.", "Information", CustomMessageBox.MessageType.Warning);
                     return;
                 }
-                string contrat = emp.Contrat ?? string.Empty;
+                string dureeContrat = emp.DureeContrat ?? string.Empty;
                 decimal tauxTpa = emp.Tpa.HasValue ? emp.Tpa.Value : 0m; // en %
 
                 // 2) Lire le salaire brut (déjà calculé et affiché)
-                
+
                 if (salaireBrut <= 0m)
                 {
-                    MessageBox.Show("Salaire brut invalide ou non calculé.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    CustomMessageBox.Show("Salaire brut invalide ou non calculé.", "Information", CustomMessageBox.MessageType.Warning);
                     return;
                 }
 
                 // 3) Taux (si besoin de visualiser)
-                var taux = CNSSCalculator.GetTauxParContrat(contrat);
+                var taux = CNSSCalculator.GetTauxParContrat(dureeContrat);
 
                 // 4) Calculs
-                decimal cnssEmploye = CNSSCalculator.CalculerCNSSEmploye(salaireBrut, contrat);
+                decimal cnssEmploye = CNSSCalculator.CalculerCNSSEmploye(salaireBrut, dureeContrat);
                 decimal pensionEmployeur = CNSSCalculator.CalculerPensionEmployeur(salaireBrut);
                 decimal risqueProEmployeur = CNSSCalculator.CalculerRisqueProEmployeur(salaireBrut);
                 decimal pfEmployeur = CNSSCalculator.CalculerPFEmployeur(salaireBrut);
@@ -1125,26 +1238,26 @@ public static class IUTS
                 {
                     NomPrenom = employe.Nom ?? "",
                     Civilite = employe.Civilite ?? "",
-                    Matricule = employe.Matricule,
-                    Poste = employe.Poste,
-                    NumeroEmploye = employe.TelephoneEmploye,
-                    AdresseEmploye = employe.Adresse,
-                    PeriodeSalaire = periode,
-                    Categorie = employe.Categorie,
-                    Service = employe.Service,
-                    Direction = employe.Direction,
-                    NumeroCnssEmploye = employe.NumeroCnssEmploye,
-                    Sexe = employe.Sexe,
-                    DureeContrat = employe.DureeContrat,
-                    HeureContrat  = employe.HeureContrat,
+                    Matricule = employe.Matricule ?? "",
+                    Poste = employe.Poste ?? "",
+                    NumeroEmploye = employe.TelephoneEmploye ?? "",
+                    AdresseEmploye = employe.Adresse ?? "",
+                    PeriodeSalaire = periode ?? "",
+                    Categorie = employe.Categorie ?? "",
+                    Service = employe.Service ?? "",
+                    Direction = employe.Direction ?? "",
+                    NumeroCnssEmploye = employe.NumeroCnssEmploye ?? "",
+                    Sexe = employe.Sexe ?? "",
+                    DureeContrat = employe.DureeContrat ?? "",
+                    HeureContrat = employe.HeureContrat,
 
                     // Infos entreprise
-                    Sigle = employe.Sigle,
-                    NomEntreprise = employe.NomEntreprise,
-                    TelephoneEntreprise = employe.TelephoneEntreprise,
-                    EmailEntreprise = employe.EmailEntreprise,
-                    AdressePhysiqueEntreprise = employe.AdressePhysiqueEntreprise,
-                    AdressePostaleEntreprise = employe.AdressePostaleEntreprise,
+                    Sigle = employe.Sigle ?? "",
+                    NomEntreprise = employe.NomEntreprise ?? "",
+                    TelephoneEntreprise = employe.TelephoneEntreprise ?? "",
+                    EmailEntreprise = employe.EmailEntreprise ?? "",
+                    AdressePhysiqueEntreprise = employe.AdressePhysiqueEntreprise ?? "",
+                    AdressePostaleEntreprise = employe.AdressePostaleEntreprise ?? "",
 
 
 
@@ -1156,7 +1269,7 @@ public static class IUTS
 
 
 
-                    IdEntreprise = int.Parse(ComboBoxEntreprise.SelectedValue.ToString()),
+                    IdEntreprise = employe.Entreprise,  // Utiliser directement l'ID entreprise de l'employé
                     IdEmploye = idEmploye,
                     AncienneteStr = anc,
 
@@ -1192,7 +1305,7 @@ public static class IUTS
 
 
                     // Méta
-                    Contrat = contrat,
+                    Contrat = dureeContrat,
                     StatutCadre = emp.Cadre,
 
 
@@ -1219,7 +1332,9 @@ public static class IUTS
                     //SALAIRE NET A PAYER
                     SalaireNet = res.SalaireNet,
                     EffortPaix = res.Effort,
-                    SalaireNetaPayer = res.NetAPayer
+                    SalaireNetaPayer = res.NetAPayer,
+                    ValeurDette = ValeurDette,
+                    SalaireNetaPayerFinal = res.NetAPayerFinal
 
                 };
 
@@ -1229,6 +1344,9 @@ public static class IUTS
 
                 // 👉 Stocke-le pour le bouton "Enregistrer" (champ du Form)
                 _lastSnapshot = snapshot;
+
+                // Afficher les résultats dans le panneau moderne
+                AfficherResultats();
 
                 // (Optionnel) trace 1 lign
 
@@ -1253,7 +1371,7 @@ public static class IUTS
                 );
                 // 6) Debug COMPACT sur une seule ligne
                 Debug.WriteLine(
-                    $"[CNSS] EmpId={idEmploye} | Contrat='{contrat}' | Brut={salaireBrut:N2} | " +
+                    $"[CNSS] EmpId={idEmploye} | Contrat='{dureeContrat}' | Brut={salaireBrut:N2} | " +
                     $"Employe(CNSS)={cnssEmploye:N2} | Employeur(Pens)={pensionEmployeur:N2} | Employeur(RP)={risqueProEmployeur:N2} | Employeur(PF)={pfEmployeur:N2} | " +
                     $"Employeur cnss (Total)={cnssEmployeur:N2} | TPA@{tauxTpa:N2}%={tpa:N2}"
                 );
@@ -1268,11 +1386,11 @@ public static class IUTS
             }
             catch (ArgumentOutOfRangeException ex)
             {
-                MessageBox.Show(ex.Message, "Paramètre hors bornes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CustomMessageBox.Show(ex.Message, "Paramètre hors bornes", CustomMessageBox.MessageType.Warning);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors du calcul du salaire de base : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show($"Erreur lors du calcul du salaire de base :\n{ex.Message}", "Erreur", CustomMessageBox.MessageType.Error);
             }
         }
 
@@ -1302,8 +1420,8 @@ public static class IUTS
         {
             if (_lastSnapshot == null)
             {
-                MessageBox.Show("Effectuez d'abord le calcul pour constituer les valeurs à enregistrer.",
-                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CustomMessageBox.Show("Effectuez d'abord le calcul pour constituer les valeurs à enregistrer.",
+                    "Information", CustomMessageBox.MessageType.Info);
                 return;
             }
             // Exemple pour récupérer et afficher la première indemnité
@@ -1484,7 +1602,9 @@ public static class IUTS
                     //SALAIRE NET A PAYER
                     SalaireNet = _lastSnapshot.SalaireNet,
                     EffortDePaix = _lastSnapshot.EffortPaix,
-                    SalaireNetaPayer = _lastSnapshot.SalaireNetaPayer
+                    SalaireNetaPayer = _lastSnapshot.SalaireNetaPayer,
+                    ValeurDette = _lastSnapshot.ValeurDette,
+                    SalaireNetaPayerFinal = _lastSnapshot.SalaireNetaPayerFinal
 
                 };
 
@@ -1520,14 +1640,67 @@ public static class IUTS
                             UseShellExecute = true
                         });
 
-                        MessageBox.Show("Bulletin généré avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CustomMessageBox.Show("✓ Bulletin généré avec succès !", "Succès", CustomMessageBox.MessageType.Success);
+
+                        // Réinitialiser le formulaire après impression réussie
+                        ResetFormulaire();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Une erreur est survenue :\n{ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show($"Une erreur est survenue :\n{ex.Message}", "Erreur", CustomMessageBox.MessageType.Error);
             }
+        }
+
+        /// <summary>
+        /// Réinitialise le formulaire après impression du bulletin
+        /// </summary>
+        private void ResetFormulaire()
+        {
+            // Réinitialiser le TextBox de recherche
+            textBoxRechercheEmploye.Clear();
+
+            // Réinitialiser le ComboBox employé
+            if (tousLesEmployesHoraires != null)
+            {
+                AfficherEmployesFiltres(tousLesEmployesHoraires);
+            }
+
+            // Réinitialiser les champs d'informations employé (lecture seule)
+            textBoxMatricule.Clear();
+            textBoxPoste.Clear();
+            textBoxCategorie.Clear();
+            textBoxSalaire.Clear();
+            textBoxHcontrat.Clear();
+            textBoxtypeContrat.Clear();
+            textBoxContrat.Clear();
+
+            // Réinitialiser les champs de saisie (heures et absences) avec valeurs par défaut
+            textboxJourNo.Text = "0";
+            textBoxNuitNo.Text = "0";
+            textBoxJourHSF.Text = "0";
+            textBoxNuitHSF.Text = "0";
+            textBoxAbsences.Text = "0";
+            textBoxDette.Text = "0";
+            textBoxNP.Clear();
+
+            // Réinitialiser le snapshot
+            _lastSnapshot = null;
+        }
+
+        /// <summary>
+        /// Gère le clic sur le bouton "Nouveau Calcul" pour réinitialiser le formulaire
+        /// </summary>
+        private void buttonAjouter_Click(object sender, EventArgs e)
+        {
+            // Réinitialiser complètement le formulaire
+            ResetFormulaire();
+
+            // Message de confirmation
+            CustomMessageBox.Show("✓ Formulaire réinitialisé avec succès.\n\nVous pouvez saisir un nouveau calcul de salaire.",
+                "Nouveau Calcul",
+                CustomMessageBox.MessageType.Success);
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -1546,6 +1719,7 @@ public static class IUTS
         }
 
         private void label1_Click(object sender, EventArgs e)
+
         {
 
         }
@@ -1553,6 +1727,351 @@ public static class IUTS
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// Bouton Impression LOT - Saisie en masse et génération d'un PDF consolidé
+        /// </summary>
+        private void buttonImprimerLot_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Ouvrir le formulaire de sélection d'entreprise et de période
+                using (var formSelection = new SelectionEntrepriseForm())
+                {
+                    if (formSelection.ShowDialog() == DialogResult.OK)
+                    {
+                        int idEntreprise = formSelection.EntrepriseSelectionnee;
+                        string nomEntreprise = formSelection.NomEntrepriseSelectionnee;
+                        DateTime periodeDebut = formSelection.DateDebut;
+                        DateTime periodeFin = formSelection.DateFin;
+
+                        // Ouvrir le formulaire de saisie en lot
+                        using (var formSaisie = new SaisiePayeLotForm(idEntreprise, periodeDebut, periodeFin))
+                        {
+                            formSaisie.ShowDialog();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show($"Erreur lors de l'impression en lot :\n{ex.Message}",
+                    "Erreur", CustomMessageBox.MessageType.Error);
+            }
+        }
+
+        // --- RÉSULTATS ET AFFICHAGE ---
+
+        /// <summary>
+        /// Affiche les résultats du calcul dans une fenêtre modale
+        /// </summary>
+        private void AfficherResultats()
+        {
+            if (_lastSnapshot == null)
+            {
+                return;
+            }
+
+            // Ouvrir la fenêtre modale avec les résultats
+            using (var modal = new ResultatsModal(_lastSnapshot))
+            {
+                var result = modal.ShowDialog(this);
+
+                // Si l'utilisateur a cliqué sur Imprimer
+                if (result == DialogResult.OK)
+                {
+                    // Appeler la méthode d'impression
+                    ImprimerBulletin();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Méthode d'impression du bulletin
+        /// </summary>
+        private void ImprimerBulletin()
+        {
+            // Cette méthode est appelée depuis le modal ou depuis buttonparcourir_Click
+            // Elle doit contenir la logique d'impression du bulletin
+            buttonparcourir_Click(null, null);
+        }
+
+        /// <summary>
+        /// Convertit un montant en lettres (français)
+        /// </summary>
+        private string ConvertirMontantEnLettres(decimal montant)
+        {
+            if (montant == 0) return "zéro";
+
+            long partieEntiere = (long)Math.Floor(montant);
+
+            if (partieEntiere < 0) return "montant négatif";
+            if (partieEntiere == 0) return "zéro";
+
+            string[] unites = { "", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf" };
+            string[] dizaines = { "", "dix", "vingt", "trente", "quarante", "cinquante", "soixante", "soixante-dix", "quatre-vingt", "quatre-vingt-dix" };
+            string[] teens = { "dix", "onze", "douze", "treize", "quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf" };
+
+            string resultat = "";
+
+            // Milliards
+            if (partieEntiere >= 1000000000)
+            {
+                long milliards = partieEntiere / 1000000000;
+                resultat += (milliards == 1 ? "un milliard " : ConvertirNombreBasique(milliards) + " milliards ");
+                partieEntiere %= 1000000000;
+            }
+
+            // Millions
+            if (partieEntiere >= 1000000)
+            {
+                long millions = partieEntiere / 1000000;
+                resultat += (millions == 1 ? "un million " : ConvertirNombreBasique(millions) + " millions ");
+                partieEntiere %= 1000000;
+            }
+
+            // Milliers
+            if (partieEntiere >= 1000)
+            {
+                long milliers = partieEntiere / 1000;
+                resultat += (milliers == 1 ? "mille " : ConvertirNombreBasique(milliers) + " mille ");
+                partieEntiere %= 1000;
+            }
+
+            // Centaines, dizaines, unités
+            if (partieEntiere > 0)
+            {
+                resultat += ConvertirNombreBasique(partieEntiere);
+            }
+
+            return resultat.Trim();
+        }
+
+        /// <summary>
+        /// Convertit un nombre de 0 à 999 en lettres
+        /// </summary>
+        private string ConvertirNombreBasique(long nombre)
+        {
+            if (nombre == 0) return "";
+
+            string[] unites = { "", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf" };
+            string[] dizaines = { "", "dix", "vingt", "trente", "quarante", "cinquante", "soixante", "soixante-dix", "quatre-vingt", "quatre-vingt-dix" };
+            string[] teens = { "dix", "onze", "douze", "treize", "quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf" };
+
+            string resultat = "";
+
+            // Centaines
+            if (nombre >= 100)
+            {
+                long centaines = nombre / 100;
+                if (centaines == 1)
+                    resultat += "cent ";
+                else
+                    resultat += unites[centaines] + " cent ";
+                nombre %= 100;
+                if (nombre == 0) resultat = resultat.TrimEnd() + " "; // "deux cents" si nombre = 200
+            }
+
+            // Dizaines et unités
+            if (nombre >= 20)
+            {
+                long diz = nombre / 10;
+                long unit = nombre % 10;
+
+                if (diz == 7 || diz == 9) // 70-79, 90-99
+                {
+                    resultat += dizaines[diz - 1] + "-";
+                    if (unit == 1) resultat += "et-onze";
+                    else resultat += teens[unit];
+                }
+                else if (diz == 8) // 80-89
+                {
+                    if (unit == 0)
+                        resultat += "quatre-vingts";
+                    else
+                        resultat += "quatre-vingt-" + unites[unit];
+                }
+                else
+                {
+                    resultat += dizaines[diz];
+                    if (unit > 0)
+                    {
+                        if (unit == 1 && (diz == 2 || diz == 3 || diz == 4 || diz == 5 || diz == 6))
+                            resultat += "-et-un";
+                        else
+                            resultat += "-" + unites[unit];
+                    }
+                }
+            }
+            else if (nombre >= 10)
+            {
+                resultat += teens[nombre - 10];
+            }
+            else if (nombre > 0)
+            {
+                resultat += unites[nombre];
+            }
+
+            return resultat.Trim() + " ";
+        }
+
+        // --- VALIDATION EN TEMPS RÉEL ---
+
+        /// <summary>
+        /// Valide un champ numérique en temps réel
+        /// </summary>
+        private bool ValiderChampNumerique(Guna.UI2.WinForms.Guna2TextBox textBox, string nomChamp, bool autoriserVide = false)
+        {
+            // Effacer l'erreur précédente
+            errorProvider.SetError(textBox, string.Empty);
+
+            // Si vide et autorisé, mettre à 0 et valider
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                if (autoriserVide)
+                {
+                    textBox.Text = "0";
+                    textBox.BorderColor = Color.FromArgb(213, 218, 223); // Gris neutre
+                    return true;
+                }
+                else
+                {
+                    textBox.BorderColor = Color.FromArgb(231, 76, 60); // Rouge
+                    errorProvider.SetError(textBox, $"{nomChamp} est requis");
+                    return false;
+                }
+            }
+
+            // Vérifier si c'est un nombre décimal valide
+            if (!decimal.TryParse(textBox.Text, out decimal valeur))
+            {
+                textBox.BorderColor = Color.FromArgb(231, 76, 60); // Rouge
+                errorProvider.SetError(textBox, $"{nomChamp} doit être un nombre valide");
+                return false;
+            }
+
+            // Vérifier si négatif
+            if (valeur < 0)
+            {
+                textBox.BorderColor = Color.FromArgb(231, 76, 60); // Rouge
+                errorProvider.SetError(textBox, $"{nomChamp} ne peut pas être négatif");
+                return false;
+            }
+
+            // Validation OK - bordure verte
+            textBox.BorderColor = Color.FromArgb(46, 204, 113); // Vert
+            return true;
+        }
+
+        /// <summary>
+        /// Valide les absences (ne peut pas dépasser les heures du contrat)
+        /// </summary>
+        private bool ValiderAbsences()
+        {
+            errorProvider.SetError(textBoxAbsences, string.Empty);
+
+            if (string.IsNullOrWhiteSpace(textBoxAbsences.Text))
+            {
+                textBoxAbsences.Text = "0";
+                textBoxAbsences.BorderColor = Color.FromArgb(213, 218, 223);
+                return true;
+            }
+
+            if (!decimal.TryParse(textBoxAbsences.Text, out decimal absences))
+            {
+                textBoxAbsences.BorderColor = Color.FromArgb(231, 76, 60);
+                errorProvider.SetError(textBoxAbsences, "Absences doit être un nombre valide");
+                return false;
+            }
+
+            if (absences < 0)
+            {
+                textBoxAbsences.BorderColor = Color.FromArgb(231, 76, 60);
+                errorProvider.SetError(textBoxAbsences, "Absences ne peut pas être négatif");
+                return false;
+            }
+
+            // Vérifier si absences > heures contrat
+            if (decimal.TryParse(textBoxHcontrat.Text, out decimal heuresContrat))
+            {
+                if (absences > heuresContrat)
+                {
+                    textBoxAbsences.BorderColor = Color.FromArgb(243, 156, 18); // Orange (warning)
+                    errorProvider.SetError(textBoxAbsences, $"⚠️ Absences ({absences}h) > Heures contrat ({heuresContrat}h)");
+                    return true; // Warning, pas erreur bloquante
+                }
+            }
+
+            textBoxAbsences.BorderColor = Color.FromArgb(46, 204, 113);
+            return true;
+        }
+
+        /// <summary>
+        /// Configure les événements de validation pour tous les champs
+        /// </summary>
+        private void ConfigurerValidation()
+        {
+            // Validation heures supplémentaires normales
+            textboxJourNo.TextChanged += (s, e) => ValiderChampNumerique(textboxJourNo, "Heures jour normales", true);
+            textBoxNuitNo.TextChanged += (s, e) => ValiderChampNumerique(textBoxNuitNo, "Heures nuit normales", true);
+
+            // Validation heures supplémentaires fériés
+            textBoxJourHSF.TextChanged += (s, e) => ValiderChampNumerique(textBoxJourHSF, "Heures jour fériés", true);
+            textBoxNuitHSF.TextChanged += (s, e) => ValiderChampNumerique(textBoxNuitHSF, "Heures nuit fériés", true);
+
+            // Validation absences (avec vérification spéciale)
+            textBoxAbsences.TextChanged += (s, e) => ValiderAbsences();
+
+            // Validation dette
+            textBoxDette.TextChanged += (s, e) => ValiderChampNumerique(textBoxDette, "Remboursement dette", true);
+
+            // Validation à la perte de focus (pour nettoyer les valeurs)
+            textboxJourNo.Leave += (s, e) => NettoyerChampNumerique(textboxJourNo);
+            textBoxNuitNo.Leave += (s, e) => NettoyerChampNumerique(textBoxNuitNo);
+            textBoxJourHSF.Leave += (s, e) => NettoyerChampNumerique(textBoxJourHSF);
+            textBoxNuitHSF.Leave += (s, e) => NettoyerChampNumerique(textBoxNuitHSF);
+            textBoxAbsences.Leave += (s, e) => NettoyerChampNumerique(textBoxAbsences);
+            textBoxDette.Leave += (s, e) => NettoyerChampNumerique(textBoxDette);
+        }
+
+        /// <summary>
+        /// Nettoie un champ numérique (enlève espaces, remplace vide par 0)
+        /// </summary>
+        private void NettoyerChampNumerique(Guna.UI2.WinForms.Guna2TextBox textBox)
+        {
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = "0";
+            }
+            else
+            {
+                // Nettoyer les espaces
+                textBox.Text = textBox.Text.Trim();
+
+                // Essayer de parser et reformater
+                if (decimal.TryParse(textBox.Text, out decimal valeur))
+                {
+                    textBox.Text = valeur.ToString("0.##");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Valide tous les champs avant calcul
+        /// </summary>
+        private bool ValiderTousLesChamps()
+        {
+            bool valide = true;
+
+            valide &= ValiderChampNumerique(textboxJourNo, "Heures jour normales", true);
+            valide &= ValiderChampNumerique(textBoxNuitNo, "Heures nuit normales", true);
+            valide &= ValiderChampNumerique(textBoxJourHSF, "Heures jour fériés", true);
+            valide &= ValiderChampNumerique(textBoxNuitHSF, "Heures nuit fériés", true);
+            valide &= ValiderAbsences();
+            valide &= ValiderChampNumerique(textBoxDette, "Remboursement dette", true);
+
+            return valide;
         }
 
         // --- UTIL ---

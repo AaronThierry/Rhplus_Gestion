@@ -13,6 +13,10 @@ namespace RH_GRH
         EntrepriseClass Entreprise = new EntrepriseClass();
         Dbconnect connect = new Dbconnect();
 
+        // Variables pour suivre le bouton survolé
+        private int hoverRowIndex = -1;
+        private string hoverButton = "";
+
         public GestionEntrepriseForm()
         {
             InitializeComponent();
@@ -24,6 +28,74 @@ namespace RH_GRH
             textBoxSearch.TextChanged += textBoxSearch_TextChanged;
 
             ShowTableEntrepriseGestion();
+
+            // Styliser le header avec un design moderne
+            StyliserHeader();
+        }
+
+        private void StyliserHeader()
+        {
+            // Configurer le panel2 (header)
+            panel2.Height = 70;
+            panel2.Paint += (s, e) =>
+            {
+                // Dégradé corporate élégant - Vert sapin professionnel
+                using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(
+                    panel2.ClientRectangle,
+                    Color.FromArgb(32, 87, 70),    // Vert sapin foncé
+                    Color.FromArgb(46, 125, 100),  // Vert corporate
+                    System.Drawing.Drawing2D.LinearGradientMode.Horizontal))
+                {
+                    e.Graphics.FillRectangle(brush, panel2.ClientRectangle);
+                }
+
+                // Barre accent subtile
+                using (var accentBrush = new SolidBrush(Color.FromArgb(72, 156, 128)))
+                {
+                    e.Graphics.FillRectangle(accentBrush, 0, panel2.Height - 3, panel2.Width, 3);
+                }
+            };
+
+            // Styliser labelBandeEntreprise (titre principal)
+            labelBandeEntreprise.BackColor = Color.Transparent;
+            labelBandeEntreprise.Font = new Font("Montserrat", 15F, FontStyle.Bold);
+            labelBandeEntreprise.ForeColor = Color.White;
+            labelBandeEntreprise.Text = "ENTREPRISES";
+            labelBandeEntreprise.Padding = new Padding(70, 0, 0, 0);  // Espace pour l'icône
+            labelBandeEntreprise.TextAlign = ContentAlignment.MiddleLeft;
+            labelBandeEntreprise.Dock = DockStyle.Fill;
+            labelBandeEntreprise.AutoSize = false;
+
+            // Dessiner une icône personnalisée
+            labelBandeEntreprise.Paint += (s, e) =>
+            {
+                // Dessiner l'icône bâtiment
+                int iconSize = 28;
+                int iconX = 30;
+                int iconY = (labelBandeEntreprise.Height - iconSize) / 2;
+
+                using (var brush = new SolidBrush(Color.FromArgb(72, 156, 128)))
+                using (var pen = new Pen(Color.FromArgb(72, 156, 128), 2f))
+                {
+                    // Contour du bâtiment
+                    e.Graphics.DrawRectangle(pen, iconX + 2, iconY + 4, iconSize - 4, iconSize - 4);
+                    // Fenêtres (6 petits carrés)
+                    int windowSize = 4;
+                    int spacing = 6;
+                    for (int row = 0; row < 2; row++)
+                    {
+                        for (int col = 0; col < 3; col++)
+                        {
+                            e.Graphics.FillRectangle(brush,
+                                iconX + 6 + (col * spacing),
+                                iconY + 8 + (row * spacing),
+                                windowSize, windowSize);
+                        }
+                    }
+                }
+            };
+
+            panel2.Invalidate();
         }
 
         public void ShowTableEntrepriseGestion()
@@ -61,10 +133,22 @@ namespace RH_GRH
 
                 DataGridView_Entreprise_Gestion.DataSource = tableFiltered;
 
+                // Masquer la colonne N° (avec symbole degré)
+                if (DataGridView_Entreprise_Gestion.Columns.Contains("N°"))
+                {
+                    DataGridView_Entreprise_Gestion.Columns["N°"].Visible = false;
+                }
+
+                // Masquer la colonne ID
+                if (DataGridView_Entreprise_Gestion.Columns.Contains("id_entreprise"))
+                {
+                    DataGridView_Entreprise_Gestion.Columns["id_entreprise"].Visible = false;
+                }
+
                 // Configurer la colonne Actions
                 if (DataGridView_Entreprise_Gestion.Columns["Actions"] != null)
                 {
-                    DataGridView_Entreprise_Gestion.Columns["Actions"].Width = 180;
+                    DataGridView_Entreprise_Gestion.Columns["Actions"].Width = 120;
                     DataGridView_Entreprise_Gestion.Columns["Actions"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     DataGridView_Entreprise_Gestion.Columns["Actions"].HeaderText = "Actions";
                 }
@@ -81,60 +165,45 @@ namespace RH_GRH
 
         private void DataGridView_Entreprise_Gestion_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
 
             if (DataGridView_Entreprise_Gestion.Columns[e.ColumnIndex].Name == "Actions")
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentForeground);
 
-                // Zone de dessin
-                Rectangle rect = e.CellBounds;
-                int padding = 5;
-                int buttonWidth = 80;
-                int buttonHeight = 28;
-                int buttonY = rect.Y + (rect.Height - buttonHeight) / 2;
+                // Calculer les dimensions du bouton Modifier (centré)
+                int buttonWidth = 75;
+                int buttonHeight = 32;
+                int startX = e.CellBounds.X + (e.CellBounds.Width - buttonWidth) / 2;
+                int startY = e.CellBounds.Y + (e.CellBounds.Height - buttonHeight) / 2;
 
-                // Bouton "Modifier" (or/doré)
-                Rectangle btnModifier = new Rectangle(rect.X + padding, buttonY, buttonWidth, buttonHeight);
-                using (GraphicsPath path = GraphicsExtensions.CreateRoundedRectanglePath(btnModifier, 6))
-                using (SolidBrush brush = new SolidBrush(Color.FromArgb(218, 165, 32))) // Or/Doré
+                // Bouton Modifier (doré)
+                Rectangle btnModifier = new Rectangle(startX, startY, buttonWidth, buttonHeight);
+                bool modifierHover = (hoverRowIndex == e.RowIndex && hoverButton == "Modifier");
+                Color modifierColor = modifierHover ? Color.FromArgb(218, 165, 32) : Color.FromArgb(255, 215, 0); // Gold
+
+                using (SolidBrush brush = new SolidBrush(modifierColor))
+                using (Pen borderPen = new Pen(Color.FromArgb(184, 134, 11), 1))
                 {
-                    e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                    e.Graphics.FillPath(brush, path);
-
-                    // Texte du bouton
-                    StringFormat sf = new StringFormat
-                    {
-                        Alignment = StringAlignment.Center,
-                        LineAlignment = StringAlignment.Center
-                    };
-                    using (Font font = new Font("Montserrat", 8f, FontStyle.Bold))
-                    {
-                        e.Graphics.DrawString("Modifier", font, Brushes.White, btnModifier, sf);
-                    }
+                    e.Graphics.FillRoundedRectangle(brush, btnModifier, 6);
+                    e.Graphics.DrawRoundedRectangle(borderPen, btnModifier, 6);
                 }
 
-                // Bouton "Supprimer" (rouge)
-                Rectangle btnSupprimer = new Rectangle(
-                    btnModifier.Right + padding,
-                    buttonY,
-                    buttonWidth,
-                    buttonHeight
-                );
-                using (GraphicsPath path = GraphicsExtensions.CreateRoundedRectanglePath(btnSupprimer, 6))
-                using (SolidBrush brush = new SolidBrush(Color.FromArgb(220, 53, 69))) // Rouge
+                // Icône et texte Modifier
+                using (Font iconFont = new Font("Segoe UI Emoji", 10f, FontStyle.Regular))
+                using (Font textFont = new Font("Montserrat", 8f, FontStyle.Bold))
+                using (SolidBrush iconBrush = new SolidBrush(Color.FromArgb(64, 64, 64)))
+                using (SolidBrush textBrush = new SolidBrush(Color.FromArgb(64, 64, 64)))
                 {
-                    e.Graphics.FillPath(brush, path);
+                    StringFormat sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
 
-                    StringFormat sf = new StringFormat
-                    {
-                        Alignment = StringAlignment.Center,
-                        LineAlignment = StringAlignment.Center
-                    };
-                    using (Font font = new Font("Montserrat", 8f, FontStyle.Bold))
-                    {
-                        e.Graphics.DrawString("Supprimer", font, Brushes.White, btnSupprimer, sf);
-                    }
+                    // Dessiner l'icône
+                    Rectangle iconRect = new Rectangle(btnModifier.X, btnModifier.Y + 2, btnModifier.Width, btnModifier.Height / 2);
+                    e.Graphics.DrawString("✏", iconFont, iconBrush, iconRect, sf);
+
+                    // Dessiner le texte
+                    Rectangle textRect = new Rectangle(btnModifier.X, btnModifier.Y + btnModifier.Height / 2 - 2, btnModifier.Width, btnModifier.Height / 2);
+                    e.Graphics.DrawString("Modifier", textFont, textBrush, textRect, sf);
                 }
 
                 e.Handled = true;
@@ -143,27 +212,43 @@ namespace RH_GRH
 
         private void DataGridView_Entreprise_Gestion_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            if (DataGridView_Entreprise_Gestion.Columns[e.ColumnIndex].Name == "Actions")
             {
-                if (DataGridView_Entreprise_Gestion.Columns[e.ColumnIndex].Name == "Actions")
+                var cellBounds = DataGridView_Entreprise_Gestion.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+
+                int buttonWidth = 75;
+                int buttonHeight = 32;
+                int startX = cellBounds.X + (cellBounds.Width - buttonWidth) / 2;
+                int startY = cellBounds.Y + (cellBounds.Height - buttonHeight) / 2;
+
+                Rectangle btnModifier = new Rectangle(startX, startY, buttonWidth, buttonHeight);
+
+                Point mousePos = DataGridView_Entreprise_Gestion.PointToClient(Cursor.Position);
+
+                string newHoverButton = "";
+                if (btnModifier.Contains(mousePos.X, mousePos.Y))
+                    newHoverButton = "Modifier";
+
+                if (hoverRowIndex != e.RowIndex || hoverButton != newHoverButton)
                 {
-                    DataGridView_Entreprise_Gestion.Cursor = Cursors.Hand;
-                }
-                else
-                {
-                    DataGridView_Entreprise_Gestion.Cursor = Cursors.Default;
+                    hoverRowIndex = e.RowIndex;
+                    hoverButton = newHoverButton;
+                    DataGridView_Entreprise_Gestion.InvalidateCell(e.ColumnIndex, e.RowIndex);
+                    DataGridView_Entreprise_Gestion.Cursor = string.IsNullOrEmpty(newHoverButton) ? Cursors.Default : Cursors.Hand;
                 }
             }
         }
 
         private void DataGridView_Entreprise_Gestion_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
             if (DataGridView_Entreprise_Gestion.Columns[e.ColumnIndex].Name == "Actions")
             {
-                // Récupérer l'ID de l'entreprise
-                var cellValue = DataGridView_Entreprise_Gestion.Rows[e.RowIndex].Cells[0].Value;
+                // Récupérer l'ID de l'entreprise depuis la colonne N°
+                var cellValue = DataGridView_Entreprise_Gestion.Rows[e.RowIndex].Cells["N°"].Value;
                 if (cellValue == null || cellValue == DBNull.Value)
                 {
                     CustomMessageBox.Show("Impossible de récupérer l'ID de l'entreprise.", "Erreur",
@@ -210,17 +295,18 @@ namespace RH_GRH
 
                                 connect.closeConnect();
 
-                                // Déterminer le bouton cliqué
-                                Rectangle cellRect = DataGridView_Entreprise_Gestion.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
-                                Point clickPoint = DataGridView_Entreprise_Gestion.PointToClient(Cursor.Position);
-                                int relativeX = clickPoint.X - cellRect.Left;
+                                // Déterminer si le bouton Modifier a été cliqué
+                                Point mousePos = DataGridView_Entreprise_Gestion.PointToClient(Cursor.Position);
+                                var cellBounds = DataGridView_Entreprise_Gestion.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
 
-                                int padding = 5;
-                                int buttonWidth = 80;
-                                int btnModifierEnd = padding + buttonWidth;
-                                int btnSupprimerStart = btnModifierEnd + padding;
+                                int buttonWidth = 75;
+                                int buttonHeight = 32;
+                                int startX = cellBounds.X + (cellBounds.Width - buttonWidth) / 2;
+                                int startY = cellBounds.Y + (cellBounds.Height - buttonHeight) / 2;
 
-                                if (relativeX >= padding && relativeX <= btnModifierEnd)
+                                Rectangle btnModifier = new Rectangle(startX, startY, buttonWidth, buttonHeight);
+
+                                if (btnModifier.Contains(mousePos.X, mousePos.Y))
                                 {
                                     // Bouton "Modifier" cliqué
                                     ModifierEntrepriseAvecModale(
@@ -229,11 +315,6 @@ namespace RH_GRH
                                         rue, lot, centreImpots, numeroIfu, numeroCnss, codeActivite,
                                         regimeFiscal, registreCommerce, numeroBancaire, tpa, email, logo
                                     );
-                                }
-                                else if (relativeX >= btnSupprimerStart && relativeX <= btnSupprimerStart + buttonWidth)
-                                {
-                                    // Bouton "Supprimer" cliqué
-                                    SupprimerEntreprise(idEntreprise, nomEntreprise);
                                 }
                             }
                             else
@@ -373,9 +454,21 @@ namespace RH_GRH
 
                     DataGridView_Entreprise_Gestion.DataSource = tableFiltered;
 
+                    // Masquer la colonne N° (avec symbole degré)
+                    if (DataGridView_Entreprise_Gestion.Columns.Contains("N°"))
+                    {
+                        DataGridView_Entreprise_Gestion.Columns["N°"].Visible = false;
+                    }
+
+                    // Masquer la colonne ID
+                    if (DataGridView_Entreprise_Gestion.Columns.Contains("id_entreprise"))
+                    {
+                        DataGridView_Entreprise_Gestion.Columns["id_entreprise"].Visible = false;
+                    }
+
                     if (DataGridView_Entreprise_Gestion.Columns["Actions"] != null)
                     {
-                        DataGridView_Entreprise_Gestion.Columns["Actions"].Width = 180;
+                        DataGridView_Entreprise_Gestion.Columns["Actions"].Width = 120;
                         DataGridView_Entreprise_Gestion.Columns["Actions"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
                 }

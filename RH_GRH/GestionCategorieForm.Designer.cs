@@ -39,7 +39,6 @@ namespace RH_GRH
             this.buttonAjouterCategorie = new Guna.UI2.WinForms.Guna2Button();
             this.textBoxSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.DataGridView_Categorie_Gestion = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
@@ -55,10 +54,10 @@ namespace RH_GRH
             // 
             this.panel3.Controls.Add(this.tabControlCategorie);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 60);
+            this.panel3.Location = new System.Drawing.Point(0, 70);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1600, 802);
+            this.panel3.Size = new System.Drawing.Size(1600, 792);
             this.panel3.TabIndex = 1;
             // 
             // tabControlCategorie
@@ -71,7 +70,7 @@ namespace RH_GRH
             this.tabControlCategorie.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlCategorie.Name = "tabControlCategorie";
             this.tabControlCategorie.SelectedIndex = 0;
-            this.tabControlCategorie.Size = new System.Drawing.Size(1600, 802);
+            this.tabControlCategorie.Size = new System.Drawing.Size(1600, 792);
             this.tabControlCategorie.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControlCategorie.TabIndex = 0;
             // 
@@ -83,7 +82,7 @@ namespace RH_GRH
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1592, 793);
+            this.tabPage2.Size = new System.Drawing.Size(1592, 783);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Gestion";
             // 
@@ -94,7 +93,7 @@ namespace RH_GRH
             this.panel6.Location = new System.Drawing.Point(4, 4);
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1584, 785);
+            this.panel6.Size = new System.Drawing.Size(1584, 775);
             this.panel6.TabIndex = 4;
             // 
             // panel7
@@ -106,7 +105,7 @@ namespace RH_GRH
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1584, 785);
+            this.panel7.Size = new System.Drawing.Size(1584, 775);
             this.panel7.TabIndex = 26;
             // 
             // buttonAjouterCategorie
@@ -216,7 +215,7 @@ namespace RH_GRH
             this.DataGridView_Categorie_Gestion.RowHeadersVisible = false;
             this.DataGridView_Categorie_Gestion.RowHeadersWidth = 51;
             this.DataGridView_Categorie_Gestion.RowTemplate.Height = 45;
-            this.DataGridView_Categorie_Gestion.Size = new System.Drawing.Size(1580, 707);
+            this.DataGridView_Categorie_Gestion.Size = new System.Drawing.Size(1580, 697);
             this.DataGridView_Categorie_Gestion.TabIndex = 2;
             this.DataGridView_Categorie_Gestion.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.DataGridView_Categorie_Gestion.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -240,30 +239,16 @@ namespace RH_GRH
             this.DataGridView_Categorie_Gestion.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.DataGridView_Categorie_Gestion.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.label2.Location = new System.Drawing.Point(27, 31);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(218, 47);
-            this.label2.TabIndex = 0;
-            this.label2.Text = ">> Catégorie";
-            // 
             // label1
-            // 
-            this.label1.BackColor = System.Drawing.SystemColors.Highlight;
+            //
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Montserrat Medium", 13F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.MaximumSize = new System.Drawing.Size(0, 60);
-            this.label1.MinimumSize = new System.Drawing.Size(0, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1600, 60);
+            this.label1.Size = new System.Drawing.Size(1600, 70);
             this.label1.TabIndex = 3;
             this.label1.Text = ">> Categorie de salaire";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -272,14 +257,11 @@ namespace RH_GRH
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(112)))));
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.MaximumSize = new System.Drawing.Size(0, 60);
-            this.panel1.MinimumSize = new System.Drawing.Size(0, 60);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1600, 60);
+            this.panel1.Size = new System.Drawing.Size(1600, 70);
             this.panel1.TabIndex = 0;
             // 
             // GestionCategorieForm
@@ -301,7 +283,6 @@ namespace RH_GRH
             this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Categorie_Gestion)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -315,7 +296,6 @@ namespace RH_GRH
         private Guna.UI2.WinForms.Guna2Button buttonAjouterCategorie;
         private Guna.UI2.WinForms.Guna2TextBox textBoxSearch;
         private Guna.UI2.WinForms.Guna2DataGridView DataGridView_Categorie_Gestion;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
     }

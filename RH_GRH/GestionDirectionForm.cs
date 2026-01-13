@@ -31,6 +31,75 @@ namespace RH_GRH
 
             // Recherche en temps réel
             textBoxSearch.TextChanged += textBoxSearch_TextChanged;
+
+            // Styliser le header avec un design moderne
+            StyliserHeader();
+        }
+
+        private void StyliserHeader()
+        {
+            // Configurer le panel2 (header)
+            panel2.Height = 70;
+            panel2.Paint += (s, e) =>
+            {
+                // Dégradé corporate élégant - Gris anthracite professionnel
+                using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(
+                    panel2.ClientRectangle,
+                    Color.FromArgb(52, 58, 64),    // Gris anthracite
+                    Color.FromArgb(73, 80, 87),    // Gris moderne
+                    System.Drawing.Drawing2D.LinearGradientMode.Horizontal))
+                {
+                    e.Graphics.FillRectangle(brush, panel2.ClientRectangle);
+                }
+
+                // Barre accent subtile
+                using (var accentBrush = new SolidBrush(Color.FromArgb(108, 117, 125)))
+                {
+                    e.Graphics.FillRectangle(accentBrush, 0, panel2.Height - 3, panel2.Width, 3);
+                }
+            };
+
+            // Masquer label1 (ancien label)
+            if (label1 != null)
+                label1.Visible = false;
+
+            // Styliser label2 (titre principal)
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Montserrat", 15F, FontStyle.Bold);
+            label2.ForeColor = Color.White;
+            label2.Text = "DIRECTIONS";
+            label2.Padding = new Padding(70, 0, 0, 0);  // Espace pour l'icône
+            label2.TextAlign = ContentAlignment.MiddleLeft;
+            label2.Dock = DockStyle.Fill;
+            label2.AutoSize = false;
+
+            // Dessiner une icône personnalisée
+            label2.Paint += (s, e) =>
+            {
+                // Dessiner l'icône flèche directionnelle
+                int iconSize = 28;
+                int iconX = 30;
+                int iconY = (label2.Height - iconSize) / 2;
+
+                using (var brush = new SolidBrush(Color.FromArgb(108, 117, 125)))
+                using (var pen = new Pen(Color.FromArgb(108, 117, 125), 2.5f))
+                {
+                    // Flèche vers la droite
+                    Point[] arrow = new Point[]
+                    {
+                        new Point(iconX, iconY + 8),
+                        new Point(iconX + 15, iconY + 8),
+                        new Point(iconX + 15, iconY + 2),
+                        new Point(iconX + 26, iconY + iconSize / 2),
+                        new Point(iconX + 15, iconY + iconSize - 2),
+                        new Point(iconX + 15, iconY + iconSize - 8),
+                        new Point(iconX, iconY + iconSize - 8)
+                    };
+                    e.Graphics.FillPolygon(brush, arrow);
+                }
+            };
+
+            panel2.Invalidate();
         }
 
         // Variables pour suivre le bouton survolé

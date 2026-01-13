@@ -164,6 +164,46 @@ ORDER BY type, nom_prenom;";
             return list;
         }
 
+        // --- RÉCUPÉRER UNE CHARGE PAR ID ---
+        public static Charge GetById(int idCharge)
+        {
+            var db = new Dbconnect();
+            using (var con = db.getconnection)
+            {
+                con.Open();
+
+                const string sql = @"
+SELECT id_charge, id_personnel, type, nom_prenom, date_naissance, identification, scolarisation
+FROM charge
+WHERE id_charge = @id_charge
+LIMIT 1;";
+
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@id_charge", idCharge);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Charge
+                            {
+                                IdCharge = Convert.ToInt32(reader["id_charge"]),
+                                IdPersonnel = Convert.ToInt32(reader["id_personnel"]),
+                                Type = reader["type"].ToString() == "Épouse" ? ChargeType.Epouse : ChargeType.Enfant,
+                                NomPrenom = reader["nom_prenom"].ToString(),
+                                DateNaissance = reader["date_naissance"] == DBNull.Value
+                                    ? DateTime.MinValue
+                                    : Convert.ToDateTime(reader["date_naissance"]),
+                                Identification = reader["identification"]?.ToString(),
+                                Scolarisation = reader["scolarisation"]?.ToString()
+                            };
+                        }
+                    }
+                }
+            }
+            return null; // Charge non trouvée
+        }
+
         // --- SUPPRESSION ---
         public static void Supprimer(int idCharge)
         {

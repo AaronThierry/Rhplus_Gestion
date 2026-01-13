@@ -14,7 +14,7 @@ using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static RH_GRH.GestionSalaireHoraireForm;
+// using static RH_GRH.GestionSalaireHoraireForm; // ⚠️ SUPPRIMÉ - plus nécessaire
 
 namespace RH_GRH
 {
@@ -22,10 +22,71 @@ namespace RH_GRH
     {
 
         private PayrollSnapshot _lastSnapshot;
+        private DataTable tousLesEmployesJournaliers;
+
         public GestionSalaireJournalierForm()
         {
             InitializeComponent();
+            StyliserHeader();
             InitPeriode();
+        }
+
+        private void StyliserHeader()
+        {
+            panel2.Height = 85;
+            panel2.Paint += (s, e) =>
+            {
+                using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(
+                    panel2.ClientRectangle,
+                    Color.FromArgb(230, 126, 34),    // Orange
+                    Color.FromArgb(243, 156, 18),    // Orange clair
+                    System.Drawing.Drawing2D.LinearGradientMode.Horizontal))
+                {
+                    e.Graphics.FillRectangle(brush, panel2.ClientRectangle);
+                }
+            };
+
+            label1.Text = "☀️ SALAIRE JOURNALIER";
+            label1.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label1.ForeColor = System.Drawing.Color.White;
+            label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label1.Padding = new System.Windows.Forms.Padding(70, 0, 0, 0);
+
+            label1.Paint += (s, e) =>
+            {
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+                int iconX = 15;
+                int iconY = (label1.Height - 32) / 2;
+
+                // Icône : Soleil (représentant le jour)
+                using (var pen = new Pen(Color.White, 2.2f))
+                using (var brush = new SolidBrush(Color.White))
+                {
+                    // Cercle central (soleil)
+                    e.Graphics.FillEllipse(brush, iconX + 10, iconY + 10, 16, 16);
+
+                    // 8 rayons autour
+                    float centerX = iconX + 18;
+                    float centerY = iconY + 18;
+                    float innerRadius = 10;
+                    float outerRadius = 15;
+
+                    for (int i = 0; i < 8; i++)
+                    {
+                        float angle = (float)(i * Math.PI / 4);
+                        float x1 = centerX + innerRadius * (float)Math.Cos(angle);
+                        float y1 = centerY + innerRadius * (float)Math.Sin(angle);
+                        float x2 = centerX + outerRadius * (float)Math.Cos(angle);
+                        float y2 = centerY + outerRadius * (float)Math.Sin(angle);
+
+                        e.Graphics.DrawLine(pen, x1, y1, x2, y2);
+                    }
+                }
+            };
+
+            panel2.Invalidate();
+            label1.Invalidate();
         }
 
 
@@ -598,107 +659,8 @@ namespace RH_GRH
 
 
 
-        public sealed class PayrollSnapshot
-        {
-            // Identifiants
-            public int IdEntreprise { get; set; }
-            public int IdEmploye { get; set; }
-            public string AncienneteStr { get; set; } = "";
-
-
-
-            //Salaire Base
-            public decimal BaseUnitaire { get; set; }
-            public decimal SalaireBase { get; set; }
-            public decimal TauxSalaireDeBase { get; set; }
-            //****************************************
-
-
-            //HEURES SUPPLEMENTAIRES
-            public decimal PrimeHeuressupp { get; set; }
-            public decimal TauxHeureSupp { get; set; }
-            //******************************************
-
-
-            //PRIME ANCIENNETE
-            public decimal PrimeAnciennete { get; set; }
-            //******************************************
-
-
-
-
-
-            //Infos Employe 
-            public string NomPrenom { get; set; } = "";
-            public string Civilite { get; set; } = "";
-            public string Poste { get; set; } = "";
-            public string Matricule { get; set; } = "";
-            public string NumeroEmploye { get; set; } = "";
-            public string AdresseEmploye { get; set; } = "";
-            public string PeriodeSalaire { get; set; } = "";
-            public string Contrat { get; set; } = "";
-            public string Sexe { get; set; } = "";
-            public string DureeContrat { get; set; } = "";
-            public int HeureContrat { get; set; }
-
-
-
-            public string Sigle { get; set; } = "";
-            public string NomEntreprise { get; set; } = "";
-            public string TelephoneEntreprise { get; set; } = "";
-            public string EmailEntreprise { get; set; } = "";
-            public string AdressePhysiqueEntreprise { get; set; } = "";
-            public string AdressePostaleEntreprise { get; set; } = "";
-
-
-            public DateTime DateNaissance { get; set; } // Utilisation de DateTime pour les dates
-            public DateTime DateEntree { get; set; } // Utilisation de DateTime pour les dates
-            public DateTime? DateSortie { get; set; } // Nullable DateTime pour la sortie
-
-
-            // Composantes de gains
-
-            public decimal HeuresSupp { get; set; }
-            public decimal IndemNum { get; set; }
-            public decimal IndemNat { get; set; }
-
-            // Totaux bruts / sociaux
-            public decimal SalaireBrut { get; set; }
-            public decimal SalaireBrutSocial { get; set; }
-
-            // CNSS & TPA (employé / employeur)
-            public decimal CNSS_Employe { get; set; }
-            public decimal PensionEmployeur { get; set; }
-            public decimal RisqueProEmployeur { get; set; }
-            public decimal PFEmployeur { get; set; }
-            public decimal CNSS_Employeur_Total { get; set; }
-            public decimal TPA { get; set; }
-
-            // IUTS
-            public decimal DeductibiliteIndemnites { get; set; }
-            public decimal BaseIUTS { get; set; }
-            public decimal BaseIUTS_Arrondie { get; set; }
-            public int NombreCharges { get; set; }
-            public decimal IUTS_Brut { get; set; }
-            public decimal IUTS_Final { get; set; }
-
-            // Net
-            public decimal SalaireNet { get; set; }
-            public decimal EffortPaix { get; set; }
-            public decimal SalaireNetaPayer { get; set; }
-
-            // Méta (facultatif)
-            public string Categorie { get; set; } = "";
-            public string Direction { get; set; } = "";
-            public string Service { get; set; } = "";
-            public string NumeroCnssEmploye { get; set; } = "";
-            public decimal TauxTPA { get; set; }
-            public string StatutCadre { get; set; } = ""; // "oui"/"non"
-
-
-        }
-
-
+        // ⚠️ SUPPRIMÉ: Utilisation de la classe PayrollSnapshot globale (PayrollSnapshot.cs)
+        // La définition locale a été retirée pour éviter les conflits de type
 
 
 
@@ -731,10 +693,162 @@ namespace RH_GRH
 
         private void GestionSalaireJournalierForm_Load(object sender, EventArgs e)
         {
-            EntrepriseClass.ChargerEntreprises(ComboBoxEntreprise);
+            // Charger tous les employés journaliers
+            ChargerTousLesEmployesJournaliers();
         }
 
+        private void ChargerTousLesEmployesJournaliers()
+        {
+            try
+            {
+                var dbConnect = new Dbconnect();
+                using (var con = dbConnect.getconnection)
+                {
+                    con.Open();
 
+                    string query = @"
+                        SELECT
+                            p.id_personnel,
+                            p.nomPrenom AS Nom,
+                            p.matricule AS Matricule,
+                            e.nomEntreprise AS Entreprise,
+                            p.poste AS Poste,
+                            p.telephone AS Telephone,
+                            p.adresse AS Adresse,
+                            p.contrat AS Contrat,
+                            p.identification AS Identification,
+                            p.cadre AS Cadre,
+                            p.civilite AS Civilite,
+                            p.sexe AS Sexe,
+                            s.nomService AS Service,
+                            d.nomDirection AS Direction,
+                            c.nomCategorie AS Categorie,
+                            p.numerocnss AS NumeroCNSS,
+                            CONCAT(p.nomPrenom, ' (', p.matricule, ') - ', e.nomEntreprise) AS Display
+                        FROM personnel p
+                        INNER JOIN entreprise e ON p.id_entreprise = e.id_entreprise
+                        LEFT JOIN service s ON s.id_service = p.id_service
+                        LEFT JOIN direction d ON d.id_direction = p.id_direction
+                        LEFT JOIN categorie c ON c.id_categorie = p.id_categorie
+                        WHERE p.typeContrat = 'Journalier'
+                        ORDER BY p.nomPrenom";
+
+                    using (var cmd = new MySqlCommand(query, con))
+                    {
+                        var adapter = new MySqlDataAdapter(cmd);
+                        tousLesEmployesJournaliers = new DataTable();
+                        adapter.Fill(tousLesEmployesJournaliers);
+
+                        // Afficher tous au départ
+                        AfficherEmployesFiltres(tousLesEmployesJournaliers);
+
+                        // Activer tous les champs une fois les données chargées
+                        ActiverTousLesChamps();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show($"Erreur lors du chargement des employés journaliers :\n{ex.Message}",
+                    "Erreur", CustomMessageBox.MessageType.Error);
+            }
+        }
+
+        private void ActiverTousLesChamps()
+        {
+            // Activer les champs de recherche et sélection
+            textBoxRechercheEmploye.Enabled = true;
+            ComboBoxEmploye.Enabled = true;
+
+            // Activer tous les champs de saisie
+            textBoxMatricule.Enabled = true;
+            textBoxPoste.Enabled = true;
+            textBoxtypeContrat.Enabled = true;
+            textBoxContrat.Enabled = true;
+            textBoxCategorie.Enabled = true;
+            textBoxSalaire.Enabled = true;
+            textBoxHcontrat.Enabled = true;
+            textBoxNP.Enabled = true;
+            textBoxAbsences.Enabled = true;
+            textBoxJoursFD.Enabled = true;
+            textBoxDette.Enabled = true;
+
+            // Activer les boutons
+            buttonAjouter.Enabled = true;
+            buttonValider.Enabled = true;
+        }
+
+        private void AfficherEmployesFiltres(DataTable dtFiltres)
+        {
+            if (dtFiltres == null) return;
+
+            // Créer une copie pour ajouter la ligne par défaut
+            DataTable dtAvecDefault = dtFiltres.Copy();
+
+            // Ajouter la ligne par défaut au début
+            DataRow defaultRow = dtAvecDefault.NewRow();
+            defaultRow["id_personnel"] = 0;
+            defaultRow["Display"] = "--- Sélectionner un employé journalier ---";
+            dtAvecDefault.Rows.InsertAt(defaultRow, 0);
+
+            // Lier au ComboBox
+            ComboBoxEmploye.DataSource = dtAvecDefault;
+            ComboBoxEmploye.DisplayMember = "Display";
+            ComboBoxEmploye.ValueMember = "id_personnel";
+
+            // Sélectionner par défaut
+            if (dtFiltres.Rows.Count == 1)
+            {
+                ComboBoxEmploye.SelectedIndex = 1; // Index 1 car 0 est la ligne par défaut
+            }
+            else
+            {
+                ComboBoxEmploye.SelectedIndex = 0; // Sinon afficher la ligne par défaut
+            }
+        }
+
+        private void TextBoxRechercheEmploye_TextChanged(object sender, EventArgs e)
+        {
+            if (tousLesEmployesJournaliers == null) return;
+
+            string recherche = textBoxRechercheEmploye.Text.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(recherche))
+            {
+                // Afficher tous les employés
+                AfficherEmployesFiltres(tousLesEmployesJournaliers);
+                return;
+            }
+
+            // Filtrer les employés par nom, matricule ou entreprise
+            var rows = tousLesEmployesJournaliers.Select(string.Format(
+                "Nom LIKE '%{0}%' OR Matricule LIKE '%{0}%' OR Entreprise LIKE '%{0}%'",
+                recherche.Replace("'", "''")));
+
+            if (rows.Length > 0)
+            {
+                DataTable dtFiltre = tousLesEmployesJournaliers.Clone();
+                foreach (var row in rows)
+                {
+                    dtFiltre.ImportRow(row);
+                }
+                AfficherEmployesFiltres(dtFiltre);
+            }
+            else
+            {
+                // Aucun résultat - afficher un combobox vide avec message
+                DataTable dtVide = tousLesEmployesJournaliers.Clone();
+                DataRow noResultRow = dtVide.NewRow();
+                noResultRow["id_personnel"] = 0;
+                noResultRow["Display"] = "❌ Aucun employé journalier trouvé";
+                dtVide.Rows.Add(noResultRow);
+
+                ComboBoxEmploye.DataSource = dtVide;
+                ComboBoxEmploye.DisplayMember = "Display";
+                ComboBoxEmploye.ValueMember = "id_personnel";
+                ComboBoxEmploye.SelectedIndex = 0;
+            }
+        }
 
 
 
@@ -759,6 +873,8 @@ namespace RH_GRH
             return null;
         }
 
+        // ComboBoxEntreprise_SelectedIndexChanged - REMOVED (ComboBoxEntreprise no longer exists)
+        /*
         private void ComboBoxEntreprise_SelectedIndexChanged(object sender, EventArgs e)
         {
             int? idEnt = GetSelectedIntOrNull(ComboBoxEntreprise, "id_entreprise");
@@ -772,11 +888,16 @@ namespace RH_GRH
             // Charge les employés filtrés par entreprise
             EmployeClass.ChargerEmployesParEntrepriseJournalier(ComboBoxEmploye, idEnt.Value, null, true);
         }
+        */
 
         private void ComboBoxEmploye_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Vérifier si un employé a été sélectionné (valeur valide, pas l'option par défaut)
-            if (ComboBoxEmploye.SelectedIndex == -1 || ComboBoxEmploye.SelectedValue == null || Convert.ToInt32(ComboBoxEmploye.SelectedValue) == 0)
+            // Utiliser la méthode helper pour gérer les DataRowView
+            int? idEmploye = GetSelectedIntOrNull(ComboBoxEmploye, "id_personnel"
+                );
+
+            // Vérifier si un employé valide a été sélectionné
+            if (!idEmploye.HasValue || idEmploye.Value <= 0)
             {
                 // Si aucune sélection n'est faite ou si la sélection est invalide (par exemple, l'option par défaut)
                 return;
@@ -784,23 +905,11 @@ namespace RH_GRH
 
             try
             {
-                // Récupérer l'ID de l'employé sélectionné
-                var selectedValue = ComboBoxEmploye.SelectedValue.ToString();
-                int idEmploye;
-
-                Console.WriteLine($"Valeur sélectionnée : {selectedValue}"); // Log de la valeur sélectionnée
-
-                // Vérifier si la valeur peut être convertie en entier
-                if (!int.TryParse(selectedValue, out idEmploye) || idEmploye <= 0)
-                {
-                    Console.WriteLine("L'ID de l'employé est invalide ou nul.");
-                    MessageBox.Show("Sélectionnez un employé valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                Console.WriteLine($"Valeur sélectionnée : {idEmploye.Value}"); // Log de la valeur sélectionnée
 
                 // Récupérer les informations de l'employé sélectionné
-                Console.WriteLine($"Récupération des informations de l'employé avec ID : {idEmploye}");
-                var employe = EmployeService.GetEmployeDetails(idEmploye);
+                Console.WriteLine($"Récupération des informations de l'employé avec ID : {idEmploye.Value}");
+                var employe = EmployeService.GetEmployeDetails(idEmploye.Value);
 
                 if (employe != null)
                 {
@@ -818,9 +927,9 @@ namespace RH_GRH
                     // Montant nullable
                     textBoxSalaire.Text = employe.Montant.HasValue ? employe.Montant.Value.ToString("N2", CultureInfo.CurrentCulture) : string.Empty;
 
-                    //somme indemnite 
+                    //somme indemnite
                     // Appel
-                    var sums = GetSommeIndemnitesParIds(idEmploye);
+                    var sums = GetSommeIndemnitesParIds(idEmploye.Value);
 
                     // Exemples d’usage
                     System.Diagnostics.Debug.WriteLine($"Num={sums["somme_numeraire"]:N2} | Nat={sums["somme_nature"]:N2} FCFA");
@@ -848,8 +957,8 @@ namespace RH_GRH
             if (d1 < d0)
                 guna2DateTimePickerFin.Value = d0; // clamp
             textBoxAbsences.Enabled = (d1 > d0);
-            textboxFerieDimanche.Enabled = (d1 > d0);
-            
+            textBoxJoursFD.Enabled = (d1 > d0);  // Holidays/Sundays
+
         }
 
         private void guna2DateTimePickerDebut_ValueChanged(object sender, EventArgs e)
@@ -882,7 +991,7 @@ namespace RH_GRH
             int unitesTotalesJour = employe.JourContrat;             // heures/jours contractuels
             decimal unitesAbsences = ParseDecimal(textBoxAbsences.Text);              // heures/jours d'absence
             int nbreHC = employe.HeureContrat;
-            int jsFDJ = ParseInt(textboxFerieDimanche.Text);
+            int jsFDJ = ParseInt(textBoxJoursFD.Text);  // Jours fériés/dimanches travaillés
 
 
 
@@ -969,7 +1078,7 @@ namespace RH_GRH
                     MessageBox.Show("Aucune donnée trouvée pour cet employé.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                string contrat = emp.Contrat ?? string.Empty;
+                string dureeContrat = emp.DureeContrat ?? string.Empty;
                 decimal tauxTpa = emp.Tpa.HasValue ? emp.Tpa.Value : 0m; // en %
 
                 // 2) Lire le salaire brut (déjà calculé et affiché)
@@ -981,10 +1090,10 @@ namespace RH_GRH
                 }
 
                 // 3) Taux (si besoin de visualiser)
-                var taux = CNSSCalculator.GetTauxParContrat(contrat);
+                var taux = CNSSCalculator.GetTauxParContrat(dureeContrat);
 
                 // 4) Calculs
-                decimal cnssEmploye = CNSSCalculator.CalculerCNSSEmploye(salaireBrut, contrat);
+                decimal cnssEmploye = CNSSCalculator.CalculerCNSSEmploye(salaireBrut, dureeContrat);
                 decimal pensionEmployeur = CNSSCalculator.CalculerPensionEmployeur(salaireBrut);
                 decimal risqueProEmployeur = CNSSCalculator.CalculerRisqueProEmployeur(salaireBrut);
                 decimal pfEmployeur = CNSSCalculator.CalculerPFEmployeur(salaireBrut);
@@ -1058,8 +1167,9 @@ namespace RH_GRH
 
 
                 decimal IndemNat = (decimal)sums["somme_nature"];
-                //Salaire Net 
-               // var res = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, IndemNat, tauxEffort: 0.01m, arrondirNetAPayerCeil: true);
+                //Salaire Net
+                decimal ValeurDette = ParseDecimal(textBoxDette.Text);
+                var res = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, IndemNat, ValeurDette, 0.01m, true);
                 // (Optionnel)affichage UI
                 var fr = System.Globalization.CultureInfo.GetCultureInfo("fr-FR");
 
@@ -1102,7 +1212,7 @@ namespace RH_GRH
 
 
 
-                    IdEntreprise = int.Parse(ComboBoxEntreprise.SelectedValue.ToString()),
+                    IdEntreprise = employe.Entreprise, // Get enterprise ID from employee object
                     IdEmploye = idEmploye,
                     AncienneteStr = anc,
 
@@ -1138,7 +1248,7 @@ namespace RH_GRH
 
 
                     // Méta
-                    Contrat = contrat,
+                    Contrat = dureeContrat,
                     StatutCadre = emp.Cadre,
 
 
@@ -1163,9 +1273,11 @@ namespace RH_GRH
                     PrimeAnciennete = prime,
 
                     //SALAIRE NET A PAYER
-                  //  SalaireNet = res.SalaireNet,
-                  //  EffortPaix = res.Effort,
-                  //  SalaireNetaPayer = res.NetAPayer
+                    SalaireNet = res.SalaireNet,
+                    EffortPaix = res.Effort,
+                    SalaireNetaPayer = res.NetAPayer,
+                    ValeurDette = ValeurDette,
+                    SalaireNetaPayerFinal = res.NetAPayerFinal
 
                 };
 
@@ -1175,7 +1287,8 @@ namespace RH_GRH
                 // 👉 Stocke-le pour le bouton "Enregistrer" (champ du Form)
                 _lastSnapshot = snapshot;
 
-
+                // Afficher les résultats dans une modal
+                AfficherResultats();
 
 
 
@@ -1189,7 +1302,7 @@ namespace RH_GRH
                 $"Anc={prime:N2} | => BRUT={salaireBrut:N2} FCFA"
                 );
                 Debug.WriteLine(
-                $"[CNSS] EmpId={idEmploye} | Contrat='{contrat}' | Brut={salaireBrut:N2} | " +
+                $"[CNSS] EmpId={idEmploye} | Contrat='{dureeContrat}' | Brut={salaireBrut:N2} | " +
                 $"Employe(CNSS)={cnssEmploye:N2} | Employeur(Pens)={pensionEmployeur:N2} | Employeur(RP)={risqueProEmployeur:N2} | Employeur(PF)={pfEmployeur:N2} | " +
                 $"Employeur cnss (Total)={cnssEmployeur:N2} | TPA@{tauxTpa:N2}%={tpa:N2}"
                 );
@@ -1460,6 +1573,66 @@ namespace RH_GRH
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonImprimerLot_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Ouvrir le formulaire de sélection d'entreprise et de période
+                using (var formSelection = new SelectionEntrepriseForm())
+                {
+                    if (formSelection.ShowDialog() == DialogResult.OK)
+                    {
+                        int idEntreprise = formSelection.EntrepriseSelectionnee;
+                        string nomEntreprise = formSelection.NomEntrepriseSelectionnee;
+                        DateTime periodeDebut = formSelection.DateDebut;
+                        DateTime periodeFin = formSelection.DateFin;
+
+                        // Ouvrir le formulaire de saisie en lot
+                        using (var formSaisie = new SaisiePayeLotForm(idEntreprise, periodeDebut, periodeFin))
+                        {
+                            formSaisie.ShowDialog();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show($"Erreur lors de l'impression en lot :\n{ex.Message}",
+                    "Erreur", CustomMessageBox.MessageType.Error);
+            }
+        }
+
+        private void AfficherResultats()
+        {
+            if (_lastSnapshot == null)
+            {
+                return;
+            }
+
+            // Ouvrir la fenêtre modale avec les résultats
+            using (var modal = new ResultatsModal(_lastSnapshot))
+            {
+                var result = modal.ShowDialog(this);
+
+                // Si l'utilisateur a cliqué sur Imprimer
+                if (result == DialogResult.OK)
+                {
+                    // Appeler la méthode d'impression
+                    ImprimerBulletin();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Méthode d'impression du bulletin
+        /// </summary>
+        private void ImprimerBulletin()
+        {
+            // Cette méthode est appelée depuis le modal ou depuis buttonparcourir_Click
+            // Elle doit contenir la logique d'impression du bulletin
+            buttonparcourir_Click(null, null);
         }
     }
 
