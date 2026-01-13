@@ -1746,8 +1746,8 @@ public static class IUTS
                         DateTime periodeDebut = formSelection.DateDebut;
                         DateTime periodeFin = formSelection.DateFin;
 
-                        // Ouvrir le formulaire de saisie en lot
-                        using (var formSaisie = new SaisiePayeLotForm(idEntreprise, periodeDebut, periodeFin))
+                        // Ouvrir le formulaire de saisie en lot pour les Horaires
+                        using (var formSaisie = new SaisiePayeLotForm(idEntreprise, periodeDebut, periodeFin, "Horaire"))
                         {
                             formSaisie.ShowDialog();
                         }

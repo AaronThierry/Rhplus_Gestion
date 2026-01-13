@@ -231,7 +231,7 @@ namespace RH_GRH
             this.listViewGains.SelectedIndexChanged += new System.EventHandler(this.listViewGains_SelectedIndexChanged);
             // 
             // columnGain
-            //
+            // 
             this.columnGain.Text = "Description";
             this.columnGain.Width = 425;
             // 
@@ -277,7 +277,7 @@ namespace RH_GRH
             this.listViewRetenues.View = System.Windows.Forms.View.Details;
             // 
             // columnRetenue
-            //
+            // 
             this.columnRetenue.Text = "Description";
             this.columnRetenue.Width = 425;
             // 

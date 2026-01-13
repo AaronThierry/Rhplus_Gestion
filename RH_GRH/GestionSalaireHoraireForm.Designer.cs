@@ -151,7 +151,7 @@
             // labelTitreImpressionLot
             // 
             this.labelTitreImpressionLot.BackColor = System.Drawing.Color.Transparent;
-            this.labelTitreImpressionLot.Font = new System.Drawing.Font("Montserrat", 13F, System.Drawing.FontStyle.Bold);
+            this.labelTitreImpressionLot.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold);
             this.labelTitreImpressionLot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
             this.labelTitreImpressionLot.Location = new System.Drawing.Point(3, 125);
             this.labelTitreImpressionLot.Name = "labelTitreImpressionLot";

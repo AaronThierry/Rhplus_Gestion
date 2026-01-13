@@ -1589,8 +1589,8 @@ namespace RH_GRH
                         DateTime periodeDebut = formSelection.DateDebut;
                         DateTime periodeFin = formSelection.DateFin;
 
-                        // Ouvrir le formulaire de saisie en lot
-                        using (var formSaisie = new SaisiePayeLotForm(idEntreprise, periodeDebut, periodeFin))
+                        // Ouvrir le formulaire de saisie en lot pour les Journaliers
+                        using (var formSaisie = new SaisiePayeLotForm(idEntreprise, periodeDebut, periodeFin, "Journalier"))
                         {
                             formSaisie.ShowDialog();
                         }
@@ -1633,6 +1633,56 @@ namespace RH_GRH
             // Cette méthode est appelée depuis le modal ou depuis buttonparcourir_Click
             // Elle doit contenir la logique d'impression du bulletin
             buttonparcourir_Click(null, null);
+        }
+
+        private void labelTitreImpressionLot_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Gère le clic sur le bouton "Nouveau Calcul" pour réinitialiser le formulaire
+        /// </summary>
+        private void buttonAjouter_Click(object sender, EventArgs e)
+        {
+            // Réinitialiser les champs de saisie
+            textBoxJoursFD.Clear();
+            textBoxAbsences.Clear();
+            textBoxDette.Clear();
+
+            // Réinitialiser les champs d'informations employé
+            textBoxMatricule.Clear();
+            textBoxNP.Clear();
+            textBoxPoste.Clear();
+            textBoxCategorie.Clear();
+            textBoxHcontrat.Clear();
+            textBoxSalaire.Clear();
+            textBoxtypeContrat.Clear();
+            textBoxContrat.Clear();
+
+            // Réinitialiser la sélection d'employé
+            ComboBoxEmploye.SelectedIndex = -1;
+            textBoxRechercheEmploye.Clear();
+
+            // Activer les champs de saisie
+            textBoxJoursFD.Enabled = true;
+            textBoxAbsences.Enabled = true;
+            textBoxDette.Enabled = true;
+
+            // Activer les boutons
+            buttonAjouter.Enabled = true;
+            buttonValider.Enabled = true;
+
+            // Message de confirmation
+            CustomMessageBox.Show("✓ Formulaire réinitialisé avec succès.\n\nVous pouvez saisir un nouveau calcul de salaire.",
+                "Nouveau Calcul",
+                CustomMessageBox.MessageType.Success,
+                CustomMessageBox.MessageButtons.OK);
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 

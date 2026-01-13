@@ -54,7 +54,7 @@ namespace RH_GRH
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.FillColor = System.Drawing.Color.MidnightBlue;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.ShadowDecoration.BorderRadius = 0;
             this.panelHeader.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
@@ -97,7 +97,7 @@ namespace RH_GRH
             this.panelMain.Controls.Add(this.cardDataGrid);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(0, 80);
-            this.panelMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelMain.Margin = new System.Windows.Forms.Padding(4);
             this.panelMain.Name = "panelMain";
             this.panelMain.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
             this.panelMain.Size = new System.Drawing.Size(733, 394);
@@ -114,60 +114,63 @@ namespace RH_GRH
             this.cardPeriode.Controls.Add(this.labelPeriode);
             this.cardPeriode.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.cardPeriode.FillColor = System.Drawing.Color.White;
-            this.cardPeriode.Location = new System.Drawing.Point(20, 265);
-            this.cardPeriode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cardPeriode.Location = new System.Drawing.Point(20, 241);
+            this.cardPeriode.Margin = new System.Windows.Forms.Padding(4);
             this.cardPeriode.Name = "cardPeriode";
-            this.cardPeriode.Padding = new System.Windows.Forms.Padding(20, 12, 20, 12);
+            this.cardPeriode.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
             this.cardPeriode.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.cardPeriode.ShadowDecoration.Depth = 8;
             this.cardPeriode.ShadowDecoration.Enabled = true;
             this.cardPeriode.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 2, 0, 4);
-            this.cardPeriode.Size = new System.Drawing.Size(693, 111);
+            this.cardPeriode.Size = new System.Drawing.Size(693, 135);
             this.cardPeriode.TabIndex = 1;
             // 
             // dateTimePickerFin
-            // 
+            //
+            this.dateTimePickerFin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dateTimePickerFin.BackColor = System.Drawing.Color.Transparent;
-            this.dateTimePickerFin.BorderRadius = 4;
+            this.dateTimePickerFin.BorderRadius = 6;
             this.dateTimePickerFin.Checked = true;
             this.dateTimePickerFin.CustomFormat = "dd/MM/yyyy";
             this.dateTimePickerFin.FillColor = System.Drawing.Color.White;
-            this.dateTimePickerFin.Font = new System.Drawing.Font("Montserrat", 8.5F);
+            this.dateTimePickerFin.Font = new System.Drawing.Font("Montserrat", 9.5F);
             this.dateTimePickerFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerFin.Location = new System.Drawing.Point(413, 49);
-            this.dateTimePickerFin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerFin.Location = new System.Drawing.Point(420, 58);
+            this.dateTimePickerFin.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerFin.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dateTimePickerFin.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerFin.Name = "dateTimePickerFin";
-            this.dateTimePickerFin.Size = new System.Drawing.Size(240, 37);
+            this.dateTimePickerFin.Size = new System.Drawing.Size(240, 45);
             this.dateTimePickerFin.TabIndex = 4;
             this.dateTimePickerFin.Value = new System.DateTime(2026, 1, 13, 0, 0, 0, 0);
             // 
             // dateTimePickerDebut
-            // 
+            //
+            this.dateTimePickerDebut.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dateTimePickerDebut.BackColor = System.Drawing.Color.Transparent;
-            this.dateTimePickerDebut.BorderRadius = 4;
+            this.dateTimePickerDebut.BorderRadius = 6;
             this.dateTimePickerDebut.Checked = true;
             this.dateTimePickerDebut.CustomFormat = "dd/MM/yyyy";
             this.dateTimePickerDebut.FillColor = System.Drawing.Color.White;
-            this.dateTimePickerDebut.Font = new System.Drawing.Font("Montserrat", 8.5F);
+            this.dateTimePickerDebut.Font = new System.Drawing.Font("Montserrat", 9.5F);
             this.dateTimePickerDebut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerDebut.Location = new System.Drawing.Point(93, 49);
-            this.dateTimePickerDebut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerDebut.Location = new System.Drawing.Point(100, 58);
+            this.dateTimePickerDebut.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerDebut.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dateTimePickerDebut.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerDebut.Name = "dateTimePickerDebut";
-            this.dateTimePickerDebut.Size = new System.Drawing.Size(240, 37);
+            this.dateTimePickerDebut.Size = new System.Drawing.Size(240, 45);
             this.dateTimePickerDebut.TabIndex = 2;
             this.dateTimePickerDebut.Value = new System.DateTime(2026, 1, 13, 0, 0, 0, 0);
             // 
             // labelFin
-            // 
+            //
+            this.labelFin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelFin.AutoSize = true;
             this.labelFin.BackColor = System.Drawing.Color.Transparent;
-            this.labelFin.Font = new System.Drawing.Font("Montserrat", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFin.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.labelFin.Location = new System.Drawing.Point(360, 55);
+            this.labelFin.Location = new System.Drawing.Point(365, 68);
             this.labelFin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFin.Name = "labelFin";
             this.labelFin.Size = new System.Drawing.Size(39, 24);
@@ -175,12 +178,13 @@ namespace RH_GRH
             this.labelFin.Text = "Fin:";
             // 
             // labelDebut
-            // 
+            //
+            this.labelDebut.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelDebut.AutoSize = true;
             this.labelDebut.BackColor = System.Drawing.Color.Transparent;
-            this.labelDebut.Font = new System.Drawing.Font("Montserrat", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDebut.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDebut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.labelDebut.Location = new System.Drawing.Point(20, 55);
+            this.labelDebut.Location = new System.Drawing.Point(24, 68);
             this.labelDebut.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDebut.Name = "labelDebut";
             this.labelDebut.Size = new System.Drawing.Size(62, 24);
@@ -188,15 +192,16 @@ namespace RH_GRH
             this.labelDebut.Text = "Début:";
             // 
             // labelPeriode
-            // 
+            //
+            this.labelPeriode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelPeriode.AutoSize = true;
             this.labelPeriode.BackColor = System.Drawing.Color.Transparent;
-            this.labelPeriode.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPeriode.Font = new System.Drawing.Font("Montserrat", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPeriode.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.labelPeriode.Location = new System.Drawing.Point(16, 12);
+            this.labelPeriode.Location = new System.Drawing.Point(252, 18);
             this.labelPeriode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPeriode.Name = "labelPeriode";
-            this.labelPeriode.Size = new System.Drawing.Size(183, 27);
+            this.labelPeriode.Size = new System.Drawing.Size(189, 28);
             this.labelPeriode.TabIndex = 0;
             this.labelPeriode.Text = "📅 Période de Paie";
             // 
@@ -208,7 +213,7 @@ namespace RH_GRH
             this.cardDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cardDataGrid.FillColor = System.Drawing.Color.White;
             this.cardDataGrid.Location = new System.Drawing.Point(20, 18);
-            this.cardDataGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cardDataGrid.Margin = new System.Windows.Forms.Padding(4);
             this.cardDataGrid.Name = "cardDataGrid";
             this.cardDataGrid.Padding = new System.Windows.Forms.Padding(1);
             this.cardDataGrid.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
@@ -250,7 +255,7 @@ namespace RH_GRH
             this.dataGridViewEntreprises.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewEntreprises.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dataGridViewEntreprises.Location = new System.Drawing.Point(1, 1);
-            this.dataGridViewEntreprises.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewEntreprises.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewEntreprises.Name = "dataGridViewEntreprises";
             this.dataGridViewEntreprises.ReadOnly = true;
             this.dataGridViewEntreprises.RowHeadersVisible = false;
@@ -289,7 +294,7 @@ namespace RH_GRH
             this.panelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelFooter.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
             this.panelFooter.Location = new System.Drawing.Point(0, 474);
-            this.panelFooter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelFooter.Margin = new System.Windows.Forms.Padding(4);
             this.panelFooter.Name = "panelFooter";
             this.panelFooter.Padding = new System.Windows.Forms.Padding(20, 15, 20, 15);
             this.panelFooter.ShadowDecoration.BorderRadius = 0;
@@ -314,7 +319,7 @@ namespace RH_GRH
             this.buttonAnnuler.ForeColor = System.Drawing.Color.White;
             this.buttonAnnuler.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.buttonAnnuler.Location = new System.Drawing.Point(467, 15);
-            this.buttonAnnuler.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAnnuler.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(113, 50);
             this.buttonAnnuler.TabIndex = 2;
@@ -335,7 +340,7 @@ namespace RH_GRH
             this.buttonValider.ForeColor = System.Drawing.Color.White;
             this.buttonValider.HoverState.FillColor = System.Drawing.Color.ForestGreen;
             this.buttonValider.Location = new System.Drawing.Point(580, 15);
-            this.buttonValider.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonValider.Margin = new System.Windows.Forms.Padding(4);
             this.buttonValider.Name = "buttonValider";
             this.buttonValider.Size = new System.Drawing.Size(133, 50);
             this.buttonValider.TabIndex = 1;
@@ -352,7 +357,7 @@ namespace RH_GRH
             this.panelStats.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelStats.FillColor = System.Drawing.Color.White;
             this.panelStats.Location = new System.Drawing.Point(20, 15);
-            this.panelStats.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelStats.Margin = new System.Windows.Forms.Padding(4);
             this.panelStats.Name = "panelStats";
             this.panelStats.Padding = new System.Windows.Forms.Padding(16, 7, 16, 7);
             this.panelStats.Size = new System.Drawing.Size(267, 50);
@@ -383,7 +388,7 @@ namespace RH_GRH
             this.Controls.Add(this.panelFooter);
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SelectionEntrepriseForm";

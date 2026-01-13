@@ -24,63 +24,121 @@ namespace RH_GRH
         {
             // Configuration du formulaire
             this.Text = "Sélection d'entreprise";
-            this.Size = new Size(600, 450);
+            this.Size = new Size(800, 550);
             this.StartPosition = FormStartPosition.CenterParent;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
-            // Configuration du DataGridView
+            // Configuration du DataGridView - Style moderne et épuré
             dataGridViewEntreprises.AutoGenerateColumns = false;
             dataGridViewEntreprises.AllowUserToAddRows = false;
             dataGridViewEntreprises.AllowUserToDeleteRows = false;
+            dataGridViewEntreprises.AllowUserToResizeRows = false;
             dataGridViewEntreprises.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewEntreprises.MultiSelect = false;
             dataGridViewEntreprises.RowHeadersVisible = false;
             dataGridViewEntreprises.BackgroundColor = Color.White;
-            dataGridViewEntreprises.DefaultCellStyle.SelectionBackColor = Color.FromArgb(94, 148, 255);
-            dataGridViewEntreprises.DefaultCellStyle.SelectionForeColor = Color.White;
-            dataGridViewEntreprises.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250);
             dataGridViewEntreprises.BorderStyle = BorderStyle.None;
             dataGridViewEntreprises.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewEntreprises.EnableHeadersVisualStyles = false;
             dataGridViewEntreprises.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewEntreprises.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(94, 148, 255);
-            dataGridViewEntreprises.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridViewEntreprises.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dataGridViewEntreprises.ColumnHeadersHeight = 40;
-            dataGridViewEntreprises.RowTemplate.Height = 35;
+            dataGridViewEntreprises.ColumnHeadersHeight = 42;
+            dataGridViewEntreprises.RowTemplate.Height = 40;
 
-            // Colonnes
-            dataGridViewEntreprises.Columns.Add(new DataGridViewTextBoxColumn
+            // Style de l'en-tête - Élégant avec MidnightBlue
+            dataGridViewEntreprises.ColumnHeadersDefaultCellStyle.BackColor = Color.MidnightBlue;
+            dataGridViewEntreprises.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridViewEntreprises.ColumnHeadersDefaultCellStyle.Font = new Font("Montserrat", 9.5F, FontStyle.Bold);
+            dataGridViewEntreprises.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewEntreprises.ColumnHeadersDefaultCellStyle.Padding = new Padding(12, 0, 12, 0);
+            dataGridViewEntreprises.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.MidnightBlue;
+
+            // Style des cellules par défaut - Soft et lisible
+            dataGridViewEntreprises.DefaultCellStyle.BackColor = Color.White;
+            dataGridViewEntreprises.DefaultCellStyle.ForeColor = Color.FromArgb(50, 50, 50);
+            dataGridViewEntreprises.DefaultCellStyle.Font = new Font("Montserrat", 9F, FontStyle.Regular);
+            dataGridViewEntreprises.DefaultCellStyle.Padding = new Padding(12, 8, 12, 8);
+            dataGridViewEntreprises.DefaultCellStyle.SelectionBackColor = Color.FromArgb(176, 196, 222); // LightSteelBlue
+            dataGridViewEntreprises.DefaultCellStyle.SelectionForeColor = Color.FromArgb(25, 25, 112); // MidnightBlue foncé
+
+            // Style des lignes alternées - Très subtil
+            dataGridViewEntreprises.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 249, 252);
+            dataGridViewEntreprises.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(50, 50, 50);
+            dataGridViewEntreprises.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(176, 196, 222);
+            dataGridViewEntreprises.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.FromArgb(25, 25, 112);
+
+            // Couleur de la grille - Très légère
+            dataGridViewEntreprises.GridColor = Color.FromArgb(235, 237, 242);
+
+            // Colonnes avec style épuré
+            var colId = new DataGridViewTextBoxColumn
             {
                 Name = "id_entreprise",
                 HeaderText = "ID",
                 DataPropertyName = "id_entreprise",
-                Width = 60,
-                ReadOnly = true
-            });
+                Width = 55,
+                ReadOnly = true,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Alignment = DataGridViewContentAlignment.MiddleCenter,
+                    Font = new Font("Montserrat", 7.5F, FontStyle.Bold),
+                    ForeColor = Color.FromArgb(100, 100, 120)
+                }
+            };
 
-            dataGridViewEntreprises.Columns.Add(new DataGridViewTextBoxColumn
+            var colSigle = new DataGridViewTextBoxColumn
             {
                 Name = "sigle",
                 HeaderText = "Sigle",
                 DataPropertyName = "sigle",
-                Width = 100,
-                ReadOnly = true
-            });
+                Width = 180,
+                ReadOnly = true,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Alignment = DataGridViewContentAlignment.MiddleLeft,
+                    Font = new Font(new FontFamily("Montserrat"), 9F, FontStyle.Bold),
+                    ForeColor = Color.MidnightBlue
+                }
+            };
 
-            dataGridViewEntreprises.Columns.Add(new DataGridViewTextBoxColumn
+            var colNom = new DataGridViewTextBoxColumn
             {
                 Name = "nomEntreprise",
-                HeaderText = "Nom de l'entreprise",
+                HeaderText = "Nom de l'Entreprise",
                 DataPropertyName = "nomEntreprise",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-                ReadOnly = true
-            });
+                ReadOnly = true,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Alignment = DataGridViewContentAlignment.MiddleLeft,
+                    Font = new Font("Montserrat", 9F, FontStyle.Regular)
+                }
+            };
+
+            dataGridViewEntreprises.Columns.Add(colId);
+            dataGridViewEntreprises.Columns.Add(colSigle);
+            dataGridViewEntreprises.Columns.Add(colNom);
 
             // Double-clic pour sélectionner
             dataGridViewEntreprises.CellDoubleClick += DataGridViewEntreprises_CellDoubleClick;
+
+            // Effet hover personnalisé
+            dataGridViewEntreprises.CellMouseEnter += DataGridViewEntreprises_CellMouseEnter;
+            dataGridViewEntreprises.CellMouseLeave += DataGridViewEntreprises_CellMouseLeave;
+        }
+
+        private void DataGridViewEntreprises_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dataGridViewEntreprises.Cursor = Cursors.Hand;
+            }
+        }
+
+        private void DataGridViewEntreprises_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridViewEntreprises.Cursor = Cursors.Default;
         }
 
         private void ChargerEntreprises()

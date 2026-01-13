@@ -15,129 +15,258 @@ namespace RH_GRH
         private DateTime periodeDebut;
         private DateTime periodeFin;
         private DataTable dtEmployes;
+        private string typeContrat; // "Horaire" ou "Journalier"
 
-        public SaisiePayeLotForm(int idEntreprise, DateTime periodeDebut, DateTime periodeFin)
+        public SaisiePayeLotForm(int idEntreprise, DateTime periodeDebut, DateTime periodeFin, string typeContrat = "Horaire")
         {
             InitializeComponent();
             this.idEntreprise = idEntreprise;
             this.periodeDebut = periodeDebut;
             this.periodeFin = periodeFin;
+            this.typeContrat = typeContrat;
 
             ConfigurerDataGridView();
             ChargerEmployes();
+
+            // Gérer l'événement CellEndEdit pour remettre 0 quand la cellule est vide
+            dataGridViewEmployes.CellEndEdit += DataGridViewEmployes_CellEndEdit;
+
+            // Mettre à jour le titre selon le type de contrat
+            labelTitre.Text = $"Saisie de Paie par Lot - {typeContrat}";
+        }
+
+        private void DataGridViewEmployes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            // Vérifier si la cellule est éditable (pas la colonne heures_travaillees)
+            var columnName = dataGridViewEmployes.Columns[e.ColumnIndex].Name;
+
+            if (columnName != "heures_travaillees" && columnName != "matricule" &&
+                columnName != "nom_prenom" && columnName != "id_personnel")
+            {
+                var cell = dataGridViewEmployes.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+                // Si la cellule est vide ou null, mettre 0
+                if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                {
+                    cell.Value = 0;
+                }
+                else
+                {
+                    // Valider que c'est un nombre valide
+                    decimal valeur;
+                    if (!decimal.TryParse(cell.Value.ToString(), out valeur))
+                    {
+                        cell.Value = 0;
+                    }
+                }
+            }
         }
 
         private void ConfigurerDataGridView()
         {
+            // Configuration du DataGridView - Style moderne et épuré (comme SelectionEntrepriseForm)
             dataGridViewEmployes.AutoGenerateColumns = false;
             dataGridViewEmployes.AllowUserToAddRows = false;
             dataGridViewEmployes.AllowUserToDeleteRows = false;
+            dataGridViewEmployes.AllowUserToResizeRows = false;
             dataGridViewEmployes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewEmployes.MultiSelect = false;
             dataGridViewEmployes.RowHeadersVisible = false;
             dataGridViewEmployes.BackgroundColor = Color.White;
-            dataGridViewEmployes.DefaultCellStyle.SelectionBackColor = Color.FromArgb(94, 148, 255);
-            dataGridViewEmployes.DefaultCellStyle.SelectionForeColor = Color.White;
-            dataGridViewEmployes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250);
             dataGridViewEmployes.BorderStyle = BorderStyle.None;
             dataGridViewEmployes.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewEmployes.EnableHeadersVisualStyles = false;
             dataGridViewEmployes.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(94, 148, 255);
-            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dataGridViewEmployes.ColumnHeadersHeight = 40;
+            dataGridViewEmployes.ColumnHeadersHeight = 42;
+            dataGridViewEmployes.RowTemplate.Height = 40;
 
-            // Colonnes en lecture seule
-            dataGridViewEmployes.Columns.Add(new DataGridViewTextBoxColumn
+            // Style de l'en-tête - Élégant avec MidnightBlue
+            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.BackColor = Color.MidnightBlue;
+            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.Font = new Font("Montserrat", 9.5F, FontStyle.Bold);
+            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.Padding = new Padding(12, 0, 12, 0);
+            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.MidnightBlue;
+
+            // Style des cellules par défaut - Soft et lisible
+            dataGridViewEmployes.DefaultCellStyle.BackColor = Color.White;
+            dataGridViewEmployes.DefaultCellStyle.ForeColor = Color.FromArgb(50, 50, 50);
+            dataGridViewEmployes.DefaultCellStyle.Font = new Font("Montserrat", 9F, FontStyle.Regular);
+            dataGridViewEmployes.DefaultCellStyle.Padding = new Padding(12, 8, 12, 8);
+            dataGridViewEmployes.DefaultCellStyle.SelectionBackColor = Color.FromArgb(176, 196, 222); // LightSteelBlue
+            dataGridViewEmployes.DefaultCellStyle.SelectionForeColor = Color.FromArgb(25, 25, 112); // MidnightBlue foncé
+
+            // Style des lignes alternées - Très subtil
+            dataGridViewEmployes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 249, 252);
+            dataGridViewEmployes.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(50, 50, 50);
+            dataGridViewEmployes.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(176, 196, 222);
+            dataGridViewEmployes.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.FromArgb(25, 25, 112);
+
+            // Couleur de la grille - Très légère
+            dataGridViewEmployes.GridColor = Color.FromArgb(235, 237, 242);
+
+            // Colonnes avec style épuré
+            var colIdPersonnel = new DataGridViewTextBoxColumn
             {
                 Name = "id_personnel",
                 HeaderText = "ID",
                 DataPropertyName = "id_personnel",
                 Visible = false
-            });
+            };
 
-            dataGridViewEmployes.Columns.Add(new DataGridViewTextBoxColumn
+            var colMatricule = new DataGridViewTextBoxColumn
             {
                 Name = "matricule",
                 HeaderText = "Matricule",
                 DataPropertyName = "matricule",
                 ReadOnly = true,
-                Width = 100
-            });
+                Width = 100,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Alignment = DataGridViewContentAlignment.MiddleCenter,
+                    Font = new Font("Montserrat", 9F, FontStyle.Bold),
+                    ForeColor = Color.MidnightBlue
+                }
+            };
 
-            dataGridViewEmployes.Columns.Add(new DataGridViewTextBoxColumn
+            var colNomPrenom = new DataGridViewTextBoxColumn
             {
                 Name = "nom_prenom",
                 HeaderText = "Nom & Prénom",
                 DataPropertyName = "nom_prenom",
                 ReadOnly = true,
-                Width = 250
-            });
+                Width = 250,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Alignment = DataGridViewContentAlignment.MiddleLeft,
+                    Font = new Font("Montserrat", 9F, FontStyle.Regular)
+                }
+            };
 
-            // Colonnes éditables pour la saisie
-            dataGridViewEmployes.Columns.Add(new DataGridViewTextBoxColumn
+            // Colonnes éditables avec couleur jaune soft
+            var editableCellStyle = new DataGridViewCellStyle
+            {
+                BackColor = Color.FromArgb(255, 252, 230), // Jaune très soft et élégant
+                SelectionBackColor = Color.FromArgb(255, 245, 180),
+                SelectionForeColor = Color.FromArgb(25, 25, 112),
+                Font = new Font("Montserrat", 9F, FontStyle.Regular),
+                Alignment = DataGridViewContentAlignment.MiddleRight
+            };
+
+            var colHeuresTravaillees = new DataGridViewTextBoxColumn
             {
                 Name = "heures_travaillees",
-                HeaderText = "Heures/Jours",
+                HeaderText = "H/J Travaillés",
                 DataPropertyName = "heures_travaillees",
-                Width = 100,
-                DefaultCellStyle = new DataGridViewCellStyle { BackColor = Color.FromArgb(255, 255, 200) }
-            });
+                Width = 110,
+                ReadOnly = true,
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Alignment = DataGridViewContentAlignment.MiddleRight,
+                    Font = new Font("Montserrat", 9F, FontStyle.Regular),
+                    BackColor = Color.FromArgb(245, 247, 250), // Gris très clair pour indiquer non-éditable
+                    ForeColor = Color.FromArgb(80, 80, 80)
+                }
+            };
 
-            dataGridViewEmployes.Columns.Add(new DataGridViewTextBoxColumn
+            // Colonnes différentes selon le type de contrat
+            DataGridViewTextBoxColumn colHsNormJour = null;
+            DataGridViewTextBoxColumn colHsNormNuit = null;
+            DataGridViewTextBoxColumn colHsFerieJour = null;
+            DataGridViewTextBoxColumn colHsFerieNuit = null;
+
+            if (typeContrat == "Horaire")
             {
-                Name = "hs_norm_jour",
-                HeaderText = "HS Jour",
-                DataPropertyName = "hs_norm_jour",
-                Width = 70,
-                DefaultCellStyle = new DataGridViewCellStyle { BackColor = Color.FromArgb(255, 255, 200) }
-            });
+                // Pour les horaires : HS Jour, HS Nuit, HS Férié Jour, HS Férié Nuit
+                colHsNormJour = new DataGridViewTextBoxColumn
+                {
+                    Name = "hs_norm_jour",
+                    HeaderText = "HS Jour",
+                    DataPropertyName = "hs_norm_jour",
+                    Width = 80,
+                    DefaultCellStyle = (DataGridViewCellStyle)editableCellStyle.Clone()
+                };
 
-            dataGridViewEmployes.Columns.Add(new DataGridViewTextBoxColumn
+                colHsNormNuit = new DataGridViewTextBoxColumn
+                {
+                    Name = "hs_norm_nuit",
+                    HeaderText = "HS Nuit",
+                    DataPropertyName = "hs_norm_nuit",
+                    Width = 80,
+                    DefaultCellStyle = (DataGridViewCellStyle)editableCellStyle.Clone()
+                };
+
+                colHsFerieJour = new DataGridViewTextBoxColumn
+                {
+                    Name = "hs_ferie_jour",
+                    HeaderText = "HS Férié J",
+                    DataPropertyName = "hs_ferie_jour",
+                    Width = 90,
+                    DefaultCellStyle = (DataGridViewCellStyle)editableCellStyle.Clone()
+                };
+
+                colHsFerieNuit = new DataGridViewTextBoxColumn
+                {
+                    Name = "hs_ferie_nuit",
+                    HeaderText = "HS Férié N",
+                    DataPropertyName = "hs_ferie_nuit",
+                    Width = 90,
+                    DefaultCellStyle = (DataGridViewCellStyle)editableCellStyle.Clone()
+                };
+            }
+            else // Journalier
             {
-                Name = "hs_norm_nuit",
-                HeaderText = "HS Nuit",
-                DataPropertyName = "hs_norm_nuit",
-                Width = 70,
-                DefaultCellStyle = new DataGridViewCellStyle { BackColor = Color.FromArgb(255, 255, 200) }
-            });
+                // Pour les journaliers : une seule colonne Jours Supp
+                colHsNormJour = new DataGridViewTextBoxColumn
+                {
+                    Name = "hs_norm_jour",
+                    HeaderText = "Jours Supp",
+                    DataPropertyName = "hs_norm_jour",
+                    Width = 100,
+                    DefaultCellStyle = (DataGridViewCellStyle)editableCellStyle.Clone()
+                };
+            }
 
-            dataGridViewEmployes.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "hs_ferie_jour",
-                HeaderText = "HS Férié J",
-                DataPropertyName = "hs_ferie_jour",
-                Width = 80,
-                DefaultCellStyle = new DataGridViewCellStyle { BackColor = Color.FromArgb(255, 255, 200) }
-            });
-
-            dataGridViewEmployes.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "hs_ferie_nuit",
-                HeaderText = "HS Férié N",
-                DataPropertyName = "hs_ferie_nuit",
-                Width = 80,
-                DefaultCellStyle = new DataGridViewCellStyle { BackColor = Color.FromArgb(255, 255, 200) }
-            });
-
-            dataGridViewEmployes.Columns.Add(new DataGridViewTextBoxColumn
+            var colAbsences = new DataGridViewTextBoxColumn
             {
                 Name = "absences",
                 HeaderText = "Absences",
                 DataPropertyName = "absences",
-                Width = 80,
-                DefaultCellStyle = new DataGridViewCellStyle { BackColor = Color.FromArgb(255, 255, 200) }
-            });
+                Width = 90,
+                DefaultCellStyle = (DataGridViewCellStyle)editableCellStyle.Clone()
+            };
 
-            dataGridViewEmployes.Columns.Add(new DataGridViewTextBoxColumn
+            var colDette = new DataGridViewTextBoxColumn
             {
                 Name = "dette",
                 HeaderText = "Dette",
                 DataPropertyName = "dette",
                 Width = 100,
-                DefaultCellStyle = new DataGridViewCellStyle { BackColor = Color.FromArgb(255, 255, 200) }
-            });
+                DefaultCellStyle = (DataGridViewCellStyle)editableCellStyle.Clone()
+            };
+
+            // Ajouter les colonnes selon le type de contrat
+            dataGridViewEmployes.Columns.Add(colIdPersonnel);
+            dataGridViewEmployes.Columns.Add(colMatricule);
+            dataGridViewEmployes.Columns.Add(colNomPrenom);
+            dataGridViewEmployes.Columns.Add(colHeuresTravaillees);
+
+            if (typeContrat == "Horaire")
+            {
+                // Pour les horaires : toutes les colonnes d'heures supplémentaires
+                dataGridViewEmployes.Columns.Add(colHsNormJour);
+                dataGridViewEmployes.Columns.Add(colHsNormNuit);
+                dataGridViewEmployes.Columns.Add(colHsFerieJour);
+                dataGridViewEmployes.Columns.Add(colHsFerieNuit);
+            }
+            else // Journalier
+            {
+                // Pour les journaliers : une seule colonne Jours Supp
+                dataGridViewEmployes.Columns.Add(colHsNormJour);
+            }
+
+            dataGridViewEmployes.Columns.Add(colAbsences);
+            dataGridViewEmployes.Columns.Add(colDette);
         }
 
         private void ChargerEmployes()
@@ -151,14 +280,21 @@ namespace RH_GRH
                 // Colonnes cachées mais nécessaires pour les calculs
                 dtEmployes.Columns.Add("poste", typeof(string));
                 dtEmployes.Columns.Add("type_contrat", typeof(string));
-                // Colonnes éditables
-                dtEmployes.Columns.Add("heures_travaillees", typeof(decimal));
-                dtEmployes.Columns.Add("hs_norm_jour", typeof(decimal));
-                dtEmployes.Columns.Add("hs_norm_nuit", typeof(decimal));
-                dtEmployes.Columns.Add("hs_ferie_jour", typeof(decimal));
-                dtEmployes.Columns.Add("hs_ferie_nuit", typeof(decimal));
-                dtEmployes.Columns.Add("absences", typeof(decimal));
-                dtEmployes.Columns.Add("dette", typeof(decimal));
+                // Colonnes éditables avec valeurs par défaut à 0
+                var colHeuresTrav = dtEmployes.Columns.Add("heures_travaillees", typeof(decimal));
+                colHeuresTrav.DefaultValue = 0m;
+                var colHsNormJour = dtEmployes.Columns.Add("hs_norm_jour", typeof(decimal));
+                colHsNormJour.DefaultValue = 0m;
+                var colHsNormNuit = dtEmployes.Columns.Add("hs_norm_nuit", typeof(decimal));
+                colHsNormNuit.DefaultValue = 0m;
+                var colHsFerieJour = dtEmployes.Columns.Add("hs_ferie_jour", typeof(decimal));
+                colHsFerieJour.DefaultValue = 0m;
+                var colHsFerieNuit = dtEmployes.Columns.Add("hs_ferie_nuit", typeof(decimal));
+                colHsFerieNuit.DefaultValue = 0m;
+                var colAbsences = dtEmployes.Columns.Add("absences", typeof(decimal));
+                colAbsences.DefaultValue = 0m;
+                var colDette = dtEmployes.Columns.Add("dette", typeof(decimal));
+                colDette.DefaultValue = 0m;
 
                 var connect = new Dbconnect();
                 using (var con = connect.getconnection)
@@ -180,11 +316,13 @@ namespace RH_GRH
                         FROM personnel p
                         WHERE p.id_entreprise = @idEntreprise
                         AND p.date_sortie IS NULL
+                        AND p.typeContrat = @typeContrat
                         ORDER BY p.nomPrenom";
 
                     using (var cmd = new MySqlCommand(sql, con))
                     {
                         cmd.Parameters.AddWithValue("@idEntreprise", idEntreprise);
+                        cmd.Parameters.AddWithValue("@typeContrat", typeContrat);
 
                         using (var reader = cmd.ExecuteReader())
                         {
@@ -210,12 +348,27 @@ namespace RH_GRH
                 }
 
                 dataGridViewEmployes.DataSource = dtEmployes;
-                labelNombreEmployes.Text = $"{dtEmployes.Rows.Count} employé(s) trouvé(s)";
+                int count = dtEmployes.Rows.Count;
+                if (count == 0)
+                {
+                    labelNombreEmployes.Text = "👥 Aucun employé trouvé";
+                }
+                else if (count == 1)
+                {
+                    labelNombreEmployes.Text = "👥 1 employé sélectionné";
+                }
+                else
+                {
+                    labelNombreEmployes.Text = $"👥 {count} employés sélectionnés";
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors du chargement des employés :\n{ex.Message}",
-                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show(
+                    $"Erreur lors du chargement des employés :\n{ex.Message}",
+                    "Erreur",
+                    CustomMessageBox.MessageType.Error,
+                    CustomMessageBox.MessageButtons.OK);
             }
         }
 
@@ -237,25 +390,29 @@ namespace RH_GRH
 
                     if (folderDialog.ShowDialog() == DialogResult.OK)
                     {
-                        // Afficher la barre de progression
+                        // Afficher la barre de progression avec animation
                         panelProgression.Visible = true;
                         guna2ProgressBar1.Value = 0;
-                        labelProgression.Text = "Génération en cours... 0%";
+                        labelProgression.Text = "🔄 Préparation de la génération...";
+                        Application.DoEvents();
 
                         // Générer les bulletins individuels
                         GenererPDFConsolide(folderDialog.SelectedPath);
 
+                        // Masquer la barre de progression
                         panelProgression.Visible = false;
 
-                        MessageBox.Show($"Bulletins générés avec succès !\n\n{dtEmployes.Rows.Count} bulletin(s) dans : {folderDialog.SelectedPath}",
-                            "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CustomMessageBox.Show(
+                            $"✅ Génération terminée avec succès !\n\n" +
+                            $"📊 {dtEmployes.Rows.Count} bulletin(s) généré(s)\n" +
+                            $"📁 Dossier : {folderDialog.SelectedPath}\n\n" +
+                            $"Le dossier va s'ouvrir automatiquement.",
+                            "Succès",
+                            CustomMessageBox.MessageType.Success,
+                            CustomMessageBox.MessageButtons.OK);
 
-                        // Demander si on veut ouvrir le dossier
-                        if (MessageBox.Show("Voulez-vous ouvrir le dossier contenant les bulletins ?", "Confirmation",
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            System.Diagnostics.Process.Start("explorer.exe", folderDialog.SelectedPath);
-                        }
+                        // Ouvrir automatiquement le dossier contenant les bulletins
+                        System.Diagnostics.Process.Start("explorer.exe", folderDialog.SelectedPath);
 
                         this.DialogResult = DialogResult.OK;
                         this.Close();
@@ -265,8 +422,11 @@ namespace RH_GRH
             catch (Exception ex)
             {
                 panelProgression.Visible = false;
-                MessageBox.Show($"Erreur lors de la génération :\n{ex.Message}",
-                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show(
+                    $"❌ Une erreur s'est produite lors de la génération :\n\n{ex.Message}",
+                    "Erreur",
+                    CustomMessageBox.MessageType.Error,
+                    CustomMessageBox.MessageButtons.OK);
             }
         }
 
@@ -274,46 +434,78 @@ namespace RH_GRH
         {
             foreach (DataRow row in dtEmployes.Rows)
             {
+                string nomEmploye = row["nom_prenom"].ToString();
+
                 // Valider que les valeurs numériques sont correctes
                 if (Convert.ToDecimal(row["heures_travaillees"]) < 0)
                 {
-                    MessageBox.Show("Les heures travaillées ne peuvent pas être négatives.",
-                        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    CustomMessageBox.Show(
+                        $"⚠️ Validation échouée\n\n" +
+                        $"Employé : {nomEmploye}\n" +
+                        $"Problème : Les heures/jours travaillés ne peuvent pas être négatifs.",
+                        "Validation des données",
+                        CustomMessageBox.MessageType.Warning,
+                        CustomMessageBox.MessageButtons.OK);
                     return false;
                 }
 
                 if (Convert.ToDecimal(row["hs_norm_jour"]) < 0)
                 {
-                    MessageBox.Show("Les heures supplémentaires normales jour ne peuvent pas être négatives.",
-                        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    CustomMessageBox.Show(
+                        $"⚠️ Validation échouée\n\n" +
+                        $"Employé : {nomEmploye}\n" +
+                        $"Problème : Les heures/jours supplémentaires ne peuvent pas être négatifs.",
+                        "Validation des données",
+                        CustomMessageBox.MessageType.Warning,
+                        CustomMessageBox.MessageButtons.OK);
                     return false;
                 }
 
-                if (Convert.ToDecimal(row["hs_norm_nuit"]) < 0)
+                if (row.Table.Columns.Contains("hs_norm_nuit") && Convert.ToDecimal(row["hs_norm_nuit"]) < 0)
                 {
-                    MessageBox.Show("Les heures supplémentaires normales nuit ne peuvent pas être négatives.",
-                        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    CustomMessageBox.Show(
+                        $"⚠️ Validation échouée\n\n" +
+                        $"Employé : {nomEmploye}\n" +
+                        $"Problème : Les heures supplémentaires de nuit ne peuvent pas être négatives.",
+                        "Validation des données",
+                        CustomMessageBox.MessageType.Warning,
+                        CustomMessageBox.MessageButtons.OK);
                     return false;
                 }
 
-                if (Convert.ToDecimal(row["hs_ferie_jour"]) < 0)
+                if (row.Table.Columns.Contains("hs_ferie_jour") && Convert.ToDecimal(row["hs_ferie_jour"]) < 0)
                 {
-                    MessageBox.Show("Les heures supplémentaires férié jour ne peuvent pas être négatives.",
-                        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    CustomMessageBox.Show(
+                        $"⚠️ Validation échouée\n\n" +
+                        $"Employé : {nomEmploye}\n" +
+                        $"Problème : Les heures supplémentaires férié jour ne peuvent pas être négatives.",
+                        "Validation des données",
+                        CustomMessageBox.MessageType.Warning,
+                        CustomMessageBox.MessageButtons.OK);
                     return false;
                 }
 
-                if (Convert.ToDecimal(row["hs_ferie_nuit"]) < 0)
+                if (row.Table.Columns.Contains("hs_ferie_nuit") && Convert.ToDecimal(row["hs_ferie_nuit"]) < 0)
                 {
-                    MessageBox.Show("Les heures supplémentaires férié nuit ne peuvent pas être négatives.",
-                        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    CustomMessageBox.Show(
+                        $"⚠️ Validation échouée\n\n" +
+                        $"Employé : {nomEmploye}\n" +
+                        $"Problème : Les heures supplémentaires férié nuit ne peuvent pas être négatives.",
+                        "Validation des données",
+                        CustomMessageBox.MessageType.Warning,
+                        CustomMessageBox.MessageButtons.OK);
                     return false;
                 }
 
                 if (Convert.ToDecimal(row["absences"]) < 0)
                 {
-                    MessageBox.Show("Les absences ne peuvent pas être négatives.",
-                        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    CustomMessageBox.Show(
+                        $"⚠️ Validation échouée\n\n" +
+                        $"Employé : {nomEmploye}\n" +
+                        $"Problème : Les absences ne peuvent pas être négatives.",
+                        "Validation des données",
+                        CustomMessageBox.MessageType.Warning,
+                        CustomMessageBox.MessageButtons.OK);
                     return false;
                 }
             }
@@ -337,8 +529,14 @@ namespace RH_GRH
             foreach (DataRow row in dtEmployes.Rows)
             {
                 index++;
-                guna2ProgressBar1.Value = (index * 100) / totalEmployes;
-                labelProgression.Text = $"Génération du bulletin {index}/{totalEmployes} - {row["nom_prenom"]}... ({(index * 100) / totalEmployes}%)";
+                int pourcentage = (index * 100) / totalEmployes;
+                guna2ProgressBar1.Value = pourcentage;
+
+                // Texte de progression élégant avec emoji et informations claires
+                string nomEmploye = row["nom_prenom"].ToString();
+                if (nomEmploye.Length > 30) nomEmploye = nomEmploye.Substring(0, 30) + "...";
+
+                labelProgression.Text = $"📄 Génération du bulletin {index}/{totalEmployes} • {nomEmploye} • {pourcentage}%";
                 Application.DoEvents();
 
                 try
@@ -350,13 +548,27 @@ namespace RH_GRH
                 catch (Exception ex)
                 {
                     errorCount++;
-                    MessageBox.Show($"Erreur pour {row["nom_prenom"]} :\n{ex.Message}\n\nStack trace:\n{ex.StackTrace}",
-                        "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    CustomMessageBox.Show(
+                        $"❌ Erreur lors de la génération\n\n" +
+                        $"Employé : {row["nom_prenom"]}\n" +
+                        $"Erreur : {ex.Message}",
+                        "Erreur de génération",
+                        CustomMessageBox.MessageType.Warning,
+                        CustomMessageBox.MessageButtons.OK);
                 }
             }
 
-            labelProgression.Text = $"Génération terminée ! {successCount} réussi(s), {errorCount} erreur(s)";
+            // Message de fin avec résumé
+            if (errorCount == 0)
+            {
+                labelProgression.Text = $"✅ Génération terminée avec succès ! {successCount} bulletin(s) généré(s)";
+            }
+            else
+            {
+                labelProgression.Text = $"⚠️ Génération terminée : {successCount} réussi(s), {errorCount} erreur(s)";
+            }
             Application.DoEvents();
+            System.Threading.Thread.Sleep(1500); // Afficher le message final pendant 1.5 secondes
         }
 
         private void GenererBulletinIndividuel(DataRow row, string dossierDestination)
@@ -365,13 +577,35 @@ namespace RH_GRH
             int idEmploye = Convert.ToInt32(row["id_personnel"]);
             string matricule = row["matricule"].ToString();
             decimal heuresTravaillees = Convert.ToDecimal(row["heures_travaillees"]);
-            decimal hsNormJour = Convert.ToDecimal(row["hs_norm_jour"]);
-            decimal hsNormNuit = Convert.ToDecimal(row["hs_norm_nuit"]);
-            decimal hsFerieJour = Convert.ToDecimal(row["hs_ferie_jour"]);
-            decimal hsFerieNuit = Convert.ToDecimal(row["hs_ferie_nuit"]);
-            decimal absences = Convert.ToDecimal(row["absences"]);
-            decimal dette = Convert.ToDecimal(row["dette"]);
-            string typeContrat = row["type_contrat"].ToString();
+            string typeContratRow = row["type_contrat"].ToString();
+
+            // Récupérer les valeurs selon le type de contrat
+            decimal hsNormJour = 0m;
+            decimal hsNormNuit = 0m;
+            decimal hsFerieJour = 0m;
+            decimal hsFerieNuit = 0m;
+
+            if (typeContratRow == "Horaire")
+            {
+                // Pour les horaires : 4 colonnes
+                hsNormJour = row["hs_norm_jour"] != DBNull.Value ? Convert.ToDecimal(row["hs_norm_jour"]) : 0m;
+                hsNormNuit = row["hs_norm_nuit"] != DBNull.Value ? Convert.ToDecimal(row["hs_norm_nuit"]) : 0m;
+                hsFerieJour = row["hs_ferie_jour"] != DBNull.Value ? Convert.ToDecimal(row["hs_ferie_jour"]) : 0m;
+                hsFerieNuit = row["hs_ferie_nuit"] != DBNull.Value ? Convert.ToDecimal(row["hs_ferie_nuit"]) : 0m;
+            }
+            else // Journalier
+            {
+                // Pour les journaliers : 1 seule colonne "Jours Supp" dans hs_norm_jour
+                hsNormJour = row["hs_norm_jour"] != DBNull.Value ? Convert.ToDecimal(row["hs_norm_jour"]) : 0m;
+                // Les autres restent à 0
+            }
+
+            decimal absences = row["absences"] != DBNull.Value ? Convert.ToDecimal(row["absences"]) : 0m;
+            decimal dette = row["dette"] != DBNull.Value ? Convert.ToDecimal(row["dette"]) : 0m;
+            string typeContrat = typeContratRow;
+
+            // Debug: Afficher la dette
+            System.Diagnostics.Debug.WriteLine($"Employé: {matricule}, Dette: {dette}");
 
             // Récupérer les détails de l'employé
             var employe = EmployeService.GetEmployeDetails(idEmploye);
@@ -588,8 +822,16 @@ namespace RH_GRH
                 //SALAIRE NET A PAYER
                 SalaireNet = snapshot.SalaireNet,
                 EffortDePaix = snapshot.EffortPaix,
-                SalaireNetaPayer = snapshot.SalaireNetaPayer
+                SalaireNetaPayer = snapshot.SalaireNetaPayer,
+                ValeurDette = dette,
+                SalaireNetaPayerFinal = snapshot.SalaireNetaPayer
             };
+
+            // Debug: Vérifier les valeurs du modèle
+            System.Diagnostics.Debug.WriteLine($"=== Modèle BulletinModel créé ===");
+            System.Diagnostics.Debug.WriteLine($"SalaireNet dans model: {model.SalaireNet}");
+            System.Diagnostics.Debug.WriteLine($"EffortDePaix dans model: {model.EffortDePaix}");
+            System.Diagnostics.Debug.WriteLine($"SalaireNetaPayer dans model: {model.SalaireNetaPayer}");
 
             // Nettoyer la période pour le nom de fichier
             string periodeSafe = model.Periode
@@ -783,14 +1025,22 @@ namespace RH_GRH
             // Les journaliers utilisent les MÊMES méthodes que les horaires
             // ============================================================================
 
+            // Debug
+            System.Diagnostics.Debug.WriteLine($"=== CalculerSalaireJournalier pour {employe.Nom} ===");
+            System.Diagnostics.Debug.WriteLine($"Dette passée: {dette}");
+            System.Diagnostics.Debug.WriteLine($"JoursTravailles: {joursTravailles}, jsNormJour: {jsNormJour}, Absences: {absences}");
+
             // 1) Récupérer le salaire catégoriel depuis employe.Montant
             decimal salaireCategoriel = (decimal)(employe.Montant ?? 0.0);
             decimal unitesTotales = employe.JourContrat; // jours contractuels
             decimal unitesAbsences = absences;
             int nbreHC = employe.JourContrat;
 
+            System.Diagnostics.Debug.WriteLine($"SalaireCategoriel: {salaireCategoriel}, UnitesTotales: {unitesTotales}, JourContrat: {employe.JourContrat}");
+
             if (salaireCategoriel <= 0m || unitesTotales <= 0m)
             {
+                System.Diagnostics.Debug.WriteLine("ERREUR: Salaire catégoriel ou unités totales = 0, retour avec valeurs à 0");
                 snapshot.SalaireBase = 0;
                 snapshot.SalaireBrut = 0;
                 snapshot.SalaireNet = 0;
@@ -929,6 +1179,11 @@ namespace RH_GRH
             snapshot.SalaireNet = salaireBrut - cnssEmploye - iutsFinal;
             snapshot.EffortPaix = snapshot.SalaireNet * 0.01m;
             snapshot.SalaireNetaPayer = snapshot.SalaireNet - snapshot.EffortPaix - dette;
+
+            // Debug final
+            System.Diagnostics.Debug.WriteLine($"SalaireBrut: {salaireBrut}, SalaireNet: {snapshot.SalaireNet}");
+            System.Diagnostics.Debug.WriteLine($"Dette finale: {dette}, SalaireNetaPayer: {snapshot.SalaireNetaPayer}");
+            System.Diagnostics.Debug.WriteLine("=== Fin CalculerSalaireJournalier ===");
         }
 
         // ============================================================================
