@@ -156,6 +156,10 @@
     <Compile Include="EmployeDetail.cs" />
     <Compile Include="ExcelImportService.cs" />
     <Compile Include="ExcelImportServiceV2.cs" />
+    <Compile Include="FilteredComboBoxHelper.cs" />
+    <Compile Include="SearchableComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ImportEmployeForm.cs">
       <SubType>Form</SubType>
     </Compile>

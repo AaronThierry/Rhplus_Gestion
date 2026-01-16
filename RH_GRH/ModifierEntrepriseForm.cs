@@ -29,13 +29,14 @@ namespace RH_GRH
         private readonly decimal? tpaActuelle;
         private readonly string emailActuel;
         private readonly byte[] logoActuel;
+        private readonly string responsableActuel;
 
         public ModifierEntrepriseForm(
             int idEntreprise, string nomEntreprise, string formeJuridique, string sigle,
             string activite, string adressePhysique, string adressePostale, string telephone,
             string commune, string quartier, string rue, string lot, string centreImpots,
             string numeroIfu, string numeroCnss, string codeActivite, string regimeFiscal,
-            string registreCommerce, string numeroBancaire, decimal? tpa, string email, byte[] logo)
+            string registreCommerce, string numeroBancaire, decimal? tpa, string email, byte[] logo, string responsable)
         {
             InitializeComponent();
 
@@ -61,6 +62,7 @@ namespace RH_GRH
             this.tpaActuelle = tpa;
             this.emailActuel = email;
             this.logoActuel = logo;
+            this.responsableActuel = responsable;
 
             ChargerDonnees();
         }
@@ -87,6 +89,7 @@ namespace RH_GRH
             textBoxNumeroBancaire.Text = numeroBancaireActuel;
             textBoxTPA.Text = tpaActuelle.HasValue ? tpaActuelle.Value.ToString("F2") : "";
             textBoxEmail.Text = emailActuel;
+            textBoxResponsable.Text = responsableActuel;
 
             // Charger le logo
             if (logoActuel != null && logoActuel.Length > 0)
@@ -126,6 +129,7 @@ namespace RH_GRH
             string registreCommerce = textBoxRegistreCommerce.Text?.Trim();
             string numeroBancaire = textBoxNumeroBancaire.Text?.Trim();
             string email = textBoxEmail.Text?.Trim();
+            string responsable = textBoxResponsable.Text?.Trim();
 
             // Validation du nom (obligatoire)
             if (string.IsNullOrWhiteSpace(nomEntreprise))
@@ -196,6 +200,7 @@ namespace RH_GRH
                     numeroBancaire != numeroBancaireActuel ||
                     tpa != tpaActuelle ||
                     email != emailActuel ||
+                    responsable != responsableActuel ||
                     !AreBytesEqual(logoBytes, logoActuel))
                 {
                     changed = true;
@@ -217,7 +222,7 @@ namespace RH_GRH
                     idEntrepriseActuelle, nomEntreprise, formeJuridique, sigle, activite,
                     adressePhysique, adressePostale, telephone, commune, quartier, rue, lot,
                     centreImpots, numeroIfu, numeroCnss, codeActivite, regimeFiscal,
-                    registreCommerce, numeroBancaire, tpa, logoBytes, email
+                    registreCommerce, numeroBancaire, tpa, logoBytes, email, responsable
                 );
 
                 if (success)

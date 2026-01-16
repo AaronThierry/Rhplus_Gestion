@@ -135,6 +135,7 @@ namespace RH_GRH
             string sql = @"
         SELECT
             d.id_direction  AS `ID`,
+            e.id_entreprise AS `ID_Entreprise`,
             e.nomEntreprise AS `Entreprise`,
             d.nomDirection  AS `Direction`
         FROM direction d
@@ -144,7 +145,6 @@ namespace RH_GRH
                 e.nomEntreprise,
                 e.activite,
                 e.sigle,
-                e.adresse_physique,
                 e.telephone
             ) LIKE @q
         ORDER BY e.nomEntreprise, d.nomDirection;";
@@ -504,6 +504,35 @@ namespace RH_GRH
         }
 
 
+        /// <summary>
+        /// Récupère les directions d'une entreprise sous forme de DataTable
+        /// Utilisé pour le filtrage intelligent des ComboBox
+        /// </summary>
+        public static DataTable GetDirectionsByEntreprise(int idEntreprise)
+        {
+            var connect = new Dbconnect();
+            using (var con = connect.getconnection)
+            {
+                con.Open();
+                const string sql = @"
+                    SELECT id_direction, nomDirection
+                    FROM direction
+                    WHERE id_entreprise = @idEnt
+                    ORDER BY nomDirection;";
+
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.Add("@idEnt", MySqlDbType.Int32).Value = idEntreprise;
+
+                    using (var da = new MySqlDataAdapter(cmd))
+                    {
+                        var dt = new DataTable();
+                        da.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+        }
 
 
     }

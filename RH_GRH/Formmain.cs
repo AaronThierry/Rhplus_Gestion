@@ -193,9 +193,10 @@ namespace RH_GRH
 
         public void count()
         {
-            //Display count entreprie employe 
+            //Display count entreprie employe
             // label_entreprise.Text = "Total des entreprises : " + Entreprise.totalEntreprie();
             label_nbreentreprise.Text = Entreprise.totalEntreprie();
+            label2.Text = EmployeClass.TotalEmployes();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -604,8 +604,21 @@ namespace RH_GRH
                             .FontFamily("Montserrat").FontSize(9).SemiBold();
                     });
 
+                    // Noms des responsables
+                    section.Item().PaddingTop(5).Row(r =>
+                    {
+                        r.RelativeItem().Text(model.ResponsableEntreprise ?? "")
+                            .FontFamily("Montserrat").FontSize(8);
+
+                        r.RelativeItem().AlignCenter().Text("")
+                            .FontFamily("Montserrat").FontSize(8);
+
+                        r.RelativeItem().AlignRight().Text(model.NomEmploye ?? "")
+                            .FontFamily("Montserrat").FontSize(8);
+                    });
+
                     // Lignes de signature (à remplir à la main)
-                    section.Item().PaddingTop(18).Row(r =>
+                    section.Item().PaddingTop(10).Row(r =>
                     {
                         r.RelativeItem().Container().PaddingRight(8)
                             .BorderTop(1).BorderColor(Colors.Grey.Medium).Height(1);

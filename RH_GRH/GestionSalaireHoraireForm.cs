@@ -102,6 +102,10 @@ namespace RH_GRH
             guna2DateTimePickerFin.Format = DateTimePickerFormat.Custom;
             guna2DateTimePickerFin.CustomFormat = "dd/MM/yyyy";
 
+            // Définir la date par défaut à la date du jour
+            guna2DateTimePickerDebut.Value = DateTime.Now;
+            guna2DateTimePickerFin.Value = DateTime.Now;
+
             // La fin ne peut jamais être avant le début
             guna2DateTimePickerFin.MinDate = guna2DateTimePickerDebut.Value.Date;
         }
@@ -1258,6 +1262,7 @@ public static class IUTS
                     EmailEntreprise = employe.EmailEntreprise ?? "",
                     AdressePhysiqueEntreprise = employe.AdressePhysiqueEntreprise ?? "",
                     AdressePostaleEntreprise = employe.AdressePostaleEntreprise ?? "",
+                    ResponsableEntreprise = employe.ResponsableEntreprise ?? "",
 
 
 
@@ -1552,6 +1557,7 @@ public static class IUTS
                     AdressePostaleEntreprise = _lastSnapshot.AdressePostaleEntreprise,
                     TelephoneEntreprise = _lastSnapshot.TelephoneEntreprise,
                     EmailEntreprise = _lastSnapshot.EmailEntreprise,
+                    ResponsableEntreprise = _lastSnapshot.ResponsableEntreprise,
                     Numero_indemnite_1 = Numero_indemnite_1,
                     Nom_Indemnite_1 = Nom_Indemnite_1,
                     Montant_Indemnite_1 = Montant_Indemnite_1,

@@ -40,6 +40,7 @@ namespace RH_GRH
         public string EmailEntreprise { get; set; } = "";
         public string AdressePhysiqueEntreprise { get; set; } = "";
         public string AdressePostaleEntreprise { get; set; } = "";
+        public string ResponsableEntreprise { get; set; } = "";
 
         public DateTime DateNaissance { get; set; }
         public DateTime DateEntree { get; set; }

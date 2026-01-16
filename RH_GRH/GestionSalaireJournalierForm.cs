@@ -98,6 +98,10 @@ namespace RH_GRH
             guna2DateTimePickerFin.Format = DateTimePickerFormat.Custom;
             guna2DateTimePickerFin.CustomFormat = "dd/MM/yyyy";
 
+            // Définir la date par défaut à la date du jour
+            guna2DateTimePickerDebut.Value = DateTime.Now;
+            guna2DateTimePickerFin.Value = DateTime.Now;
+
             // La fin ne peut jamais être avant le début
             guna2DateTimePickerFin.MinDate = guna2DateTimePickerDebut.Value.Date;
         }
@@ -973,7 +977,7 @@ namespace RH_GRH
                 || !int.TryParse(ComboBoxEmploye.SelectedValue.ToString(), out int idEmploye)
                 || idEmploye <= 0)
             {
-                MessageBox.Show("Sélectionnez un employé valide.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CustomMessageBox.Show("Sélectionnez un employé valide.", "Validation", CustomMessageBox.MessageType.Warning);
                 return;
             }
 
@@ -1201,6 +1205,7 @@ namespace RH_GRH
                     EmailEntreprise = employe.EmailEntreprise,
                     AdressePhysiqueEntreprise = employe.AdressePhysiqueEntreprise,
                     AdressePostaleEntreprise = employe.AdressePostaleEntreprise,
+                    ResponsableEntreprise = employe.ResponsableEntreprise,
 
 
 
@@ -1474,6 +1479,7 @@ namespace RH_GRH
                     AdressePostaleEntreprise = _lastSnapshot.AdressePostaleEntreprise,
                     TelephoneEntreprise = _lastSnapshot.TelephoneEntreprise,
                     EmailEntreprise = _lastSnapshot.EmailEntreprise,
+                    ResponsableEntreprise = _lastSnapshot.ResponsableEntreprise,
                     Numero_indemnite_1 = Numero_indemnite_1,
                     Nom_Indemnite_1 = Nom_Indemnite_1,
                     Montant_Indemnite_1 = Montant_Indemnite_1,

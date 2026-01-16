@@ -266,6 +266,7 @@ namespace RH_GRH
                 EmailEntreprise = employe.EmailEntreprise ?? "",
                 AdressePhysiqueEntreprise = employe.AdressePhysiqueEntreprise ?? "",
                 AdressePostaleEntreprise = employe.AdressePostaleEntreprise ?? "",
+                ResponsableEntreprise = employe.ResponsableEntreprise ?? "",
 
                 // Valeurs par défaut pour les calculs (à remplacer par les vraies valeurs)
                 SalaireBrut = 0,
@@ -309,6 +310,7 @@ namespace RH_GRH
                 EmailEntreprise = snapshot.EmailEntreprise,
                 AdressePhysiqueEntreprise = snapshot.AdressePhysiqueEntreprise,
                 AdressePostaleEntreprise = snapshot.AdressePostaleEntreprise,
+                ResponsableEntreprise = snapshot.ResponsableEntreprise,
 
                 // Période
                 Periode = snapshot.PeriodeSalaire,

@@ -608,6 +608,30 @@ WHERE id_personnel  = @id_personnel;";
     }
 
 
+    /// <summary>
+    /// Retourne le nombre total d'employés dans la base de données
+    /// </summary>
+    public static string TotalEmployes()
+    {
+        try
+        {
+            var connect = new Dbconnect();
+            using (var con = connect.getconnection)
+            {
+                con.Open();
+                string query = "SELECT COUNT(*) FROM personnel";
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    var count = cmd.ExecuteScalar();
+                    return count?.ToString() ?? "0";
+                }
+            }
+        }
+        catch (Exception)
+        {
+            return "0";
+        }
+    }
 
 
 }

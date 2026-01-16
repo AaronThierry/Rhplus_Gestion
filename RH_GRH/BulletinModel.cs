@@ -23,6 +23,7 @@ namespace RH_GRH
             public string EmailEntreprise { get; set; }
             public string AdressePhysiqueEntreprise { get; set; }
             public string AdressePostaleEntreprise { get; set; }
+            public string ResponsableEntreprise { get; set; }
 
         //SALAIRE DE BASE
             public double baseUnitaire { get; set; }

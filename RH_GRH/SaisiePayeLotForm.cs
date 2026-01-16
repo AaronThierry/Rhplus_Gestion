@@ -641,6 +641,7 @@ namespace RH_GRH
                 EmailEntreprise = employe.EmailEntreprise,
                 AdressePhysiqueEntreprise = employe.AdressePhysiqueEntreprise,
                 AdressePostaleEntreprise = employe.AdressePostaleEntreprise,
+                ResponsableEntreprise = employe.ResponsableEntreprise,
 
                 // Catégorie/Service/Direction
                 Categorie = employe.Categorie,
@@ -772,6 +773,7 @@ namespace RH_GRH
                 AdressePostaleEntreprise = snapshot.AdressePostaleEntreprise,
                 TelephoneEntreprise = snapshot.TelephoneEntreprise,
                 EmailEntreprise = snapshot.EmailEntreprise,
+                ResponsableEntreprise = snapshot.ResponsableEntreprise,
                 Numero_indemnite_1 = Numero_indemnite_1,
                 Nom_Indemnite_1 = Nom_Indemnite_1,
                 Montant_Indemnite_1 = Montant_Indemnite_1,

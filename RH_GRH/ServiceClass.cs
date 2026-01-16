@@ -137,6 +137,7 @@ namespace RH_GRH
             string sql = @"
         SELECT
             d.id_service  AS `ID`,
+            e.id_entreprise AS `ID_Entreprise`,
             e.nomEntreprise AS `Entreprise`,
             d.nomService  AS `Service`
         FROM service d
@@ -146,7 +147,6 @@ namespace RH_GRH
                 e.nomEntreprise,
                 e.activite,
                 e.sigle,
-                e.adresse_physique,
                 e.telephone
             ) LIKE @q
         ORDER BY e.nomEntreprise, d.nomService;";
@@ -571,7 +571,35 @@ namespace RH_GRH
         }
 
 
+        /// <summary>
+        /// Récupère les services d'une entreprise sous forme de DataTable
+        /// Utilisé pour le filtrage intelligent des ComboBox
+        /// </summary>
+        public static DataTable GetServicesByEntreprise(int idEntreprise)
+        {
+            var connect = new Dbconnect();
+            using (var con = connect.getconnection)
+            {
+                con.Open();
+                const string sql = @"
+                    SELECT id_service, nomService
+                    FROM service
+                    WHERE id_entreprise = @idEnt
+                    ORDER BY nomService;";
 
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.Add("@idEnt", MySqlDbType.Int32).Value = idEntreprise;
+
+                    using (var da = new MySqlDataAdapter(cmd))
+                    {
+                        var dt = new DataTable();
+                        da.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+        }
 
 
 

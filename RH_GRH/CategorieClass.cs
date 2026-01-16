@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace RH_GRH
 {
-    internal class Categorie
+    public class Categorie
     {
 
 
@@ -139,6 +139,7 @@ namespace RH_GRH
             string sql = @"
         SELECT
             c.id_categorie  AS `ID`,
+            e.id_entreprise AS `ID_Entreprise`,
             e.nomEntreprise AS `Entreprise`,
             c.nomCategorie  AS `Categorie`,
             c.montant       AS `Montant`
@@ -149,7 +150,6 @@ namespace RH_GRH
                 e.nomEntreprise,
                 e.activite,
                 e.sigle,
-                e.adresse_physique,
                 e.telephone
             ) LIKE @q
         ORDER BY e.nomEntreprise, c.nomCategorie;";
@@ -527,6 +527,36 @@ namespace RH_GRH
             }
         }
 
+
+        /// <summary>
+        /// Récupère les catégories d'une entreprise sous forme de DataTable
+        /// Utilisé pour le filtrage intelligent des ComboBox
+        /// </summary>
+        public static DataTable GetCategoriesByEntreprise(int idEntreprise)
+        {
+            var connect = new Dbconnect();
+            using (var con = connect.getconnection)
+            {
+                con.Open();
+                const string sql = @"
+                    SELECT id_categorie, nomCategorie
+                    FROM categorie
+                    WHERE id_entreprise = @idEnt
+                    ORDER BY nomCategorie;";
+
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.Add("@idEnt", MySqlDbType.Int32).Value = idEntreprise;
+
+                    using (var da = new MySqlDataAdapter(cmd))
+                    {
+                        var dt = new DataTable();
+                        da.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+        }
 
 
     }

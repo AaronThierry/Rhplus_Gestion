@@ -79,6 +79,7 @@ namespace RH_GRH
             this.textBoxNomService.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(138, 138, 138);
             this.textBoxNomService.FocusedState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
             this.textBoxNomService.Font = new System.Drawing.Font("Montserrat", 10F);
+            this.textBoxNomService.ForeColor = System.Drawing.Color.Black;
             this.textBoxNomService.HoverState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
             this.textBoxNomService.Location = new System.Drawing.Point(30, 105);
             this.textBoxNomService.Name = "textBoxNomService";

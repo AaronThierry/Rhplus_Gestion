@@ -126,6 +126,10 @@ namespace RH_GRH
             // Effet hover personnalisé
             dataGridViewEntreprises.CellMouseEnter += DataGridViewEntreprises_CellMouseEnter;
             dataGridViewEntreprises.CellMouseLeave += DataGridViewEntreprises_CellMouseLeave;
+
+            // Définir la date par défaut à la date du jour
+            dateTimePickerDebut.Value = DateTime.Now;
+            dateTimePickerFin.Value = DateTime.Now;
         }
 
         private void DataGridViewEntreprises_CellMouseEnter(object sender, DataGridViewCellEventArgs e)

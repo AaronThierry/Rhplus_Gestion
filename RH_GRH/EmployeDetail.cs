@@ -24,6 +24,7 @@ namespace RH_GRH
                 e.email           AS EmailEntreprise,
                 e.adresse_physique        AS AdressePhysiqueEntreprise,
                 e.adresse_postale        AS AdressePostaleEntreprise,
+                e.responsable     AS ResponsableEntreprise,
                 p.nomPrenom,
                 p.civilite,
                 p.sexe,
@@ -103,7 +104,8 @@ namespace RH_GRH
                                 telephoneEntreprise: reader.IsDBNull(reader.GetOrdinal("TelephoneEntreprise")) ? string.Empty : reader.GetString("TelephoneEntreprise"),
                                 emailEntreprise: reader.IsDBNull(reader.GetOrdinal("EmailEntreprise")) ? string.Empty : reader.GetString("EmailEntreprise"),
                                 adressePhysiqueEntreprise: reader.IsDBNull(reader.GetOrdinal("AdressePhysiqueEntreprise")) ? string.Empty : reader.GetString("AdressePhysiqueEntreprise"),
-                                adressePostaleEntreprise: reader.IsDBNull(reader.GetOrdinal("AdressePostaleEntreprise")) ? string.Empty : reader.GetString("AdressePostaleEntreprise")
+                                adressePostaleEntreprise: reader.IsDBNull(reader.GetOrdinal("AdressePostaleEntreprise")) ? string.Empty : reader.GetString("AdressePostaleEntreprise"),
+                                responsableEntreprise: reader.IsDBNull(reader.GetOrdinal("ResponsableEntreprise")) ? string.Empty : reader.GetString("ResponsableEntreprise")
 
 
 

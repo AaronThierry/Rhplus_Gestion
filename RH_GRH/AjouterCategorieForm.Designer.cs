@@ -46,7 +46,7 @@ namespace RH_GRH
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Name = "panelMain";
             this.panelMain.Padding = new System.Windows.Forms.Padding(20);
-            this.panelMain.Size = new System.Drawing.Size(500, 365);
+            this.panelMain.Size = new System.Drawing.Size(500, 480);
             this.panelMain.TabIndex = 0;
             //
             // labelTitre
@@ -158,7 +158,7 @@ namespace RH_GRH
             this.buttonAjouter.FillColor = System.Drawing.Color.MidnightBlue;
             this.buttonAjouter.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
             this.buttonAjouter.ForeColor = System.Drawing.Color.White;
-            this.buttonAjouter.Location = new System.Drawing.Point(250, 295);
+            this.buttonAjouter.Location = new System.Drawing.Point(250, 410);
             this.buttonAjouter.Name = "buttonAjouter";
             this.buttonAjouter.Size = new System.Drawing.Size(110, 40);
             this.buttonAjouter.TabIndex = 7;
@@ -175,7 +175,7 @@ namespace RH_GRH
             this.buttonAnnuler.FillColor = System.Drawing.Color.Gray;
             this.buttonAnnuler.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
             this.buttonAnnuler.ForeColor = System.Drawing.Color.White;
-            this.buttonAnnuler.Location = new System.Drawing.Point(370, 295);
+            this.buttonAnnuler.Location = new System.Drawing.Point(370, 410);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(100, 40);
             this.buttonAnnuler.TabIndex = 8;
@@ -186,7 +186,7 @@ namespace RH_GRH
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 365);
+            this.ClientSize = new System.Drawing.Size(500, 480);
             this.Controls.Add(this.panelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;

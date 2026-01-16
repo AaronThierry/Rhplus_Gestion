@@ -63,6 +63,8 @@ namespace RH_GRH
             this.textBoxTPA = new Guna.UI2.WinForms.Guna2TextBox();
             this.labelEmail = new System.Windows.Forms.Label();
             this.textBoxEmail = new Guna.UI2.WinForms.Guna2TextBox();
+            this.labelResponsable = new System.Windows.Forms.Label();
+            this.textBoxResponsable = new Guna.UI2.WinForms.Guna2TextBox();
             this.labelLogo = new System.Windows.Forms.Label();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.buttonParcourir = new Guna.UI2.WinForms.Guna2Button();
@@ -97,7 +99,7 @@ namespace RH_GRH
             this.buttonValider.Location = new System.Drawing.Point(560, 15);
             this.buttonValider.Name = "buttonValider";
             this.buttonValider.Size = new System.Drawing.Size(170, 45);
-            this.buttonValider.TabIndex = 23;
+            this.buttonValider.TabIndex = 24;
             this.buttonValider.Text = "Valider";
             this.buttonValider.Click += new System.EventHandler(this.buttonValider_Click);
             //
@@ -115,7 +117,7 @@ namespace RH_GRH
             this.buttonAnnuler.Location = new System.Drawing.Point(380, 15);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(170, 45);
-            this.buttonAnnuler.TabIndex = 24;
+            this.buttonAnnuler.TabIndex = 25;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
             //
@@ -173,6 +175,8 @@ namespace RH_GRH
             this.panelContent.Controls.Add(this.textBoxTPA);
             this.panelContent.Controls.Add(this.labelEmail);
             this.panelContent.Controls.Add(this.textBoxEmail);
+            this.panelContent.Controls.Add(this.labelResponsable);
+            this.panelContent.Controls.Add(this.textBoxResponsable);
             this.panelContent.Controls.Add(this.labelLogo);
             this.panelContent.Controls.Add(this.pictureBoxLogo);
             this.panelContent.Controls.Add(this.buttonParcourir);
@@ -180,7 +184,7 @@ namespace RH_GRH
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Padding = new System.Windows.Forms.Padding(20);
-            this.panelContent.Size = new System.Drawing.Size(729, 1310);
+            this.panelContent.Size = new System.Drawing.Size(729, 1362);
             this.panelContent.TabIndex = 0;
             //
             // labelTitre
@@ -213,6 +217,7 @@ namespace RH_GRH
             this.textBoxNomEntreprise.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxNomEntreprise.DefaultText = "";
             this.textBoxNomEntreprise.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxNomEntreprise.ForeColor = System.Drawing.Color.Black;
             this.textBoxNomEntreprise.Location = new System.Drawing.Point(33, 40);
             this.textBoxNomEntreprise.Name = "textBoxNomEntreprise";
             this.textBoxNomEntreprise.Size = new System.Drawing.Size(330, 36);
@@ -234,6 +239,7 @@ namespace RH_GRH
             this.textBoxFormeJuridique.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxFormeJuridique.DefaultText = "";
             this.textBoxFormeJuridique.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxFormeJuridique.ForeColor = System.Drawing.Color.Black;
             this.textBoxFormeJuridique.Location = new System.Drawing.Point(383, 40);
             this.textBoxFormeJuridique.Name = "textBoxFormeJuridique";
             this.textBoxFormeJuridique.Size = new System.Drawing.Size(300, 36);
@@ -255,6 +261,7 @@ namespace RH_GRH
             this.textBoxSigle.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxSigle.DefaultText = "";
             this.textBoxSigle.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxSigle.ForeColor = System.Drawing.Color.Black;
             this.textBoxSigle.Location = new System.Drawing.Point(33, 106);
             this.textBoxSigle.Name = "textBoxSigle";
             this.textBoxSigle.Size = new System.Drawing.Size(330, 36);
@@ -276,6 +283,7 @@ namespace RH_GRH
             this.textBoxActivite.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxActivite.DefaultText = "";
             this.textBoxActivite.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxActivite.ForeColor = System.Drawing.Color.Black;
             this.textBoxActivite.Location = new System.Drawing.Point(383, 106);
             this.textBoxActivite.Name = "textBoxActivite";
             this.textBoxActivite.Size = new System.Drawing.Size(300, 36);
@@ -297,6 +305,7 @@ namespace RH_GRH
             this.textBoxAdressePhysique.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxAdressePhysique.DefaultText = "";
             this.textBoxAdressePhysique.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxAdressePhysique.ForeColor = System.Drawing.Color.Black;
             this.textBoxAdressePhysique.Location = new System.Drawing.Point(33, 172);
             this.textBoxAdressePhysique.Name = "textBoxAdressePhysique";
             this.textBoxAdressePhysique.Size = new System.Drawing.Size(650, 36);
@@ -318,6 +327,7 @@ namespace RH_GRH
             this.textBoxAdressePostale.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxAdressePostale.DefaultText = "";
             this.textBoxAdressePostale.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxAdressePostale.ForeColor = System.Drawing.Color.Black;
             this.textBoxAdressePostale.Location = new System.Drawing.Point(33, 238);
             this.textBoxAdressePostale.Name = "textBoxAdressePostale";
             this.textBoxAdressePostale.Size = new System.Drawing.Size(650, 36);
@@ -339,6 +349,7 @@ namespace RH_GRH
             this.textBoxTelephone.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxTelephone.DefaultText = "";
             this.textBoxTelephone.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxTelephone.ForeColor = System.Drawing.Color.Black;
             this.textBoxTelephone.Location = new System.Drawing.Point(33, 304);
             this.textBoxTelephone.Name = "textBoxTelephone";
             this.textBoxTelephone.Size = new System.Drawing.Size(330, 36);
@@ -360,6 +371,7 @@ namespace RH_GRH
             this.textBoxCommune.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxCommune.DefaultText = "";
             this.textBoxCommune.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxCommune.ForeColor = System.Drawing.Color.Black;
             this.textBoxCommune.Location = new System.Drawing.Point(383, 304);
             this.textBoxCommune.Name = "textBoxCommune";
             this.textBoxCommune.Size = new System.Drawing.Size(300, 36);
@@ -381,6 +393,7 @@ namespace RH_GRH
             this.textBoxQuartier.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxQuartier.DefaultText = "";
             this.textBoxQuartier.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxQuartier.ForeColor = System.Drawing.Color.Black;
             this.textBoxQuartier.Location = new System.Drawing.Point(33, 370);
             this.textBoxQuartier.Name = "textBoxQuartier";
             this.textBoxQuartier.Size = new System.Drawing.Size(330, 36);
@@ -402,6 +415,7 @@ namespace RH_GRH
             this.textBoxRue.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxRue.DefaultText = "";
             this.textBoxRue.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxRue.ForeColor = System.Drawing.Color.Black;
             this.textBoxRue.Location = new System.Drawing.Point(383, 370);
             this.textBoxRue.Name = "textBoxRue";
             this.textBoxRue.Size = new System.Drawing.Size(300, 36);
@@ -423,6 +437,7 @@ namespace RH_GRH
             this.textBoxLot.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxLot.DefaultText = "";
             this.textBoxLot.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxLot.ForeColor = System.Drawing.Color.Black;
             this.textBoxLot.Location = new System.Drawing.Point(33, 436);
             this.textBoxLot.Name = "textBoxLot";
             this.textBoxLot.Size = new System.Drawing.Size(330, 36);
@@ -444,6 +459,7 @@ namespace RH_GRH
             this.textBoxCentreImpots.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxCentreImpots.DefaultText = "";
             this.textBoxCentreImpots.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxCentreImpots.ForeColor = System.Drawing.Color.Black;
             this.textBoxCentreImpots.Location = new System.Drawing.Point(383, 436);
             this.textBoxCentreImpots.Name = "textBoxCentreImpots";
             this.textBoxCentreImpots.Size = new System.Drawing.Size(300, 36);
@@ -465,6 +481,7 @@ namespace RH_GRH
             this.textBoxNumeroIfu.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxNumeroIfu.DefaultText = "";
             this.textBoxNumeroIfu.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxNumeroIfu.ForeColor = System.Drawing.Color.Black;
             this.textBoxNumeroIfu.Location = new System.Drawing.Point(33, 502);
             this.textBoxNumeroIfu.Name = "textBoxNumeroIfu";
             this.textBoxNumeroIfu.Size = new System.Drawing.Size(330, 36);
@@ -486,6 +503,7 @@ namespace RH_GRH
             this.textBoxNumeroCnss.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxNumeroCnss.DefaultText = "";
             this.textBoxNumeroCnss.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxNumeroCnss.ForeColor = System.Drawing.Color.Black;
             this.textBoxNumeroCnss.Location = new System.Drawing.Point(383, 502);
             this.textBoxNumeroCnss.Name = "textBoxNumeroCnss";
             this.textBoxNumeroCnss.Size = new System.Drawing.Size(300, 36);
@@ -507,6 +525,7 @@ namespace RH_GRH
             this.textBoxCodeActivite.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxCodeActivite.DefaultText = "";
             this.textBoxCodeActivite.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxCodeActivite.ForeColor = System.Drawing.Color.Black;
             this.textBoxCodeActivite.Location = new System.Drawing.Point(33, 568);
             this.textBoxCodeActivite.Name = "textBoxCodeActivite";
             this.textBoxCodeActivite.Size = new System.Drawing.Size(330, 36);
@@ -528,6 +547,7 @@ namespace RH_GRH
             this.textBoxRegimeFiscal.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxRegimeFiscal.DefaultText = "";
             this.textBoxRegimeFiscal.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxRegimeFiscal.ForeColor = System.Drawing.Color.Black;
             this.textBoxRegimeFiscal.Location = new System.Drawing.Point(383, 568);
             this.textBoxRegimeFiscal.Name = "textBoxRegimeFiscal";
             this.textBoxRegimeFiscal.Size = new System.Drawing.Size(300, 36);
@@ -549,6 +569,7 @@ namespace RH_GRH
             this.textBoxRegistreCommerce.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxRegistreCommerce.DefaultText = "";
             this.textBoxRegistreCommerce.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxRegistreCommerce.ForeColor = System.Drawing.Color.Black;
             this.textBoxRegistreCommerce.Location = new System.Drawing.Point(33, 634);
             this.textBoxRegistreCommerce.Name = "textBoxRegistreCommerce";
             this.textBoxRegistreCommerce.Size = new System.Drawing.Size(330, 36);
@@ -570,6 +591,7 @@ namespace RH_GRH
             this.textBoxNumeroBancaire.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxNumeroBancaire.DefaultText = "";
             this.textBoxNumeroBancaire.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxNumeroBancaire.ForeColor = System.Drawing.Color.Black;
             this.textBoxNumeroBancaire.Location = new System.Drawing.Point(383, 634);
             this.textBoxNumeroBancaire.Name = "textBoxNumeroBancaire";
             this.textBoxNumeroBancaire.Size = new System.Drawing.Size(300, 36);
@@ -591,6 +613,7 @@ namespace RH_GRH
             this.textBoxTPA.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxTPA.DefaultText = "";
             this.textBoxTPA.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxTPA.ForeColor = System.Drawing.Color.Black;
             this.textBoxTPA.Location = new System.Drawing.Point(33, 700);
             this.textBoxTPA.Name = "textBoxTPA";
             this.textBoxTPA.Size = new System.Drawing.Size(330, 36);
@@ -612,16 +635,39 @@ namespace RH_GRH
             this.textBoxEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxEmail.DefaultText = "";
             this.textBoxEmail.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxEmail.ForeColor = System.Drawing.Color.Black;
             this.textBoxEmail.Location = new System.Drawing.Point(383, 700);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(300, 36);
             this.textBoxEmail.TabIndex = 20;
             //
+            // labelResponsable
+            //
+            this.labelResponsable.AutoSize = true;
+            this.labelResponsable.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.labelResponsable.Location = new System.Drawing.Point(30, 746);
+            this.labelResponsable.Name = "labelResponsable";
+            this.labelResponsable.Size = new System.Drawing.Size(88, 16);
+            this.labelResponsable.TabIndex = 42;
+            this.labelResponsable.Text = "Responsable :";
+            //
+            // textBoxResponsable
+            //
+            this.textBoxResponsable.BorderRadius = 0;
+            this.textBoxResponsable.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textBoxResponsable.DefaultText = "";
+            this.textBoxResponsable.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxResponsable.ForeColor = System.Drawing.Color.Black;
+            this.textBoxResponsable.Location = new System.Drawing.Point(33, 766);
+            this.textBoxResponsable.Name = "textBoxResponsable";
+            this.textBoxResponsable.Size = new System.Drawing.Size(650, 36);
+            this.textBoxResponsable.TabIndex = 21;
+            //
             // labelLogo
             //
             this.labelLogo.AutoSize = true;
             this.labelLogo.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold);
-            this.labelLogo.Location = new System.Drawing.Point(30, 760);
+            this.labelLogo.Location = new System.Drawing.Point(30, 812);
             this.labelLogo.Name = "labelLogo";
             this.labelLogo.Size = new System.Drawing.Size(98, 16);
             this.labelLogo.TabIndex = 40;
@@ -630,7 +676,7 @@ namespace RH_GRH
             // pictureBoxLogo
             //
             this.pictureBoxLogo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(33, 790);
+            this.pictureBoxLogo.Location = new System.Drawing.Point(33, 842);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
             this.pictureBoxLogo.Size = new System.Drawing.Size(200, 200);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -648,10 +694,10 @@ namespace RH_GRH
             this.buttonParcourir.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.buttonParcourir.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold);
             this.buttonParcourir.ForeColor = System.Drawing.Color.White;
-            this.buttonParcourir.Location = new System.Drawing.Point(33, 1010);
+            this.buttonParcourir.Location = new System.Drawing.Point(33, 1062);
             this.buttonParcourir.Name = "buttonParcourir";
             this.buttonParcourir.Size = new System.Drawing.Size(200, 40);
-            this.buttonParcourir.TabIndex = 21;
+            this.buttonParcourir.TabIndex = 22;
             this.buttonParcourir.Text = "Parcourir...";
             this.buttonParcourir.Click += new System.EventHandler(this.buttonParcourir_Click);
             //
@@ -722,6 +768,8 @@ namespace RH_GRH
         private Guna.UI2.WinForms.Guna2TextBox textBoxTPA;
         private System.Windows.Forms.Label labelEmail;
         private Guna.UI2.WinForms.Guna2TextBox textBoxEmail;
+        private System.Windows.Forms.Label labelResponsable;
+        private Guna.UI2.WinForms.Guna2TextBox textBoxResponsable;
         private System.Windows.Forms.Label labelLogo;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
         private Guna.UI2.WinForms.Guna2Button buttonParcourir;

@@ -42,7 +42,7 @@ namespace RH_GRH
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Name = "panelMain";
             this.panelMain.Padding = new System.Windows.Forms.Padding(20);
-            this.panelMain.Size = new System.Drawing.Size(500, 300);
+            this.panelMain.Size = new System.Drawing.Size(500, 380);
             this.panelMain.TabIndex = 0;
             //
             // labelTitre
@@ -79,6 +79,7 @@ namespace RH_GRH
             this.textBoxNomDirection.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(138, 138, 138);
             this.textBoxNomDirection.FocusedState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
             this.textBoxNomDirection.Font = new System.Drawing.Font("Montserrat", 10F);
+            this.textBoxNomDirection.ForeColor = System.Drawing.Color.Black;
             this.textBoxNomDirection.HoverState.BorderColor = System.Drawing.Color.FromArgb(94, 148, 255);
             this.textBoxNomDirection.Location = new System.Drawing.Point(30, 105);
             this.textBoxNomDirection.Name = "textBoxNomDirection";
@@ -124,7 +125,7 @@ namespace RH_GRH
             this.buttonAjouter.FillColor = System.Drawing.Color.MidnightBlue;
             this.buttonAjouter.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
             this.buttonAjouter.ForeColor = System.Drawing.Color.White;
-            this.buttonAjouter.Location = new System.Drawing.Point(250, 230);
+            this.buttonAjouter.Location = new System.Drawing.Point(250, 310);
             this.buttonAjouter.Name = "buttonAjouter";
             this.buttonAjouter.Size = new System.Drawing.Size(110, 40);
             this.buttonAjouter.TabIndex = 5;
@@ -141,7 +142,7 @@ namespace RH_GRH
             this.buttonAnnuler.FillColor = System.Drawing.Color.Gray;
             this.buttonAnnuler.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
             this.buttonAnnuler.ForeColor = System.Drawing.Color.White;
-            this.buttonAnnuler.Location = new System.Drawing.Point(370, 230);
+            this.buttonAnnuler.Location = new System.Drawing.Point(370, 310);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(100, 40);
             this.buttonAnnuler.TabIndex = 6;
@@ -152,7 +153,7 @@ namespace RH_GRH
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 300);
+            this.ClientSize = new System.Drawing.Size(500, 380);
             this.Controls.Add(this.panelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
