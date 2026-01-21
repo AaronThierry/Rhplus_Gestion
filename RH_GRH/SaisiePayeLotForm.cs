@@ -627,11 +627,11 @@ namespace RH_GRH
                 DateNaissance = employe.DateNaissance,
                 DateEntree = employe.DateEntree,
                 DateSortie = employe.DateSortie,
-                Contrat = typeContrat,
+                Contrat = employe.Contrat ?? "",
                 PeriodeSalaire = $"{periodeDebut:dd/MM/yyyy} - {periodeFin:dd/MM/yyyy}",
                 NumeroEmploye = employe.Matricule, // Utiliser matricule comme numéro employé
                 AdresseEmploye = "", // Peut être récupéré de la BD si nécessaire
-                DureeContrat = "", // Peut être calculé ou récupéré de la BD
+                DureeContrat = employe.DureeContrat ?? "", // Durée du contrat (Permanent, Temporaire, etc.)
                 NombreCharges = nombreCharges,
 
                 // Info entreprise
@@ -841,8 +841,10 @@ namespace RH_GRH
                 .Replace(" ", "_")
                 .Replace(":", "-");
 
-            // Générer le nom du fichier
-            string nomFichier = $"Bulletin_{model.Matricule}_{periodeSafe}.pdf";
+            // Format: Bulletin_Periode_NomEntreprise_NomEmploye.pdf
+            string nomEntrepriseSafe = model.NomEntreprise?.Replace(" ", "_") ?? "Entreprise";
+            string nomEmployeSafe = model.NomEmploye?.Replace(" ", "_") ?? "Employe";
+            string nomFichier = $"Bulletin_{periodeSafe}_{nomEntrepriseSafe}_{nomEmployeSafe}.pdf";
             string cheminComplet = System.IO.Path.Combine(dossierDestination, nomFichier);
 
             // Debug: Afficher le chemin complet

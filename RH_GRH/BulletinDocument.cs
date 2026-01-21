@@ -188,7 +188,7 @@ namespace RH_GRH
                             row.RelativeItem().Column(col2 =>
                             {
                                 col2.Spacing(2);
-                                col2.Item().Text(b => { b.Span("Statut : ").SemiBold().FontFamily("Montserrat").FontSize(10); b.Span(model.Contrat).FontColor(Colors.Black).FontSize(9).Medium().FontFamily("Montserrat"); });
+                                col2.Item().Text(b => { b.Span("Statut : ").SemiBold().FontFamily("Montserrat").FontSize(10); b.Span(model.DureeContrat).FontColor(Colors.Black).FontSize(9).Medium().FontFamily("Montserrat"); });
                                 col2.Item().Text(b => { b.Span("Catégorie : ").SemiBold().FontFamily("Montserrat").FontSize(10); b.Span(model.Categorie).FontColor(Colors.Black).FontSize(9).Medium().FontFamily("Montserrat"); });
                                 col2.Item().Text(b => { b.Span("Service : ").SemiBold().FontFamily("Montserrat").FontSize(10); b.Span(model.Service).FontColor(Colors.Black).FontSize(9).Medium().FontFamily("Montserrat"); });
                                 col2.Item().Text(b => { b.Span("Direction : ").SemiBold().FontFamily("Montserrat").FontSize(10); b.Span(model.Direction).FontColor(Colors.Black).FontSize(9).Medium().FontFamily("Montserrat"); });
@@ -200,7 +200,7 @@ namespace RH_GRH
                                 col3.Spacing(2);
                                 col3.Item().Text(b => { b.Span("Sexe : ").SemiBold().FontFamily("Montserrat").FontSize(10); b.Span(model.Sexe).FontColor(Colors.Black).FontSize(9).Medium().FontFamily("Montserrat"); ; });
                                 col3.Item().Text(b => { b.Span("H/Jr contrat : ").SemiBold().FontFamily("Montserrat").FontSize(10); b.Span(model.NbJourHeure.ToString()).FontColor(Colors.Black).FontSize(9).Medium().FontFamily("Montserrat"); });
-                                col3.Item().Text(b => { b.Span("Contrat : ").SemiBold().FontFamily("Montserrat").FontSize(10); b.Span(model.DureeContrat).FontColor(Colors.Black).FontSize(9).Medium().FontFamily("Montserrat"); });
+                                col3.Item().Text(b => { b.Span("Contrat : ").SemiBold().FontFamily("Montserrat").FontSize(10); b.Span(model.Contrat).FontColor(Colors.Black).FontSize(9).Medium().FontFamily("Montserrat"); });
                                 col3.Item().Text(b => { b.Span("Charge(s) : ").SemiBold().FontFamily("Montserrat").FontSize(10); b.Span(model.Charges.ToString()).FontColor(Colors.Black).FontSize(9).Medium().FontFamily("Montserrat"); });
                                 col3.Item().Text(b => { b.Span("Ancienneté : ").SemiBold().FontFamily("Montserrat").FontSize(10); b.Span(model.Anciennete).FontColor(Colors.Black).FontSize(9).Medium().FontFamily("Montserrat"); });
                             });

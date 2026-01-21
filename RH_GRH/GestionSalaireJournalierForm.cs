@@ -1195,6 +1195,7 @@ namespace RH_GRH
                     Direction = employe.Direction,
                     NumeroCnssEmploye = employe.NumeroCnssEmploye,
                     Sexe = employe.Sexe,
+                    Contrat = employe.Contrat,
                     DureeContrat = employe.DureeContrat,
                     HeureContrat = employe.JourContrat,
 
@@ -1253,7 +1254,6 @@ namespace RH_GRH
 
 
                     // Méta
-                    Contrat = dureeContrat,
                     StatutCadre = emp.Cadre,
 
 
@@ -1548,10 +1548,10 @@ namespace RH_GRH
                         .Replace(" ", "_")   // remplace les espaces
                         .Replace(":", "-");  // remplace les deux-points s'il y en a
 
-                    // Exemple : "27/08/2025 - 13/10/2025" devient "27-08-2025_-_13-10-2025"
-
-                    // Générer le nom du fichier
-                    saveDialog.FileName = $"Bulletin_{model.Matricule}_{periodeSafe}.pdf";
+                    // Format: Bulletin_Periode_NomEntreprise_NomEmploye.pdf
+                    string nomEntrepriseSafe = model.NomEntreprise?.Replace(" ", "_") ?? "Entreprise";
+                    string nomEmployeSafe = model.NomEmploye?.Replace(" ", "_") ?? "Employe";
+                    saveDialog.FileName = $"Bulletin_{periodeSafe}_{nomEntrepriseSafe}_{nomEmployeSafe}.pdf";
 
 
                     if (saveDialog.ShowDialog() == DialogResult.OK)

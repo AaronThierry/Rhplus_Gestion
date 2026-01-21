@@ -192,7 +192,10 @@ namespace RH_GRH
                     // Générer le PDF
                     var model = ConvertirSnapshotEnBulletinModel(snapshot);
 
-                    string nomFichier = $"{employe.Matricule}_{employe.Nom.Replace(" ", "_")}_{periodeSafe}.pdf";
+                    // Format: Bulletin_Periode_NomEntreprise_NomEmploye.pdf
+                    string nomEntrepriseSafe = model.NomEntreprise?.Replace(" ", "_") ?? "Entreprise";
+                    string nomEmployeSafe = employe.Nom?.Replace(" ", "_") ?? "Employe";
+                    string nomFichier = $"Bulletin_{periodeSafe}_{nomEntrepriseSafe}_{nomEmployeSafe}.pdf";
                     string cheminComplet = Path.Combine(sousDossier, nomFichier);
 
                     var document = new BulletinDocument(model);
@@ -255,6 +258,7 @@ namespace RH_GRH
                 Direction = employe.Direction ?? "",
                 NumeroCnssEmploye = employe.NumeroCnssEmploye ?? "",
                 Sexe = employe.Sexe ?? "",
+                Contrat = employe.Contrat ?? "",
                 DureeContrat = employe.DureeContrat ?? "",
                 HeureContrat = employe.HeureContrat,
                 DateNaissance = employe.DateNaissance,
