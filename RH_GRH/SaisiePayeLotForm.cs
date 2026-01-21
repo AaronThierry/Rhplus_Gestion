@@ -1019,10 +1019,11 @@ namespace RH_GRH
             snapshot.BaseIUTS_Arrondie = baseIutsArr;
             snapshot.NombreCharges = nombreCharges;
 
-            // 11) Salaire net - MÉTHODE EXACTE
-            snapshot.SalaireNet = salaireBrut - cnssEmploye - iutsFinal;
-            snapshot.EffortPaix = snapshot.SalaireNet * 0.01m;
-            snapshot.SalaireNetaPayer = snapshot.SalaireNet - snapshot.EffortPaix - dette;
+            // 11) Salaire net - Utilisation de NetCalculator pour arrondi au 1 FCFA supérieur
+            var netResult = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, 0m, dette, 0.01m, true);
+            snapshot.SalaireNet = netResult.SalaireNet;
+            snapshot.EffortPaix = netResult.Effort;
+            snapshot.SalaireNetaPayer = netResult.NetAPayerFinal;
         }
 
         private void CalculerSalaireJournalier(PayrollSnapshot snapshot, Employe employe,
@@ -1183,10 +1184,11 @@ namespace RH_GRH
             snapshot.BaseIUTS_Arrondie = baseIutsArr;
             snapshot.NombreCharges = nombreCharges;
 
-            // 11) Salaire net - MÉTHODE EXACTE
-            snapshot.SalaireNet = salaireBrut - cnssEmploye - iutsFinal;
-            snapshot.EffortPaix = snapshot.SalaireNet * 0.01m;
-            snapshot.SalaireNetaPayer = snapshot.SalaireNet - snapshot.EffortPaix - dette;
+            // 11) Salaire net - Utilisation de NetCalculator pour arrondi au 1 FCFA supérieur
+            var netResult = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, 0m, dette, 0.01m, true);
+            snapshot.SalaireNet = netResult.SalaireNet;
+            snapshot.EffortPaix = netResult.Effort;
+            snapshot.SalaireNetaPayer = netResult.NetAPayerFinal;
 
             // Debug final
             System.Diagnostics.Debug.WriteLine($"SalaireBrut: {salaireBrut}, SalaireNet: {snapshot.SalaireNet}");
