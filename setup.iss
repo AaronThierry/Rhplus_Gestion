@@ -64,8 +64,16 @@ Source: "RH_GRH\bin\Release\*.config"; DestDir: "{app}"; Flags: ignoreversion
 ; Source: "RH_GRH\bin\Release\Resources\*"; DestDir: "{app}\Resources"; Flags: ignoreversion recursesubdirs createallsubdirs; Check: DirExists(ExpandConstant('{#SourcePath}\RH_GRH\bin\Release\Resources'))
 ; Source: "RH_GRH\bin\Release\Reports\*"; DestDir: "{app}\Reports"; Flags: ignoreversion recursesubdirs createallsubdirs; Check: DirExists(ExpandConstant('{#SourcePath}\RH_GRH\bin\Release\Reports'))
 
-; Dépendances natives SkiaSharp
+; Dépendances natives - copier dans les sous-dossiers ET à la racine pour compatibilité
 Source: "RH_GRH\bin\Release\runtimes\*"; DestDir: "{app}\runtimes"; Flags: ignoreversion recursesubdirs createallsubdirs
+
+; Copier les DLLs natives x86 à la racine pour éviter les erreurs de chargement
+Source: "RH_GRH\bin\Release\runtimes\win-x86\native\*.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "RH_GRH\bin\Release\x86\*.dll"; DestDir: "{app}"; Flags: ignoreversion
+
+; Copier les DLLs natives x64 à la racine (pour systèmes 64-bit)
+Source: "RH_GRH\bin\Release\runtimes\win-x64\native\*.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: Is64BitInstallMode
+Source: "RH_GRH\bin\Release\x64\*.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: Is64BitInstallMode
 
 ; Documentation
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion isreadme
