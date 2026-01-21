@@ -1530,7 +1530,8 @@ namespace RH_GRH
                     //SALAIRE NET A PAYER
                     SalaireNet = _lastSnapshot.SalaireNet,
                     EffortDePaix = _lastSnapshot.EffortPaix,
-                    SalaireNetaPayer = _lastSnapshot.SalaireNetaPayer
+                    SalaireNetaPayer = _lastSnapshot.SalaireNetaPayer,
+                    SalaireNetaPayerFinal = _lastSnapshot.SalaireNetaPayerFinal
 
                 };
 
