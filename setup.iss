@@ -52,7 +52,7 @@ VersionInfoProductVersion={#MyAppVersion}
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 
 [Tasks]
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 6.1; Check: not IsAdminInstallMode
 
 [Files]
@@ -76,7 +76,7 @@ Source: "RH_GRH\bin\Release\x86\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; Les DLLs x64 ne sont plus nécessaires à la racine
 
 ; Documentation
-Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion isreadme
+Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
 ; Documentation PDF optionnelle - décommentez si vous avez créé ces fichiers
 ; Source: "MANUEL_UTILISATEUR.pdf"; DestDir: "{app}"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{#SourcePath}\MANUEL_UTILISATEUR.pdf'))
 ; Source: "GUIDE_INSTALLATION.pdf"; DestDir: "{app}"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{#SourcePath}\GUIDE_INSTALLATION.pdf'))
