@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 
 echo.
 echo ========================================================================
-echo   RH PLUS GESTION - Build Simplifie
+echo   GESTION MODERNE RH - Build Simplifie
 echo ========================================================================
 echo.
 
@@ -213,11 +213,11 @@ if errorlevel 1 (
 echo [OK] Installateur cree avec succes !
 echo.
 
-if exist "Setup\Output\RHPlusGestion_v1.0.0_Setup.exe" (
-    for %%f in ("Setup\Output\RHPlusGestion_v1.0.0_Setup.exe") do (
+if exist "Setup\Output\GestionModerneRH_v1.0.0_Setup.exe" (
+    for %%f in ("Setup\Output\GestionModerneRH_v1.0.0_Setup.exe") do (
         set SIZE=%%~zf
         set /a SIZE_MB=!SIZE! / 1048576
-        echo Fichier : RHPlusGestion_v1.0.0_Setup.exe
+        echo Fichier : GestionModerneRH_v1.0.0_Setup.exe
         echo Taille : !SIZE_MB! MB
     )
     echo.
@@ -228,7 +228,7 @@ echo TERMINE !
 echo ========================================================================
 echo.
 echo L'installateur est pret :
-echo   Setup\Output\RHPlusGestion_v1.0.0_Setup.exe
+echo   Setup\Output\GestionModerneRH_v1.0.0_Setup.exe
 echo.
 echo Ouverture du dossier...
 explorer "Setup\Output"

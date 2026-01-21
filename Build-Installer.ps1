@@ -4,7 +4,7 @@
 
 Write-Host ""
 Write-Host "========================================================================"  -ForegroundColor Cyan
-Write-Host "  RH PLUS GESTION - Build de l'Installateur v1.0"  -ForegroundColor Cyan
+Write-Host "  GESTION MODERNE RH - Build de l'Installateur v1.0"  -ForegroundColor Cyan
 Write-Host "========================================================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -242,10 +242,10 @@ if (-not $iscc) {
     Write-Host "[OK] Installateur cree avec succes !" -ForegroundColor Green
     Write-Host ""
 
-    if (Test-Path "Setup\Output\RHPlusGestion_v1.0.0_Setup.exe") {
-        $setupFile = Get-Item "Setup\Output\RHPlusGestion_v1.0.0_Setup.exe"
+    if (Test-Path "Setup\Output\GestionModerneRH_v1.0.0_Setup.exe") {
+        $setupFile = Get-Item "Setup\Output\GestionModerneRH_v1.0.0_Setup.exe"
         $setupSizeMB = [math]::Round($setupFile.Length / 1MB, 2)
-        Write-Host "Fichier : RHPlusGestion_v1.0.0_Setup.exe" -ForegroundColor Cyan
+        Write-Host "Fichier : GestionModerneRH_v1.0.0_Setup.exe" -ForegroundColor Cyan
         Write-Host "Taille : $setupSizeMB MB" -ForegroundColor Cyan
         Write-Host ""
     }
@@ -255,7 +255,7 @@ if (-not $iscc) {
     Write-Host "========================================================================" -ForegroundColor Green
     Write-Host ""
     Write-Host "L'installateur est pret :" -ForegroundColor Cyan
-    Write-Host "  Setup\Output\RHPlusGestion_v1.0.0_Setup.exe" -ForegroundColor Yellow
+    Write-Host "  Setup\Output\GestionModerneRH_v1.0.0_Setup.exe" -ForegroundColor Yellow
     Write-Host ""
     Write-Host "Ouverture du dossier..." -ForegroundColor Yellow
     explorer "Setup\Output"

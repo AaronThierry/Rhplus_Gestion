@@ -1,7 +1,7 @@
 ; Script d'installation Inno Setup pour RH Plus Gestion v1.0
 ; Installation professionnelle avec vérification des prérequis
 
-#define MyAppName "RH Plus Gestion"
+#define MyAppName "Gestion Moderne RH"
 #define MyAppVersion "1.0.0"
 #define MyAppPublisher "GMP - Gestion Moderne de Paie"
 #define MyAppURL "https://github.com/AaronThierry/Rhplus_Gestion"
@@ -26,7 +26,7 @@ LicenseFile=LICENSE.txt
 InfoBeforeFile=INSTALLATION_INFO.txt
 InfoAfterFile=POST_INSTALL_INFO.txt
 OutputDir=Setup\Output
-OutputBaseFilename=RHPlusGestion_v{#MyAppVersion}_Setup
+OutputBaseFilename=GestionModerneRH_v{#MyAppVersion}_Setup
 SetupIconFile=RH_GRH\logo-rh-modified.ico
 Compression=lzma2/ultra64
 SolidCompression=yes
@@ -106,7 +106,6 @@ Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes
 [Code]
 var
   DotNetInstallNeeded: Boolean;
-  MySQLConfigPage: TInputFileWizardPage;
 
 const
   DOTNET_URL = 'https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net472-web-installer';
@@ -122,27 +121,6 @@ begin
     // .NET Framework 4.7.2 = Release >= 461808
     Result := Release >= 461808;
   end;
-end;
-
-// Vérifier si MySQL Connector est disponible
-function IsMySQLConnectorAvailable: Boolean;
-begin
-  Result := FileExists(ExpandConstant('{app}\MySql.Data.dll')) or
-            FileExists(ExpandConstant('{app}\MySqlConnector.dll'));
-end;
-
-// Page de configuration de la connexion MySQL
-procedure CreateMySQLConfigPage;
-begin
-  MySQLConfigPage := CreateInputFilePage(wpSelectDir,
-    'Configuration de la base de données',
-    'Veuillez fournir les informations de connexion MySQL',
-    'Ces informations seront utilisées pour configurer la connexion à la base de données.');
-
-  MySQLConfigPage.Add('Serveur MySQL:', 'Serveur MySQL|*.txt', '.txt');
-  MySQLConfigPage.Add('Port:', 'Port|*.txt', '.txt');
-  MySQLConfigPage.Add('Nom de la base:', 'Base de données|*.txt', '.txt');
-  MySQLConfigPage.Add('Utilisateur:', 'Utilisateur|*.txt', '.txt');
 end;
 
 function InitializeSetup(): Boolean;
@@ -177,8 +155,7 @@ end;
 
 procedure InitializeWizard();
 begin
-  // Créer la page de configuration MySQL
-  CreateMySQLConfigPage;
+  // Wizard initialization (database configuration removed)
 end;
 
 function ShouldSkipPage(PageID: Integer): Boolean;
@@ -190,11 +167,9 @@ procedure CurStepChanged(CurStep: TSetupStep);
 var
   ConfigFile: string;
   FileContent: TStringList;
-  ServerInfo, Port, Database, Username: string;
 begin
   if CurStep = ssPostInstall then
   begin
-    // Note: La configuration MySQL devrait être faite via l'application
     // Créer un fichier de configuration par défaut
     ConfigFile := ExpandConstant('{app}\database_config.txt');
     FileContent := TStringList.Create;
