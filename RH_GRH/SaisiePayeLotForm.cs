@@ -315,14 +315,18 @@ namespace RH_GRH
                             END as heures_travaillees_default
                         FROM personnel p
                         WHERE p.id_entreprise = @idEntreprise
-                        AND p.date_sortie IS NULL
                         AND p.typeContrat = @typeContrat
+                        AND (
+                            p.date_sortie IS NULL
+                            OR p.date_sortie >= @periodeFin
+                        )
                         ORDER BY p.nomPrenom";
 
                     using (var cmd = new MySqlCommand(sql, con))
                     {
                         cmd.Parameters.AddWithValue("@idEntreprise", idEntreprise);
                         cmd.Parameters.AddWithValue("@typeContrat", typeContrat);
+                        cmd.Parameters.AddWithValue("@periodeFin", periodeFin);
 
                         using (var reader = cmd.ExecuteReader())
                         {
