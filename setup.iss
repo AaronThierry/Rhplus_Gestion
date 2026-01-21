@@ -42,9 +42,10 @@ VersionInfoCopyright=Copyright (C) 2025 {#MyAppPublisher}
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
 
-; Styles visuels modernes
-WizardImageFile=Setup\Assets\WizardImage.bmp
-WizardSmallImageFile=Setup\Assets\WizardSmallImage.bmp
+; Styles visuels modernes (optionnels - commentés par défaut)
+; Décommentez ces lignes après avoir créé les images (voir Setup\Assets\README.txt)
+; WizardImageFile=Setup\Assets\WizardImage.bmp
+; WizardSmallImageFile=Setup\Assets\WizardSmallImage.bmp
 
 [Languages]
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
@@ -59,21 +60,22 @@ Source: "RH_GRH\bin\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignorever
 Source: "RH_GRH\bin\Release\*.dll"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 Source: "RH_GRH\bin\Release\*.config"; DestDir: "{app}"; Flags: ignoreversion
 
-; Ressources et dépendances
-Source: "RH_GRH\bin\Release\Resources\*"; DestDir: "{app}\Resources"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "RH_GRH\bin\Release\Reports\*"; DestDir: "{app}\Reports"; Flags: ignoreversion recursesubdirs createallsubdirs
+; Ressources et dépendances (optionnels - uniquement si les dossiers existent)
+; Source: "RH_GRH\bin\Release\Resources\*"; DestDir: "{app}\Resources"; Flags: ignoreversion recursesubdirs createallsubdirs; Check: DirExists(ExpandConstant('{#SourcePath}\RH_GRH\bin\Release\Resources'))
+; Source: "RH_GRH\bin\Release\Reports\*"; DestDir: "{app}\Reports"; Flags: ignoreversion recursesubdirs createallsubdirs; Check: DirExists(ExpandConstant('{#SourcePath}\RH_GRH\bin\Release\Reports'))
 
 ; Dépendances natives SkiaSharp
 Source: "RH_GRH\bin\Release\runtimes\*"; DestDir: "{app}\runtimes"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 ; Documentation
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion isreadme
-Source: "MANUEL_UTILISATEUR.pdf"; DestDir: "{app}"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{#SourcePath}\MANUEL_UTILISATEUR.pdf'))
-Source: "GUIDE_INSTALLATION.pdf"; DestDir: "{app}"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{#SourcePath}\GUIDE_INSTALLATION.pdf'))
+; Documentation PDF optionnelle - décommentez si vous avez créé ces fichiers
+; Source: "MANUEL_UTILISATEUR.pdf"; DestDir: "{app}"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{#SourcePath}\MANUEL_UTILISATEUR.pdf'))
+; Source: "GUIDE_INSTALLATION.pdf"; DestDir: "{app}"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{#SourcePath}\GUIDE_INSTALLATION.pdf'))
 
-; Scripts SQL
-Source: "Database\*.sql"; DestDir: "{app}\Database"; Flags: ignoreversion recursesubdirs createallsubdirs; Check: DirExists(ExpandConstant('{#SourcePath}\Database'))
-Source: "verify_column.sql"; DestDir: "{app}\Database"; Flags: ignoreversion
+; Scripts SQL (optionnels - décommentez si vous avez créé ces fichiers)
+; Source: "Database\*.sql"; DestDir: "{app}\Database"; Flags: ignoreversion recursesubdirs createallsubdirs; Check: DirExists(ExpandConstant('{#SourcePath}\Database'))
+Source: "verify_column.sql"; DestDir: "{app}\Database"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{#SourcePath}\verify_column.sql'))
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
