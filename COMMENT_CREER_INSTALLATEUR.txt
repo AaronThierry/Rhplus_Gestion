@@ -1,0 +1,149 @@
+═══════════════════════════════════════════════════════════════════════════════
+  COMMENT CREER L'INSTALLATEUR - RH PLUS GESTION v1.0
+═══════════════════════════════════════════════════════════════════════════════
+
+📌 METHODE RECOMMANDEE : Utiliser le script PowerShell
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ OPTION 1 : SCRIPT POWERSHELL (RECOMMANDE) ⭐
+───────────────────────────────────────────────────────────────────────────────
+
+1. Dans l'explorateur Windows, allez dans le dossier :
+   C:\Users\aaron\Pojet GMP RH\Rhplus_Gestion
+
+2. Localisez le fichier : Build-Installer.ps1
+
+3. CLIC DROIT sur Build-Installer.ps1
+
+4. Choisir "Exécuter avec PowerShell"
+   (ou "Run with PowerShell" en anglais)
+
+5. Si Windows demande confirmation, cliquez "Oui"
+
+6. Le script va :
+   ✓ Vérifier les outils nécessaires (MSBuild, NuGet, Inno Setup)
+   ✓ Télécharger NuGet si nécessaire
+   ✓ Restaurer les packages (~2-3 minutes)
+   ✓ Compiler l'application (~1-2 minutes)
+   ✓ Créer l'installateur (~30 secondes)
+
+7. À la fin, le dossier Setup\Output s'ouvrira automatiquement
+   avec votre fichier : RHPlusGestion_v1.0.0_Setup.exe
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ OPTION 2 : SCRIPT BAT SIMPLIFIE
+───────────────────────────────────────────────────────────────────────────────
+
+1. Dans l'explorateur Windows, allez dans le dossier :
+   C:\Users\aaron\Pojet GMP RH\Rhplus_Gestion
+
+2. Double-cliquez sur : BUILD_SIMPLE.bat
+
+3. Le script va faire la même chose que le PowerShell
+   mais avec moins de couleurs et de détails
+
+═══════════════════════════════════════════════════════════════════════════════
+
+⚠️ SI VOUS AVEZ DES ERREURS
+═══════════════════════════════════════════════════════════════════════════════
+
+ERREUR : "MSBuild non trouvé"
+──────────────────────────────────────────────────────────────────────────────
+
+Cela signifie que Visual Studio n'est pas installé.
+
+SOLUTION :
+1. Aller sur : https://visualstudio.microsoft.com/downloads/
+2. Télécharger "Build Tools for Visual Studio 2022" (gratuit)
+3. Installer avec ".NET Desktop Build Tools"
+4. Relancer le script
+
+═══════════════════════════════════════════════════════════════════════════════
+
+ERREUR : "Inno Setup non trouvé"
+──────────────────────────────────────────────────────────────────────────────
+
+L'application sera compilée mais le setup ne sera pas créé.
+
+SOLUTION :
+1. Aller sur : https://jrsoftware.org/isdl.php
+2. Télécharger Inno Setup 6 (gratuit)
+3. Installer avec "Standard Installation"
+4. Relancer le script
+
+═══════════════════════════════════════════════════════════════════════════════
+
+ERREUR : "Les scripts sont désactivés sur ce système" (PowerShell)
+──────────────────────────────────────────────────────────────────────────────
+
+SOLUTION :
+1. Ouvrir PowerShell en mode administrateur :
+   - Clic droit sur le menu Démarrer
+   - Choisir "Windows PowerShell (Admin)"
+
+2. Taper cette commande :
+   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+3. Confirmer avec "O" (Oui)
+
+4. Fermer PowerShell et relancer Build-Installer.ps1
+
+═══════════════════════════════════════════════════════════════════════════════
+
+ERREUR : "Packages NuGet manquants"
+──────────────────────────────────────────────────────────────────────────────
+
+SOLUTION :
+Le script télécharge automatiquement NuGet si nécessaire.
+Si ça ne fonctionne pas :
+
+1. Télécharger nuget.exe : https://www.nuget.org/downloads
+2. Copier nuget.exe dans : C:\Users\aaron\Pojet GMP RH\Rhplus_Gestion
+3. Relancer le script
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📁 OÙ SE TROUVE L'INSTALLATEUR ?
+═══════════════════════════════════════════════════════════════════════════════
+
+Chemin complet :
+C:\Users\aaron\Pojet GMP RH\Rhplus_Gestion\Setup\Output\RHPlusGestion_v1.0.0_Setup.exe
+
+Taille approximative : 50-100 MB
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🚀 DISTRIBUER L'INSTALLATEUR
+═══════════════════════════════════════════════════════════════════════════════
+
+Une fois créé, vous pouvez copier RHPlusGestion_v1.0.0_Setup.exe et le
+distribuer via :
+
+📧 Email (si < 25 MB, sinon utiliser WeTransfer)
+💾 Clé USB
+☁️  Google Drive, OneDrive, Dropbox
+🌐 GitHub Releases
+🏢 Réseau local partagé
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📞 BESOIN D'AIDE ?
+═══════════════════════════════════════════════════════════════════════════════
+
+📄 Documentation détaillée : GUIDE_CREATION_INSTALLATEUR.md
+📧 Email : support@gmp-rh.com
+🐛 GitHub : https://github.com/AaronThierry/Rhplus_Gestion/issues
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ RESUME ULTRA-RAPIDE
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Clic droit sur Build-Installer.ps1
+2. "Exécuter avec PowerShell"
+3. Attendre 5-10 minutes
+4. Récupérer : Setup\Output\RHPlusGestion_v1.0.0_Setup.exe
+5. Distribuer ! 🎉
+
+═══════════════════════════════════════════════════════════════════════════════
