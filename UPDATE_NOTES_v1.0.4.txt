@@ -1,0 +1,42 @@
+========================================================================
+  GESTION MODERNE RH - NOTES DE MISE À JOUR v1.0.4
+========================================================================
+
+Date de publication : 21 janvier 2026
+
+Mise à jour corrective finale incluant toutes les corrections critiques
+et la standardisation de l'arrondi des salaires.
+
+------------------------------------------------------------------------
+CORRECTIONS ET AMÉLIORATIONS
+------------------------------------------------------------------------
+
+✓ FIX #1 : Affichage du Net à Payer sur Bulletin Journalier
+  - Le net à payer s'affiche correctement sur les bulletins PDF
+
+✓ FIX #2 : Employés CDD dans la Saisie de Paie par Lot
+  - Les employés CDD en fin de contrat sont maintenant inclus
+
+✓ AMÉLIORATION #3 : Arrondi Standardisé au 1 FCFA Supérieur
+  - TOUS les calculs utilisent maintenant NetCalculator
+  - Arrondi cohérent au 1 FCFA supérieur partout
+  - Modules concernés :
+    * Salaire horaire individuel ✓
+    * Salaire journalier individuel ✓
+    * Salaire horaire par lot ✓ (NOUVEAU)
+    * Salaire journalier par lot ✓ (NOUVEAU)
+
+------------------------------------------------------------------------
+INSTALLATION DE LA MISE À JOUR
+------------------------------------------------------------------------
+
+1. Fermez l'application "Gestion Moderne RH"
+2. Exécutez GestionModerneRH_v1.0.4_Update.exe
+3. Suivez les instructions
+4. Redémarrez l'application
+
+Vos données sont préservées.
+
+========================================================================
+© 2025 GMP - Gestion Moderne de Paie
+========================================================================
