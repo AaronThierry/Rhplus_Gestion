@@ -1,0 +1,58 @@
+CONTRAT DE LICENCE UTILISATEUR FINAL (CLUF)
+RH Plus Gestion v1.0
+
+Copyright (C) 2025 GMP - Gestion Moderne de Paie
+Tous droits réservés.
+
+IMPORTANT : VEUILLEZ LIRE ATTENTIVEMENT CE CONTRAT DE LICENCE AVANT D'UTILISER CE LOGICIEL.
+
+1. OCTROI DE LICENCE
+GMP vous accorde une licence non exclusive et non transférable pour utiliser RH Plus Gestion
+("le Logiciel") conformément aux termes de ce contrat.
+
+2. DROITS ET RESTRICTIONS
+Vous pouvez :
+- Installer et utiliser le Logiciel sur un nombre illimité d'ordinateurs au sein de votre organisation
+- Créer des copies de sauvegarde du Logiciel
+
+Vous ne pouvez pas :
+- Modifier, décompiler ou désassembler le Logiciel
+- Louer, prêter ou distribuer le Logiciel à des tiers
+- Retirer les mentions de copyright ou de propriété
+
+3. PROPRIÉTÉ INTELLECTUELLE
+Le Logiciel est protégé par les lois sur le droit d'auteur et les traités internationaux.
+GMP conserve tous les droits, titres et intérêts relatifs au Logiciel.
+
+4. GARANTIE LIMITÉE
+LE LOGICIEL EST FOURNI "EN L'ÉTAT" SANS GARANTIE D'AUCUNE SORTE, EXPRESSE OU IMPLICITE.
+
+5. LIMITATION DE RESPONSABILITÉ
+EN AUCUN CAS GMP NE SERA RESPONSABLE DES DOMMAGES DIRECTS, INDIRECTS, ACCESSOIRES,
+SPÉCIAUX OU CONSÉCUTIFS RÉSULTANT DE L'UTILISATION OU DE L'IMPOSSIBILITÉ D'UTILISER
+LE LOGICIEL.
+
+6. DONNÉES ET CONFIDENTIALITÉ
+Le Logiciel traite des données sensibles relatives aux employés. Vous êtes responsable de :
+- La sécurité et la confidentialité des données
+- Le respect des lois sur la protection des données (RGPD, etc.)
+- La sauvegarde régulière de vos données
+
+7. SUPPORT TECHNIQUE
+Le support technique est disponible via :
+- Email: support@gmp-rh.com
+- GitHub: https://github.com/AaronThierry/Rhplus_Gestion/issues
+
+8. RÉSILIATION
+Cette licence est effective jusqu'à sa résiliation. Elle sera automatiquement résiliée
+en cas de non-respect des termes de ce contrat.
+
+9. JURIDICTION
+Ce contrat est régi par les lois en vigueur dans votre juridiction.
+
+EN INSTALLANT OU EN UTILISANT LE LOGICIEL, VOUS ACCEPTEZ LES TERMES DE CE CONTRAT.
+SI VOUS N'ACCEPTEZ PAS CES TERMES, N'INSTALLEZ PAS LE LOGICIEL.
+
+Pour toute question concernant cette licence, contactez :
+GMP - Gestion Moderne de Paie
+support@gmp-rh.com

@@ -1,0 +1,72 @@
+═══════════════════════════════════════════════════════════════════════════════
+  RH PLUS GESTION v1.0 - INFORMATION D'INSTALLATION
+═══════════════════════════════════════════════════════════════════════════════
+
+Bienvenue dans l'assistant d'installation de RH Plus Gestion !
+
+Ce logiciel vous permettra de gérer efficacement :
+✓ La gestion des employés et leurs informations
+✓ Le calcul automatique des salaires (horaires, journaliers, mensuels)
+✓ La gestion des indemnités et charges
+✓ La génération de bulletins de paie professionnels
+✓ Les déclarations CNSS, TPA et IUTS
+✓ L'impression en lot de bulletins
+✓ L'importation depuis Excel
+
+═══════════════════════════════════════════════════════════════════════════════
+  PRÉREQUIS SYSTÈME
+═══════════════════════════════════════════════════════════════════════════════
+
+Configuration minimale requise :
+• Système d'exploitation : Windows 7 SP1 / Windows Server 2008 R2 SP1 ou supérieur
+• Processeur : Intel/AMD 1.6 GHz ou supérieur
+• Mémoire RAM : 2 GB minimum (4 GB recommandé)
+• Espace disque : 500 MB d'espace disponible
+• Résolution d'écran : 1280x720 minimum (1920x1080 recommandé)
+
+Logiciels requis :
+• .NET Framework 4.7.2 ou supérieur (sera installé automatiquement si nécessaire)
+• MySQL Server 5.7 ou supérieur (doit être installé séparément)
+• MySQL Connector/NET (inclus dans l'installation)
+
+═══════════════════════════════════════════════════════════════════════════════
+  AVANT DE CONTINUER
+═══════════════════════════════════════════════════════════════════════════════
+
+Assurez-vous d'avoir :
+1. ✓ Les droits d'administrateur sur cet ordinateur
+2. ✓ MySQL Server installé et configuré
+3. ✓ Les informations de connexion MySQL (serveur, port, base de données)
+4. ✓ Une sauvegarde de vos données existantes (si mise à jour)
+
+═══════════════════════════════════════════════════════════════════════════════
+  CONFIGURATION DE LA BASE DE DONNÉES
+═══════════════════════════════════════════════════════════════════════════════
+
+Après l'installation, vous devrez :
+1. Créer une base de données MySQL pour l'application
+2. Exécuter les scripts SQL fournis dans le dossier Database/
+3. Configurer la connexion dans l'application au premier lancement
+
+Scripts SQL inclus :
+• schema.sql - Structure de la base de données
+• initial_data.sql - Données initiales (optionnel)
+• verify_column.sql - Vérification des colonnes
+
+═══════════════════════════════════════════════════════════════════════════════
+  ASSISTANCE ET SUPPORT
+═══════════════════════════════════════════════════════════════════════════════
+
+Pour toute assistance :
+• Documentation : Consultez le manuel utilisateur inclus
+• Support technique : support@gmp-rh.com
+• Problèmes et bugs : https://github.com/AaronThierry/Rhplus_Gestion/issues
+• Mises à jour : https://github.com/AaronThierry/Rhplus_Gestion/releases
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Cliquez sur "Suivant" pour continuer l'installation.
+
+═══════════════════════════════════════════════════════════════════════════════
+Copyright (C) 2025 GMP - Gestion Moderne de Paie | Tous droits réservés
+═══════════════════════════════════════════════════════════════════════════════
