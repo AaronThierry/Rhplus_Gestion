@@ -10,15 +10,25 @@ namespace RH_GRH
     {
         public decimal SalaireNet { get; set; }        // Brut - CNSS(E) - IUTS(Final) - Indemnités Nature
         public decimal Effort { get; set; }            // 1% du SalaireNet (par défaut)
-        public decimal NetAPayer { get; set; }         // SalaireNet - Effort, arrondi au supérieur (Ceiling)
-        public decimal NetAPayerFinal { get; set; }         // SalaireNet - Effort - dette, arrondi au supérieur (Ceiling)
+        public decimal NetAPayer { get; set; }         // SalaireNet - Effort, arrondi au 100 FCFA supérieur
+        public decimal NetAPayerFinal { get; set; }    // SalaireNet - Effort - dette, arrondi au 100 FCFA supérieur
     }
 
     public static class NetCalculator
     {
         /// <summary>
-        /// Calcule le Salaire Net, l'effort (par défaut 1%) et le Net à payer (ceil).
-        /// Empêche les négatifs, arrondi final au supérieur sur NetAPayer.
+        /// Arrondit un montant au 100 FCFA supérieur.
+        /// Exemple: 45678.50 → 45700, 45600 → 45600, 45601 → 45700
+        /// </summary>
+        private static decimal ArrondiAuCent(decimal montant)
+        {
+            // Divise par 100, arrondit à l'entier supérieur, multiplie par 100
+            return Math.Ceiling(montant / 100m) * 100m;
+        }
+
+        /// <summary>
+        /// Calcule le Salaire Net, l'effort (par défaut 1%) et le Net à payer (arrondi au 100 FCFA supérieur).
+        /// Empêche les négatifs, arrondi final au 100 FCFA supérieur sur NetAPayer.
         /// </summary>
         public static NetResult Calculer(
             decimal salaireBrut,
@@ -40,12 +50,12 @@ namespace RH_GRH
             // 3) Net à payer
             decimal netAPayer = salaireNet - effort;
             if (arrondirNetAPayerCeil)
-                netAPayer = decimal.Ceiling(netAPayer);   // équivalent Math.ceil pour decimal
+                netAPayer = ArrondiAuCent(netAPayer);   // Arrondi au 100 FCFA supérieur
 
             //4) Net final
             decimal netAPayerFinal = netAPayer - Valeurdette;
             if (arrondirNetAPayerCeil)
-                netAPayerFinal = decimal.Ceiling(netAPayerFinal);   // équivalent Math.ceil pour decimal
+                netAPayerFinal = ArrondiAuCent(netAPayerFinal);   // Arrondi au 100 FCFA supérieur
 
             return new NetResult
             {
