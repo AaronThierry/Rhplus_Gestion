@@ -1,0 +1,68 @@
+========================================================================
+  GESTION MODERNE RH - NOTES DE MISE À JOUR v1.0.1
+========================================================================
+
+Date de publication : 21 janvier 2026
+
+Cette mise à jour corrective résout un problème critique dans le module
+de gestion des salaires journaliers.
+
+------------------------------------------------------------------------
+CORRECTIONS DE BUGS
+------------------------------------------------------------------------
+
+✓ CORRECTION CRITIQUE : Affichage du Net à Payer sur Bulletin Journalier
+
+  Problème résolu :
+  - Le bulletin de paie des salaires journaliers affichait 0,00 FCFA
+    pour le "Net à Payer" même si le calcul était correct dans l'interface
+
+  Cause :
+  - Le modèle de données transmis au générateur PDF ne contenait pas
+    la valeur finale du net à payer (SalaireNetaPayerFinal)
+
+  Solution :
+  - Ajout de la propriété SalaireNetaPayerFinal au modèle du bulletin
+  - Le montant correct s'affiche maintenant sur tous les bulletins PDF
+
+------------------------------------------------------------------------
+AMÉLIORATIONS DE L'INSTALLATEUR
+------------------------------------------------------------------------
+
+✓ Icône bureau créée par défaut lors de l'installation
+✓ Le fichier README ne s'ouvre plus automatiquement après installation
+✓ Configuration de la base de données simplifiée (via l'application uniquement)
+
+------------------------------------------------------------------------
+INSTALLATION DE LA MISE À JOUR
+------------------------------------------------------------------------
+
+IMPORTANT : Cette mise à jour écrasera votre installation actuelle.
+           Vos données en base de données seront préservées.
+
+1. Fermez complètement l'application "Gestion Moderne RH" si elle est ouverte
+2. Exécutez le fichier GestionModerneRH_v1.0.1_Update.exe
+3. Suivez les instructions à l'écran
+4. Redémarrez l'application
+
+------------------------------------------------------------------------
+CONFIGURATION SYSTÈME REQUISE
+------------------------------------------------------------------------
+
+- Windows 7 SP1 / Windows Server 2008 R2 SP1 ou supérieur
+- .NET Framework 4.7.2 ou supérieur
+- MySQL Server 5.7 ou supérieur
+- 2 GB RAM minimum (4 GB recommandé)
+- 500 MB d'espace disque disponible
+
+------------------------------------------------------------------------
+SUPPORT TECHNIQUE
+------------------------------------------------------------------------
+
+Pour toute question ou problème :
+- Email : support@gmp-rh.com
+- GitHub : https://github.com/AaronThierry/Rhplus_Gestion/issues
+
+========================================================================
+© 2025 GMP - Gestion Moderne de Paie
+========================================================================
