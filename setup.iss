@@ -31,7 +31,8 @@ SetupIconFile=RH_GRH\logo-rh-modified.ico
 Compression=lzma2/ultra64
 SolidCompression=yes
 WizardStyle=modern
-ArchitecturesInstallIn64BitMode=x64
+; Application compilée en x86 32-bit, compatible avec Windows 32-bit et 64-bit
+ArchitecturesAllowed=x86 x64compatible
 PrivilegesRequired=admin
 UninstallDisplayIcon={app}\{#MyAppExeName}
 UninstallDisplayName={#MyAppName}
@@ -71,9 +72,8 @@ Source: "RH_GRH\bin\Release\runtimes\*"; DestDir: "{app}\runtimes"; Flags: ignor
 Source: "RH_GRH\bin\Release\runtimes\win-x86\native\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "RH_GRH\bin\Release\x86\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 
-; Copier les DLLs natives x64 à la racine (pour systèmes 64-bit)
-Source: "RH_GRH\bin\Release\runtimes\win-x64\native\*.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: Is64BitInstallMode
-Source: "RH_GRH\bin\Release\x64\*.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: Is64BitInstallMode
+; Note: Application compilée en x86 32-bit, compatible avec systèmes 32 et 64 bits
+; Les DLLs x64 ne sont plus nécessaires à la racine
 
 ; Documentation
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion isreadme

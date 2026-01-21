@@ -166,9 +166,10 @@ Write-Host "--------------------------------------------------------------------
 Write-Host ""
 
 Write-Host "Compilation en cours (peut prendre quelques minutes)..." -ForegroundColor Yellow
+Write-Host "Plateforme cible : x86 (requis par QuestPDF)" -ForegroundColor Cyan
 Write-Host ""
 
-& $msbuild RH_GRH.sln /p:Configuration=Release /p:Platform="Any CPU" /t:Rebuild /m /v:minimal /nologo
+& $msbuild RH_GRH.sln /p:Configuration=Release /p:Platform="Any CPU" /p:PlatformTarget=x86 /t:Rebuild /m /v:minimal /nologo
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host ""

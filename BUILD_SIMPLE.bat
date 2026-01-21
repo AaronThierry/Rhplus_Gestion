@@ -144,8 +144,9 @@ echo ========================================================================
 echo.
 
 echo Compilation en cours (peut prendre quelques minutes)...
+echo Plateforme cible : x86 (requis par QuestPDF)
 echo.
-"%MSBUILD%" RH_GRH.sln /p:Configuration=Release /p:Platform="Any CPU" /t:Rebuild /m /v:minimal /nologo
+"%MSBUILD%" RH_GRH.sln /p:Configuration=Release /p:Platform="Any CPU" /p:PlatformTarget=x86 /t:Rebuild /m /v:minimal /nologo
 if errorlevel 1 (
     echo.
     echo [ERREUR] Echec de la compilation
