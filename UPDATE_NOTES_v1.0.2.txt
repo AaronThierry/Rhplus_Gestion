@@ -1,0 +1,89 @@
+========================================================================
+  GESTION MODERNE RH - NOTES DE MISE À JOUR v1.0.2
+========================================================================
+
+Date de publication : 21 janvier 2026
+
+Cette mise à jour corrective résout deux problèmes critiques dans les
+modules de gestion des salaires et de saisie par lot.
+
+------------------------------------------------------------------------
+CORRECTIONS DE BUGS
+------------------------------------------------------------------------
+
+✓ CORRECTION CRITIQUE #1 : Affichage du Net à Payer sur Bulletin Journalier
+
+  Problème résolu :
+  - Le bulletin de paie des salaires journaliers affichait 0,00 FCFA
+    pour le "Net à Payer" même si le calcul était correct dans l'interface
+
+  Cause :
+  - Le modèle de données transmis au générateur PDF ne contenait pas
+    la valeur finale du net à payer (SalaireNetaPayerFinal)
+
+  Solution :
+  - Ajout de la propriété SalaireNetaPayerFinal au modèle du bulletin
+  - Le montant correct s'affiche maintenant sur tous les bulletins PDF
+
+✓ CORRECTION CRITIQUE #2 : Employés CDD dans la Saisie de Paie par Lot
+
+  Problème résolu :
+  - Les employés CDD (Contrat à Durée Déterminée) avec une date de fin
+    de contrat n'apparaissaient pas dans la liste de saisie par lot
+  - Impossible de traiter la paie pour les CDD en fin de contrat
+
+  Cause :
+  - La requête SQL filtrait tous les employés avec date_sortie définie
+  - Les CDD en période finale étaient exclus à tort
+
+  Solution :
+  - Modification du filtre SQL pour inclure les employés dont le contrat
+    se termine pendant ou après la période de paie
+  - Logique : (date_sortie IS NULL OR date_sortie >= periodeFin)
+
+  Résultat :
+  - Tous les employés CDI actifs sont affichés
+  - Tous les employés CDD actifs sont affichés
+  - Les CDD en période finale de paie sont maintenant inclus
+
+------------------------------------------------------------------------
+AMÉLIORATIONS DE L'INSTALLATEUR
+------------------------------------------------------------------------
+
+✓ Icône bureau créée par défaut lors de l'installation
+✓ Le fichier README ne s'ouvre plus automatiquement après installation
+✓ Configuration de la base de données simplifiée (via l'application uniquement)
+
+------------------------------------------------------------------------
+INSTALLATION DE LA MISE À JOUR
+------------------------------------------------------------------------
+
+IMPORTANT : Cette mise à jour écrasera votre installation actuelle.
+           Vos données en base de données seront préservées.
+
+1. Fermez complètement l'application "Gestion Moderne RH" si elle est ouverte
+2. Exécutez le fichier GestionModerneRH_v1.0.2_Update.exe
+3. Suivez les instructions à l'écran
+4. Redémarrez l'application
+
+------------------------------------------------------------------------
+CONFIGURATION SYSTÈME REQUISE
+------------------------------------------------------------------------
+
+- Windows 7 SP1 / Windows Server 2008 R2 SP1 ou supérieur
+- .NET Framework 4.7.2 ou supérieur
+- MySQL Server 5.7 ou supérieur
+- 2 GB RAM minimum (4 GB recommandé)
+- 500 MB d'espace disque disponible
+
+------------------------------------------------------------------------
+SUPPORT TECHNIQUE
+------------------------------------------------------------------------
+
+Pour toute question ou problème :
+- Email : support@gmp-rh.com
+- GitHub : https://github.com/AaronThierry/Rhplus_Gestion/issues
+
+========================================================================
+© 2025 GMP - Gestion Moderne de Paie
+========================================================================

@@ -1,8 +1,8 @@
-; Script d'installation Inno Setup pour Gestion Moderne RH v1.0.1 - UPDATE
-; Mise à jour corrective pour corriger l'affichage du net à payer sur les bulletins journaliers
+; Script d'installation Inno Setup pour Gestion Moderne RH v1.0.2 - UPDATE
+; Mise à jour corrective pour corriger l'affichage du net à payer et la récupération des employés CDD
 
 #define MyAppName "Gestion Moderne RH"
-#define MyAppVersion "1.0.1"
+#define MyAppVersion "1.0.2"
 #define MyAppPublisher "GMP - Gestion Moderne de Paie"
 #define MyAppURL "https://github.com/AaronThierry/Rhplus_Gestion"
 #define MyAppExeName "RH_GRH.exe"
@@ -23,7 +23,7 @@ AppUpdatesURL={#MyAppURL}/releases
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=LICENSE.txt
-InfoBeforeFile=UPDATE_NOTES_v1.0.1.txt
+InfoBeforeFile=UPDATE_NOTES_v1.0.2.txt
 OutputDir=Setup\Output
 OutputBaseFilename=GestionModerneRH_v{#MyAppVersion}_Update
 SetupIconFile=RH_GRH\logo-rh-modified.ico
@@ -37,7 +37,7 @@ UninstallDisplayIcon={app}\{#MyAppExeName}
 UninstallDisplayName={#MyAppName}
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
-VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.0.1
+VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.0.2
 VersionInfoCopyright=Copyright (C) 2025 {#MyAppPublisher}
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
@@ -66,7 +66,7 @@ Source: "RH_GRH\bin\Release\x86\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Documentation
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "UPDATE_NOTES_v1.0.1.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "UPDATE_NOTES_v1.0.2.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Scripts SQL (optionnels)
 Source: "verify_column.sql"; DestDir: "{app}\Database"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{#SourcePath}\verify_column.sql'))
@@ -183,9 +183,10 @@ var
   S: String;
 begin
   S := '';
-  S := S + 'MISE À JOUR v1.0.1' + NewLine + NewLine;
+  S := S + 'MISE À JOUR v1.0.2' + NewLine + NewLine;
   S := S + 'Cette mise à jour corrige :' + NewLine;
-  S := S + Space + '- Affichage du Net à Payer sur les bulletins journaliers' + NewLine + NewLine;
+  S := S + Space + '- Affichage du Net à Payer sur les bulletins journaliers' + NewLine;
+  S := S + Space + '- Récupération des employés CDD dans la saisie par lot' + NewLine + NewLine;
 
   S := S + MemoDirInfo + NewLine + NewLine;
 
