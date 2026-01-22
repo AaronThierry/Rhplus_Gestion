@@ -1,0 +1,89 @@
+========================================================================
+  GESTION MODERNE RH - NOTES DE MISE À JOUR v1.0.5
+========================================================================
+
+Date de publication : 22 janvier 2026
+
+Mise à jour CRITIQUE incluant une correction majeure du calcul IUTS
+pour les employés cadres.
+
+------------------------------------------------------------------------
+CORRECTION CRITIQUE
+------------------------------------------------------------------------
+
+🔴 FIX CRITIQUE : Calcul IUTS pour les employés CADRES
+
+  Problème résolu :
+  - TOUS les employés (cadres ET non-cadres) étaient traités comme
+    non-cadres dans le calcul de la base IUTS
+  - Les cadres recevaient un abattement de 25% au lieu de 20%
+  - Résultat: Base IUTS incorrecte → IUTS trop élevé → Salaire net TROP BAS
+
+  Cause :
+  - Le calculateur IUTS acceptait uniquement "oui"/"non" comme statut
+  - L'interface utilisateur sauvegarde "Cadre"/"Non-Cadre" en BD
+  - Incompatibilité totale → tous traités comme non-cadres (25%)
+
+  Solution :
+  - IUTSCalculator accepte maintenant AUSSI "Cadre" et "Non-Cadre"
+  - Cadres: abattement 20% (au lieu de 25%) ✓
+  - Non-cadres: abattement 25% (inchangé) ✓
+
+  Impact financier :
+  Pour un cadre avec salaire brut 500 000 FCFA:
+    AVANT (bug)  : Abattement 125 000 F → IUTS trop élevé → Net RÉDUIT ❌
+    APRÈS (fix)  : Abattement 100 000 F → IUTS correct → Net CORRECT ✅
+
+  Modules corrigés :
+    ✓ Calcul salaire horaire individuel
+    ✓ Calcul salaire journalier individuel
+    ✓ Calcul salaire horaire par lot
+    ✓ Calcul salaire journalier par lot
+
+------------------------------------------------------------------------
+AMÉLIORATIONS
+------------------------------------------------------------------------
+
+✓ Ajout de logs de débogage pour tracer le statut cadre
+✓ Meilleure traçabilité des calculs IUTS
+
+------------------------------------------------------------------------
+RAPPEL DES CORRECTIONS v1.0.4
+------------------------------------------------------------------------
+
+✓ Affichage du Net à Payer sur les bulletins journaliers
+✓ Récupération des employés CDD par lot
+✓ Arrondi standardisé au 1 FCFA supérieur (tous calculs)
+
+------------------------------------------------------------------------
+INSTALLATION DE LA MISE À JOUR
+------------------------------------------------------------------------
+
+⚠️  MISE À JOUR CRITIQUE - Installation fortement recommandée
+
+Cette mise à jour corrige un bug majeur affectant le salaire net
+de TOUS les employés cadres. Installation immédiate recommandée.
+
+1. Fermez l'application "Gestion Moderne RH"
+2. Exécutez GestionModerneRH_v1.0.5_Update.exe
+3. Suivez les instructions
+4. Redémarrez l'application
+
+Vos données sont préservées.
+
+------------------------------------------------------------------------
+VÉRIFICATION POST-INSTALLATION
+------------------------------------------------------------------------
+
+Pour vérifier que la correction est active :
+
+1. Ouvrez le calcul de paie pour un employé CADRE
+2. Comparez la base IUTS avant/après
+3. Le salaire net des cadres devrait être PLUS ÉLEVÉ qu'avant
+
+Si vous avez déjà généré des bulletins de paie pour des cadres,
+il est recommandé de les recalculer avec cette version corrigée.
+
+========================================================================
+© 2025 GMP - Gestion Moderne de Paie
+========================================================================

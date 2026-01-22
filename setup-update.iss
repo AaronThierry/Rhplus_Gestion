@@ -1,8 +1,8 @@
-; Script d'installation Inno Setup pour Gestion Moderne RH v1.0.3 - UPDATE
-; Mise à jour corrective pour corriger l'affichage du net à payer et la récupération des employés CDD
+; Script d'installation Inno Setup pour Gestion Moderne RH v1.0.5 - UPDATE
+; Mise à jour CRITIQUE pour corriger le calcul IUTS des employés cadres
 
 #define MyAppName "Gestion Moderne RH"
-#define MyAppVersion "1.0.4"
+#define MyAppVersion "1.0.5"
 #define MyAppPublisher "GMP - Gestion Moderne de Paie"
 #define MyAppURL "https://github.com/AaronThierry/Rhplus_Gestion"
 #define MyAppExeName "RH_GRH.exe"
@@ -23,7 +23,7 @@ AppUpdatesURL={#MyAppURL}/releases
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=LICENSE.txt
-InfoBeforeFile=UPDATE_NOTES_v1.0.4.txt
+InfoBeforeFile=UPDATE_NOTES_v1.0.5.txt
 OutputDir=Setup\Output
 OutputBaseFilename=GestionModerneRH_v{#MyAppVersion}_Update
 SetupIconFile=RH_GRH\logo-rh-modified.ico
@@ -37,7 +37,7 @@ UninstallDisplayIcon={app}\{#MyAppExeName}
 UninstallDisplayName={#MyAppName}
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
-VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.0.4
+VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.0.5
 VersionInfoCopyright=Copyright (C) 2025 {#MyAppPublisher}
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
@@ -66,7 +66,7 @@ Source: "RH_GRH\bin\Release\x86\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Documentation
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "UPDATE_NOTES_v1.0.4.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "UPDATE_NOTES_v1.0.5.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Scripts SQL (optionnels)
 Source: "verify_column.sql"; DestDir: "{app}\Database"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{#SourcePath}\verify_column.sql'))
@@ -183,8 +183,13 @@ var
   S: String;
 begin
   S := '';
-  S := S + 'MISE À JOUR v1.0.4 - VERSION FINALE' + NewLine + NewLine;
-  S := S + 'Corrections et améliorations :' + NewLine;
+  S := S + 'MISE À JOUR v1.0.5 - CORRECTION CRITIQUE' + NewLine + NewLine;
+  S := S + 'CORRECTION MAJEURE :' + NewLine;
+  S := S + Space + '- FIX CRITIQUE : Calcul IUTS pour les CADRES' + NewLine;
+  S := S + Space + '- Tous les cadres étaient traités comme non-cadres' + NewLine;
+  S := S + Space + '- Abattement corrigé : 20% pour cadres (au lieu de 25%)' + NewLine;
+  S := S + Space + '- Impact : Salaire net des CADRES augmenté' + NewLine + NewLine;
+  S := S + 'INCLUS AUSSI (v1.0.4) :' + NewLine;
   S := S + Space + '- Affichage du Net à Payer sur les bulletins' + NewLine;
   S := S + Space + '- Récupération des employés CDD par lot' + NewLine;
   S := S + Space + '- Arrondi standardisé 1 FCFA (tous calculs)' + NewLine + NewLine;
