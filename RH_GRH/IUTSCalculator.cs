@@ -39,8 +39,8 @@ namespace RH_GRH
             if (!string.IsNullOrWhiteSpace(statut))
             {
                 var s = statut.Trim().ToLowerInvariant();
-                if (s == "oui") abatt = 0.20m;   // cadre
-                else if (s == "non") abatt = 0.25m;
+                if (s == "oui" || s == "cadre") abatt = 0.20m;   // cadre
+                else if (s == "non" || s == "non-cadre") abatt = 0.25m;
             }
 
             decimal baseIuts = brutFiscal - (abatt * sbp);

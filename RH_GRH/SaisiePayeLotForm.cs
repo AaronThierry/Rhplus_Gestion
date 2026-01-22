@@ -998,6 +998,9 @@ namespace RH_GRH
             );
 
             // 10) IUTS - MÉTHODE EXACTE (lignes 1286-1292)
+            // Debug: Vérifier le statut cadre
+            System.Diagnostics.Debug.WriteLine($"[HORAIRE] Employé: {employe.Nom}, Cadre: '{employe.Cadre}'");
+
             var r = IUTSCalculator.CalculerIUTS(
                 salaireBrut,
                 cnssEmploye,
@@ -1163,6 +1166,9 @@ namespace RH_GRH
             );
 
             // 10) IUTS - MÉTHODE EXACTE
+            // Debug: Vérifier le statut cadre
+            System.Diagnostics.Debug.WriteLine($"[JOURNALIER] Employé: {employe.Nom}, Cadre: '{employe.Cadre}'");
+
             var r = IUTSCalculator.CalculerIUTS(
                 salaireBrut,
                 cnssEmploye,
