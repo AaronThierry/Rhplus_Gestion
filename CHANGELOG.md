@@ -7,6 +7,77 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ---
 
+## [1.0.7] - 2026-01-26
+
+### Ajouté
+- **Label de version dans la sidebar**
+  - Ajout d'un label affichant la version de l'application (Version 1.0.7)
+  - Positionnement en haut de la sidebar, au-dessus du logo
+  - Lecture dynamique de la version depuis AssemblyInfo
+  - Police Montserrat 7.5pt, couleur gris clair
+  - Alignement centré pour une meilleure lisibilité
+
+- **Espacements uniformes dans la sidebar**
+  - Espacement de 5px entre le logo et le bouton "Tableau de bord"
+  - Espacement de 10px entre tous les boutons principaux (Personnel, Salaire, Administration, Sortir)
+  - Amélioration de l'organisation visuelle et de l'ergonomie
+
+### Corrigé
+- **Affichage de la valeur de remboursement de dette**
+  - Correction du bug où la valeur de dette ne s'affichait pas sur le bulletin de paie journalier individuel
+  - Ajout de `ValeurDette` dans le modèle BulletinModel lors de la génération du PDF
+  - Impact : GestionSalaireJournalierForm.cs (ligne 1542)
+
+- **Chevauchement des boutons dans la sidebar**
+  - Correction du problème de chevauchement entre "Tableau de bord" et "Personnel"
+  - Déplacement du button2 (Tableau de bord) du panel1 vers panel_slide
+  - Ajout de la propriété Dock.Top pour un alignement correct
+
+- **Message de succès personnalisé**
+  - Remplacement du MessageBox standard par CustomMessageBox pour le bulletin journalier
+  - Utilisation de CustomMessageBox.MessageType.Success pour un affichage cohérent
+  - Amélioration de l'expérience utilisateur avec le style personnalisé de l'application
+
+### Modifié
+- **Structure de la sidebar (Formmain.Designer.cs)**
+  - Réorganisation de la hiérarchie des contrôles pour éviter les chevauchements
+  - panel1 contient maintenant uniquement : labelVersion + pictureBox1 (logo)
+  - button2 (Tableau de bord) directement dans panel_slide avec Dock.Top
+
+- **Gestion des espacements (Formmain.cs)**
+  - Refactorisation du code d'espacement des boutons
+  - Utilisation de Padding uniformes : new Padding(0, top, 0, 0)
+  - Code plus maintenable et cohérent
+
+### Technique
+- **Fichiers modifiés** : 5 fichiers
+  - Formmain.cs : Ajout de SetVersionLabel() et espacements uniformes
+  - Formmain.Designer.cs : Ajout labelVersion, réorganisation de panel1
+  - GestionSalaireJournalierForm.cs : Correction ValeurDette + CustomMessageBox
+  - App.config : Binding redirect System.Resources.Extensions (de v1.0.6)
+  - AssemblyInfo.cs : Version 1.0.7.0
+
+### Architecture
+- **Sidebar modernisée**
+  ```
+  panel_slide
+  ├── panel1 (Version + Logo)
+  │   ├── labelVersion (Version 1.0.7)
+  │   └── pictureBox1 (Logo RH+)
+  ├── button2 (Tableau de bord) - 5px margin
+  ├── button_personnel (Personnel) - 10px margin
+  ├── button_salaire (Salaire) - 10px margin
+  ├── button_administration (Administration) - 10px margin
+  └── button_exit (Sortir) - 10px margin
+  ```
+
+### Compatibilité
+- Compatible avec les versions précédentes
+- Aucune modification de base de données
+- Migration transparente depuis v1.0.6
+
+---
+
 ## [1.0.6] - 2026-01-26
 
 ### Ajouté

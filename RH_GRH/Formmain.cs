@@ -32,9 +32,14 @@ namespace RH_GRH
             count();
             InitializeAnimations();
             ApplyModernStyling();
+            SetVersionLabel();
 
-            // Ajouter un espacement de 10px entre Tableau de bord et Personnel
-            button_personnel.Margin = new Padding(button_personnel.Margin.Left, 10, button_personnel.Margin.Right, button_personnel.Margin.Bottom);
+            // Espacements uniformes dans la sidebar
+            button2.Margin = new Padding(0, 5, 0, 0);              // Tableau de bord
+            button_personnel.Margin = new Padding(0, 10, 0, 0);     // Personnel
+            button_salaire.Margin = new Padding(0, 10, 0, 0);       // Salaire
+            button_administration.Margin = new Padding(0, 10, 0, 0); // Administration
+            button_exit.Margin = new Padding(0, 10, 0, 0);          // Sortir
 
             // Form redimensionnable
             this.FormBorderStyle = FormBorderStyle.Sizable;
@@ -200,6 +205,13 @@ namespace RH_GRH
             // label_entreprise.Text = "Total des entreprises : " + Entreprise.totalEntreprie();
             label_nbreentreprise.Text = Entreprise.totalEntreprie();
             label2.Text = EmployeClass.TotalEmployes();
+        }
+
+        private void SetVersionLabel()
+        {
+            // Lire la version depuis AssemblyInfo
+            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            labelVersion.Text = $"Version {version.Major}.{version.Minor}.{version.Build}";
         }
 
         private void button1_Click(object sender, EventArgs e)

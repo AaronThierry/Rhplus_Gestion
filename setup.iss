@@ -2,7 +2,7 @@
 ; Installation professionnelle avec vérification des prérequis
 
 #define MyAppName "Gestion Moderne RH"
-#define MyAppVersion "1.0.6"
+#define MyAppVersion "1.0.7"
 #define MyAppPublisher "GMP - Gestion Moderne de Paie"
 #define MyAppURL "https://github.com/AaronThierry/Rhplus_Gestion"
 #define MyAppExeName "RH_GRH.exe"

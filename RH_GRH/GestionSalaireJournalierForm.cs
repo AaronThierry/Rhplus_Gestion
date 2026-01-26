@@ -1539,6 +1539,7 @@ namespace RH_GRH
                     SalaireNet = _lastSnapshot.SalaireNet,
                     EffortDePaix = _lastSnapshot.EffortPaix,
                     SalaireNetaPayer = _lastSnapshot.SalaireNetaPayer,
+                    ValeurDette = _lastSnapshot.ValeurDette,
                     SalaireNetaPayerFinal = _lastSnapshot.SalaireNetaPayerFinal
 
                 };
@@ -1575,7 +1576,7 @@ namespace RH_GRH
                             UseShellExecute = true
                         });
 
-                        MessageBox.Show("Bulletin généré avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CustomMessageBox.Show("Bulletin généré avec succès !", "Succès", CustomMessageBox.MessageType.Success, CustomMessageBox.MessageButtons.OK);
                     }
                 }
             }

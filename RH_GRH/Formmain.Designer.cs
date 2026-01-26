@@ -56,6 +56,7 @@ namespace RH_GRH
             this.button_employe = new System.Windows.Forms.Button();
             this.button_personnel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelVersion = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -106,6 +107,7 @@ namespace RH_GRH
             this.panel_slide.Controls.Add(this.button_salaire);
             this.panel_slide.Controls.Add(this.panel_personnel_submenu);
             this.panel_slide.Controls.Add(this.button_personnel);
+            this.panel_slide.Controls.Add(this.button2);
             this.panel_slide.Controls.Add(this.panel1);
             this.panel_slide.Name = "panel_slide";
             // 
@@ -275,15 +277,16 @@ namespace RH_GRH
             this.button_personnel.Click += new System.EventHandler(this.button_personnel_Click);
             // 
             // panel1
-            // 
-            this.panel1.Controls.Add(this.button2);
+            //
             this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.labelVersion);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // button2
-            // 
+            //
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
             resources.ApplyResources(this.button2, "button2");
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.ForeColor = System.Drawing.Color.White;
@@ -291,8 +294,20 @@ namespace RH_GRH
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // labelVersion
+            //
+            this.labelVersion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelVersion.Font = new System.Drawing.Font("Montserrat", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVersion.ForeColor = System.Drawing.Color.LightGray;
+            this.labelVersion.Location = new System.Drawing.Point(0, 0);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(250, 25);
+            this.labelVersion.TabIndex = 2;
+            this.labelVersion.Text = "Version 1.0.6";
+            this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            //
             // pictureBox1
-            // 
+            //
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Image = global::RH_GRH.Properties.Resources.logo_RH___1_;
             this.pictureBox1.Name = "pictureBox1";
@@ -499,6 +514,7 @@ namespace RH_GRH
         private Panel panel7;
         private Label label1;
         private Label label2;
+        private Label labelVersion;
     }
 }
 
