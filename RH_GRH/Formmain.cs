@@ -33,6 +33,9 @@ namespace RH_GRH
             InitializeAnimations();
             ApplyModernStyling();
 
+            // Ajouter un espacement de 10px entre Tableau de bord et Personnel
+            button_personnel.Margin = new Padding(button_personnel.Margin.Left, 10, button_personnel.Margin.Right, button_personnel.Margin.Bottom);
+
             // Form redimensionnable
             this.FormBorderStyle = FormBorderStyle.Sizable;
 
