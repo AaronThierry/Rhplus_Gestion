@@ -10,6 +10,69 @@ namespace RH_GRH
 {
     public static class MatriculeGenerator
     {
+        /// <summary>
+        /// Vérifie si un matricule existe déjà dans la base de données
+        /// </summary>
+        public static bool MatriculeExiste(string matricule, int? excludeIdPersonnel = null)
+        {
+            if (string.IsNullOrWhiteSpace(matricule))
+                return false;
+
+            var dbconnect = new Dbconnect();
+            using (MySqlConnection cn = dbconnect.getconnection)
+            {
+                cn.Open();
+                string query = excludeIdPersonnel.HasValue
+                    ? "SELECT COUNT(*) FROM personnel WHERE matricule = @matricule AND id_personnel != @excludeId"
+                    : "SELECT COUNT(*) FROM personnel WHERE matricule = @matricule";
+
+                using (var cmd = new MySqlCommand(query, cn))
+                {
+                    cmd.Parameters.AddWithValue("@matricule", matricule);
+                    if (excludeIdPersonnel.HasValue)
+                        cmd.Parameters.AddWithValue("@excludeId", excludeIdPersonnel.Value);
+
+                    long count = (long)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Valide le format d'un matricule saisi manuellement
+        /// Format accepté: 2-10 caractères alphanumériques (lettres majuscules, chiffres, tirets)
+        /// </summary>
+        public static (bool IsValid, string ErrorMessage) ValiderFormatMatricule(string matricule)
+        {
+            if (string.IsNullOrWhiteSpace(matricule))
+                return (false, "Le matricule ne peut pas être vide.");
+
+            matricule = matricule.Trim();
+
+            if (matricule.Length < 2)
+                return (false, "Le matricule doit contenir au moins 2 caractères.");
+
+            if (matricule.Length > 20)
+                return (false, "Le matricule ne peut pas dépasser 20 caractères.");
+
+            // Vérifier que le matricule ne contient que des caractères alphanumériques, tirets et underscores
+            if (!System.Text.RegularExpressions.Regex.IsMatch(matricule, @"^[A-Z0-9\-_]+$"))
+                return (false, "Le matricule ne peut contenir que des lettres majuscules, chiffres, tirets (-) et underscores (_).");
+
+            return (true, string.Empty);
+        }
+
+        /// <summary>
+        /// Normalise un matricule saisi (convertit en majuscules et supprime les espaces)
+        /// </summary>
+        public static string NormaliserMatricule(string matricule)
+        {
+            if (string.IsNullOrWhiteSpace(matricule))
+                return string.Empty;
+
+            return matricule.Trim().ToUpper().Replace(" ", "");
+        }
+
         public static string GetInitialesEntreprise(string nomEntreprise)
         {
             if (string.IsNullOrWhiteSpace(nomEntreprise)) return "XX";

@@ -151,6 +151,10 @@ namespace RH_GRH
         public string Anciennete { get; set; }
         public string DureeContrat { get; set; }
 
+        public string ModePayement { get; set; }
+        public string Banque { get; set; }
+        public string NumeroBancaire { get; set; }
+
         public string courrier { get; set; }
 
 

@@ -24,6 +24,8 @@ namespace RH_GRH
         public string Sexe { get; set; }
         public string DureeContrat { get; set; }
         public string ModePaiement { get; set; }
+        public string Banque { get; set; }
+        public string NumeroBancaire { get; set; }
         public string Identification { get; set; }
         public string Cadre { get; set; } // Si l'employé est cadre ou non
         public int Entreprise { get; set; } // Nom de l'entreprise
@@ -51,7 +53,7 @@ namespace RH_GRH
         // Constructeur
         public Employe(int id, string nom, DateTime dateEntree, DateTime? dateSortie,
                        string poste, string matricule, string telephone, string adresse, string contrat,
-                       string modePaiement, string identification, string cadre, int entreprise, string service,
+                       string modePaiement, string banque, string numeroBancaire, string identification, string cadre, int entreprise, string service,
                        string categorie, double montant, string typeContrat, int heureContrat, int jourContrat,
                        decimal salairemoyen, decimal tpa, string civilite, DateTime dateNaissance, string direction,
                        string numeroCnssEmploye,string sexe,string dureeContrat, string sigle, string nomEntreprise,
@@ -68,6 +70,8 @@ namespace RH_GRH
             Adresse = adresse;
             Contrat = contrat;
             ModePaiement = modePaiement;
+            Banque = banque;
+            NumeroBancaire = numeroBancaire;
             Identification = identification;
             Cadre = cadre;
             Entreprise = entreprise;

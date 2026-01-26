@@ -1199,6 +1199,11 @@ namespace RH_GRH
                     DureeContrat = employe.DureeContrat,
                     HeureContrat = employe.JourContrat,
 
+                    // Mode de paiement
+                    ModePayement = employe.ModePaiement ?? "",
+                    Banque = employe.Banque ?? "",
+                    NumeroBancaire = employe.NumeroBancaire ?? "",
+
                     // Infos entreprise
                     Sigle = employe.Sigle,
                     NomEntreprise = employe.NomEntreprise,
@@ -1480,6 +1485,9 @@ namespace RH_GRH
                     TelephoneEntreprise = _lastSnapshot.TelephoneEntreprise,
                     EmailEntreprise = _lastSnapshot.EmailEntreprise,
                     ResponsableEntreprise = _lastSnapshot.ResponsableEntreprise,
+                    ModePayement = _lastSnapshot.ModePayement,
+                    Banque = _lastSnapshot.Banque,
+                    NumeroBancaire = _lastSnapshot.NumeroBancaire,
                     Numero_indemnite_1 = Numero_indemnite_1,
                     Nom_Indemnite_1 = Nom_Indemnite_1,
                     Montant_Indemnite_1 = Montant_Indemnite_1,

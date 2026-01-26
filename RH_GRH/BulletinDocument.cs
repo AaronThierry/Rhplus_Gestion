@@ -579,9 +579,13 @@ namespace RH_GRH
                 // ===== Bloc Règlement / Signatures (statique) =====
                 col.Item().PaddingTop(16).Column(section =>
                 {
-                    // Ligne 1 : Mode de paiement (pointillés)
-                    section.Item().Text(t => t
-                        .Span("Mode de paiement : ").SemiBold().FontFamily("Montserrat").FontSize(9));
+                    // Ligne 1 : Mode de paiement (avec formatage conditionnel)
+                    string modePayementTexte = FormaterModePayement(model.ModePayement, model.Banque, model.NumeroBancaire);
+                    section.Item().Text(t =>
+                    {
+                        t.Span("Mode de paiement : ").SemiBold().FontFamily("Montserrat").FontSize(9);
+                        t.Span(modePayementTexte).FontFamily("Montserrat").FontSize(9);
+                    });
                     // Espacement
                     section.Item().Height(7);
                     // Ligne 2 : Payé le (pointillés)
@@ -653,6 +657,104 @@ namespace RH_GRH
             container.PaddingVertical(5)
                      .Border(1)
                      .BorderColor(Colors.Grey.Lighten2);
+
+        /// <summary>
+        /// Formate le mode de paiement en fonction du type (Espèces, Virement, Chèque, etc.)
+        /// </summary>
+        private string FormaterModePayement(string modePayement, string banque, string numeroBancaire)
+        {
+            // Si le mode de paiement n'est pas défini
+            if (string.IsNullOrWhiteSpace(modePayement))
+            {
+                return "Non spécifié";
+            }
+
+            // Normaliser le mode de paiement (insensible à la casse)
+            string mode = modePayement.Trim();
+            string modeNormalise = mode.ToLower();
+
+            // Cas 1 : Espèces - pas besoin d'informations bancaires
+            if (modeNormalise.Contains("espèce") || modeNormalise.Contains("espece") ||
+                modeNormalise.Contains("cash") || modeNormalise.Equals("espèces"))
+            {
+                return "Espèces";
+            }
+
+            // Cas 2 : Virement bancaire - afficher banque et numéro
+            if (modeNormalise.Contains("virement") || modeNormalise.Contains("bancaire") ||
+                modeNormalise.Contains("banque") || modeNormalise.Contains("transfert"))
+            {
+                var infos = new System.Text.StringBuilder("Virement bancaire");
+
+                if (!string.IsNullOrWhiteSpace(banque))
+                {
+                    infos.Append($" - {banque.Trim()}");
+                }
+
+                if (!string.IsNullOrWhiteSpace(numeroBancaire))
+                {
+                    infos.Append($" ({numeroBancaire.Trim()})");
+                }
+
+                return infos.ToString();
+            }
+
+            // Cas 3 : Chèque - afficher banque et numéro si disponibles
+            if (modeNormalise.Contains("chèque") || modeNormalise.Contains("cheque"))
+            {
+                var infos = new System.Text.StringBuilder("Chèque");
+
+                if (!string.IsNullOrWhiteSpace(banque))
+                {
+                    infos.Append($" - {banque.Trim()}");
+                }
+
+                if (!string.IsNullOrWhiteSpace(numeroBancaire))
+                {
+                    infos.Append($" (N° {numeroBancaire.Trim()})");
+                }
+
+                return infos.ToString();
+            }
+
+            // Cas 4 : Mobile Money / Paiement mobile
+            if (modeNormalise.Contains("mobile") || modeNormalise.Contains("momo") ||
+                modeNormalise.Contains("orange") || modeNormalise.Contains("moov"))
+            {
+                if (!string.IsNullOrWhiteSpace(numeroBancaire))
+                {
+                    return $"{mode} ({numeroBancaire.Trim()})";
+                }
+                return mode;
+            }
+
+            // Cas par défaut : afficher le mode tel quel avec les infos disponibles
+            var result = new System.Text.StringBuilder(mode);
+
+            if (!string.IsNullOrWhiteSpace(banque) || !string.IsNullOrWhiteSpace(numeroBancaire))
+            {
+                result.Append(" - ");
+
+                if (!string.IsNullOrWhiteSpace(banque))
+                {
+                    result.Append(banque.Trim());
+                }
+
+                if (!string.IsNullOrWhiteSpace(numeroBancaire))
+                {
+                    if (!string.IsNullOrWhiteSpace(banque))
+                    {
+                        result.Append($" ({numeroBancaire.Trim()})");
+                    }
+                    else
+                    {
+                        result.Append(numeroBancaire.Trim());
+                    }
+                }
+            }
+
+            return result.ToString();
+        }
     }
 }
 

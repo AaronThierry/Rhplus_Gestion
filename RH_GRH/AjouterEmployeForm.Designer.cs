@@ -117,7 +117,7 @@ namespace RH_GRH
             this.panelFooter.Controls.Add(this.buttonValider);
             this.panelFooter.Controls.Add(this.buttonAnnuler);
             this.panelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelFooter.Location = new System.Drawing.Point(0, 788);
+            this.panelFooter.Location = new System.Drawing.Point(0, 1290);
             this.panelFooter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelFooter.Name = "panelFooter";
             this.panelFooter.Size = new System.Drawing.Size(1333, 86);
@@ -176,7 +176,7 @@ namespace RH_GRH
             this.panelMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelMain.Name = "panelMain";
             this.panelMain.Padding = new System.Windows.Forms.Padding(27, 25, 27, 25);
-            this.panelMain.Size = new System.Drawing.Size(1333, 714);
+            this.panelMain.Size = new System.Drawing.Size(1333, 1216);
             this.panelMain.TabIndex = 2;
             // 
             // groupBoxFinancier
@@ -310,7 +310,7 @@ namespace RH_GRH
             this.groupBoxContrat.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBoxContrat.Font = new System.Drawing.Font("Montserrat", 11F, System.Drawing.FontStyle.Bold);
             this.groupBoxContrat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(120)))), ((int)(((byte)(140)))));
-            this.groupBoxContrat.Location = new System.Drawing.Point(27, 653);
+            this.groupBoxContrat.Location = new System.Drawing.Point(27, 860);
             this.groupBoxContrat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxContrat.Name = "groupBoxContrat";
             this.groupBoxContrat.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
@@ -628,7 +628,7 @@ namespace RH_GRH
             this.groupBoxInfoPro.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBoxInfoPro.Font = new System.Drawing.Font("Montserrat", 11F, System.Drawing.FontStyle.Bold);
             this.groupBoxInfoPro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(120)))), ((int)(((byte)(140)))));
-            this.groupBoxInfoPro.Location = new System.Drawing.Point(27, 370);
+            this.groupBoxInfoPro.Location = new System.Drawing.Point(27, 540);
             this.groupBoxInfoPro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxInfoPro.Name = "groupBoxInfoPro";
             this.groupBoxInfoPro.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
@@ -1059,7 +1059,7 @@ namespace RH_GRH
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1333, 874);
+            this.ClientSize = new System.Drawing.Size(1333, 1376);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panelFooter);
             this.Controls.Add(this.panelHeader);

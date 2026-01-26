@@ -37,7 +37,7 @@ namespace RH_GRH
             comboBoxSexe.Items.AddRange(new string[] { "-- Sélectionner --", "Masculin", "Féminin" });
             comboBoxContrat.Items.AddRange(new string[] { "-- Sélectionner --", "CDI", "CDD" });
             comboBoxTypeContrat.Items.AddRange(new string[] { "-- Sélectionner --", "Horaire", "Journalier", "Mensuel" });
-            comboBoxModePayement.Items.AddRange(new string[] { "-- Sélectionner --", "Espèces", "Virement", "Chèque" });
+            comboBoxModePayement.Items.AddRange(new string[] { "-- Sélectionner --", "Espèces", "Virement bancaire", "Chèque", "Mobile Money" });
             comboBoxCadre.Items.AddRange(new string[] { "-- Sélectionner --", "Cadre", "Non-Cadre" });
 
             // Initialiser le ComboBox DureeContrat
@@ -46,6 +46,7 @@ namespace RH_GRH
             checkBoxDateSortie.CheckedChanged += CheckBoxDateSortie_CheckedChanged;
             comboBoxEntreprise.SelectedIndexChanged += ComboBoxEntreprise_SelectedIndexChanged;
             comboBoxDirection.SelectedIndexChanged += ComboBoxDirection_SelectedIndexChanged;
+            comboBoxModePayement.SelectedIndexChanged += ComboBoxModePayement_SelectedIndexChanged;
         }
 
         private void ChargerDonnees(string nomPrenom, string matricule, string civilite, string sexe,
@@ -147,6 +148,9 @@ namespace RH_GRH
 
             textBoxNumeroBancaire.Text = numeroBancaire ?? "";
             textBoxBanque.Text = banque ?? "";
+
+            // Mettre à jour l'affichage des champs selon le mode de paiement
+            UpdateModePayementFields();
         }
 
         private void CheckBoxDateSortie_CheckedChanged(object sender, EventArgs e)
@@ -179,6 +183,98 @@ namespace RH_GRH
         {
             // La relation entre direction et service n'existe pas dans la structure de la base de données
             // Les services sont liés uniquement à l'entreprise
+        }
+
+        /// <summary>
+        /// Gestionnaire pour le changement de mode de paiement
+        /// </summary>
+        private void ComboBoxModePayement_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateModePayementFields();
+        }
+
+        /// <summary>
+        /// Met à jour la visibilité et les labels des champs selon le mode de paiement sélectionné
+        /// </summary>
+        private void UpdateModePayementFields()
+        {
+            string modePayement = comboBoxModePayement.SelectedItem?.ToString() ?? "";
+
+            // Sauvegarder les valeurs actuelles avant de modifier la visibilité
+            string banqueActuelle = textBoxBanque.Text;
+            string numeroActuel = textBoxNumeroBancaire.Text;
+
+            // Logique conditionnelle selon le mode de paiement
+            switch (modePayement)
+            {
+                case "Espèces":
+                    // Masquer les champs bancaires pour espèces
+                    textBoxBanque.Enabled = false;
+                    textBoxBanque.Visible = false;
+                    textBoxNumeroBancaire.Enabled = false;
+                    textBoxNumeroBancaire.Visible = false;
+                    label24.Visible = false; // Label Banque
+                    label23.Visible = false; // Label Numéro Bancaire
+                    break;
+
+                case "Virement bancaire":
+                    // Afficher banque et numéro de compte
+                    textBoxBanque.Enabled = true;
+                    textBoxBanque.Visible = true;
+                    textBoxBanque.Text = banqueActuelle;
+                    textBoxBanque.PlaceholderText = "Nom de la banque";
+                    textBoxNumeroBancaire.Enabled = true;
+                    textBoxNumeroBancaire.Visible = true;
+                    textBoxNumeroBancaire.Text = numeroActuel;
+                    textBoxNumeroBancaire.PlaceholderText = "Numéro de compte bancaire";
+                    label24.Visible = true;
+                    label24.Text = "Banque :";
+                    label23.Visible = true;
+                    label23.Text = "Numéro de compte :";
+                    break;
+
+                case "Chèque":
+                    // Afficher banque et numéro de chèque
+                    textBoxBanque.Enabled = true;
+                    textBoxBanque.Visible = true;
+                    textBoxBanque.Text = banqueActuelle;
+                    textBoxBanque.PlaceholderText = "Nom de la banque";
+                    textBoxNumeroBancaire.Enabled = true;
+                    textBoxNumeroBancaire.Visible = true;
+                    textBoxNumeroBancaire.Text = numeroActuel;
+                    textBoxNumeroBancaire.PlaceholderText = "Numéro de chèque";
+                    label24.Visible = true;
+                    label24.Text = "Banque :";
+                    label23.Visible = true;
+                    label23.Text = "Numéro de chèque :";
+                    break;
+
+                case "Mobile Money":
+                    // Afficher opérateur et numéro
+                    textBoxBanque.Enabled = true;
+                    textBoxBanque.Visible = true;
+                    textBoxBanque.Text = banqueActuelle;
+                    textBoxBanque.PlaceholderText = "Opérateur (Orange, Moov, etc.)";
+                    textBoxNumeroBancaire.Enabled = true;
+                    textBoxNumeroBancaire.Visible = true;
+                    textBoxNumeroBancaire.Text = numeroActuel;
+                    textBoxNumeroBancaire.PlaceholderText = "Numéro de téléphone";
+                    label24.Visible = true;
+                    label24.Text = "Opérateur :";
+                    label23.Visible = true;
+                    label23.Text = "Numéro :";
+                    break;
+
+                default:
+                    // Par défaut, masquer les champs
+                    textBoxBanque.Enabled = false;
+                    textBoxBanque.Visible = false;
+                    textBoxNumeroBancaire.Enabled = false;
+                    textBoxNumeroBancaire.Visible = false;
+                    label24.Visible = false;
+                    label23.Visible = false;
+                    break;
+            }
         }
 
         private void buttonAnnuler_Click(object sender, EventArgs e)

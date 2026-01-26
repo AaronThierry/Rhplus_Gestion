@@ -261,6 +261,9 @@ namespace RH_GRH
                 Contrat = employe.Contrat ?? "",
                 DureeContrat = employe.DureeContrat ?? "",
                 HeureContrat = employe.HeureContrat,
+                ModePayement = employe.ModePaiement ?? "",
+                Banque = employe.Banque ?? "",
+                NumeroBancaire = employe.NumeroBancaire ?? "",
                 DateNaissance = employe.DateNaissance,
                 DateEntree = employe.DateEntree,
                 DateSortie = employe.DateSortie,
@@ -323,6 +326,11 @@ namespace RH_GRH
                 Categorie = snapshot.Categorie,
                 Service = snapshot.Service,
                 Direction = snapshot.Direction,
+
+                // Mode de paiement
+                ModePayement = snapshot.ModePayement,
+                Banque = snapshot.Banque,
+                NumeroBancaire = snapshot.NumeroBancaire,
 
                 // Éléments de calcul - conversion decimal vers double
                 baseUnitaire = (double)snapshot.BaseUnitaire,
