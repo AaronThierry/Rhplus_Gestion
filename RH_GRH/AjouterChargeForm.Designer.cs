@@ -32,9 +32,9 @@ namespace RH_GRH
             this.comboBoxType = new Guna.UI2.WinForms.Guna2ComboBox();
             this.labelType = new System.Windows.Forms.Label();
             this.comboBoxEmploye = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.textBoxRechercheEmploye = new Guna.UI2.WinForms.Guna2TextBox();
+            this.labelRechercheEmploye = new System.Windows.Forms.Label();
             this.labelEmploye = new System.Windows.Forms.Label();
-            this.comboBoxEntreprise = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.labelEntreprise = new System.Windows.Forms.Label();
             this.labelTitre = new System.Windows.Forms.Label();
             this.panelMain.SuspendLayout();
             this.SuspendLayout();
@@ -56,14 +56,14 @@ namespace RH_GRH
             this.panelMain.Controls.Add(this.comboBoxType);
             this.panelMain.Controls.Add(this.labelType);
             this.panelMain.Controls.Add(this.comboBoxEmploye);
+            this.panelMain.Controls.Add(this.textBoxRechercheEmploye);
+            this.panelMain.Controls.Add(this.labelRechercheEmploye);
             this.panelMain.Controls.Add(this.labelEmploye);
-            this.panelMain.Controls.Add(this.comboBoxEntreprise);
-            this.panelMain.Controls.Add(this.labelEntreprise);
             this.panelMain.Controls.Add(this.labelTitre);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(825, 780);
+            this.panelMain.Size = new System.Drawing.Size(825, 560);
             this.panelMain.TabIndex = 0;
             // 
             // buttonAnnuler
@@ -73,11 +73,11 @@ namespace RH_GRH
             this.buttonAnnuler.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonAnnuler.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.buttonAnnuler.FillColor = System.Drawing.Color.Gray;
-            this.buttonAnnuler.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonAnnuler.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
             this.buttonAnnuler.ForeColor = System.Drawing.Color.White;
-            this.buttonAnnuler.Location = new System.Drawing.Point(645, 675);
+            this.buttonAnnuler.Location = new System.Drawing.Point(665, 490);
             this.buttonAnnuler.Name = "buttonAnnuler";
-            this.buttonAnnuler.Size = new System.Drawing.Size(135, 55);
+            this.buttonAnnuler.Size = new System.Drawing.Size(130, 40);
             this.buttonAnnuler.TabIndex = 10;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
@@ -89,11 +89,11 @@ namespace RH_GRH
             this.buttonAjouter.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonAjouter.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.buttonAjouter.FillColor = System.Drawing.Color.MidnightBlue;
-            this.buttonAjouter.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonAjouter.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
             this.buttonAjouter.ForeColor = System.Drawing.Color.White;
-            this.buttonAjouter.Location = new System.Drawing.Point(460, 675);
+            this.buttonAjouter.Location = new System.Drawing.Point(525, 490);
             this.buttonAjouter.Name = "buttonAjouter";
-            this.buttonAjouter.Size = new System.Drawing.Size(165, 55);
+            this.buttonAjouter.Size = new System.Drawing.Size(130, 40);
             this.buttonAjouter.TabIndex = 9;
             this.buttonAjouter.Text = "Ajouter";
             this.buttonAjouter.Click += new System.EventHandler(this.buttonValider_Click);
@@ -105,13 +105,13 @@ namespace RH_GRH
             this.buttonValiderContinuer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonValiderContinuer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.buttonValiderContinuer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
-            this.buttonValiderContinuer.Font = new System.Drawing.Font("Montserrat", 11F, System.Drawing.FontStyle.Bold);
+            this.buttonValiderContinuer.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
             this.buttonValiderContinuer.ForeColor = System.Drawing.Color.White;
-            this.buttonValiderContinuer.Location = new System.Drawing.Point(45, 675);
+            this.buttonValiderContinuer.Location = new System.Drawing.Point(30, 490);
             this.buttonValiderContinuer.Name = "buttonValiderContinuer";
-            this.buttonValiderContinuer.Size = new System.Drawing.Size(285, 55);
+            this.buttonValiderContinuer.Size = new System.Drawing.Size(250, 40);
             this.buttonValiderContinuer.TabIndex = 8;
-            this.buttonValiderContinuer.Text = "✓ Ajouter et continuer";
+            this.buttonValiderContinuer.Text = "Ajouter et continuer";
             this.buttonValiderContinuer.Click += new System.EventHandler(this.buttonValiderContinuer_Click);
             // 
             // textBoxIdentification
@@ -123,23 +123,23 @@ namespace RH_GRH
             this.textBoxIdentification.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxIdentification.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxIdentification.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxIdentification.Font = new System.Drawing.Font("Montserrat", 12F);
+            this.textBoxIdentification.Font = new System.Drawing.Font("Montserrat", 10F);
             this.textBoxIdentification.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxIdentification.Location = new System.Drawing.Point(428, 578);
+            this.textBoxIdentification.Location = new System.Drawing.Point(425, 425);
             this.textBoxIdentification.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxIdentification.Name = "textBoxIdentification";
             this.textBoxIdentification.PlaceholderText = "Ex: BE123456";
             this.textBoxIdentification.SelectedText = "";
-            this.textBoxIdentification.Size = new System.Drawing.Size(353, 46);
+            this.textBoxIdentification.Size = new System.Drawing.Size(370, 36);
             this.textBoxIdentification.TabIndex = 7;
             // 
             // labelIdentification
-            // 
+            //
             this.labelIdentification.AutoSize = true;
-            this.labelIdentification.Font = new System.Drawing.Font("Montserrat", 12F);
-            this.labelIdentification.Location = new System.Drawing.Point(428, 540);
+            this.labelIdentification.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Regular);
+            this.labelIdentification.Location = new System.Drawing.Point(425, 400);
             this.labelIdentification.Name = "labelIdentification";
-            this.labelIdentification.Size = new System.Drawing.Size(241, 31);
+            this.labelIdentification.Size = new System.Drawing.Size(189, 20);
             this.labelIdentification.TabIndex = 13;
             this.labelIdentification.Text = "N° Identification (CNI) :";
             // 
@@ -148,23 +148,23 @@ namespace RH_GRH
             this.datePickerNaissance.Checked = true;
             this.datePickerNaissance.FillColor = System.Drawing.Color.White;
             this.datePickerNaissance.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.datePickerNaissance.Font = new System.Drawing.Font("Montserrat", 12F);
+            this.datePickerNaissance.Font = new System.Drawing.Font("Montserrat", 10F);
             this.datePickerNaissance.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datePickerNaissance.Location = new System.Drawing.Point(45, 578);
+            this.datePickerNaissance.Location = new System.Drawing.Point(30, 425);
             this.datePickerNaissance.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.datePickerNaissance.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.datePickerNaissance.Name = "datePickerNaissance";
-            this.datePickerNaissance.Size = new System.Drawing.Size(353, 46);
+            this.datePickerNaissance.Size = new System.Drawing.Size(370, 36);
             this.datePickerNaissance.TabIndex = 6;
             this.datePickerNaissance.Value = new System.DateTime(2025, 1, 8, 0, 0, 0, 0);
             // 
             // labelDateNaissance
-            // 
+            //
             this.labelDateNaissance.AutoSize = true;
-            this.labelDateNaissance.Font = new System.Drawing.Font("Montserrat", 12F);
-            this.labelDateNaissance.Location = new System.Drawing.Point(45, 540);
+            this.labelDateNaissance.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Regular);
+            this.labelDateNaissance.Location = new System.Drawing.Point(30, 400);
             this.labelDateNaissance.Name = "labelDateNaissance";
-            this.labelDateNaissance.Size = new System.Drawing.Size(208, 31);
+            this.labelDateNaissance.Size = new System.Drawing.Size(162, 20);
             this.labelDateNaissance.TabIndex = 11;
             this.labelDateNaissance.Text = "Date de naissance :";
             // 
@@ -177,23 +177,23 @@ namespace RH_GRH
             this.textBoxNomPrenom.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxNomPrenom.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxNomPrenom.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNomPrenom.Font = new System.Drawing.Font("Montserrat", 12F);
+            this.textBoxNomPrenom.Font = new System.Drawing.Font("Montserrat", 10F);
             this.textBoxNomPrenom.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNomPrenom.Location = new System.Drawing.Point(45, 473);
+            this.textBoxNomPrenom.Location = new System.Drawing.Point(30, 345);
             this.textBoxNomPrenom.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxNomPrenom.Name = "textBoxNomPrenom";
             this.textBoxNomPrenom.PlaceholderText = "Ex: DUPONT Marie";
             this.textBoxNomPrenom.SelectedText = "";
-            this.textBoxNomPrenom.Size = new System.Drawing.Size(735, 46);
+            this.textBoxNomPrenom.Size = new System.Drawing.Size(765, 36);
             this.textBoxNomPrenom.TabIndex = 5;
             // 
             // labelNomPrenom
-            // 
+            //
             this.labelNomPrenom.AutoSize = true;
-            this.labelNomPrenom.Font = new System.Drawing.Font("Montserrat", 12F);
-            this.labelNomPrenom.Location = new System.Drawing.Point(45, 435);
+            this.labelNomPrenom.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Regular);
+            this.labelNomPrenom.Location = new System.Drawing.Point(30, 320);
             this.labelNomPrenom.Name = "labelNomPrenom";
-            this.labelNomPrenom.Size = new System.Drawing.Size(159, 31);
+            this.labelNomPrenom.Size = new System.Drawing.Size(124, 20);
             this.labelNomPrenom.TabIndex = 9;
             this.labelNomPrenom.Text = "Nom Prénom :";
             // 
@@ -205,21 +205,21 @@ namespace RH_GRH
             this.comboBoxScolarisation.Enabled = false;
             this.comboBoxScolarisation.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.comboBoxScolarisation.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.comboBoxScolarisation.Font = new System.Drawing.Font("Montserrat", 12F);
+            this.comboBoxScolarisation.Font = new System.Drawing.Font("Montserrat", 10F);
             this.comboBoxScolarisation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.comboBoxScolarisation.ItemHeight = 40;
-            this.comboBoxScolarisation.Location = new System.Drawing.Point(428, 368);
+            this.comboBoxScolarisation.ItemHeight = 30;
+            this.comboBoxScolarisation.Location = new System.Drawing.Point(425, 265);
             this.comboBoxScolarisation.Name = "comboBoxScolarisation";
-            this.comboBoxScolarisation.Size = new System.Drawing.Size(353, 46);
+            this.comboBoxScolarisation.Size = new System.Drawing.Size(370, 36);
             this.comboBoxScolarisation.TabIndex = 4;
             // 
             // labelScolarisation
-            // 
+            //
             this.labelScolarisation.AutoSize = true;
-            this.labelScolarisation.Font = new System.Drawing.Font("Montserrat", 12F);
-            this.labelScolarisation.Location = new System.Drawing.Point(428, 330);
+            this.labelScolarisation.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Regular);
+            this.labelScolarisation.Location = new System.Drawing.Point(425, 240);
             this.labelScolarisation.Name = "labelScolarisation";
-            this.labelScolarisation.Size = new System.Drawing.Size(151, 31);
+            this.labelScolarisation.Size = new System.Drawing.Size(118, 20);
             this.labelScolarisation.TabIndex = 7;
             this.labelScolarisation.Text = "Scolarisation :";
             // 
@@ -230,91 +230,99 @@ namespace RH_GRH
             this.comboBoxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxType.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.comboBoxType.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.comboBoxType.Font = new System.Drawing.Font("Montserrat", 12F);
+            this.comboBoxType.Font = new System.Drawing.Font("Montserrat", 10F);
             this.comboBoxType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.comboBoxType.ItemHeight = 40;
-            this.comboBoxType.Location = new System.Drawing.Point(45, 368);
+            this.comboBoxType.ItemHeight = 30;
+            this.comboBoxType.Location = new System.Drawing.Point(30, 265);
             this.comboBoxType.Name = "comboBoxType";
-            this.comboBoxType.Size = new System.Drawing.Size(353, 46);
+            this.comboBoxType.Size = new System.Drawing.Size(370, 36);
             this.comboBoxType.TabIndex = 3;
             // 
             // labelType
-            // 
+            //
             this.labelType.AutoSize = true;
-            this.labelType.Font = new System.Drawing.Font("Montserrat", 12F);
-            this.labelType.Location = new System.Drawing.Point(45, 330);
+            this.labelType.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Regular);
+            this.labelType.Location = new System.Drawing.Point(30, 240);
             this.labelType.Name = "labelType";
-            this.labelType.Size = new System.Drawing.Size(178, 31);
+            this.labelType.Size = new System.Drawing.Size(138, 20);
             this.labelType.TabIndex = 5;
             this.labelType.Text = "Type de charge :";
-            // 
+            //
+            // textBoxRechercheEmploye
+            //
+            this.textBoxRechercheEmploye.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textBoxRechercheEmploye.DefaultText = "";
+            this.textBoxRechercheEmploye.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.textBoxRechercheEmploye.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.textBoxRechercheEmploye.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.textBoxRechercheEmploye.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.textBoxRechercheEmploye.Enabled = false;
+            this.textBoxRechercheEmploye.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.textBoxRechercheEmploye.Font = new System.Drawing.Font("Montserrat", 10F);
+            this.textBoxRechercheEmploye.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.textBoxRechercheEmploye.Location = new System.Drawing.Point(30, 103);
+            this.textBoxRechercheEmploye.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxRechercheEmploye.Name = "textBoxRechercheEmploye";
+            this.textBoxRechercheEmploye.PasswordChar = '\0';
+            this.textBoxRechercheEmploye.PlaceholderText = "Tapez pour rechercher...";
+            this.textBoxRechercheEmploye.SelectedText = "";
+            this.textBoxRechercheEmploye.Size = new System.Drawing.Size(765, 36);
+            this.textBoxRechercheEmploye.TabIndex = 1;
+            //
+            // labelRechercheEmploye
+            //
+            this.labelRechercheEmploye.AutoSize = true;
+            this.labelRechercheEmploye.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Italic);
+            this.labelRechercheEmploye.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
+            this.labelRechercheEmploye.Location = new System.Drawing.Point(30, 80);
+            this.labelRechercheEmploye.Name = "labelRechercheEmploye";
+            this.labelRechercheEmploye.Size = new System.Drawing.Size(285, 18);
+            this.labelRechercheEmploye.TabIndex = 21;
+            this.labelRechercheEmploye.Text = "Recherche rapide (nom, matricule ou entreprise)";
+            //
             // comboBoxEmploye
-            // 
+            //
             this.comboBoxEmploye.BackColor = System.Drawing.Color.Transparent;
             this.comboBoxEmploye.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboBoxEmploye.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEmploye.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.comboBoxEmploye.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.comboBoxEmploye.Font = new System.Drawing.Font("Montserrat", 12F);
+            this.comboBoxEmploye.Font = new System.Drawing.Font("Montserrat", 10F);
             this.comboBoxEmploye.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.comboBoxEmploye.ItemHeight = 40;
-            this.comboBoxEmploye.Location = new System.Drawing.Point(45, 263);
+            this.comboBoxEmploye.ItemHeight = 30;
+            this.comboBoxEmploye.Location = new System.Drawing.Point(30, 183);
             this.comboBoxEmploye.Name = "comboBoxEmploye";
-            this.comboBoxEmploye.Size = new System.Drawing.Size(735, 46);
+            this.comboBoxEmploye.Size = new System.Drawing.Size(765, 36);
             this.comboBoxEmploye.TabIndex = 2;
-            // 
+            //
             // labelEmploye
-            // 
+            //
             this.labelEmploye.AutoSize = true;
-            this.labelEmploye.Font = new System.Drawing.Font("Montserrat", 12F);
-            this.labelEmploye.Location = new System.Drawing.Point(45, 225);
+            this.labelEmploye.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Regular);
+            this.labelEmploye.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(58)))), ((int)(((byte)(64)))));
+            this.labelEmploye.Location = new System.Drawing.Point(30, 158);
             this.labelEmploye.Name = "labelEmploye";
-            this.labelEmploye.Size = new System.Drawing.Size(112, 31);
+            this.labelEmploye.Size = new System.Drawing.Size(198, 20);
             this.labelEmploye.TabIndex = 3;
-            this.labelEmploye.Text = "Employé :";
-            // 
-            // comboBoxEntreprise
-            // 
-            this.comboBoxEntreprise.BackColor = System.Drawing.Color.Transparent;
-            this.comboBoxEntreprise.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEntreprise.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxEntreprise.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.comboBoxEntreprise.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.comboBoxEntreprise.Font = new System.Drawing.Font("Montserrat", 12F);
-            this.comboBoxEntreprise.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.comboBoxEntreprise.ItemHeight = 40;
-            this.comboBoxEntreprise.Location = new System.Drawing.Point(45, 158);
-            this.comboBoxEntreprise.Name = "comboBoxEntreprise";
-            this.comboBoxEntreprise.Size = new System.Drawing.Size(735, 46);
-            this.comboBoxEntreprise.TabIndex = 1;
-            // 
-            // labelEntreprise
-            // 
-            this.labelEntreprise.AutoSize = true;
-            this.labelEntreprise.Font = new System.Drawing.Font("Montserrat", 12F);
-            this.labelEntreprise.Location = new System.Drawing.Point(45, 120);
-            this.labelEntreprise.Name = "labelEntreprise";
-            this.labelEntreprise.Size = new System.Drawing.Size(127, 31);
-            this.labelEntreprise.TabIndex = 1;
-            this.labelEntreprise.Text = "Entreprise :";
-            // 
+            this.labelEmploye.Text = "Sélectionner l'employé :";
+            //
             // labelTitre
-            // 
+            //
             this.labelTitre.BackColor = System.Drawing.Color.MidnightBlue;
-            this.labelTitre.Font = new System.Drawing.Font("Montserrat", 18F, System.Drawing.FontStyle.Bold);
+            this.labelTitre.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Bold);
             this.labelTitre.ForeColor = System.Drawing.Color.White;
             this.labelTitre.Location = new System.Drawing.Point(0, 0);
             this.labelTitre.Name = "labelTitre";
-            this.labelTitre.Size = new System.Drawing.Size(825, 90);
+            this.labelTitre.Size = new System.Drawing.Size(825, 60);
             this.labelTitre.TabIndex = 0;
-            this.labelTitre.Text = "Ajouter une Charge";
+            this.labelTitre.Text = "Ajouter une Charge Familiale";
             this.labelTitre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AjouterChargeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 780);
+            this.ClientSize = new System.Drawing.Size(825, 560);
             this.Controls.Add(this.panelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -332,10 +340,10 @@ namespace RH_GRH
 
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Label labelTitre;
-        private System.Windows.Forms.Label labelEntreprise;
-        private Guna.UI2.WinForms.Guna2ComboBox comboBoxEntreprise;
         private System.Windows.Forms.Label labelEmploye;
         private Guna.UI2.WinForms.Guna2ComboBox comboBoxEmploye;
+        private Guna.UI2.WinForms.Guna2TextBox textBoxRechercheEmploye;
+        private System.Windows.Forms.Label labelRechercheEmploye;
         private System.Windows.Forms.Label labelType;
         private Guna.UI2.WinForms.Guna2ComboBox comboBoxType;
         private System.Windows.Forms.Label labelScolarisation;

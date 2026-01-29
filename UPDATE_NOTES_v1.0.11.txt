@@ -1,0 +1,77 @@
+===============================================================================
+    GESTION MODERNE RH - NOTES DE MISE À JOUR v1.0.11
+===============================================================================
+
+Date de publication : 29 janvier 2026
+
+-------------------------------------------------------------------------------
+NOUVEAUTÉS ET AMÉLIORATIONS
+-------------------------------------------------------------------------------
+
+✨ FORMULAIRE AJOUT DE CHARGES FAMILIALES - REFONTE COMPLÈTE
+
+1. RECHERCHE GLOBALE UNIFIÉE
+   • Suppression du sélecteur d'entreprise
+   • Recherche directe dans tous les employés de toutes les entreprises
+   • Filtrage intelligent par :
+     - Nom de l'employé
+     - Matricule
+     - Nom de l'entreprise
+   • Affichage enrichi : "Nom (Matricule - Entreprise)"
+
+2. OPTIMISATIONS INTERFACE UTILISATEUR
+   • Réduction de la hauteur du formulaire (560px au lieu de 640px)
+   • Espacements harmonisés et cohérents avec les autres formulaires
+   • Tailles de police standardisées (10F pour labels, 14F pour titre)
+   • Design épuré et professionnel (suppression des emojis)
+   • Boutons élargis pour meilleure lisibilité du texte
+
+3. AMÉLIORATION DE L'ERGONOMIE
+   • Focus automatique sur le champ de recherche à l'ouverture
+   • Sélection automatique si recherche unique
+   • Feedback visuel en temps réel (couleurs, statut)
+   • Workflow simplifié : moins de clics, plus rapide
+
+4. PERFORMANCES
+   • Chargement optimisé des employés
+   • Filtrage en temps réel plus rapide
+   • Meilleure réactivité de l'interface
+
+-------------------------------------------------------------------------------
+DÉTAILS TECHNIQUES
+-------------------------------------------------------------------------------
+
+• Version : 1.0.11.0
+• Configuration : Release
+• Framework : .NET Framework 4.7.2
+• Date de build : 29/01/2026
+
+-------------------------------------------------------------------------------
+COMPATIBILITÉ
+-------------------------------------------------------------------------------
+
+✓ Compatible avec toutes les versions précédentes
+✓ Mise à jour automatique de la base de données (si nécessaire)
+✓ Conservation de toutes les données existantes
+✓ Aucune action requise de l'utilisateur
+
+-------------------------------------------------------------------------------
+INSTALLATION
+-------------------------------------------------------------------------------
+
+1. Fermez l'application si elle est ouverte
+2. Lancez le programme d'installation
+3. Suivez les instructions à l'écran
+4. Redémarrez l'application
+
+-------------------------------------------------------------------------------
+SUPPORT
+-------------------------------------------------------------------------------
+
+Pour toute question ou assistance :
+• GitHub : https://github.com/AaronThierry/Rhplus_Gestion/issues
+• Contact : GMP - Gestion Moderne de Paie
+
+===============================================================================
+                        Merci d'utiliser Gestion Moderne RH !
+===============================================================================

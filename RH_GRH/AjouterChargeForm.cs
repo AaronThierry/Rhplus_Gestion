@@ -2,6 +2,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace RH_GRH
@@ -9,15 +10,36 @@ namespace RH_GRH
     public partial class AjouterChargeForm : Form
     {
         private Dbconnect connect = new Dbconnect();
+        private DataTable tousLesEmployes;
+        private DataTable employesFiltres;
+        private Label lblStatutRecherche;
 
         public AjouterChargeForm()
         {
             InitializeComponent();
+            CreerLabelStatut();
             InitialiserDonnees();
             ConfigurerRaccourcisClavier();
 
-            // Focus automatique sur le premier champ
-            this.Shown += (s, e) => comboBoxEntreprise.Focus();
+            // Focus automatique sur le champ de recherche
+            this.Shown += (s, e) => textBoxRechercheEmploye.Focus();
+        }
+
+        private void CreerLabelStatut()
+        {
+            // Label pour afficher le statut de la recherche
+            lblStatutRecherche = new Label
+            {
+                AutoSize = true,
+                Font = new Font("Montserrat", 8f, FontStyle.Italic),
+                ForeColor = Color.FromArgb(120, 144, 156),
+                Location = new Point(625, 80),
+                Name = "lblStatutRecherche",
+                Text = "",
+                Visible = false
+            };
+            panelMain.Controls.Add(lblStatutRecherche);
+            lblStatutRecherche.BringToFront();
         }
 
         private void ConfigurerRaccourcisClavier()
@@ -41,8 +63,8 @@ namespace RH_GRH
 
         private void InitialiserDonnees()
         {
-            // Charger les entreprises
-            EntrepriseClass.ChargerEntreprises(comboBoxEntreprise, null, true);
+            // Charger tous les employés de toutes les entreprises
+            ChargerTousLesEmployes();
 
             // Initialiser le type de charge
             comboBoxType.Items.Clear();
@@ -60,25 +82,16 @@ namespace RH_GRH
             comboBoxScolarisation.Enabled = false;
 
             // Événements
-            comboBoxEntreprise.SelectedIndexChanged += ComboBoxEntreprise_SelectedIndexChanged;
             comboBoxType.SelectedIndexChanged += ComboBoxType_SelectedIndexChanged;
-        }
 
-        private void ComboBoxEntreprise_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBoxEntreprise.SelectedValue != null &&
-                int.TryParse(comboBoxEntreprise.SelectedValue.ToString(), out int idEnt) && idEnt > 0)
+            // Événement pour la recherche (si le contrôle existe dans le designer)
+            if (textBoxRechercheEmploye != null)
             {
-                // Charger les employés de cette entreprise
-                ChargerEmployes(idEnt);
-            }
-            else
-            {
-                comboBoxEmploye.DataSource = null;
+                textBoxRechercheEmploye.TextChanged += TextBoxRechercheEmploye_TextChanged;
             }
         }
 
-        private void ChargerEmployes(int idEntreprise)
+        private void ChargerTousLesEmployes()
         {
             try
             {
@@ -88,28 +101,39 @@ namespace RH_GRH
                     con.Open();
                     const string query = @"
                         SELECT p.id_personnel AS Id,
-                               CONCAT(p.nomPrenom, ' (', p.matricule, ')') AS Nom
+                               p.nomPrenom AS Nom,
+                               p.matricule AS Matricule,
+                               e.nomEntreprise AS Entreprise,
+                               CONCAT(p.nomPrenom, ' (', p.matricule, ' - ', e.nomEntreprise, ')') AS Display
                         FROM personnel p
-                        WHERE p.id_entreprise = @idEnt
+                        INNER JOIN entreprise e ON p.id_entreprise = e.id_entreprise
                         ORDER BY p.nomPrenom";
 
                     using (var cmd = new MySqlCommand(query, con))
                     {
-                        cmd.Parameters.AddWithValue("@idEnt", idEntreprise);
                         var adapter = new MySqlDataAdapter(cmd);
-                        var dt = new DataTable();
-                        adapter.Fill(dt);
+                        tousLesEmployes = new DataTable();
+                        adapter.Fill(tousLesEmployes);
+
+                        // Créer une copie pour les filtres
+                        employesFiltres = tousLesEmployes.Copy();
 
                         // Ajouter une ligne vide au début
-                        DataRow row = dt.NewRow();
+                        DataRow row = employesFiltres.NewRow();
                         row["Id"] = 0;
-                        row["Nom"] = "-- Sélectionner un employé --";
-                        dt.Rows.InsertAt(row, 0);
+                        row["Display"] = "-- Sélectionner un employé --";
+                        employesFiltres.Rows.InsertAt(row, 0);
 
-                        comboBoxEmploye.DataSource = dt;
-                        comboBoxEmploye.DisplayMember = "Nom";
+                        comboBoxEmploye.DataSource = employesFiltres;
+                        comboBoxEmploye.DisplayMember = "Display";
                         comboBoxEmploye.ValueMember = "Id";
                         comboBoxEmploye.SelectedIndex = 0;
+
+                        // Activer le champ de recherche
+                        if (textBoxRechercheEmploye != null)
+                        {
+                            textBoxRechercheEmploye.Enabled = true;
+                        }
                     }
                 }
             }
@@ -117,6 +141,125 @@ namespace RH_GRH
             {
                 CustomMessageBox.Show($"Erreur lors du chargement des employés :\n{ex.Message}", "Erreur",
                     CustomMessageBox.MessageType.Error);
+            }
+        }
+
+        private void TextBoxRechercheEmploye_TextChanged(object sender, EventArgs e)
+        {
+            FiltrerEmployes(textBoxRechercheEmploye.Text.Trim());
+        }
+
+        private void FiltrerEmployes(string recherche)
+        {
+            try
+            {
+                if (tousLesEmployes == null || tousLesEmployes.Rows.Count == 0)
+                    return;
+
+                DataTable resultats;
+                int nombreResultats = 0;
+
+                // Si la recherche est vide, afficher tous les employés
+                if (string.IsNullOrWhiteSpace(recherche))
+                {
+                    resultats = tousLesEmployes.Copy();
+                    nombreResultats = resultats.Rows.Count;
+
+                    // Réinitialiser l'apparence
+                    textBoxRechercheEmploye.FillColor = Color.White;
+                    textBoxRechercheEmploye.BorderColor = Color.FromArgb(213, 218, 223);
+                    lblStatutRecherche.Visible = false;
+                }
+                else
+                {
+                    // Filtrer les employés selon le texte de recherche
+                    var rechercheLower = recherche.ToLower();
+                    var rows = tousLesEmployes.AsEnumerable()
+                        .Where(row =>
+                            row.Field<string>("Nom").ToLower().Contains(rechercheLower) ||
+                            row.Field<string>("Matricule").ToLower().Contains(rechercheLower) ||
+                            row.Field<string>("Entreprise").ToLower().Contains(rechercheLower)
+                        );
+
+                    if (rows.Any())
+                    {
+                        resultats = rows.CopyToDataTable();
+                        nombreResultats = resultats.Rows.Count;
+                    }
+                    else
+                    {
+                        // Aucun résultat
+                        resultats = tousLesEmployes.Clone();
+                        nombreResultats = 0;
+                    }
+                }
+
+                employesFiltres = resultats;
+
+                // Ajouter la ligne par défaut
+                DataRow defaultRow = employesFiltres.NewRow();
+                defaultRow["Id"] = 0;
+
+                // Message adapté selon le nombre de résultats
+                if (nombreResultats == 0)
+                {
+                    defaultRow["Display"] = "-- Aucun employé trouvé --";
+                    textBoxRechercheEmploye.FillColor = Color.FromArgb(255, 240, 240); // Rouge clair
+                    textBoxRechercheEmploye.BorderColor = Color.FromArgb(239, 68, 68);
+                    lblStatutRecherche.Text = "✗ Aucun résultat";
+                    lblStatutRecherche.ForeColor = Color.FromArgb(220, 38, 38);
+                    lblStatutRecherche.Visible = !string.IsNullOrWhiteSpace(recherche);
+                }
+                else if (nombreResultats == 1)
+                {
+                    defaultRow["Display"] = $"✓ 1 employé trouvé - Sélection automatique";
+                    textBoxRechercheEmploye.FillColor = Color.FromArgb(240, 255, 240); // Vert clair
+                    textBoxRechercheEmploye.BorderColor = Color.FromArgb(76, 175, 80);
+                    lblStatutRecherche.Text = "✓ Sélection auto";
+                    lblStatutRecherche.ForeColor = Color.FromArgb(34, 197, 94);
+                    lblStatutRecherche.Visible = !string.IsNullOrWhiteSpace(recherche);
+                }
+                else
+                {
+                    defaultRow["Display"] = $"-- {nombreResultats} employés trouvés --";
+                    textBoxRechercheEmploye.FillColor = Color.FromArgb(240, 248, 255); // Bleu clair
+                    textBoxRechercheEmploye.BorderColor = Color.FromArgb(59, 130, 246);
+                    lblStatutRecherche.Text = $"ℹ {nombreResultats} résultats";
+                    lblStatutRecherche.ForeColor = Color.FromArgb(59, 130, 246);
+                    lblStatutRecherche.Visible = !string.IsNullOrWhiteSpace(recherche);
+                }
+
+                employesFiltres.Rows.InsertAt(defaultRow, 0);
+
+                // Mettre à jour le ComboBox
+                comboBoxEmploye.DataSource = employesFiltres;
+                comboBoxEmploye.DisplayMember = "Display";
+                comboBoxEmploye.ValueMember = "Id";
+
+                // SÉLECTION AUTOMATIQUE si un seul résultat et recherche non vide
+                if (nombreResultats == 1 && !string.IsNullOrWhiteSpace(recherche))
+                {
+                    comboBoxEmploye.SelectedIndex = 1; // Index 1 car 0 est la ligne par défaut
+
+                    // Animation visuelle subtile
+                    comboBoxEmploye.BorderColor = Color.FromArgb(76, 175, 80); // Vert
+                    System.Threading.Tasks.Task.Delay(300).ContinueWith(_ =>
+                    {
+                        this.Invoke(new Action(() =>
+                        {
+                            comboBoxEmploye.BorderColor = Color.FromArgb(213, 218, 223); // Reset
+                        }));
+                    });
+                }
+                else
+                {
+                    comboBoxEmploye.SelectedIndex = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Ignorer les erreurs de filtrage
+                System.Diagnostics.Debug.WriteLine($"Erreur de filtrage: {ex.Message}");
             }
         }
 
@@ -137,15 +280,6 @@ namespace RH_GRH
             charge = null;
 
             // Validation
-            if (comboBoxEntreprise.SelectedValue == null ||
-                !int.TryParse(comboBoxEntreprise.SelectedValue.ToString(), out int idEnt) || idEnt <= 0)
-            {
-                CustomMessageBox.Show("Veuillez sélectionner une entreprise.", "Validation",
-                    CustomMessageBox.MessageType.Warning);
-                comboBoxEntreprise.Focus();
-                return false;
-            }
-
             if (comboBoxEmploye.SelectedValue == null ||
                 !int.TryParse(comboBoxEmploye.SelectedValue.ToString(), out int idEmp) || idEmp <= 0)
             {
