@@ -503,11 +503,14 @@ namespace RH_GRH
 
         private void buttonImporterExcel_Click(object sender, EventArgs e)
         {
-            using (var importForm = new ImportEmployeForm())
+            using (var importForm = new ImportEmployeExcelForm())
             {
-                importForm.ShowDialog(this);
-                // Rafraîchir la liste après l'importation
-                ShowTableEmployeGestion();
+                var result = importForm.ShowDialog(this);
+                if (result == DialogResult.OK)
+                {
+                    // Rafraîchir la liste après l'importation réussie
+                    ShowTableEmployeGestion();
+                }
             }
         }
 

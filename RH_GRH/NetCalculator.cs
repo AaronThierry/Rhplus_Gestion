@@ -26,6 +26,7 @@ namespace RH_GRH
             decimal iutsFinal,
             decimal avantagesNature,
             decimal Valeurdette,
+            decimal totalAbonnements = 0m,
             decimal tauxEffort = 0.01m,       // 1%
             bool arrondirNetAPayerCeil = true // ceil comme dans ton Java (Math.ceil)
         )
@@ -42,8 +43,8 @@ namespace RH_GRH
             if (arrondirNetAPayerCeil)
                 netAPayer = decimal.Ceiling(netAPayer);   // Arrondi au 1 FCFA supérieur
 
-            //4) Net final
-            decimal netAPayerFinal = netAPayer - Valeurdette;
+            //4) Net final (déduction dette + abonnements)
+            decimal netAPayerFinal = netAPayer - Valeurdette - totalAbonnements;
             if (arrondirNetAPayerCeil)
                 netAPayerFinal = decimal.Ceiling(netAPayerFinal);   // Arrondi au 1 FCFA supérieur
 

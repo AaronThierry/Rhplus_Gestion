@@ -1,0 +1,156 @@
+================================================================================
+          NOTES DE MISE À JOUR - GESTION MODERNE RH v1.1.0
+================================================================================
+
+Date de sortie : 07 Février 2026
+
+================================================================================
+NOUVELLES FONCTIONNALITÉS
+================================================================================
+
+1. SYSTÈME DE GESTION DES ABONNEMENTS
+   ----------------------------------------------------------------------------
+   - Nouveau module complet de gestion des abonnements pour les employés
+   - Interface intuitive avec recherche en temps réel
+   - Gestion des dates de début et de fin d'abonnement
+   - Calcul automatique du total des abonnements par employé
+   - Déduction automatique des abonnements du salaire net
+
+   Fonctionnalités détaillées :
+   • Ajout d'abonnements avec nom, description, dates et montant
+   • Modification et suppression des abonnements existants
+   • Un seul abonnement actif par employé à la fois
+   • Affichage dans le bulletin de paie avec nombre et total
+   • Prise en compte dans la modale de résultats de calcul
+
+2. AMÉLIORATION DU BULLETIN DE PAIE
+   ----------------------------------------------------------------------------
+   - Ajout de la ligne "Abonnement" dans la section "Nette à payer"
+   - Affichage du nombre d'abonnements dans la colonne "Taux"
+   - Affichage du total des abonnements dans la colonne "Base"
+   - Déduction automatique du net à payer final
+   - Optimisation de la mise en page : "Payé le" et "Mode de paiement"
+     sur la même ligne pour un gain d'espace
+
+3. INTÉGRATION SURSALAIRE ET ABONNEMENTS
+   ----------------------------------------------------------------------------
+   - Ajout du sursalaire dans les GAINS de la modale de résultats
+   - Ajout des abonnements dans les RETENUES de la modale de résultats
+   - Mise à jour automatique du total des retenues
+   - Affichage cohérent entre la modale et le bulletin PDF
+
+================================================================================
+AMÉLIORATIONS TECHNIQUES
+================================================================================
+
+1. MOTEUR DE CALCUL
+   ----------------------------------------------------------------------------
+   - Mise à jour de NetCalculator pour prendre en compte les abonnements
+   - Nouveau paramètre totalAbonnements dans la méthode Calculer
+   - Calcul : NetFinal = NetAPayer - Dette - Abonnements
+   - Arrondi au franc CFA supérieur maintenu
+
+2. MODÈLE DE DONNÉES
+   ----------------------------------------------------------------------------
+   - Ajout de TotalAbonnements et NombreAbonnements dans PayrollSnapshot
+   - Ajout de TotalAbonnements et NombreAbonnements dans BulletinModel
+   - Nouvelle entité Abonnement avec gestion complète en base de données
+   - Repository pattern pour AbonnementRepository
+
+3. FORMULAIRES CONCERNÉS
+   ----------------------------------------------------------------------------
+   - GestionSalaireHoraireForm : calcul des abonnements intégré
+   - GestionSalaireJournalierForm : calcul des abonnements intégré
+   - SaisiePayeLotForm : traitement par lot des abonnements
+   - BatchBulletinService : génération en masse avec abonnements
+   - ResultatsModal : affichage enrichi des gains et retenues
+
+4. INTERFACE UTILISATEUR
+   ----------------------------------------------------------------------------
+   - Nouveau formulaire GestionAbonnementForm avec design moderne
+   - Barre de recherche en temps réel avec icône
+   - Bouton "Ajouter Abonnement" responsive
+   - DataGridView avec colonnes : Entreprise, Matricule, Employé, Nom,
+     Description, Date début, Date fin, Montant
+   - Formulaires d'ajout et modification avec validation
+
+================================================================================
+COMPATIBILITÉ
+================================================================================
+
+- Compatible avec toutes les bases de données existantes
+- Migration SQL automatique pour la table abonnement
+- Pas de perte de données lors de la mise à jour
+- Rétrocompatible avec les bulletins antérieurs
+
+================================================================================
+INSTALLATION
+================================================================================
+
+1. Fermer complètement l'application Gestion Moderne RH si elle est ouverte
+2. Exécuter l'installeur de mise à jour GestionModerneRH_v1.1.0_Update.exe
+3. Suivre les instructions à l'écran
+4. Redémarrer l'application
+
+================================================================================
+SCRIPT SQL REQUIS (si migration manuelle)
+================================================================================
+
+Si la migration automatique échoue, exécutez ce script SQL :
+
+```sql
+CREATE TABLE IF NOT EXISTS `abonnement` (
+  `id_abonnement` INT NOT NULL AUTO_INCREMENT,
+  `id_personnel` INT NOT NULL,
+  `nom` VARCHAR(100) NOT NULL,
+  `description` TEXT,
+  `date_debut` DATE NOT NULL,
+  `date_fin` DATE NOT NULL,
+  `montant` DECIMAL(15,2) NOT NULL DEFAULT 0.00,
+  `date_creation` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_abonnement`),
+  KEY `idx_personnel` (`id_personnel`),
+  CONSTRAINT `fk_abonnement_personnel`
+    FOREIGN KEY (`id_personnel`)
+    REFERENCES `personnel` (`id_personnel`)
+    ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+================================================================================
+CORRECTIONS DE BUGS
+================================================================================
+
+- Correction du calcul du net à payer final dans tous les formulaires
+- Amélioration de la cohérence entre les affichages
+- Optimisation de la mise en page du bulletin PDF
+
+================================================================================
+NOTES IMPORTANTES
+================================================================================
+
+⚠️ SAUVEGARDE RECOMMANDÉE
+   Il est fortement recommandé de faire une sauvegarde complète de votre
+   base de données avant d'installer cette mise à jour.
+
+📊 NOUVEAUX MENUS
+   Un nouveau menu "Abonnements" est disponible dans l'interface principale
+   pour gérer les abonnements des employés.
+
+🔄 RECALCUL NÉCESSAIRE
+   Les bulletins générés avant cette mise à jour ne contiennent pas les
+   informations sur les abonnements. Il est recommandé de régénérer les
+   bulletins si nécessaire.
+
+================================================================================
+SUPPORT
+================================================================================
+
+Pour toute question ou problème concernant cette mise à jour :
+- Vérifiez que la migration SQL a été effectuée correctement
+- Consultez les logs de l'application
+- Contactez le support technique
+
+================================================================================
+FIN DES NOTES DE MISE À JOUR
+================================================================================

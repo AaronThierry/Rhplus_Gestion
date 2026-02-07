@@ -51,6 +51,8 @@ namespace RH_GRH
             this.button_horaire = new System.Windows.Forms.Button();
             this.button_salaire = new System.Windows.Forms.Button();
             this.panel_personnel_submenu = new System.Windows.Forms.Panel();
+            this.button_sursalaire = new System.Windows.Forms.Button();
+            this.button_abonnement = new System.Windows.Forms.Button();
             this.button_indemnite = new System.Windows.Forms.Button();
             this.button_charge = new System.Windows.Forms.Button();
             this.button_employe = new System.Windows.Forms.Button();
@@ -231,23 +233,43 @@ namespace RH_GRH
             this.button_salaire.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel_personnel_submenu
-            // 
+            //
             this.panel_personnel_submenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(37)))), ((int)(((byte)(80)))));
+            this.panel_personnel_submenu.Controls.Add(this.button_sursalaire);
+            this.panel_personnel_submenu.Controls.Add(this.button_abonnement);
             this.panel_personnel_submenu.Controls.Add(this.button_indemnite);
             this.panel_personnel_submenu.Controls.Add(this.button_charge);
             this.panel_personnel_submenu.Controls.Add(this.button_employe);
             resources.ApplyResources(this.panel_personnel_submenu, "panel_personnel_submenu");
             this.panel_personnel_submenu.Name = "panel_personnel_submenu";
             // 
+            // button_sursalaire
+            //
+            resources.ApplyResources(this.button_sursalaire, "button_sursalaire");
+            this.button_sursalaire.FlatAppearance.BorderSize = 0;
+            this.button_sursalaire.ForeColor = System.Drawing.Color.White;
+            this.button_sursalaire.Name = "button_sursalaire";
+            this.button_sursalaire.UseVisualStyleBackColor = true;
+            this.button_sursalaire.Click += new System.EventHandler(this.button_sursalaire_Click);
+            //
+            // button_abonnement
+            //
+            resources.ApplyResources(this.button_abonnement, "button_abonnement");
+            this.button_abonnement.FlatAppearance.BorderSize = 0;
+            this.button_abonnement.ForeColor = System.Drawing.Color.White;
+            this.button_abonnement.Name = "button_abonnement";
+            this.button_abonnement.UseVisualStyleBackColor = true;
+            this.button_abonnement.Click += new System.EventHandler(this.button_abonnement_Click);
+            //
             // button_indemnite
-            // 
+            //
             resources.ApplyResources(this.button_indemnite, "button_indemnite");
             this.button_indemnite.FlatAppearance.BorderSize = 0;
             this.button_indemnite.ForeColor = System.Drawing.Color.White;
             this.button_indemnite.Name = "button_indemnite";
             this.button_indemnite.UseVisualStyleBackColor = true;
             this.button_indemnite.Click += new System.EventHandler(this.button_indemnite_Click);
-            // 
+            //
             // button_charge
             // 
             resources.ApplyResources(this.button_charge, "button_charge");
@@ -491,6 +513,8 @@ namespace RH_GRH
         private Button button_journalier;
         private Button button_horaire;
         private Button button_salaire;
+        private Button button_sursalaire;
+        private Button button_abonnement;
         private Button button_indemnite;
         private Button button_charge;
         private Button button_employe;

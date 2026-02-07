@@ -65,6 +65,8 @@ namespace RH_GRH
             this.textBoxEmail = new Guna.UI2.WinForms.Guna2TextBox();
             this.labelResponsable = new System.Windows.Forms.Label();
             this.textBoxResponsable = new Guna.UI2.WinForms.Guna2TextBox();
+            this.labelResponsablePaie = new System.Windows.Forms.Label();
+            this.textBoxResponsablePaie = new Guna.UI2.WinForms.Guna2TextBox();
             this.labelLogo = new System.Windows.Forms.Label();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.buttonParcourir = new Guna.UI2.WinForms.Guna2Button();
@@ -181,6 +183,8 @@ namespace RH_GRH
             this.panelContent.Controls.Add(this.textBoxEmail);
             this.panelContent.Controls.Add(this.labelResponsable);
             this.panelContent.Controls.Add(this.textBoxResponsable);
+            this.panelContent.Controls.Add(this.labelResponsablePaie);
+            this.panelContent.Controls.Add(this.textBoxResponsablePaie);
             this.panelContent.Controls.Add(this.labelLogo);
             this.panelContent.Controls.Add(this.pictureBoxLogo);
             this.panelContent.Controls.Add(this.buttonParcourir);
@@ -189,7 +193,7 @@ namespace RH_GRH
             this.panelContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelContent.Name = "panelContent";
             this.panelContent.Padding = new System.Windows.Forms.Padding(27, 25, 27, 25);
-            this.panelContent.Size = new System.Drawing.Size(979, 1667);
+            this.panelContent.Size = new System.Drawing.Size(979, 1760);
             this.panelContent.TabIndex = 0;
             //
             // labelTitre
@@ -759,11 +763,38 @@ namespace RH_GRH
             this.textBoxResponsable.Size = new System.Drawing.Size(867, 44);
             this.textBoxResponsable.TabIndex = 21;
             //
+            // labelResponsablePaie
+            //
+            this.labelResponsablePaie.AutoSize = true;
+            this.labelResponsablePaie.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.labelResponsablePaie.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.labelResponsablePaie.Location = new System.Drawing.Point(40, 1000);
+            this.labelResponsablePaie.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelResponsablePaie.Name = "labelResponsablePaie";
+            this.labelResponsablePaie.Size = new System.Drawing.Size(139, 24);
+            this.labelResponsablePaie.TabIndex = 44;
+            this.labelResponsablePaie.Text = "Responsable Paie :";
+            //
+            // textBoxResponsablePaie
+            //
+            this.textBoxResponsablePaie.BorderRadius = 0;
+            this.textBoxResponsablePaie.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textBoxResponsablePaie.DefaultText = "";
+            this.textBoxResponsablePaie.Font = new System.Drawing.Font("Montserrat", 9F);
+            this.textBoxResponsablePaie.ForeColor = System.Drawing.Color.Black;
+            this.textBoxResponsablePaie.Location = new System.Drawing.Point(44, 1025);
+            this.textBoxResponsablePaie.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.textBoxResponsablePaie.Name = "textBoxResponsablePaie";
+            this.textBoxResponsablePaie.PlaceholderText = "";
+            this.textBoxResponsablePaie.SelectedText = "";
+            this.textBoxResponsablePaie.Size = new System.Drawing.Size(867, 44);
+            this.textBoxResponsablePaie.TabIndex = 22;
+            //
             // labelLogo
             //
             this.labelLogo.AutoSize = true;
             this.labelLogo.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold);
-            this.labelLogo.Location = new System.Drawing.Point(40, 1004);
+            this.labelLogo.Location = new System.Drawing.Point(40, 1086);
             this.labelLogo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLogo.Name = "labelLogo";
             this.labelLogo.Size = new System.Drawing.Size(119, 24);
@@ -773,16 +804,16 @@ namespace RH_GRH
             // pictureBoxLogo
             //
             this.pictureBoxLogo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(44, 1041);
+            this.pictureBoxLogo.Location = new System.Drawing.Point(44, 1123);
             this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
             this.pictureBoxLogo.Size = new System.Drawing.Size(266, 246);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLogo.TabIndex = 41;
             this.pictureBoxLogo.TabStop = false;
-            // 
+            //
             // buttonParcourir
-            // 
+            //
             this.buttonParcourir.Animated = true;
             this.buttonParcourir.BorderRadius = 0;
             this.buttonParcourir.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -792,11 +823,11 @@ namespace RH_GRH
             this.buttonParcourir.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.buttonParcourir.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold);
             this.buttonParcourir.ForeColor = System.Drawing.Color.White;
-            this.buttonParcourir.Location = new System.Drawing.Point(44, 1312);
+            this.buttonParcourir.Location = new System.Drawing.Point(44, 1394);
             this.buttonParcourir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonParcourir.Name = "buttonParcourir";
             this.buttonParcourir.Size = new System.Drawing.Size(267, 49);
-            this.buttonParcourir.TabIndex = 22;
+            this.buttonParcourir.TabIndex = 23;
             this.buttonParcourir.Text = "Parcourir...";
             this.buttonParcourir.Click += new System.EventHandler(this.buttonParcourir_Click);
             // 
@@ -871,6 +902,8 @@ namespace RH_GRH
         private Guna.UI2.WinForms.Guna2TextBox textBoxEmail;
         private System.Windows.Forms.Label labelResponsable;
         private Guna.UI2.WinForms.Guna2TextBox textBoxResponsable;
+        private System.Windows.Forms.Label labelResponsablePaie;
+        private Guna.UI2.WinForms.Guna2TextBox textBoxResponsablePaie;
         private System.Windows.Forms.Label labelLogo;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
         private Guna.UI2.WinForms.Guna2Button buttonParcourir;

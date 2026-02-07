@@ -242,5 +242,10 @@ namespace RH_GRH
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void cardPeriode_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

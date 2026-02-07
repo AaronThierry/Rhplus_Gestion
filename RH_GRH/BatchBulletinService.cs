@@ -249,6 +249,7 @@ namespace RH_GRH
                 NomPrenom = employe.Nom ?? "",
                 Civilite = employe.Civilite ?? "",
                 Matricule = employe.Matricule ?? "",
+                Identification = employe.Identification ?? "",
                 Poste = employe.Poste ?? "",
                 NumeroEmploye = employe.TelephoneEmploye ?? "",
                 AdresseEmploye = employe.Adresse ?? "",
@@ -274,6 +275,10 @@ namespace RH_GRH
                 AdressePhysiqueEntreprise = employe.AdressePhysiqueEntreprise ?? "",
                 AdressePostaleEntreprise = employe.AdressePostaleEntreprise ?? "",
                 ResponsableEntreprise = employe.ResponsableEntreprise ?? "",
+                ResponsablePaie = employe.ResponsablePaie ?? "",
+                RegistreCommerce = employe.RegistreCommerce ?? "",
+                NumeroIFU = employe.NumeroIFU ?? "",
+                NumeroCNSSEntreprise = employe.NumeroCNSSEntreprise ?? "",
 
                 // Valeurs par défaut pour les calculs (à remplacer par les vraies valeurs)
                 SalaireBrut = 0,
@@ -299,6 +304,7 @@ namespace RH_GRH
                 NomEmploye = snapshot.NomPrenom,
                 Civilite = snapshot.Civilite,
                 Matricule = snapshot.Matricule,
+                Identification = snapshot.Identification,
                 Poste = snapshot.Poste,
                 NumeroEmploye = snapshot.NumeroEmploye,
                 AdresseEmploye = snapshot.AdresseEmploye,
@@ -318,6 +324,10 @@ namespace RH_GRH
                 AdressePhysiqueEntreprise = snapshot.AdressePhysiqueEntreprise,
                 AdressePostaleEntreprise = snapshot.AdressePostaleEntreprise,
                 ResponsableEntreprise = snapshot.ResponsableEntreprise,
+                ResponsablePaie = snapshot.ResponsablePaie,
+                RegistreCommerce = snapshot.RegistreCommerce,
+                NumeroIFU = snapshot.NumeroIFU,
+                NumeroCNSSEntreprise = snapshot.NumeroCNSSEntreprise,
 
                 // Période
                 Periode = snapshot.PeriodeSalaire,
@@ -342,6 +352,7 @@ namespace RH_GRH
                 PrimeAnciennete = snapshot.PrimeAnciennete,
                 Anciennete = snapshot.AncienneteStr,
                 HeuresSup = snapshot.HeuresSupp,
+                Sursalaire = snapshot.Sursalaire,
 
                 // Bruts
                 SalaireBrut = (double)snapshot.SalaireBrut,
@@ -363,8 +374,10 @@ namespace RH_GRH
                 SalaireNet = snapshot.SalaireNet,
                 EffortDePaix = snapshot.EffortPaix,
                 SalaireNetaPayer = snapshot.SalaireNetaPayer,
-                SalaireNetaPayerFinal = snapshot.SalaireNetaPayer, // Même valeur si pas de dette
-                ValeurDette = 0, // Par défaut
+                ValeurDette = snapshot.ValeurDette,
+                TotalAbonnements = snapshot.TotalAbonnements,
+                NombreAbonnements = snapshot.NombreAbonnements,
+                SalaireNetaPayerFinal = snapshot.SalaireNetaPayerFinal,
 
                 // Logo (optionnel)
                 LogoEntreprise = null // À charger depuis la BDD si disponible

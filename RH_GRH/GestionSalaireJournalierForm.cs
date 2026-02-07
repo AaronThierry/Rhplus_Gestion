@@ -396,9 +396,9 @@ namespace RH_GRH
 
 
 
-        public static decimal CalculerSalaireBrut(decimal salaireBase, decimal primeHeuresSupp, decimal indemniteNumeraire, decimal indemniteNature, decimal primeAnciennete)
+        public static decimal CalculerSalaireBrut(decimal salaireBase, decimal primeHeuresSupp, decimal indemniteNumeraire, decimal indemniteNature, decimal primeAnciennete, decimal sursalaire = 0)
         {
-            var brut = salaireBase + primeHeuresSupp + indemniteNumeraire + indemniteNature + primeAnciennete;
+            var brut = salaireBase + primeHeuresSupp + sursalaire + primeAnciennete + indemniteNumeraire + indemniteNature;
             return Math.Round(brut, 2, MidpointRounding.AwayFromZero);
         }
 
@@ -1052,15 +1052,20 @@ namespace RH_GRH
 
 
 
-                //Calculer Salaire BRUT 
+                //Calculer Salaire BRUT
                 // 4) Calcul du BRUT
                 var sums = GetSommeIndemnitesParIds(idEmploye);
+
+                // 4.5) Récupération du sursalaire
+                decimal sursalaire = SursalaireRepository.CalculerTotalParPersonnel(idEmploye);
+
                 decimal salaireBrut = CalculerSalaireBrut(
                     salaireBase,
                     primeJourSupp,
                     (decimal)sums["somme_numeraire"],
                     (decimal)sums["somme_nature"],
-                    prime   // ta prime d'ancienneté (decimal)
+                    prime,   // ta prime d'ancienneté (decimal)
+                    sursalaire
                 );
 
 
@@ -1173,7 +1178,18 @@ namespace RH_GRH
                 decimal IndemNat = (decimal)sums["somme_nature"];
                 //Salaire Net
                 decimal ValeurDette = ParseDecimal(textBoxDette.Text);
-                var res = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, IndemNat, ValeurDette, 0.01m, true);
+
+                // Calculer le total des abonnements pour l'employé
+                decimal totalAbonnements = 0m;
+                int nombreAbonnements = 0;
+                if (idEmploye > 0)
+                {
+                    var abonnements = AbonnementRepository.ListerParPersonnel(idEmploye);
+                    totalAbonnements = abonnements.Sum(a => a.Montant);
+                    nombreAbonnements = abonnements.Count;
+                }
+
+                var res = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, IndemNat, ValeurDette, totalAbonnements, 0.01m, true);
                 // (Optionnel)affichage UI
                 var fr = System.Globalization.CultureInfo.GetCultureInfo("fr-FR");
 
@@ -1186,6 +1202,7 @@ namespace RH_GRH
                     NomPrenom = employe.Nom ?? "",
                     Civilite = employe.Civilite ?? "",
                     Matricule = employe.Matricule,
+                    Identification = employe.Identification ?? "",
                     Poste = employe.Poste,
                     NumeroEmploye = employe.TelephoneEmploye,
                     AdresseEmploye = employe.Adresse,
@@ -1212,6 +1229,10 @@ namespace RH_GRH
                     AdressePhysiqueEntreprise = employe.AdressePhysiqueEntreprise,
                     AdressePostaleEntreprise = employe.AdressePostaleEntreprise,
                     ResponsableEntreprise = employe.ResponsableEntreprise,
+                    ResponsablePaie = employe.ResponsablePaie ?? "",
+                    RegistreCommerce = employe.RegistreCommerce ?? "",
+                    NumeroIFU = employe.NumeroIFU ?? "",
+                    NumeroCNSSEntreprise = employe.NumeroCNSSEntreprise ?? "",
 
 
 
@@ -1282,11 +1303,16 @@ namespace RH_GRH
                     //PRIME ANCIENNETE
                     PrimeAnciennete = prime,
 
+                    //SURSALAIRE
+                    Sursalaire = sursalaire,
+
                     //SALAIRE NET A PAYER
                     SalaireNet = res.SalaireNet,
                     EffortPaix = res.Effort,
                     SalaireNetaPayer = res.NetAPayer,
                     ValeurDette = ValeurDette,
+                    TotalAbonnements = totalAbonnements,
+                    NombreAbonnements = nombreAbonnements,
                     SalaireNetaPayerFinal = res.NetAPayerFinal
 
                 };
@@ -1457,6 +1483,7 @@ namespace RH_GRH
                     NomEmploye = _lastSnapshot.NomPrenom,
                     Civilite = _lastSnapshot.Civilite,
                     Matricule = _lastSnapshot.Matricule,
+                    Identification = _lastSnapshot.Identification,
                     Poste = _lastSnapshot.Poste,
                     NumeroEmploye = _lastSnapshot.NumeroEmploye,
                     Mois = "Août 2025",
@@ -1485,6 +1512,10 @@ namespace RH_GRH
                     TelephoneEntreprise = _lastSnapshot.TelephoneEntreprise,
                     EmailEntreprise = _lastSnapshot.EmailEntreprise,
                     ResponsableEntreprise = _lastSnapshot.ResponsableEntreprise,
+                    ResponsablePaie = _lastSnapshot.ResponsablePaie,
+                    RegistreCommerce = _lastSnapshot.RegistreCommerce,
+                    NumeroIFU = _lastSnapshot.NumeroIFU,
+                    NumeroCNSSEntreprise = _lastSnapshot.NumeroCNSSEntreprise,
                     ModePayement = _lastSnapshot.ModePayement,
                     Banque = _lastSnapshot.Banque,
                     NumeroBancaire = _lastSnapshot.NumeroBancaire,
@@ -1517,6 +1548,8 @@ namespace RH_GRH
                     TauxHeureSupp = (double)_lastSnapshot.TauxHeureSupp,
                     //PRIME ANCIENNETE
                     PrimeAnciennete = (decimal)_lastSnapshot.PrimeAnciennete,
+                    //SURSALAIRE
+                    Sursalaire = _lastSnapshot.Sursalaire,
                     //SALAIRE BRUT
                     SalaireBrut = (double)_lastSnapshot.SalaireBrut,
                     //BASE IUTS
@@ -1540,6 +1573,8 @@ namespace RH_GRH
                     EffortDePaix = _lastSnapshot.EffortPaix,
                     SalaireNetaPayer = _lastSnapshot.SalaireNetaPayer,
                     ValeurDette = _lastSnapshot.ValeurDette,
+                    TotalAbonnements = _lastSnapshot.TotalAbonnements,
+                    NombreAbonnements = _lastSnapshot.NombreAbonnements,
                     SalaireNetaPayerFinal = _lastSnapshot.SalaireNetaPayerFinal
 
                 };

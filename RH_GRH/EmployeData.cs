@@ -49,6 +49,10 @@ namespace RH_GRH
         public string AdressePhysiqueEntreprise  { get; set; }
         public string AdressePostaleEntreprise  { get; set; }
         public string ResponsableEntreprise  { get; set; }
+        public string ResponsablePaie  { get; set; }
+        public string RegistreCommerce  { get; set; }
+        public string NumeroIFU  { get; set; }
+        public string NumeroCNSSEntreprise  { get; set; }
 
         // Constructeur
         public Employe(int id, string nom, DateTime dateEntree, DateTime? dateSortie,
@@ -58,7 +62,8 @@ namespace RH_GRH
                        decimal salairemoyen, decimal tpa, string civilite, DateTime dateNaissance, string direction,
                        string numeroCnssEmploye,string sexe,string dureeContrat, string sigle, string nomEntreprise,
                        string telephoneEntreprise, string emailEntreprise, string adressePhysiqueEntreprise,
-                       string adressePostaleEntreprise, string responsableEntreprise)
+                       string adressePostaleEntreprise, string responsableEntreprise, string responsablePaie = "",
+                       string registreCommerce = "", string numeroIFU = "", string numeroCNSSEntreprise = "")
         {
             Id = id;
             Nom = nom;
@@ -96,6 +101,10 @@ namespace RH_GRH
             AdressePhysiqueEntreprise = adressePhysiqueEntreprise;
             AdressePostaleEntreprise = adressePostaleEntreprise;
             ResponsableEntreprise = responsableEntreprise;
+            ResponsablePaie = responsablePaie;
+            RegistreCommerce = registreCommerce;
+            NumeroIFU = numeroIFU;
+            NumeroCNSSEntreprise = numeroCNSSEntreprise;
 
 
 

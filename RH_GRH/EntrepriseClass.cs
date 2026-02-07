@@ -13,9 +13,9 @@ namespace RH_GRH
     {
         Dbconnect connect = new Dbconnect();
         //Enregistrer
-        public bool insertEntreprise(string nomEntreprise, string formeJuridique, string sigle, string activite, string adressePhysique, string adressePostale, string telephone, string commune, string quartier, string rue, string lot, string centreImpots, string numeroIfu, string numeroCnss, string codeActivite, string regimeFiscal, string registreCommerce, string numeroBancaire, decimal? tpa, byte[] logoEntreprise, string email, string responsable)
+        public bool insertEntreprise(string nomEntreprise, string formeJuridique, string sigle, string activite, string adressePhysique, string adressePostale, string telephone, string commune, string quartier, string rue, string lot, string centreImpots, string numeroIfu, string numeroCnss, string codeActivite, string regimeFiscal, string registreCommerce, string numeroBancaire, decimal? tpa, byte[] logoEntreprise, string email, string responsable, string responsablePaie = "")
         {
-            MySqlCommand command = new MySqlCommand("INSERT INTO `entreprise`(`nomEntreprise`, `forme_juridique`, `sigle`, `activite`, `adresse_physique`, `adresse_postale`, `telephone`, `commune`, `quartier`, `rue`, `lot`, `centre_impots`, `numero_ifu`, `numero_cnss`, `code_activite`, `regime_fiscal`, `registre_commerce`, `numero_bancaire`, `tpa`, `logo_entreprise`, `email`, `responsable`) VALUES (@nomEntreprise, @forme_juridique, @sigle, @activite, @adresse_physique, @adresse_postale, @telephone, @commune, @quartier, @rue, @lot, @centre_impots, @numero_ifu, @numero_cnss, @code_activite, @regime_fiscal, @registre_commerce, @numero_bancaire, @tpa, @logo_entreprise, @email, @responsable)", connect.getconnection);
+            MySqlCommand command = new MySqlCommand("INSERT INTO `entreprise`(`nomEntreprise`, `forme_juridique`, `sigle`, `activite`, `adresse_physique`, `adresse_postale`, `telephone`, `commune`, `quartier`, `rue`, `lot`, `centre_impots`, `numero_ifu`, `numero_cnss`, `code_activite`, `regime_fiscal`, `registre_commerce`, `numero_bancaire`, `tpa`, `logo_entreprise`, `email`, `responsable`, `responsable_paie`) VALUES (@nomEntreprise, @forme_juridique, @sigle, @activite, @adresse_physique, @adresse_postale, @telephone, @commune, @quartier, @rue, @lot, @centre_impots, @numero_ifu, @numero_cnss, @code_activite, @regime_fiscal, @registre_commerce, @numero_bancaire, @tpa, @logo_entreprise, @email, @responsable, @responsable_paie)", connect.getconnection);
             command.Parameters.Add("@nomEntreprise", MySqlDbType.VarChar).Value = nomEntreprise;
             command.Parameters.Add("@forme_juridique", MySqlDbType.VarChar).Value = formeJuridique;
             command.Parameters.Add("@sigle", MySqlDbType.VarChar).Value = sigle;
@@ -38,6 +38,7 @@ namespace RH_GRH
             command.Parameters.Add("@logo_entreprise", MySqlDbType.Blob).Value = logoEntreprise;
             command.Parameters.Add("@email", MySqlDbType.VarChar).Value = email;
             command.Parameters.Add("@responsable", MySqlDbType.VarChar).Value = responsable;
+            command.Parameters.Add("@responsable_paie", MySqlDbType.VarChar).Value = responsablePaie ?? "";
 
 
             connect.openConnect();
@@ -54,7 +55,7 @@ namespace RH_GRH
 
 
         //Modifier
-        public bool updateEntreprise(int id, string nomEntreprise, string formeJuridique, string sigle, string activite, string adressePhysique, string adressePostale, string telephone, string commune, string quartier, string rue, string lot, string centreImpots, string numeroIfu, string numeroCnss, string codeActivite, string regimeFiscal, string registreCommerce, string numeroBancaire, decimal? tpa, byte[] logoEntreprise, string email, string responsable)
+        public bool updateEntreprise(int id, string nomEntreprise, string formeJuridique, string sigle, string activite, string adressePhysique, string adressePostale, string telephone, string commune, string quartier, string rue, string lot, string centreImpots, string numeroIfu, string numeroCnss, string codeActivite, string regimeFiscal, string registreCommerce, string numeroBancaire, decimal? tpa, byte[] logoEntreprise, string email, string responsable, string responsablePaie = "")
         {
             MySqlCommand command = new MySqlCommand(@"
         UPDATE entreprise SET
@@ -79,7 +80,8 @@ namespace RH_GRH
             tpa = @tpa,
             logo_entreprise = @logo_entreprise,
             email = @email,
-            responsable = @responsable
+            responsable = @responsable,
+            responsable_paie = @responsable_paie
         WHERE id_entreprise = @id", connect.getconnection);
 
             command.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
@@ -105,6 +107,7 @@ namespace RH_GRH
             command.Parameters.Add("@logo_entreprise", MySqlDbType.Blob).Value = logoEntreprise ?? (object)DBNull.Value;
             command.Parameters.Add("@email", MySqlDbType.VarChar).Value = email;
             command.Parameters.Add("@responsable", MySqlDbType.VarChar).Value = responsable;
+            command.Parameters.Add("@responsable_paie", MySqlDbType.VarChar).Value = responsablePaie ?? "";
 
             connect.openConnect();
             bool success = command.ExecuteNonQuery() == 1;

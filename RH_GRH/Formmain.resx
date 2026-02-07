@@ -405,6 +405,18 @@
   <data name="&gt;&gt;button_salaire.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="&gt;&gt;button_sursalaire.Name" xml:space="preserve">
+    <value>button_sursalaire</value>
+  </data>
+  <data name="&gt;&gt;button_sursalaire.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_sursalaire.Parent" xml:space="preserve">
+    <value>panel_personnel_submenu</value>
+  </data>
+  <data name="&gt;&gt;button_sursalaire.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;button_indemnite.Name" xml:space="preserve">
     <value>button_indemnite</value>
   </data>
@@ -415,7 +427,7 @@
     <value>panel_personnel_submenu</value>
   </data>
   <data name="&gt;&gt;button_indemnite.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;button_charge.Name" xml:space="preserve">
     <value>button_charge</value>
@@ -427,7 +439,7 @@
     <value>panel_personnel_submenu</value>
   </data>
   <data name="&gt;&gt;button_charge.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;button_employe.Name" xml:space="preserve">
     <value>button_employe</value>
@@ -439,7 +451,7 @@
     <value>panel_personnel_submenu</value>
   </data>
   <data name="&gt;&gt;button_employe.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="panel_personnel_submenu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -933,6 +945,90 @@
   <data name="&gt;&gt;button_horaire.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="button_sursalaire.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="button_sursalaire.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_sursalaire.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 10.2pt, style=Bold</value>
+  </data>
+  <data name="button_sursalaire.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 117</value>
+  </data>
+  <data name="button_sursalaire.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="button_sursalaire.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>35, 0, 0, 0</value>
+  </data>
+  <data name="button_sursalaire.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 39</value>
+  </data>
+  <data name="button_sursalaire.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="button_sursalaire.Text" xml:space="preserve">
+    <value>Sursalaire</value>
+  </data>
+  <data name="button_sursalaire.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;button_sursalaire.Name" xml:space="preserve">
+    <value>button_sursalaire</value>
+  </data>
+  <data name="&gt;&gt;button_sursalaire.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_sursalaire.Parent" xml:space="preserve">
+    <value>panel_personnel_submenu</value>
+  </data>
+  <data name="&gt;&gt;button_sursalaire.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="button_abonnement.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="button_abonnement.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_abonnement.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 10.2pt, style=Bold</value>
+  </data>
+  <data name="button_abonnement.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 78</value>
+  </data>
+  <data name="button_abonnement.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="button_abonnement.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>35, 0, 0, 0</value>
+  </data>
+  <data name="button_abonnement.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 39</value>
+  </data>
+  <data name="button_abonnement.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="button_abonnement.Text" xml:space="preserve">
+    <value>Abonnement</value>
+  </data>
+  <data name="button_abonnement.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;button_abonnement.Name" xml:space="preserve">
+    <value>button_abonnement</value>
+  </data>
+  <data name="&gt;&gt;button_abonnement.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_abonnement.Parent" xml:space="preserve">
+    <value>panel_personnel_submenu</value>
+  </data>
+  <data name="&gt;&gt;button_abonnement.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="button_indemnite.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -973,7 +1069,7 @@
     <value>panel_personnel_submenu</value>
   </data>
   <data name="&gt;&gt;button_indemnite.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="button_charge.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -1015,7 +1111,7 @@
     <value>panel_personnel_submenu</value>
   </data>
   <data name="&gt;&gt;button_charge.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="button_employe.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -1057,7 +1153,7 @@
     <value>panel_personnel_submenu</value>
   </data>
   <data name="&gt;&gt;button_employe.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="button2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>

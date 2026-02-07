@@ -406,9 +406,9 @@ namespace RH_GRH
 
 
 
-            public static decimal CalculerSalaireBrut(decimal salaireBase,decimal primeHeuresSupp, decimal indemniteNumeraire,decimal indemniteNature,decimal primeAnciennete)
+            public static decimal CalculerSalaireBrut(decimal salaireBase, decimal primeHeuresSupp, decimal indemniteNumeraire, decimal indemniteNature, decimal primeAnciennete, decimal sursalaire = 0)
             {
-                var brut = salaireBase + primeHeuresSupp + indemniteNumeraire + indemniteNature + primeAnciennete;
+                var brut = salaireBase + primeHeuresSupp + sursalaire + primeAnciennete + indemniteNumeraire + indemniteNature;
                 return Math.Round(brut, 2, MidpointRounding.AwayFromZero);
             }
 
@@ -1108,15 +1108,20 @@ public static class IUTS
 
 
 
-                //Calculer Salaire BRUT 
+                //Calculer Salaire BRUT
                 // 4) Calcul du BRUT
                 var sums = GetSommeIndemnitesParIds(idEmploye);
+
+                // 4.5) Récupération du sursalaire
+                decimal sursalaire = SursalaireRepository.CalculerTotalParPersonnel(idEmploye);
+
                 decimal salaireBrut = CalculerSalaireBrut(
                     salaireBase,
                     primeHS,
                     (decimal)sums["somme_numeraire"],
                     (decimal)sums["somme_nature"],
-                    prime   // ta prime d'ancienneté (decimal)
+                    prime,   // ta prime d'ancienneté (decimal)
+                    sursalaire
                 );
 
 
@@ -1230,7 +1235,17 @@ public static class IUTS
                 //var res = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, IndemNat, tauxEffort: 0.01m, arrondirNetAPayerCeil: true,ValeurDette);
 
                 // Par cette ligne correcte :
-                var res = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, IndemNat, ValeurDette, 0.01m, true);
+                // Calculer le total des abonnements pour l'employé
+                decimal totalAbonnements = 0m;
+                int nombreAbonnements = 0;
+                if (idEmploye > 0)
+                {
+                    var abonnements = AbonnementRepository.ListerParPersonnel(idEmploye);
+                    totalAbonnements = abonnements.Sum(a => a.Montant);
+                    nombreAbonnements = abonnements.Count;
+                }
+
+                var res = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, IndemNat, ValeurDette, totalAbonnements, 0.01m, true);
                 // (Optionnel)affichage UI
                 var fr = System.Globalization.CultureInfo.GetCultureInfo("fr-FR");
 
@@ -1243,6 +1258,7 @@ public static class IUTS
                     NomPrenom = employe.Nom ?? "",
                     Civilite = employe.Civilite ?? "",
                     Matricule = employe.Matricule ?? "",
+                    Identification = employe.Identification ?? "",
                     Poste = employe.Poste ?? "",
                     NumeroEmploye = employe.TelephoneEmploye ?? "",
                     AdresseEmploye = employe.Adresse ?? "",
@@ -1269,6 +1285,10 @@ public static class IUTS
                     AdressePhysiqueEntreprise = employe.AdressePhysiqueEntreprise ?? "",
                     AdressePostaleEntreprise = employe.AdressePostaleEntreprise ?? "",
                     ResponsableEntreprise = employe.ResponsableEntreprise ?? "",
+                    ResponsablePaie = employe.ResponsablePaie ?? "",
+                    RegistreCommerce = employe.RegistreCommerce ?? "",
+                    NumeroIFU = employe.NumeroIFU ?? "",
+                    NumeroCNSSEntreprise = employe.NumeroCNSSEntreprise ?? "",
 
 
 
@@ -1339,11 +1359,16 @@ public static class IUTS
                     //PRIME ANCIENNETE
                     PrimeAnciennete = prime,
 
+                    //SURSALAIRE
+                    Sursalaire = sursalaire,
+
                     //SALAIRE NET A PAYER
                     SalaireNet = res.SalaireNet,
                     EffortPaix = res.Effort,
                     SalaireNetaPayer = res.NetAPayer,
                     ValeurDette = ValeurDette,
+                    TotalAbonnements = totalAbonnements,
+                    NombreAbonnements = nombreAbonnements,
                     SalaireNetaPayerFinal = res.NetAPayerFinal
 
                 };
@@ -1535,6 +1560,7 @@ public static class IUTS
                     NomEmploye = _lastSnapshot.NomPrenom,
                     Civilite = _lastSnapshot.Civilite,
                     Matricule = _lastSnapshot.Matricule,
+                    Identification = _lastSnapshot.Identification,
                     Poste = _lastSnapshot.Poste,
                     NumeroEmploye = _lastSnapshot.NumeroEmploye,
                     Mois = "Août 2025",
@@ -1563,6 +1589,10 @@ public static class IUTS
                     TelephoneEntreprise = _lastSnapshot.TelephoneEntreprise,
                     EmailEntreprise = _lastSnapshot.EmailEntreprise,
                     ResponsableEntreprise = _lastSnapshot.ResponsableEntreprise,
+                    ResponsablePaie = _lastSnapshot.ResponsablePaie,
+                    RegistreCommerce = _lastSnapshot.RegistreCommerce,
+                    NumeroIFU = _lastSnapshot.NumeroIFU,
+                    NumeroCNSSEntreprise = _lastSnapshot.NumeroCNSSEntreprise,
                     ModePayement = _lastSnapshot.ModePayement,
                     Banque = _lastSnapshot.Banque,
                     NumeroBancaire = _lastSnapshot.NumeroBancaire,
@@ -1595,6 +1625,8 @@ public static class IUTS
                     TauxHeureSupp = (double)_lastSnapshot.TauxHeureSupp,
                     //PRIME ANCIENNETE
                     PrimeAnciennete = (decimal)_lastSnapshot.PrimeAnciennete,
+                    //SURSALAIRE
+                    Sursalaire = _lastSnapshot.Sursalaire,
                     //SALAIRE BRUT
                     SalaireBrut = (double)_lastSnapshot.SalaireBrut,
                     //BASE IUTS
@@ -1618,6 +1650,8 @@ public static class IUTS
                     EffortDePaix = _lastSnapshot.EffortPaix,
                     SalaireNetaPayer = _lastSnapshot.SalaireNetaPayer,
                     ValeurDette = _lastSnapshot.ValeurDette,
+                    TotalAbonnements = _lastSnapshot.TotalAbonnements,
+                    NombreAbonnements = _lastSnapshot.NombreAbonnements,
                     SalaireNetaPayerFinal = _lastSnapshot.SalaireNetaPayerFinal
 
                 };

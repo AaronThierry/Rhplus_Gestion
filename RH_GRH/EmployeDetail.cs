@@ -25,6 +25,10 @@ namespace RH_GRH
                 e.adresse_physique        AS AdressePhysiqueEntreprise,
                 e.adresse_postale        AS AdressePostaleEntreprise,
                 e.responsable     AS ResponsableEntreprise,
+                e.responsable_paie     AS ResponsablePaie,
+                e.registre_commerce AS RegistreCommerce,
+                e.numero_ifu AS NumeroIFU,
+                e.numero_cnss AS NumeroCNSSEntreprise,
                 p.nomPrenom,
                 p.civilite,
                 p.sexe,
@@ -109,7 +113,11 @@ namespace RH_GRH
                                 emailEntreprise: reader.IsDBNull(reader.GetOrdinal("EmailEntreprise")) ? string.Empty : reader.GetString("EmailEntreprise"),
                                 adressePhysiqueEntreprise: reader.IsDBNull(reader.GetOrdinal("AdressePhysiqueEntreprise")) ? string.Empty : reader.GetString("AdressePhysiqueEntreprise"),
                                 adressePostaleEntreprise: reader.IsDBNull(reader.GetOrdinal("AdressePostaleEntreprise")) ? string.Empty : reader.GetString("AdressePostaleEntreprise"),
-                                responsableEntreprise: reader.IsDBNull(reader.GetOrdinal("ResponsableEntreprise")) ? string.Empty : reader.GetString("ResponsableEntreprise")
+                                responsableEntreprise: reader.IsDBNull(reader.GetOrdinal("ResponsableEntreprise")) ? string.Empty : reader.GetString("ResponsableEntreprise"),
+                                responsablePaie: reader.IsDBNull(reader.GetOrdinal("ResponsablePaie")) ? string.Empty : reader.GetString("ResponsablePaie"),
+                                registreCommerce: reader.IsDBNull(reader.GetOrdinal("RegistreCommerce")) ? string.Empty : reader.GetString("RegistreCommerce"),
+                                numeroIFU: reader.IsDBNull(reader.GetOrdinal("NumeroIFU")) ? string.Empty : reader.GetString("NumeroIFU"),
+                                numeroCNSSEntreprise: reader.IsDBNull(reader.GetOrdinal("NumeroCNSSEntreprise")) ? string.Empty : reader.GetString("NumeroCNSSEntreprise")
 
 
 

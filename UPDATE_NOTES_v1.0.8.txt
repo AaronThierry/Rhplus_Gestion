@@ -1,0 +1,142 @@
+================================================================================
+    GESTION MODERNE RH - MISE À JOUR v1.0.8
+================================================================================
+
+Date de sortie : 27 janvier 2026
+
+================================================================================
+    NOUVELLES FONCTIONNALITÉS
+================================================================================
+
+1. RESPONSABLE PAIE DANS ENTREPRISE
+   - Ajout du champ "Responsable Paie" dans la gestion des entreprises
+   - Automatisation du champ "Paiement effectué par:" sur les bulletins
+   - Affichage automatique du responsable paie sur tous les bulletins générés
+   - Disponible dans :
+     * Ajout d'entreprise
+     * Modification d'entreprise
+     * Génération de bulletins (horaire, journalier, lot)
+
+2. AMÉLIORATIONS UI - SÉLECTION ENTREPRISE
+   - Agrandissement de la fenêtre de sélection (1000x710 pixels)
+   - Réorganisation du footer pour meilleure visibilité
+   - Période de paie en disposition horizontale compacte
+   - Alignement optimal de tous les éléments du footer
+   - Affichage de ~10-11 entreprises sans défilement
+
+================================================================================
+    MIGRATION BASE DE DONNÉES
+================================================================================
+
+Script SQL requis (fourni avec l'installation) :
+
+ALTER TABLE entreprise
+ADD COLUMN IF NOT EXISTS responsable_paie VARCHAR(255) NULL
+AFTER responsable;
+
+Note : Le script sera disponible dans le dossier Database de l'application
+
+================================================================================
+    INCLUS DES VERSIONS PRÉCÉDENTES
+================================================================================
+
+v1.0.5 (CRITIQUE) :
+- FIX MAJEUR : Calcul IUTS pour les employés CADRES
+- Abattement corrigé : 20% pour cadres (au lieu de 25%)
+- Impact : Augmentation du salaire net des cadres
+
+v1.0.4 :
+- Affichage du Net à Payer sur les bulletins
+- Récupération des employés CDD par lot
+- Arrondi standardisé à 1 FCFA (plafond) pour tous les calculs
+
+================================================================================
+    FICHIERS MODIFIÉS
+================================================================================
+
+Base de données :
+- add_responsable_paie_column.sql (NOUVEAU)
+
+Modèles de données :
+- BulletinModel.cs
+- PayrollSnapshot.cs
+- EmployeData.cs
+
+Couche d'accès aux données :
+- EntrepriseClass.cs
+- EmployeDetail.cs
+
+Services :
+- BatchBulletinService.cs
+- GestionSalaireHoraireForm.cs
+- GestionSalaireJournalierForm.cs
+- SaisiePayeLotForm.cs
+
+Présentation :
+- BulletinDocument.cs
+
+Interface utilisateur :
+- AjouterEntrepriseForm.Designer.cs
+- AjouterEntrepriseForm.cs
+- ModifierEntrepriseForm.Designer.cs
+- ModifierEntrepriseForm.cs
+- GestionEntrepriseForm.cs
+- SelectionEntrepriseForm.Designer.cs
+
+Version :
+- AssemblyInfo.cs (version 1.0.8.0)
+
+================================================================================
+    INSTALLATION
+================================================================================
+
+1. SAUVEGARDE IMPORTANTE
+   - Sauvegardez votre base de données avant la mise à jour
+   - Conservez une copie de votre configuration actuelle
+
+2. PROCÉDURE D'INSTALLATION
+   - Fermez l'application Gestion Moderne RH si elle est ouverte
+   - Exécutez l'installateur de mise à jour
+   - L'installateur détectera l'installation existante
+   - Suivez les instructions à l'écran
+
+3. APRÈS L'INSTALLATION
+   - Exécutez le script SQL add_responsable_paie_column.sql
+   - Redémarrez l'application
+   - Vérifiez que la version affichée est bien 1.0.8
+   - Mettez à jour le champ "Responsable Paie" dans vos entreprises
+
+4. CONFIGURATION
+   - Accédez à Gestion > Entreprise
+   - Modifiez chaque entreprise pour ajouter le Responsable Paie
+   - Les bulletins générés afficheront automatiquement cette information
+
+================================================================================
+    CONFIGURATION REQUISE
+================================================================================
+
+- Microsoft .NET Framework 4.7.2 ou supérieur
+- MySQL Server 5.7 ou supérieur
+- Windows 7 SP1 / Windows Server 2008 R2 SP1 ou supérieur
+- Résolution minimale : 1024x768 (1920x1080 recommandé)
+
+================================================================================
+    SUPPORT ET ASSISTANCE
+================================================================================
+
+GitHub Issues : https://github.com/AaronThierry/Rhplus_Gestion/issues
+Documentation : Consultez le README.md dans le dossier d'installation
+
+================================================================================
+    NOTES IMPORTANTES
+================================================================================
+
+1. Cette mise à jour nécessite l'exécution d'un script SQL
+2. Le champ Responsable Paie est optionnel (peut rester vide)
+3. Compatible avec toutes les données existantes
+4. Aucune perte de données lors de la mise à jour
+
+================================================================================
+
+© 2025 GMP - Gestion Moderne de Paie
+Version 1.0.8 - Compilée le 27 janvier 2026

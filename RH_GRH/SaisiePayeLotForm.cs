@@ -625,6 +625,7 @@ namespace RH_GRH
                 IdEntreprise = idEntreprise,
                 NomPrenom = employe.Nom,
                 Matricule = employe.Matricule,
+                Identification = employe.Identification ?? "",
                 Civilite = employe.Civilite,
                 Poste = employe.Poste,
                 Sexe = employe.Sexe,
@@ -646,12 +647,21 @@ namespace RH_GRH
                 AdressePhysiqueEntreprise = employe.AdressePhysiqueEntreprise,
                 AdressePostaleEntreprise = employe.AdressePostaleEntreprise,
                 ResponsableEntreprise = employe.ResponsableEntreprise,
+                ResponsablePaie = employe.ResponsablePaie ?? "",
+                RegistreCommerce = employe.RegistreCommerce ?? "",
+                NumeroIFU = employe.NumeroIFU ?? "",
+                NumeroCNSSEntreprise = employe.NumeroCNSSEntreprise ?? "",
 
                 // Catégorie/Service/Direction
                 Categorie = employe.Categorie,
                 Service = employe.Service,
                 Direction = employe.Direction,
-                NumeroCnssEmploye = employe.NumeroCnssEmploye
+                NumeroCnssEmploye = employe.NumeroCnssEmploye,
+
+                // Mode de paiement
+                ModePayement = employe.ModePaiement ?? "",
+                Banque = employe.Banque ?? "",
+                NumeroBancaire = employe.NumeroBancaire ?? ""
             };
 
             // Calculer le salaire en fonction du type de contrat
@@ -750,6 +760,7 @@ namespace RH_GRH
                 NomEmploye = snapshot.NomPrenom,
                 Civilite = snapshot.Civilite,
                 Matricule = snapshot.Matricule,
+                Identification = snapshot.Identification,
                 Poste = snapshot.Poste,
                 NumeroEmploye = snapshot.NumeroEmploye,
                 Mois = "Août 2025",
@@ -778,6 +789,10 @@ namespace RH_GRH
                 TelephoneEntreprise = snapshot.TelephoneEntreprise,
                 EmailEntreprise = snapshot.EmailEntreprise,
                 ResponsableEntreprise = snapshot.ResponsableEntreprise,
+                ResponsablePaie = snapshot.ResponsablePaie,
+                RegistreCommerce = snapshot.RegistreCommerce,
+                NumeroIFU = snapshot.NumeroIFU,
+                NumeroCNSSEntreprise = snapshot.NumeroCNSSEntreprise,
                 Numero_indemnite_1 = Numero_indemnite_1,
                 Nom_Indemnite_1 = Nom_Indemnite_1,
                 Montant_Indemnite_1 = Montant_Indemnite_1,
@@ -807,6 +822,8 @@ namespace RH_GRH
                 TauxHeureSupp = (double)snapshot.TauxHeureSupp,
                 //PRIME ANCIENNETE
                 PrimeAnciennete = (decimal)snapshot.PrimeAnciennete,
+                //SURSALAIRE
+                Sursalaire = snapshot.Sursalaire,
                 //SALAIRE BRUT
                 SalaireBrut = (double)snapshot.SalaireBrut,
                 //BASE IUTS
@@ -830,7 +847,12 @@ namespace RH_GRH
                 EffortDePaix = snapshot.EffortPaix,
                 SalaireNetaPayer = snapshot.SalaireNetaPayer,
                 ValeurDette = dette,
-                SalaireNetaPayerFinal = snapshot.SalaireNetaPayer
+                TotalAbonnements = snapshot.TotalAbonnements,
+                NombreAbonnements = snapshot.NombreAbonnements,
+                SalaireNetaPayerFinal = snapshot.SalaireNetaPayerFinal,
+                ModePayement = snapshot.ModePayement,
+                Banque = snapshot.Banque,
+                NumeroBancaire = snapshot.NumeroBancaire
             };
 
             // Debug: Vérifier les valeurs du modèle
@@ -939,13 +961,18 @@ namespace RH_GRH
             snapshot.IndemNum = indemniteNumeraire;
             snapshot.IndemNat = indemniteNature;
 
+            // 5.5) Sursalaire - Récupération du montant unique par employé
+            decimal sursalaire = SursalaireRepository.CalculerTotalParPersonnel(employe.Id);
+            snapshot.Sursalaire = sursalaire;
+
             // 6) Salaire brut - MÉTHODE EXACTE (lignes 1196-1202)
             decimal salaireBrut = GestionSalaireHoraireForm.CalculerSalaireBrut(
                 salaireBase,
                 primeHS,
                 indemniteNumeraire,
                 indemniteNature,
-                primeAnciennete
+                primeAnciennete,
+                sursalaire
             );
             snapshot.SalaireBrut = salaireBrut;
 
@@ -1022,11 +1049,25 @@ namespace RH_GRH
             snapshot.BaseIUTS_Arrondie = baseIutsArr;
             snapshot.NombreCharges = nombreCharges;
 
+            // Calculer le total des abonnements pour l'employé
+            decimal totalAbonnements = 0m;
+            int nombreAbonnements = 0;
+            if (employe.Id > 0)
+            {
+                var abonnements = AbonnementRepository.ListerParPersonnel(employe.Id);
+                totalAbonnements = abonnements.Sum(a => a.Montant);
+                nombreAbonnements = abonnements.Count;
+            }
+
             // 11) Salaire net - Utilisation de NetCalculator pour arrondi au 1 FCFA supérieur
-            var netResult = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, 0m, dette, 0.01m, true);
+            var netResult = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, 0m, dette, totalAbonnements, 0.01m, true);
             snapshot.SalaireNet = netResult.SalaireNet;
             snapshot.EffortPaix = netResult.Effort;
-            snapshot.SalaireNetaPayer = netResult.NetAPayerFinal;
+            snapshot.SalaireNetaPayer = netResult.NetAPayer;
+            snapshot.ValeurDette = dette;
+            snapshot.TotalAbonnements = totalAbonnements;
+            snapshot.NombreAbonnements = nombreAbonnements;
+            snapshot.SalaireNetaPayerFinal = netResult.NetAPayerFinal;
         }
 
         private void CalculerSalaireJournalier(PayrollSnapshot snapshot, Employe employe,
@@ -1107,13 +1148,18 @@ namespace RH_GRH
             snapshot.IndemNum = indemniteNumeraire;
             snapshot.IndemNat = indemniteNature;
 
+            // 5.5) Sursalaire - Récupération du montant unique par employé
+            decimal sursalaire = SursalaireRepository.CalculerTotalParPersonnel(employe.Id);
+            snapshot.Sursalaire = sursalaire;
+
             // 6) Salaire brut - MÉTHODE EXACTE
             decimal salaireBrut = GestionSalaireHoraireForm.CalculerSalaireBrut(
                 salaireBase,
                 primeHS,
                 indemniteNumeraire,
                 indemniteNature,
-                primeAnciennete
+                primeAnciennete,
+                sursalaire
             );
             snapshot.SalaireBrut = salaireBrut;
 
@@ -1190,11 +1236,25 @@ namespace RH_GRH
             snapshot.BaseIUTS_Arrondie = baseIutsArr;
             snapshot.NombreCharges = nombreCharges;
 
+            // Calculer le total des abonnements pour l'employé
+            decimal totalAbonnements = 0m;
+            int nombreAbonnements = 0;
+            if (employe.Id > 0)
+            {
+                var abonnements = AbonnementRepository.ListerParPersonnel(employe.Id);
+                totalAbonnements = abonnements.Sum(a => a.Montant);
+                nombreAbonnements = abonnements.Count;
+            }
+
             // 11) Salaire net - Utilisation de NetCalculator pour arrondi au 1 FCFA supérieur
-            var netResult = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, 0m, dette, 0.01m, true);
+            var netResult = NetCalculator.Calculer(salaireBrut, cnssEmploye, iutsFinal, 0m, dette, totalAbonnements, 0.01m, true);
             snapshot.SalaireNet = netResult.SalaireNet;
             snapshot.EffortPaix = netResult.Effort;
-            snapshot.SalaireNetaPayer = netResult.NetAPayerFinal;
+            snapshot.SalaireNetaPayer = netResult.NetAPayer;
+            snapshot.ValeurDette = dette;
+            snapshot.TotalAbonnements = totalAbonnements;
+            snapshot.NombreAbonnements = nombreAbonnements;
+            snapshot.SalaireNetaPayerFinal = netResult.NetAPayerFinal;
 
             // Debug final
             System.Diagnostics.Debug.WriteLine($"SalaireBrut: {salaireBrut}, SalaireNet: {snapshot.SalaireNet}");

@@ -21,11 +21,15 @@ namespace RH_GRH
         //PRIME ANCIENNETE
         public decimal PrimeAnciennete { get; set; }
 
+        //SURSALAIRE
+        public decimal Sursalaire { get; set; }
+
         //Infos Employe
         public string NomPrenom { get; set; } = "";
         public string Civilite { get; set; } = "";
         public string Poste { get; set; } = "";
         public string Matricule { get; set; } = "";
+        public string Identification { get; set; } = "";
         public string NumeroEmploye { get; set; } = "";
         public string AdresseEmploye { get; set; } = "";
         public string PeriodeSalaire { get; set; } = "";
@@ -44,6 +48,10 @@ namespace RH_GRH
         public string AdressePhysiqueEntreprise { get; set; } = "";
         public string AdressePostaleEntreprise { get; set; } = "";
         public string ResponsableEntreprise { get; set; } = "";
+        public string ResponsablePaie { get; set; } = "";
+        public string RegistreCommerce { get; set; } = "";
+        public string NumeroIFU { get; set; } = "";
+        public string NumeroCNSSEntreprise { get; set; } = "";
 
         public DateTime DateNaissance { get; set; }
         public DateTime DateEntree { get; set; }
@@ -79,6 +87,8 @@ namespace RH_GRH
         public decimal EffortPaix { get; set; }
         public decimal SalaireNetaPayer { get; set; }
         public decimal ValeurDette { get; set; }
+        public decimal TotalAbonnements { get; set; }
+        public int NombreAbonnements { get; set; }
         public decimal SalaireNetaPayerFinal { get; set; }
 
         // Méta (facultatif)

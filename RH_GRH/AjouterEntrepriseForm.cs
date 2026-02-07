@@ -41,6 +41,7 @@ namespace RH_GRH
             string numeroBancaire = textBoxNumeroBancaire.Text?.Trim();
             string email = textBoxEmail.Text?.Trim();
             string responsable = textBoxResponsable.Text?.Trim();
+            string responsablePaie = textBoxResponsablePaie.Text?.Trim();
 
             // Validation du nom (obligatoire)
             if (string.IsNullOrWhiteSpace(nomEntreprise))
@@ -103,7 +104,7 @@ namespace RH_GRH
                 bool success = entreprise.insertEntreprise(
                     nomEntreprise, formeJuridique, sigle, activite, adressePhysique, adressePostale,
                     telephone, commune, quartier, rue, lot, centreImpots, numeroIfu, numeroCnss,
-                    codeActivite, regimeFiscal, registreCommerce, numeroBancaire, tpa, logoBytes, email, responsable
+                    codeActivite, regimeFiscal, registreCommerce, numeroBancaire, tpa, logoBytes, email, responsable, responsablePaie
                 );
 
                 if (success)

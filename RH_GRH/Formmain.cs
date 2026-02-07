@@ -210,6 +210,13 @@ namespace RH_GRH
         private void SetVersionLabel()
         {
             // Lire la version depuis AssemblyInfo
+         
+
+
+
+
+
+            
             var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             labelVersion.Text = $"Version {version.Major}.{version.Minor}.{version.Build}";
         }
@@ -325,6 +332,20 @@ namespace RH_GRH
         {
             SetActiveButton(button_charge);
             OpenChildForm(new GestionChargeForm());
+            hideSubmenu();
+        }
+
+        private void button_sursalaire_Click(object sender, EventArgs e)
+        {
+            SetActiveButton(button_sursalaire);
+            OpenChildForm(new GestionSursalaireForm());
+            hideSubmenu();
+        }
+
+        private void button_abonnement_Click(object sender, EventArgs e)
+        {
+            SetActiveButton(button_abonnement);
+            OpenChildForm(new GestionAbonnementForm());
             hideSubmenu();
         }
 

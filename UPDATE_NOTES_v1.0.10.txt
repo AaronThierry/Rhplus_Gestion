@@ -1,0 +1,167 @@
+================================================================================
+    GESTION MODERNE RH - MISE À JOUR v1.0.10
+================================================================================
+
+Date de sortie : 27 janvier 2026
+
+================================================================================
+    CORRECTIONS DE BUGS
+================================================================================
+
+1. FIX IMPRESSION EN LOT - INFORMATIONS ENTREPRISE
+   - Correction : Registre de commerce non affiché en impression lot
+   - Correction : Numéro IFU non affiché en impression lot
+   - Correction : Numéro CNSS entreprise non affiché en impression lot
+   - Correction : Responsable Paie non affiché en impression lot
+   - Fichier corrigé : SaisiePayeLotForm.cs (lignes 787-790)
+
+2. FIX IMPRESSION EN LOT - MODE DE PAIEMENT
+   - Correction : "Mode de paiement : Non spécifié" en impression lot
+   - Ajout du mapping ModePayement, Banque, NumeroBancaire
+   - Les informations de paiement s'affichent maintenant correctement
+   - Fichiers corrigés :
+     * SaisiePayeLotForm.cs (PayrollSnapshot lignes 662-664)
+     * SaisiePayeLotForm.cs (BulletinModel lignes 844-846)
+
+================================================================================
+    FICHIERS MODIFIÉS
+================================================================================
+
+Services (impression en lot) :
+- SaisiePayeLotForm.cs - Ajout mapping infos entreprise vers BulletinModel
+- SaisiePayeLotForm.cs - Ajout mapping mode paiement vers PayrollSnapshot
+- SaisiePayeLotForm.cs - Ajout mapping mode paiement vers BulletinModel
+
+Version :
+- AssemblyInfo.cs (version 1.0.10.0)
+
+================================================================================
+    DÉTAILS TECHNIQUES
+================================================================================
+
+PROBLÈME 1 : Infos entreprise manquantes en impression lot
+- Cause : ResponsablePaie, RegistreCommerce, NumeroIFU, NumeroCNSSEntreprise
+         non mappés de PayrollSnapshot vers BulletinModel
+- Solution : Ajout des 4 lignes de mapping dans SaisiePayeLotForm.cs
+
+PROBLÈME 2 : Mode paiement "Non spécifié" en impression lot
+- Cause : ModePayement, Banque, NumeroBancaire non récupérés depuis employe
+- Solution 1 : Ajout mapping dans PayrollSnapshot depuis employe.ModePaiement
+- Solution 2 : Ajout mapping dans BulletinModel depuis snapshot.ModePayement
+
+================================================================================
+    INCLUS DES VERSIONS PRÉCÉDENTES
+================================================================================
+
+v1.0.9 :
+- Affichage identification employé sur bulletins
+- Automatisation Registre de Commerce (footer)
+- Automatisation Numéro IFU (footer)
+- Automatisation Numéro CNSS entreprise (footer)
+
+v1.0.8 :
+- Ajout du champ Responsable Paie dans Entreprise
+- Affichage automatique du responsable paie sur les bulletins
+- Améliorations UI : Sélection Entreprise
+
+v1.0.5 (CRITIQUE) :
+- FIX MAJEUR : Calcul IUTS pour les employés CADRES
+- Abattement corrigé : 20% pour cadres (au lieu de 25%)
+
+v1.0.4 :
+- Affichage du Net à Payer sur les bulletins
+- Arrondi standardisé à 1 FCFA (plafond)
+
+================================================================================
+    INSTALLATION
+================================================================================
+
+1. SAUVEGARDE IMPORTANTE
+   - Sauvegardez votre base de données avant la mise à jour
+   - Conservez une copie de votre configuration actuelle
+
+2. PROCÉDURE D'INSTALLATION
+   - Fermez l'application Gestion Moderne RH si elle est ouverte
+   - Exécutez l'installateur de mise à jour
+   - L'installateur détectera l'installation existante
+   - Suivez les instructions à l'écran
+
+3. APRÈS L'INSTALLATION
+   - Redémarrez l'application
+   - Vérifiez que la version affichée est bien 1.0.10
+   - Testez l'impression en lot pour vérifier les corrections
+
+4. VÉRIFICATION
+   - Impression en lot : Vérifiez que le footer affiche bien :
+     * Registre de commerce
+     * Numéro IFU
+     * Numéro CNSS entreprise
+   - Impression en lot : Vérifiez que le mode de paiement s'affiche correctement
+     (Espèces, Virement bancaire, etc. au lieu de "Non spécifié")
+
+================================================================================
+    CONFIGURATION REQUISE
+================================================================================
+
+- Microsoft .NET Framework 4.7.2 ou supérieur
+- MySQL Server 5.7 ou supérieur
+- Windows 7 SP1 / Windows Server 2008 R2 SP1 ou supérieur
+- Résolution minimale : 1024x768 (1920x1080 recommandé)
+
+================================================================================
+    SUPPORT ET ASSISTANCE
+================================================================================
+
+GitHub Issues : https://github.com/AaronThierry/Rhplus_Gestion/issues
+Documentation : Consultez le README.md dans le dossier d'installation
+
+================================================================================
+    NOTES IMPORTANTES
+================================================================================
+
+1. Cette mise à jour corrige UNIQUEMENT des bugs d'impression en lot
+2. Aucun script SQL requis pour cette mise à jour
+3. Compatible avec toutes les données existantes
+4. Aucune perte de données lors de la mise à jour
+5. Les impressions individuelles n'étaient pas affectées par ces bugs
+
+================================================================================
+    CHANGELOG TECHNIQUE
+================================================================================
+
+Modifications dans SaisiePayeLotForm.cs :
+
+Ligne 662-664 (PayrollSnapshot) :
++ ModePayement = employe.ModePaiement ?? "",
++ Banque = employe.Banque ?? "",
++ NumeroBancaire = employe.NumeroBancaire ?? ""
+
+Ligne 787-790 (BulletinModel mapping depuis snapshot) :
++ ResponsablePaie = snapshot.ResponsablePaie,
++ RegistreCommerce = snapshot.RegistreCommerce,
++ NumeroIFU = snapshot.NumeroIFU,
++ NumeroCNSSEntreprise = snapshot.NumeroCNSSEntreprise,
+
+Ligne 844-846 (BulletinModel mapping mode paiement) :
++ ModePayement = snapshot.ModePayement,
++ Banque = snapshot.Banque,
++ NumeroBancaire = snapshot.NumeroBancaire
+
+================================================================================
+    IMPACT UTILISATEUR
+================================================================================
+
+AVANT v1.0.10 (impression en lot) :
+- Footer bulletin : Valeurs vides pour RC, IFU, CNSS
+- Mode de paiement : "Non spécifié" même si renseigné
+- Responsable Paie : Non affiché
+
+APRÈS v1.0.10 (impression en lot) :
+- Footer bulletin : Registre commerce, IFU, CNSS affichés correctement
+- Mode de paiement : Espèces, Virement, etc. affichés correctement
+- Responsable Paie : Affiché correctement
+
+================================================================================
+
+© 2025 GMP - Gestion Moderne de Paie
+Version 1.0.10 - Compilée le 27 janvier 2026

@@ -55,6 +55,8 @@ namespace RH_GRH
                 AjouterLigneGain($"Heures supplémentaires ({snap.TauxHeureSupp:N0}h)", snap.PrimeHeuressupp);
             if (snap.PrimeAnciennete > 0)
                 AjouterLigneGain($"Prime d'ancienneté ({snap.AncienneteStr})", snap.PrimeAnciennete);
+            if (snap.Sursalaire > 0)
+                AjouterLigneGain("Sursalaire", snap.Sursalaire);
             if (snap.IndemNum > 0)
                 AjouterLigneGain("Indemnités numéraires", snap.IndemNum);
             if (snap.IndemNat > 0)
@@ -79,9 +81,11 @@ namespace RH_GRH
                 AjouterLigneRetenue("Effort de paix (1%)", snap.EffortPaix);
             if (snap.ValeurDette > 0)
                 AjouterLigneRetenue("Remboursement dette", snap.ValeurDette);
+            if (snap.TotalAbonnements > 0)
+                AjouterLigneRetenue($"Abonnement ({snap.NombreAbonnements})", snap.TotalAbonnements);
 
             // Ligne de total retenues
-            decimal totalRetenues = snap.CNSS_Employe + snap.IUTS_Final + snap.IndemNat + snap.EffortPaix + snap.ValeurDette;
+            decimal totalRetenues = snap.CNSS_Employe + snap.IUTS_Final + snap.IndemNat + snap.EffortPaix + snap.ValeurDette + snap.TotalAbonnements;
             var itemTotalRetenues = new ListViewItem("═══ TOTAL RETENUES");
             itemTotalRetenues.Font = new Font("Montserrat", 9.5F, FontStyle.Bold);
             itemTotalRetenues.ForeColor = Color.FromArgb(192, 57, 43);

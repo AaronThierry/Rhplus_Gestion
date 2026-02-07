@@ -10,6 +10,7 @@ namespace RH_GRH
         {
             public string NomEmploye { get; set; }
             public string Matricule { get; set; }
+            public string Identification { get; set; }
             public string Poste { get; set; }
             public string Mois { get; set; }
             public decimal HeuresSup { get; set; }
@@ -24,6 +25,10 @@ namespace RH_GRH
             public string AdressePhysiqueEntreprise { get; set; }
             public string AdressePostaleEntreprise { get; set; }
             public string ResponsableEntreprise { get; set; }
+            public string ResponsablePaie { get; set; }
+            public string RegistreCommerce { get; set; }
+            public string NumeroIFU { get; set; }
+            public string NumeroCNSSEntreprise { get; set; }
 
         //SALAIRE DE BASE
             public double baseUnitaire { get; set; }
@@ -42,6 +47,9 @@ namespace RH_GRH
         //PRIME ANCIENNETE
             public decimal PrimeAnciennete { get; set; }
 
+
+        //SURSALAIRE
+            public decimal Sursalaire { get; set; }
 
 
         //LISTE DES INDEMNITES
@@ -127,6 +135,8 @@ namespace RH_GRH
              public decimal EffortDePaix { get; set; }
              public decimal SalaireNetaPayer { get; set; }
              public decimal ValeurDette { get; set; }
+             public decimal TotalAbonnements { get; set; }
+             public int NombreAbonnements { get; set; }
              public decimal SalaireNetaPayerFinal { get; set; }
 
 

@@ -1,0 +1,166 @@
+================================================================================
+    GESTION MODERNE RH - MISE À JOUR v1.0.9
+================================================================================
+
+Date de sortie : 27 janvier 2026
+
+================================================================================
+    NOUVELLES FONCTIONNALITÉS
+================================================================================
+
+1. AFFICHAGE IDENTIFICATION EMPLOYÉ
+   - Remplacement du matricule par le champ "identification" dans la section info du bulletin
+   - Affichage du champ identification de la table personnel
+   - Visible dans la colonne avec le QR code sur le bulletin
+
+2. AUTOMATISATION FOOTER DES BULLETINS
+   - Registre de commerce automatisé depuis la table entreprise
+   - Numéro IFU automatisé depuis la table entreprise
+   - Numéro CNSS entreprise automatisé depuis la table entreprise
+   - Suppression des valeurs statiques du pied de page
+   - Affichage dynamique des informations légales de l'entreprise
+
+================================================================================
+    FICHIERS MODIFIÉS
+================================================================================
+
+Modèles de données :
+- BulletinModel.cs - Ajout de Identification, RegistreCommerce, NumeroIFU, NumeroCNSSEntreprise
+- PayrollSnapshot.cs - Ajout des mêmes propriétés
+- EmployeData.cs - Ajout des propriétés et constructeur mis à jour
+
+Couche d'accès aux données :
+- EmployeDetail.cs - SELECT avec 4 nouvelles colonnes
+- EmployeDetail.cs - Mapping des données depuis le reader
+
+Services (mapping vers PayrollSnapshot) :
+- BatchBulletinService.cs
+- GestionSalaireHoraireForm.cs
+- GestionSalaireJournalierForm.cs
+- SaisiePayeLotForm.cs
+
+Services (mapping vers BulletinModel) :
+- BatchBulletinService.cs
+- GestionSalaireHoraireForm.cs
+- GestionSalaireJournalierForm.cs
+
+Présentation :
+- BulletinDocument.cs - Affichage identification employé (ligne 165)
+- BulletinDocument.cs - Footer automatisé (lignes 229, 235, 241)
+
+Version :
+- AssemblyInfo.cs (version 1.0.9.0)
+
+================================================================================
+    DÉTAILS TECHNIQUES
+================================================================================
+
+1. IDENTIFICATION EMPLOYÉ
+   - Source : Colonne "identification" de la table personnel
+   - Affichage : Section info avec QR code sur le bulletin
+   - Style : Rouge, police Montserrat SemiBold 10pt
+
+2. FOOTER BULLETIN
+   Trois colonnes affichées dynamiquement :
+   - Gauche : "Registre de commerce : [valeur entreprise]"
+   - Centre : "Numero ifu : [valeur entreprise]"
+   - Droite : "Numero cnss : [valeur entreprise]"
+
+   Style : Police Montserrat 7pt, labels soulignés
+
+================================================================================
+    INCLUS DES VERSIONS PRÉCÉDENTES
+================================================================================
+
+v1.0.8 :
+- Ajout du champ Responsable Paie dans Entreprise
+- Affichage automatique du responsable paie sur les bulletins
+- Améliorations UI : Sélection Entreprise
+
+v1.0.5 (CRITIQUE) :
+- FIX MAJEUR : Calcul IUTS pour les employés CADRES
+- Abattement corrigé : 20% pour cadres (au lieu de 25%)
+- Impact : Augmentation du salaire net des cadres
+
+v1.0.4 :
+- Affichage du Net à Payer sur les bulletins
+- Récupération des employés CDD par lot
+- Arrondi standardisé à 1 FCFA (plafond) pour tous les calculs
+
+================================================================================
+    INSTALLATION
+================================================================================
+
+1. SAUVEGARDE IMPORTANTE
+   - Sauvegardez votre base de données avant la mise à jour
+   - Conservez une copie de votre configuration actuelle
+
+2. PROCÉDURE D'INSTALLATION
+   - Fermez l'application Gestion Moderne RH si elle est ouverte
+   - Exécutez l'installateur de mise à jour
+   - L'installateur détectera l'installation existante
+   - Suivez les instructions à l'écran
+
+3. APRÈS L'INSTALLATION
+   - Redémarrez l'application
+   - Vérifiez que la version affichée est bien 1.0.9
+   - Vérifiez que les données entreprise sont correctement remplies :
+     * Registre de commerce
+     * Numéro IFU
+     * Numéro CNSS
+
+4. CONFIGURATION
+   - Accédez à Gestion > Entreprise
+   - Vérifiez/Complétez les informations légales :
+     * Registre de commerce
+     * Numéro IFU
+     * Numéro CNSS
+   - Les bulletins générés afficheront automatiquement ces informations
+
+================================================================================
+    CONFIGURATION REQUISE
+================================================================================
+
+- Microsoft .NET Framework 4.7.2 ou supérieur
+- MySQL Server 5.7 ou supérieur
+- Windows 7 SP1 / Windows Server 2008 R2 SP1 ou supérieur
+- Résolution minimale : 1024x768 (1920x1080 recommandé)
+
+================================================================================
+    SUPPORT ET ASSISTANCE
+================================================================================
+
+GitHub Issues : https://github.com/AaronThierry/Rhplus_Gestion/issues
+Documentation : Consultez le README.md dans le dossier d'installation
+
+================================================================================
+    NOTES IMPORTANTES
+================================================================================
+
+1. Aucun script SQL requis pour cette mise à jour
+2. Les colonnes entreprise doivent déjà exister dans votre base de données
+3. Compatible avec toutes les données existantes
+4. Aucune perte de données lors de la mise à jour
+5. Les valeurs vides ne causeront pas d'erreur (affichage vide dans ce cas)
+
+================================================================================
+    CHANGELOG TECHNIQUE
+================================================================================
+
+Ajouts :
+- 4 nouvelles propriétés dans BulletinModel
+- 4 nouvelles propriétés dans PayrollSnapshot
+- 4 nouvelles propriétés dans EmployeData
+- 4 colonnes dans la requête SELECT (EmployeDetail)
+
+Modifications :
+- BulletinDocument.cs : Ligne 165 (identification au lieu de matricule)
+- BulletinDocument.cs : Lignes 229, 235, 241 (footer dynamique)
+
+Mapping :
+- 8 fichiers de service mis à jour pour le mapping des nouvelles données
+
+================================================================================
+
+© 2025 GMP - Gestion Moderne de Paie
+Version 1.0.9 - Compilée le 27 janvier 2026

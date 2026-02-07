@@ -293,6 +293,7 @@ namespace RH_GRH
                                 string email = reader["email"]?.ToString();
                                 byte[] logo = reader["logo_entreprise"] != DBNull.Value ? (byte[])reader["logo_entreprise"] : null;
                                 string responsable = reader["responsable"]?.ToString();
+                                string responsablePaie = reader["responsable_paie"]?.ToString();
 
                                 connect.closeConnect();
 
@@ -314,7 +315,7 @@ namespace RH_GRH
                                         idEntreprise, nomEntreprise, formeJuridique, sigle, activite,
                                         adressePhysique, adressePostale, telephone, commune, quartier,
                                         rue, lot, centreImpots, numeroIfu, numeroCnss, codeActivite,
-                                        regimeFiscal, registreCommerce, numeroBancaire, tpa, email, logo, responsable
+                                        regimeFiscal, registreCommerce, numeroBancaire, tpa, email, logo, responsable, responsablePaie
                                     );
                                 }
                             }
@@ -341,13 +342,13 @@ namespace RH_GRH
             string activite, string adressePhysique, string adressePostale, string telephone,
             string commune, string quartier, string rue, string lot, string centreImpots,
             string numeroIfu, string numeroCnss, string codeActivite, string regimeFiscal,
-            string registreCommerce, string numeroBancaire, decimal? tpa, string email, byte[] logo, string responsable)
+            string registreCommerce, string numeroBancaire, decimal? tpa, string email, byte[] logo, string responsable, string responsablePaie = "")
         {
             using (var formModifier = new ModifierEntrepriseForm(
                 idEntreprise, nomEntreprise, formeJuridique, sigle, activite,
                 adressePhysique, adressePostale, telephone, commune, quartier, rue, lot,
                 centreImpots, numeroIfu, numeroCnss, codeActivite, regimeFiscal,
-                registreCommerce, numeroBancaire, tpa, email, logo, responsable))
+                registreCommerce, numeroBancaire, tpa, email, logo, responsable, responsablePaie))
             {
                 var result = formModifier.ShowDialog(this);
                 if (result == DialogResult.OK)

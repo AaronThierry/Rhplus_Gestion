@@ -1,8 +1,8 @@
-; Script d'installation Inno Setup pour Gestion Moderne RH v1.0.11 - UPDATE
-; Mise à jour : Amélioration formulaire charges (recherche globale + design optimisé)
+; Script d'installation Inno Setup pour Gestion Moderne RH v1.1.0 - UPDATE
+; Mise à jour : Système de gestion des abonnements + Améliorations bulletin de paie
 
 #define MyAppName "Gestion Moderne RH"
-#define MyAppVersion "1.0.11"
+#define MyAppVersion "1.1.0"
 #define MyAppPublisher "GMP - Gestion Moderne de Paie"
 #define MyAppURL "https://github.com/AaronThierry/Rhplus_Gestion"
 #define MyAppExeName "RH_GRH.exe"
@@ -23,7 +23,7 @@ AppUpdatesURL={#MyAppURL}/releases
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=LICENSE.txt
-InfoBeforeFile=UPDATE_NOTES_v1.0.11.txt
+InfoBeforeFile=UPDATE_NOTES_v1.1.0.txt
 OutputDir=Setup\Output
 OutputBaseFilename=GestionModerneRH_v{#MyAppVersion}_Update
 SetupIconFile=RH_GRH\logo-rh-modified.ico
@@ -37,7 +37,7 @@ UninstallDisplayIcon={app}\{#MyAppExeName}
 UninstallDisplayName={#MyAppName}
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
-VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.0.10
+VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.1.0
 VersionInfoCopyright=Copyright (C) 2025 {#MyAppPublisher}
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
@@ -66,7 +66,7 @@ Source: "RH_GRH\bin\Release\x86\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Documentation
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "UPDATE_NOTES_v1.0.10.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "UPDATE_NOTES_v1.1.0.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Scripts SQL (optionnels)
 Source: "verify_column.sql"; DestDir: "{app}\Database"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{#SourcePath}\verify_column.sql'))
@@ -183,15 +183,16 @@ var
   S: String;
 begin
   S := '';
-  S := S + 'MISE À JOUR v1.0.10 - Fix impression en lot' + NewLine + NewLine;
-  S := S + 'CORRECTIONS :' + NewLine;
-  S := S + Space + '- FIX : Infos entreprise (IFU, CNSS, RC) en lot' + NewLine;
-  S := S + Space + '- FIX : Mode de paiement "Non spécifié" en lot' + NewLine;
-  S := S + Space + '- Mapping complet des données pour impression lot' + NewLine + NewLine;
-  S := S + 'INCLUS VERSIONS PRÉCÉDENTES :' + NewLine;
-  S := S + Space + '- Automatisation données entreprise (v1.0.9)' + NewLine;
-  S := S + Space + '- Responsable Paie automatisé (v1.0.8)' + NewLine;
-  S := S + Space + '- FIX CRITIQUE : Calcul IUTS pour CADRES (v1.0.5)' + NewLine + NewLine;
+  S := S + 'MISE À JOUR v1.1.0 - Gestion des Abonnements' + NewLine + NewLine;
+  S := S + 'NOUVELLES FONCTIONNALITÉS :' + NewLine;
+  S := S + Space + '- NOUVEAU : Système complet de gestion des abonnements' + NewLine;
+  S := S + Space + '- NOUVEAU : Déduction automatique des abonnements sur bulletin' + NewLine;
+  S := S + Space + '- NOUVEAU : Ligne "Abonnement" dans bulletin de paie' + NewLine;
+  S := S + Space + '- NOUVEAU : Affichage sursalaire et abonnements dans modale résultats' + NewLine + NewLine;
+  S := S + 'AMÉLIORATIONS :' + NewLine;
+  S := S + Space + '- Optimisation mise en page bulletin (Payé le + Mode paiement)' + NewLine;
+  S := S + Space + '- Calcul automatique total abonnements par employé' + NewLine;
+  S := S + Space + '- Interface recherche temps réel pour abonnements' + NewLine + NewLine;
 
   S := S + MemoDirInfo + NewLine + NewLine;
 
