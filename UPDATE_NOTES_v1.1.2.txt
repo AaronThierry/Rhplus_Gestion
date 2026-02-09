@@ -1,0 +1,63 @@
+================================================================================
+  GESTION MODERNE RH - MISE À JOUR v1.1.2
+  Date de release : 9 février 2026
+================================================================================
+
+CORRECTION CRITIQUE
+-------------------
+
+Cette mise à jour corrige une erreur critique qui empêchait la modification
+des informations d'entreprise lorsqu'un logo était présent.
+
+ERREUR CORRIGÉE :
+  ✓ Erreur GDI+ lors de la sauvegarde du logo d'entreprise
+    - Symptôme : "Une erreur générique s'est produite dans GDI+"
+    - Impact : Impossibilité de modifier les informations d'entreprise
+    - Fichier concerné : ModifierEntrepriseForm.cs
+
+DÉTAILS TECHNIQUES :
+  • Création de copies Bitmap indépendantes lors du chargement des images
+  • Remplacement de RawFormat par ImageFormat.Png pour la sauvegarde
+  • Gestion propre de la mémoire avec Dispose automatique
+  • Évite le verrouillage des streams et fichiers image
+
+FICHIERS MODIFIÉS :
+  • ModifierEntrepriseForm.cs
+    - Méthode ChargerDonnees() : copie Bitmap lors du chargement
+    - Méthode buttonValider_Click() : sauvegarde en PNG
+    - Méthode buttonParcourir_Click() : gestion verrouillage fichier
+    - Ajout de l'import System.Drawing.Imaging
+
+COMPATIBILITÉ :
+  ✓ Compatible avec toutes les versions 1.1.x
+  ✓ Aucune modification de base de données requise
+  ✓ Migration transparente depuis v1.1.1
+  ✓ Les logos existants restent compatibles
+
+INSTALLATION :
+  1. Fermez complètement l'application RH+ si elle est en cours d'exécution
+  2. Lancez cet installateur
+  3. Suivez les instructions à l'écran
+  4. L'application sera mise à jour automatiquement
+  5. Vérifiez que la version affichée est bien 1.1.2
+
+CONFIGURATION REQUISE :
+  • Windows 7 SP1 ou supérieur
+  • .NET Framework 4.7.2 ou supérieur
+  • MySQL Server 5.7 ou supérieur
+  • 2 GB RAM minimum
+  • 100 MB d'espace disque
+
+NOTES IMPORTANTES :
+  • Sauvegarde de votre base de données recommandée (optionnel)
+  • Vos données et configurations seront préservées
+  • Priorité : HAUTE - Recommandé pour tous les utilisateurs v1.1.1
+
+SUPPORT :
+  • Documentation complète : README.md
+  • Changelog détaillé : CHANGELOG.md
+  • Support technique : Contactez votre administrateur système
+
+================================================================================
+Copyright © 2025-2026 GMP - Gestion Moderne de Paie
+================================================================================

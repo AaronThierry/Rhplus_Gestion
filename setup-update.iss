@@ -1,8 +1,8 @@
-; Script d'installation Inno Setup pour Gestion Moderne RH v1.1.1 - UPDATE
-; Mise à jour : Optimisation espacement bulletin de paie pour impression sur une page
+; Script d'installation Inno Setup pour Gestion Moderne RH v1.1.2 - UPDATE
+; Mise à jour : Correction erreur GDI+ modification entreprise
 
 #define MyAppName "Gestion Moderne RH"
-#define MyAppVersion "1.1.1"
+#define MyAppVersion "1.1.2"
 #define MyAppPublisher "GMP - Gestion Moderne de Paie"
 #define MyAppURL "https://github.com/AaronThierry/Rhplus_Gestion"
 #define MyAppExeName "RH_GRH.exe"
@@ -23,7 +23,7 @@ AppUpdatesURL={#MyAppURL}/releases
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=LICENSE.txt
-InfoBeforeFile=UPDATE_NOTES_v1.1.1.txt
+InfoBeforeFile=UPDATE_NOTES_v1.1.2.txt
 OutputDir=Setup\Output
 OutputBaseFilename=GestionModerneRH_v{#MyAppVersion}_Update
 SetupIconFile=RH_GRH\logo-rh-modified.ico
@@ -37,7 +37,7 @@ UninstallDisplayIcon={app}\{#MyAppExeName}
 UninstallDisplayName={#MyAppName}
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
-VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.1.1
+VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.1.2
 VersionInfoCopyright=Copyright (C) 2025 {#MyAppPublisher}
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
@@ -66,7 +66,7 @@ Source: "RH_GRH\bin\Release\x86\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Documentation
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "UPDATE_NOTES_v1.1.1.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "UPDATE_NOTES_v1.1.2.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Scripts SQL (optionnels)
 Source: "verify_column.sql"; DestDir: "{app}\Database"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{#SourcePath}\verify_column.sql'))
@@ -183,12 +183,12 @@ var
   S: String;
 begin
   S := '';
-  S := S + 'MISE À JOUR v1.1.1 - Optimisation Impression Bulletin' + NewLine + NewLine;
-  S := S + 'CORRECTIONS :' + NewLine;
-  S := S + Space + '- FIX : Réduction des espacements dans le bulletin de paie' + NewLine;
-  S := S + Space + '- FIX : Garantit l''impression sur une seule page A4' + NewLine;
-  S := S + Space + '- Espacement section paiement optimisé (16 → 5)' + NewLine;
-  S := S + Space + '- Espacement signatures optimisé (10 → 5)' + NewLine + NewLine;
+  S := S + 'MISE À JOUR v1.1.2 - Correction Erreur GDI+ Modification Entreprise' + NewLine + NewLine;
+  S := S + 'CORRECTIONS CRITIQUES :' + NewLine;
+  S := S + Space + '- FIX CRITIQUE : Erreur GDI+ lors de la sauvegarde du logo d''entreprise' + NewLine;
+  S := S + Space + '- Création de copies Bitmap indépendantes' + NewLine;
+  S := S + Space + '- Utilisation de PNG au lieu de RawFormat' + NewLine;
+  S := S + Space + '- Gestion propre de la mémoire et verrouillage fichiers' + NewLine + NewLine;
 
   S := S + MemoDirInfo + NewLine + NewLine;
 
