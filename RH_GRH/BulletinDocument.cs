@@ -87,7 +87,7 @@ namespace RH_GRH
 
                             row.RelativeItem().Column(infoCol =>
                             {
-                                infoCol.Item().PaddingLeft(3).Text(model.NomEntreprise).FontSize(9).FontFamily("Montserrat").Medium().Italic();
+                              //  infoCol.Item().PaddingLeft(3).Text(model.NomEntreprise).FontSize(9).FontFamily("Montserrat").Medium().Italic();
                                 infoCol.Item().PaddingLeft(3).Text(model.Sigle).FontSize(10).Italic().Medium().FontFamily("Montserrat");
                                 infoCol.Item().PaddingLeft(3).Text(model.TelephoneEntreprise).FontSize(9).FontFamily("Montserrat").Medium().Italic();
                                 infoCol.Item().PaddingLeft(3).Text(model.EmailEntreprise).FontSize(9).FontFamily("Montserrat").Medium().Italic();
