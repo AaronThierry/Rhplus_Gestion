@@ -1,0 +1,51 @@
+═══════════════════════════════════════════════════════════════════════════════
+    GESTION MODERNE RH - NOTES DE MISE À JOUR v1.1.1
+═══════════════════════════════════════════════════════════════════════════════
+
+Date de publication : 9 février 2026
+Type de mise à jour : Correction (Patch)
+
+───────────────────────────────────────────────────────────────────────────────
+🔧 CORRECTIONS
+───────────────────────────────────────────────────────────────────────────────
+
+[BULLETIN DE PAIE]
+  ✓ FIX : Réduction des espacements dans le bulletin de paie
+  ✓ FIX : Garantit l'impression complète sur une seule page A4
+
+  Détails techniques :
+  • Espacement avant bloc "Mode de paiement" réduit : 16 → 5 pixels
+  • Espacement entre "Mode de paiement" et en-têtes : 10 → 3 pixels
+  • Espacement avant noms des responsables : 5 → 2 pixels
+  • Espacement avant lignes de signature : 10 → 5 pixels
+
+───────────────────────────────────────────────────────────────────────────────
+📋 COMPATIBILITÉ
+───────────────────────────────────────────────────────────────────────────────
+
+Cette mise à jour est compatible avec :
+  • Toutes les versions 1.1.x
+  • Base de données : Aucune modification requise
+  • Configuration : Conservée automatiquement
+
+───────────────────────────────────────────────────────────────────────────────
+🔄 INSTRUCTIONS DE MISE À JOUR
+───────────────────────────────────────────────────────────────────────────────
+
+1. Fermez l'application si elle est en cours d'exécution
+2. Lancez cet installateur de mise à jour
+3. Suivez les instructions à l'écran
+4. Vos données et configurations seront préservées
+
+⚠️  IMPORTANT : Aucune sauvegarde manuelle requise, mais recommandée
+
+───────────────────────────────────────────────────────────────────────────────
+💡 BESOIN D'AIDE ?
+───────────────────────────────────────────────────────────────────────────────
+
+Support : https://github.com/AaronThierry/Rhplus_Gestion/issues
+Documentation : README.md dans le dossier d'installation
+
+═══════════════════════════════════════════════════════════════════════════════
+© 2025 GMP - Gestion Moderne de Paie
+═══════════════════════════════════════════════════════════════════════════════
