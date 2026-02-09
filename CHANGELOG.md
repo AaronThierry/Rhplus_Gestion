@@ -7,6 +7,37 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ---
 
+## [1.1.2] - 2026-02-09
+
+### Corrigé
+- **CRITIQUE** : Correction de l'erreur GDI+ lors de la modification d'entreprise
+  - Erreur "Une erreur générique s'est produite dans GDI+" dans `ModifierEntrepriseForm.buttonValider_Click`
+  - Le problème survenait lors de la sauvegarde du logo en raison d'un verrouillage de stream/fichier
+  - Solution : Création d'une copie Bitmap indépendante de l'image au lieu d'utiliser directement l'image source
+  - Impact : `ModifierEntrepriseForm.cs` (lignes 103-106, 186, 281-287)
+
+### Modifié
+- **Gestion des images dans ModifierEntrepriseForm**
+  - Ajout de l'import `System.Drawing.Imaging` pour ImageFormat
+  - Méthode `ChargerDonnees()` : création d'une copie Bitmap lors du chargement du logo depuis la base de données
+  - Méthode `buttonValider_Click()` : utilisation de `ImageFormat.Png` au lieu de `RawFormat` pour la sauvegarde
+  - Méthode `buttonParcourir_Click()` : création d'une copie Bitmap lors de la sélection d'un nouveau fichier image
+  - Dispose automatique des images précédentes pour éviter les fuites mémoire
+
+### Technique
+- **Fichiers modifiés** : 1 fichier (ModifierEntrepriseForm.cs)
+- **Lignes modifiées** : ~20 lignes
+- **Architecture** : Gestion robuste des ressources images avec copies indépendantes
+- **Prévention** : Évite le verrouillage de fichiers et streams lors de la manipulation d'images
+
+### Compatibilité
+- Compatible avec les versions précédentes
+- Aucune modification de base de données
+- Migration transparente depuis v1.1.1
+- Les logos existants restent compatibles
+
+---
+
 ## [1.0.7] - 2026-01-26
 
 ### Ajouté

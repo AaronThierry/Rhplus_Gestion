@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 
@@ -94,12 +95,15 @@ namespace RH_GRH
             textBoxResponsable.Text = responsableActuel;
             textBoxResponsablePaie.Text = responsablePaieActuel;
 
-            // Charger le logo
+            // Charger le logo - Créer une copie pour éviter le verrouillage du stream
             if (logoActuel != null && logoActuel.Length > 0)
             {
                 using (MemoryStream ms = new MemoryStream(logoActuel))
                 {
-                    pictureBoxLogo.Image = Image.FromStream(ms);
+                    Image originalImage = Image.FromStream(ms);
+                    // Créer une copie bitmap pour éviter les problèmes de verrouillage
+                    pictureBoxLogo.Image = new Bitmap(originalImage);
+                    originalImage.Dispose();
                 }
             }
         }
@@ -181,7 +185,8 @@ namespace RH_GRH
 
             using (MemoryStream ms = new MemoryStream())
             {
-                pictureBoxLogo.Image.Save(ms, pictureBoxLogo.Image.RawFormat);
+                // Utiliser PNG au lieu de RawFormat pour éviter l'erreur GDI+
+                pictureBoxLogo.Image.Save(ms, ImageFormat.Png);
                 logoBytes = ms.ToArray();
 
                 if (nomEntreprise != nomEntrepriseActuel ||
@@ -272,7 +277,15 @@ namespace RH_GRH
 
             if (opf.ShowDialog() == DialogResult.OK)
             {
-                pictureBoxLogo.Image = Image.FromFile(opf.FileName);
+                // Charger l'image et créer une copie pour éviter le verrouillage du fichier
+                using (Image originalImage = Image.FromFile(opf.FileName))
+                {
+                    if (pictureBoxLogo.Image != null)
+                    {
+                        pictureBoxLogo.Image.Dispose();
+                    }
+                    pictureBoxLogo.Image = new Bitmap(originalImage);
+                }
             }
         }
     }
