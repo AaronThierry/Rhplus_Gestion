@@ -472,8 +472,8 @@ namespace RH_GRH
                     table.Cell().Element(BodyCell).Text("IUTS").FontSize(8).FontFamily("Montserrat").AlignCenter();
                     table.Cell().Element(BodyCell).AlignCenter().Text(model.BaseIUTS.ToString("N2")).FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).AlignCenter().Text("1").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.Iuts.ToString("N2")).FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                    table.Cell().Element(BodyCell).AlignCenter().Text(model.Iuts.ToString("N2")).FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
 
@@ -598,7 +598,7 @@ namespace RH_GRH
 
                 // Pied de page du bloc tableau
                 // ===== Bloc Règlement / Signatures (statique) =====
-                col.Item().PaddingTop(16).Column(section =>
+                col.Item().PaddingTop(5).Column(section =>
                 {
                     // Ligne 1 : Mode de paiement et Payé le sur la même ligne
                     string modePayementTexte = FormaterModePayement(model.ModePayement, model.Banque, model.NumeroBancaire);
@@ -615,7 +615,7 @@ namespace RH_GRH
                     });
 
                     // Espacement
-                    section.Item().Height(10);
+                    section.Item().Height(3);
 
                     // En-têtes des 3 colonnes
                     section.Item().Row(r =>
@@ -631,7 +631,7 @@ namespace RH_GRH
                     });
 
                     // Noms des responsables
-                    section.Item().PaddingTop(5).Row(r =>
+                    section.Item().PaddingTop(2).Row(r =>
                     {
                         r.RelativeItem().Text(model.ResponsableEntreprise ?? "")
                             .FontFamily("Montserrat").FontSize(8);
@@ -644,7 +644,7 @@ namespace RH_GRH
                     });
 
                     // Lignes de signature (à remplir à la main)
-                    section.Item().PaddingTop(10).Row(r =>
+                    section.Item().PaddingTop(5).Row(r =>
                     {
                         r.RelativeItem().Container().PaddingRight(8)
                             .BorderTop(1).BorderColor(Colors.Grey.Medium).Height(1);
