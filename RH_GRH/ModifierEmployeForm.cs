@@ -10,6 +10,7 @@ namespace RH_GRH
     {
         private Dbconnect connect = new Dbconnect();
         private int idPersonnel;
+        private string matriculeOriginal;
 
         public ModifierEmployeForm(int idPersonnel, string nomPrenom, string matricule, string civilite, string sexe,
             DateTime? dateNaissance, string adresse, string telephone, string identification,
@@ -59,7 +60,8 @@ namespace RH_GRH
             // Informations personnelles
             textBoxNomPrenom.Text = nomPrenom;
             textBoxMatricule.Text = matricule;
-            textBoxMatricule.ReadOnly = true; // Le matricule ne se modifie pas
+            matriculeOriginal = matricule; // Sauvegarder le matricule original
+            textBoxMatricule.ReadOnly = false; // Le matricule peut être modifié
 
             if (!string.IsNullOrWhiteSpace(civilite))
                 comboBoxCivilite.SelectedItem = civilite;
@@ -294,6 +296,42 @@ namespace RH_GRH
                 return;
             }
 
+            // Validation du matricule
+            string matriculeSaisi = textBoxMatricule.Text?.Trim();
+            if (string.IsNullOrWhiteSpace(matriculeSaisi))
+            {
+                CustomMessageBox.Show("Veuillez saisir le matricule de l'employé.", "Information",
+                    CustomMessageBox.MessageType.Info);
+                textBoxMatricule.Focus();
+                return;
+            }
+
+            // Valider le format du matricule
+            var validationResult = MatriculeGenerator.ValiderFormatMatricule(matriculeSaisi);
+            if (!validationResult.IsValid)
+            {
+                CustomMessageBox.Show(validationResult.ErrorMessage, "Validation matricule",
+                    CustomMessageBox.MessageType.Warning);
+                textBoxMatricule.Focus();
+                return;
+            }
+
+            // Normaliser le matricule
+            matriculeSaisi = MatriculeGenerator.NormaliserMatricule(matriculeSaisi);
+
+            // Vérifier si le matricule a changé
+            if (matriculeSaisi != matriculeOriginal)
+            {
+                // Vérifier que le nouveau matricule n'existe pas déjà
+                if (MatriculeGenerator.MatriculeExiste(matriculeSaisi, idPersonnel))
+                {
+                    CustomMessageBox.Show("Ce matricule est déjà utilisé par un autre employé.", "Matricule existant",
+                        CustomMessageBox.MessageType.Warning);
+                    textBoxMatricule.Focus();
+                    return;
+                }
+            }
+
             if (comboBoxEntreprise.SelectedValue == null ||
                 !int.TryParse(comboBoxEntreprise.SelectedValue.ToString(), out int idEntreprise) || idEntreprise <= 0)
             {
@@ -395,6 +433,7 @@ namespace RH_GRH
 
                 string query = @"UPDATE personnel SET
                     nomPrenom = @nomPrenom,
+                    matricule = @matricule,
                     civilite = @civilite,
                     sexe = @sexe,
                     date_naissance = @dateNaissance,
@@ -425,6 +464,7 @@ namespace RH_GRH
                 {
                     cmd.Parameters.AddWithValue("@idPersonnel", idPersonnel);
                     cmd.Parameters.AddWithValue("@nomPrenom", nomPrenom);
+                    cmd.Parameters.AddWithValue("@matricule", matriculeSaisi);
                     cmd.Parameters.AddWithValue("@civilite", (object)civilite ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@sexe", (object)sexe ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@dateNaissance", (object)dateNaissance ?? DBNull.Value);
