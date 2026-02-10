@@ -48,6 +48,7 @@ namespace RH_GRH
             comboBoxEntreprise.SelectedIndexChanged += ComboBoxEntreprise_SelectedIndexChanged;
             comboBoxDirection.SelectedIndexChanged += ComboBoxDirection_SelectedIndexChanged;
             comboBoxModePayement.SelectedIndexChanged += ComboBoxModePayement_SelectedIndexChanged;
+            comboBoxContrat.SelectedIndexChanged += ComboBoxContrat_SelectedIndexChanged;
         }
 
         private void ChargerDonnees(string nomPrenom, string matricule, string civilite, string sexe,
@@ -161,6 +162,24 @@ namespace RH_GRH
             if (!checkBoxDateSortie.Checked)
             {
                 datePickerSortie.Value = DateTime.Now;
+            }
+        }
+
+        private void ComboBoxContrat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string contratSelectionne = comboBoxContrat.SelectedItem?.ToString();
+
+            if (contratSelectionne == "CDD")
+            {
+                // Pour un CDD, activer automatiquement la date de sortie
+                checkBoxDateSortie.Checked = true;
+                checkBoxDateSortie.Enabled = true; // Permettre de décocher si nécessaire
+                datePickerSortie.Enabled = true;
+            }
+            else if (contratSelectionne == "CDI")
+            {
+                // Pour un CDI, la date de sortie est optionnelle
+                checkBoxDateSortie.Enabled = true;
             }
         }
 
@@ -347,6 +366,16 @@ namespace RH_GRH
                 CustomMessageBox.Show("Veuillez sélectionner une catégorie.", "Information",
                     CustomMessageBox.MessageType.Info);
                 comboBoxCategorie.Focus();
+                return;
+            }
+
+            // Validation CDD - Date de fin obligatoire
+            string contratType = comboBoxContrat.SelectedItem?.ToString();
+            if (contratType == "CDD" && !checkBoxDateSortie.Checked)
+            {
+                CustomMessageBox.Show("Pour un contrat CDD, la date de fin de contrat est obligatoire.", "Validation CDD",
+                    CustomMessageBox.MessageType.Warning);
+                checkBoxDateSortie.Focus();
                 return;
             }
 
