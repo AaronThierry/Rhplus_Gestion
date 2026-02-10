@@ -7,6 +7,81 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ---
 
+## [1.1.3] - 2026-02-10
+
+### Corrigé
+- **CRITIQUE** : Application du plafond CNSS de 800 000 FCFA pour cotisation employé
+  - Le calcul ne respectait pas le plafond légal de la CNSS
+  - Pour les salaires > 800 000 FCFA, la cotisation dépassait le maximum autorisé de 44 000 FCFA
+  - Solution : Plafonner l'assiette à 800 000 FCFA avant application du taux 5.5%
+  - Impact : `CNSS_TPA_CALCULATOR.cs` - Fonction `CalculerCNSSEmploye()`
+
+- **Gestion automatique date de fin contrat CDD**
+  - Impossible d'insérer la date de fin pour les contrats CDD
+  - Checkbox de date de sortie non activé automatiquement pour les CDD
+  - Solution : Activation automatique du DatePicker lors de la sélection "CDD"
+  - Validation obligatoire : Impossible de sauvegarder un CDD sans date de fin
+  - Impact : `AjouterEmployeForm.cs`, `ModifierEmployeForm.cs`
+
+- **Activation modification du matricule employé**
+  - Le champ matricule était en lecture seule dans le formulaire de modification
+  - Impossible de corriger un matricule erroné
+  - Solution : Rendre le champ modifiable avec validation complète
+  - Impact : `ModifierEmployeForm.cs`
+
+### Ajouté
+- **Constantes CNSS légales** dans `CNSS_TPA_CALCULATOR.cs`
+  - `PLAFOND_CNSS = 800 000 FCFA`
+  - `TAUX_CNSS_EMPLOYE = 5.5%`
+  - `MONTANT_MAX_CNSS_EMPLOYE = 44 000 FCFA`
+
+- **Validation CDD obligatoire**
+  - Événement `ComboBoxContrat_SelectedIndexChanged` dans les formulaires
+  - Activation automatique date de sortie si "CDD" sélectionné
+  - Message d'erreur si tentative de sauvegarde CDD sans date de fin
+
+- **Validation modification matricule**
+  - Variable `matriculeOriginal` pour tracking
+  - Validation format avec `MatriculeGenerator.ValiderFormatMatricule()`
+  - Normalisation automatique avec `MatriculeGenerator.NormaliserMatricule()`
+  - Vérification doublons avec exclusion de l'employé actuel
+
+### Modifié
+- **Calcul CNSS employé** - Application du plafond légal
+  - Salaire ≤ 800 000 : CNSS = salaire × 5.5%
+  - Salaire > 800 000 : CNSS = 44 000 FCFA (plafonné)
+  - Exemple : Salaire 1 000 000 → CNSS = 44 000 (au lieu de 55 000)
+
+- **Affichage bulletin de paie**
+  - Masquage du nom complet de l'entreprise
+  - Seuls le sigle, téléphone et email sont affichés
+  - Impact : `BulletinDocument.cs` (ligne 90)
+
+- **Formulaire modification employé**
+  - Matricule modifiable au lieu de ReadOnly
+  - Ajout champ matricule dans la requête UPDATE SQL
+  - Validation et normalisation complètes
+
+### Technique
+- **Fichiers modifiés** : 5 fichiers
+  - `CNSS_TPA_CALCULATOR.cs` : Plafond CNSS légal
+  - `AjouterEmployeForm.cs` : Gestion CDD automatique
+  - `ModifierEmployeForm.cs` : Gestion CDD + Modification matricule
+  - `BulletinDocument.cs` : Masquage nom entreprise
+  - `AssemblyInfo.cs` : Version 1.1.3.0
+
+- **Conformité législative** : Respect strict du plafond CNSS Burkina Faso
+- **Amélioration UX** : Activation automatique des champs pertinents
+- **Sécurité données** : Validation complète des matricules
+
+### Compatibilité
+- Compatible avec les versions précédentes
+- Aucune modification de schéma de base de données
+- Migration transparente depuis v1.1.2
+- Recalcul automatique des cotisations avec nouveau plafond
+
+---
+
 ## [1.1.2] - 2026-02-09
 
 ### Corrigé
