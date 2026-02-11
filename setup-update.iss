@@ -1,8 +1,8 @@
-; Script d'installation Inno Setup pour Gestion Moderne RH v1.1.2 - UPDATE
-; Mise à jour : Correction erreur GDI+ modification entreprise
+; Script d'installation Inno Setup pour Gestion Moderne RH v1.1.3 - UPDATE
+; Mise à jour : Corrections critiques CNSS, CDD et matricule
 
 #define MyAppName "Gestion Moderne RH"
-#define MyAppVersion "1.1.2"
+#define MyAppVersion "1.1.3"
 #define MyAppPublisher "GMP - Gestion Moderne de Paie"
 #define MyAppURL "https://github.com/AaronThierry/Rhplus_Gestion"
 #define MyAppExeName "RH_GRH.exe"
@@ -23,7 +23,7 @@ AppUpdatesURL={#MyAppURL}/releases
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=LICENSE.txt
-InfoBeforeFile=UPDATE_NOTES_v1.1.2.txt
+InfoBeforeFile=UPDATE_NOTES_v1.1.3.txt
 OutputDir=Setup\Output
 OutputBaseFilename=GestionModerneRH_v{#MyAppVersion}_Update
 SetupIconFile=RH_GRH\logo-rh-modified.ico
@@ -37,7 +37,7 @@ UninstallDisplayIcon={app}\{#MyAppExeName}
 UninstallDisplayName={#MyAppName}
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
-VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.1.2
+VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.1.3
 VersionInfoCopyright=Copyright (C) 2025 {#MyAppPublisher}
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
@@ -66,7 +66,7 @@ Source: "RH_GRH\bin\Release\x86\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Documentation
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "UPDATE_NOTES_v1.1.2.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "UPDATE_NOTES_v1.1.3.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Scripts SQL (optionnels)
 Source: "verify_column.sql"; DestDir: "{app}\Database"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{#SourcePath}\verify_column.sql'))
@@ -183,12 +183,12 @@ var
   S: String;
 begin
   S := '';
-  S := S + 'MISE À JOUR v1.1.2 - Correction Erreur GDI+ Modification Entreprise' + NewLine + NewLine;
+  S := S + 'MISE À JOUR v1.1.3 - Corrections Critiques CNSS, CDD et Matricule' + NewLine + NewLine;
   S := S + 'CORRECTIONS CRITIQUES :' + NewLine;
-  S := S + Space + '- FIX CRITIQUE : Erreur GDI+ lors de la sauvegarde du logo d''entreprise' + NewLine;
-  S := S + Space + '- Création de copies Bitmap indépendantes' + NewLine;
-  S := S + Space + '- Utilisation de PNG au lieu de RawFormat' + NewLine;
-  S := S + Space + '- Gestion propre de la mémoire et verrouillage fichiers' + NewLine + NewLine;
+  S := S + Space + '- CRITIQUE : Plafond CNSS de 800 000 FCFA - Cotisation max 44 000 FCFA' + NewLine;
+  S := S + Space + '- Gestion automatique date fin contrat CDD' + NewLine;
+  S := S + Space + '- Activation modification du matricule employé' + NewLine;
+  S := S + Space + '- Masquage nom complet entreprise sur bulletin' + NewLine + NewLine;
 
   S := S + MemoDirInfo + NewLine + NewLine;
 
