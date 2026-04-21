@@ -18,6 +18,7 @@ namespace RH_GRH
 
                 string sql = @"SELECT
                 p.id_personnel,
+                p.police,
                 e.sigle,
                 e.nomEntreprise,
                 e.telephone       AS TelephoneEntreprise,
@@ -80,6 +81,7 @@ namespace RH_GRH
                             employe = new Employe(
                                 id: reader.GetInt32("id_personnel"),
                                 nom: reader.IsDBNull(reader.GetOrdinal("nomPrenom")) ? string.Empty : reader.GetString("nomPrenom"),
+                                police: reader.IsDBNull(reader.GetOrdinal("police")) ? string.Empty : reader.GetString("police"),
                                 dateEntree: reader.IsDBNull(reader.GetOrdinal("date_entree")) ? DateTime.MinValue : reader.GetDateTime("date_entree"),
                                 dateSortie: reader.IsDBNull(reader.GetOrdinal("date_sortie")) ? null : (DateTime?)reader.GetDateTime("date_sortie"),
                                 poste: reader.IsDBNull(reader.GetOrdinal("poste")) ? string.Empty : reader.GetString("poste"),

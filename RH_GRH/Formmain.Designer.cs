@@ -39,6 +39,7 @@ namespace RH_GRH
             this.panel_slide = new System.Windows.Forms.Panel();
             this.button_exit = new System.Windows.Forms.Button();
             this.panel_administration_submenu = new System.Windows.Forms.Panel();
+            this.button_roles = new System.Windows.Forms.Button();
             this.button_profil = new System.Windows.Forms.Button();
             this.button_utilisateur = new System.Windows.Forms.Button();
             this.button_categorie = new System.Windows.Forms.Button();
@@ -59,6 +60,7 @@ namespace RH_GRH
             this.button_personnel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelVersion = new System.Windows.Forms.Label();
+            this.labelUtilisateur = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -102,6 +104,7 @@ namespace RH_GRH
             // 
             resources.ApplyResources(this.panel_slide, "panel_slide");
             this.panel_slide.BackColor = System.Drawing.Color.MidnightBlue;
+            this.panel_slide.Controls.Add(this.labelUtilisateur);
             this.panel_slide.Controls.Add(this.button_exit);
             this.panel_slide.Controls.Add(this.panel_administration_submenu);
             this.panel_slide.Controls.Add(this.button_administration);
@@ -125,6 +128,7 @@ namespace RH_GRH
             // panel_administration_submenu
             // 
             this.panel_administration_submenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(37)))), ((int)(((byte)(80)))));
+            this.panel_administration_submenu.Controls.Add(this.button_roles);
             this.panel_administration_submenu.Controls.Add(this.button_profil);
             this.panel_administration_submenu.Controls.Add(this.button_utilisateur);
             this.panel_administration_submenu.Controls.Add(this.button_categorie);
@@ -135,14 +139,23 @@ namespace RH_GRH
             this.panel_administration_submenu.Name = "panel_administration_submenu";
             // 
             // button_profil
-            // 
+            //
             resources.ApplyResources(this.button_profil, "button_profil");
             this.button_profil.FlatAppearance.BorderSize = 0;
             this.button_profil.ForeColor = System.Drawing.Color.White;
             this.button_profil.Name = "button_profil";
             this.button_profil.UseVisualStyleBackColor = true;
             this.button_profil.Click += new System.EventHandler(this.button_profil_Click);
-            // 
+            //
+            // button_roles
+            //
+            resources.ApplyResources(this.button_roles, "button_roles");
+            this.button_roles.FlatAppearance.BorderSize = 0;
+            this.button_roles.ForeColor = System.Drawing.Color.White;
+            this.button_roles.Name = "button_roles";
+            this.button_roles.UseVisualStyleBackColor = true;
+            this.button_roles.Click += new System.EventHandler(this.button_roles_Click);
+            //
             // button_utilisateur
             // 
             resources.ApplyResources(this.button_utilisateur, "button_utilisateur");
@@ -325,8 +338,23 @@ namespace RH_GRH
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(250, 25);
             this.labelVersion.TabIndex = 2;
-            this.labelVersion.Text = "Version 1.0.6";
+            this.labelVersion.Text = "Version 1.1.5";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            //
+            // labelUtilisateur
+            //
+            this.labelUtilisateur.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelUtilisateur.Font = new System.Drawing.Font("Montserrat", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUtilisateur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
+            this.labelUtilisateur.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(45)))), ((int)(((byte)(95)))));
+            this.labelUtilisateur.Location = new System.Drawing.Point(0, 680);
+            this.labelUtilisateur.Margin = new System.Windows.Forms.Padding(0);
+            this.labelUtilisateur.Padding = new System.Windows.Forms.Padding(15, 12, 15, 12);
+            this.labelUtilisateur.Name = "labelUtilisateur";
+            this.labelUtilisateur.Size = new System.Drawing.Size(250, 50);
+            this.labelUtilisateur.TabIndex = 3;
+            this.labelUtilisateur.Text = "👤  Utilisateur";
+            this.labelUtilisateur.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             //
             // pictureBox1
             //
@@ -504,6 +532,7 @@ namespace RH_GRH
         private System.Windows.Forms.PictureBox pictureBox1;
         private Button button_exit;
         private Button button_profil;
+        private Button button_roles;
         private Button button_utilisateur;
         private Button button_categorie;
         private Button button_service;
@@ -539,6 +568,7 @@ namespace RH_GRH
         private Label label1;
         private Label label2;
         private Label labelVersion;
+        private Label labelUtilisateur;
     }
 }
 

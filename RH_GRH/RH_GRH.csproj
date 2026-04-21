@@ -41,6 +41,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
@@ -95,6 +98,9 @@
     </Reference>
     <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
       <HintPath>..\packages\MySqlConnector.2.4.0\lib\net471\MySqlConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -187,6 +193,7 @@
     <Compile Include="EmployeClass.cs" />
     <Compile Include="EmployeData.cs" />
     <Compile Include="EmployeDetail.cs" />
+    <Compile Include="PoliceGenerator.cs" />
     <Compile Include="ExcelImportService.cs" />
     <Compile Include="ExcelImportServiceV2.cs" />
     <Compile Include="FilteredComboBoxHelper.cs" />
@@ -231,6 +238,18 @@
     </Compile>
     <Compile Include="GestionCategorieForm.Designer.cs">
       <DependentUpon>GestionCategorieForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionRolesPermissionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionRolesPermissionsForm.Designer.cs">
+      <DependentUpon>GestionRolesPermissionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AjouterModifierRoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterModifierRoleForm.Designer.cs">
+      <DependentUpon>AjouterModifierRoleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Dbconnect.cs" />
     <Compile Include="GestionIndemniteForm.cs">
@@ -308,6 +327,59 @@
     <Compile Include="Formmain.Designer.cs">
       <DependentUpon>Formmain.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginFormModern.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginFormModern.Designer.cs">
+      <DependentUpon>LoginFormModern.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="LoginFormModern.resx">
+      <DependentUpon>LoginFormModern.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="ModernIcons.cs" />
+    <Compile Include="IconResourceHelper.cs" />
+    <Compile Include="PasswordDebugForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Auth\PasswordGenerator.cs" />
+    <Compile Include="ChangerMotDePasseObligatoireForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterModifierUtilisateurForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterModifierUtilisateurForm.Designer.cs">
+      <DependentUpon>AjouterModifierUtilisateurForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionUtilisateursForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionUtilisateursForm.Designer.cs">
+      <DependentUpon>GestionUtilisateursForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VisualisationLogsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VisualisationLogsForm.Designer.cs">
+      <DependentUpon>VisualisationLogsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Auth\PasswordHasher.cs" />
+    <Compile Include="Auth\SessionManager.cs" />
+    <Compile Include="Auth\AuthenticationService.cs" />
+    <Compile Include="Auth\AuditLogger.cs" />
+    <Compile Include="Auth\PermissionManager.cs" />
+    <Compile Include="Auth\RoleService.cs" />
+    <Compile Include="Auth\Models\User.cs" />
+    <Compile Include="Auth\Models\Role.cs" />
+    <Compile Include="Auth\Models\Permission.cs" />
+    <Compile Include="Auth\Models\Session.cs" />
+    <Compile Include="Auth\Models\AuditLog.cs" />
     <Compile Include="GestionEntrepriseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -331,6 +403,12 @@
     </Compile>
     <Compile Include="ModifierServiceForm.Designer.cs">
       <DependentUpon>ModifierServiceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HeaderEntreprise.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HeaderEntreprise.Designer.cs">
+      <DependentUpon>HeaderEntreprise.cs</DependentUpon>
     </Compile>
     <Compile Include="GraphicsExtensions.cs" />
     <Compile Include="CustomMessageBox.cs">

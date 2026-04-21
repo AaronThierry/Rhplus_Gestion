@@ -605,13 +605,17 @@ namespace RH_GRH
                 }
                 dureeContrat = dureeContrat.ToLower(); // Convertir en minuscules pour correspondre aux valeurs attendues
 
+                // Générer le numéro de police automatiquement
+                string numeroPolice = PoliceGenerator.GenererNumeroPolice();
+                System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: Numéro de police généré: {numeroPolice}\n");
+
                 string query = @"INSERT INTO personnel (
-                    nomPrenom, matricule, civilite, sexe, date_naissance, adresse, telephone, poste, numerocnss, identification,
+                    nomPrenom, matricule, police, civilite, sexe, date_naissance, adresse, telephone, poste, numerocnss, identification,
                     id_entreprise, id_direction, id_service, id_categorie,
                     contrat, typeContrat, modePayement, cadre, date_entree, date_sortie,
                     heureContrat, jourContrat, numeroBancaire, banque, salairemoyen, dureeContrat
                 ) VALUES (
-                    @nomPrenom, @matricule, @civilite, @sexe, @dateNaissance, @adresse, @telephone, @poste, @numerocnss, @identification,
+                    @nomPrenom, @matricule, @police, @civilite, @sexe, @dateNaissance, @adresse, @telephone, @poste, @numerocnss, @identification,
                     @idEntreprise, @idDirection, @idService, @idCategorie,
                     @contrat, @typeContrat, @modePayement, @cadre, @dateEntree, @dateSortie,
                     @heureContrat, @jourContrat, @numeroBancaire, @banque, @salaireMoyen, @dureeContrat
@@ -623,6 +627,7 @@ namespace RH_GRH
                     System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: Commande MySQL créée\n");
                     cmd.Parameters.AddWithValue("@nomPrenom", nomPrenom);
                     cmd.Parameters.AddWithValue("@matricule", matricule);
+                    cmd.Parameters.AddWithValue("@police", numeroPolice);
                     cmd.Parameters.AddWithValue("@civilite", (object)civilite ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@sexe", (object)sexe ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@dateNaissance", (object)dateNaissance ?? DBNull.Value);

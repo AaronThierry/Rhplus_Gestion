@@ -23,9 +23,48 @@ namespace RH_GRH
             QuestPDF.Settings.License = LicenseType.Community;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Formmain());
+
+            // Boucle de connexion/déconnexion
+            bool continuerApplication = true;
+
+            while (continuerApplication)
+            {
+                // Afficher le formulaire de connexion moderne
+                using (LoginFormModern loginForm = new LoginFormModern())
+                {
+                    DialogResult loginResult = loginForm.ShowDialog();
+
+                    if (loginResult == DialogResult.OK)
+                    {
+                        // Connexion réussie - lancer l'application principale
+                        using (Formmain mainForm = new Formmain())
+                        {
+                            Application.Run(mainForm);
+                        }
+
+                        // Après fermeture du formulaire principal
+                        // Vérifier si l'utilisateur s'est déconnecté ou a fermé l'app
+                        if (!Auth.SessionManager.Instance.IsAuthenticated)
+                        {
+                            // Déconnexion normale - retour au login
+                            continuerApplication = true;
+                        }
+                        else
+                        {
+                            // Fermeture de l'application sans déconnexion
+                            continuerApplication = false;
+                        }
+                    }
+                    else
+                    {
+                        // Connexion annulée - fermer l'application
+                        continuerApplication = false;
+                    }
+                }
+            }
+
+            // Fermeture propre de l'application
+            Application.Exit();
         }
 
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)

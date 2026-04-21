@@ -9,6 +9,7 @@ namespace RH_GRH
         public class BulletinModel
         {
             public string NomEmploye { get; set; }
+            public string Police { get; set; } // Numéro de police unique
             public string Matricule { get; set; }
             public string Identification { get; set; }
             public string Poste { get; set; }
@@ -89,6 +90,8 @@ namespace RH_GRH
             public double SalaireBrut { get; set; }
 
 
+        //BASE CNSS PLAFONNEE (max 800 000 FCFA)
+            public double BaseCNSSPlafonnee { get; set; }
 
 
         //BASE IUTS

@@ -115,7 +115,10 @@ namespace RH_GRH
                 {
                     DataRow newRow = filtered.NewRow();
                     newRow["id_personnel"] = row["Id"];
-                    newRow["nomPrenom"] = row["Nom Prenom"];
+                    // Ajouter le numéro de police dans l'affichage si disponible
+                    string police = row["Police"] != DBNull.Value ? row["Police"].ToString() : "";
+                    string nomPrenom = row["Nom Prenom"].ToString();
+                    newRow["nomPrenom"] = !string.IsNullOrEmpty(police) ? $"[{police}] {nomPrenom}" : nomPrenom;
                     filtered.Rows.Add(newRow);
                 }
 
@@ -165,9 +168,41 @@ namespace RH_GRH
                     DataGridView_Employe_Gestion.Columns["ID Entreprise"].Visible = false;
                 }
 
-                // Configurer la colonne Actions
+                // Réorganiser l'ordre des colonnes pour mettre Police après Entreprise et Actions à la fin
+                if (DataGridView_Employe_Gestion.Columns.Contains("Police"))
+                {
+                    DataGridView_Employe_Gestion.Columns["Police"].DisplayIndex = 1; // Après Entreprise
+                }
+
+                if (DataGridView_Employe_Gestion.Columns.Contains("Matricule"))
+                {
+                    DataGridView_Employe_Gestion.Columns["Matricule"].DisplayIndex = 2;
+                }
+
+                if (DataGridView_Employe_Gestion.Columns.Contains("Nom Prenom"))
+                {
+                    DataGridView_Employe_Gestion.Columns["Nom Prenom"].DisplayIndex = 3;
+                }
+
+                if (DataGridView_Employe_Gestion.Columns.Contains("Poste"))
+                {
+                    DataGridView_Employe_Gestion.Columns["Poste"].DisplayIndex = 4;
+                }
+
+                if (DataGridView_Employe_Gestion.Columns.Contains("Contrat"))
+                {
+                    DataGridView_Employe_Gestion.Columns["Contrat"].DisplayIndex = 5;
+                }
+
+                if (DataGridView_Employe_Gestion.Columns.Contains("Telephone"))
+                {
+                    DataGridView_Employe_Gestion.Columns["Telephone"].DisplayIndex = 6;
+                }
+
+                // Déplacer la colonne Actions à l'extrémité droite
                 if (DataGridView_Employe_Gestion.Columns["Actions"] != null)
                 {
+                    DataGridView_Employe_Gestion.Columns["Actions"].DisplayIndex = DataGridView_Employe_Gestion.Columns.Count - 1;
                     DataGridView_Employe_Gestion.Columns["Actions"].Width = 180;
                     DataGridView_Employe_Gestion.Columns["Actions"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     DataGridView_Employe_Gestion.Columns["Actions"].HeaderText = "Actions";

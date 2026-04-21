@@ -211,6 +211,12 @@ namespace RH_GRH
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
             dgv.Columns.Add(new DataGridViewTextBoxColumn {
+                Name = "Police",
+                HeaderText = "N° Police",
+                MinimumWidth = 120,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            });
+            dgv.Columns.Add(new DataGridViewTextBoxColumn {
                 Name = "Identification",
                 HeaderText = "N° Identification",
                 MinimumWidth = 120,
@@ -304,6 +310,7 @@ namespace RH_GRH
                 int index = dgv.Rows.Add(
                     row.RowNumber,
                     row.Matricule,
+                    row.Police ?? "",
                     row.Identification,
                     row.Civilite,
                     row.Nom,

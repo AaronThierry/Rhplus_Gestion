@@ -154,7 +154,7 @@
     <value>7</value>
   </data>
   <data name="button_exit.Text" xml:space="preserve">
-    <value>Sortir</value>
+    <value>Se déconnecter</value>
   </data>
   <data name="button_exit.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
@@ -609,6 +609,48 @@
   <data name="&gt;&gt;panel_slide.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="button_roles.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="button_roles.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="button_roles.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Montserrat Medium, 10.2pt, style=Bold</value>
+  </data>
+  <data name="button_roles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 234</value>
+  </data>
+  <data name="button_roles.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="button_roles.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>35, 0, 0, 0</value>
+  </data>
+  <data name="button_roles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>247, 39</value>
+  </data>
+  <data name="button_roles.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="button_roles.Text" xml:space="preserve">
+    <value>Rôles &amp; Permissions</value>
+  </data>
+  <data name="button_roles.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;button_roles.Name" xml:space="preserve">
+    <value>button_roles</value>
+  </data>
+  <data name="&gt;&gt;button_roles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button_roles.Parent" xml:space="preserve">
+    <value>panel_administration_submenu</value>
+  </data>
+  <data name="&gt;&gt;button_roles.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
   <data name="button_profil.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -634,22 +676,10 @@
     <value>5</value>
   </data>
   <data name="button_profil.Text" xml:space="preserve">
-    <value>Profil</value>
+    <value>Logs</value>
   </data>
   <data name="button_profil.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;button_profil.Name" xml:space="preserve">
-    <value>button_profil</value>
-  </data>
-  <data name="&gt;&gt;button_profil.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button_profil.Parent" xml:space="preserve">
-    <value>panel_administration_submenu</value>
-  </data>
-  <data name="&gt;&gt;button_profil.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="button_utilisateur.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -680,18 +710,6 @@
   </data>
   <data name="button_utilisateur.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;button_utilisateur.Name" xml:space="preserve">
-    <value>button_utilisateur</value>
-  </data>
-  <data name="&gt;&gt;button_utilisateur.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button_utilisateur.Parent" xml:space="preserve">
-    <value>panel_administration_submenu</value>
-  </data>
-  <data name="&gt;&gt;button_utilisateur.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="button_categorie.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>

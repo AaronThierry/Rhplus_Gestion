@@ -580,11 +580,116 @@ namespace RH_GRH
 
                 var total = CalculerDeductibiliteIndemnites(exLog, exTrp, exFct);
 
-                Debug.WriteLine(
-                    $"[DEDUCT] BSoc={salaireBrutSocial:N2} | Log(N)={logementNum:N2} Log( nat)={logementNat:N2} | " +
-                    $"Trp(N)={transportNum:N2} Trp(nat)={transportNat:N2} | Fct(N)={fonctionNum:N2} | " +
-                    $"ExLog={exLog:N2} ExTrp={exTrp:N2} ExFct={exFct:N2} | Total={total:N2}"
-                );
+                // Debug détaillé avec tous les composants des indemnités déductibles
+                Debug.WriteLine("═══════════════════════════════════════════════════════════════════════");
+                Debug.WriteLine("           CALCUL INDEMNITÉS DÉDUCTIBLES - DÉTAIL COMPLET             ");
+                Debug.WriteLine("═══════════════════════════════════════════════════════════════════════");
+                Debug.WriteLine("");
+                Debug.WriteLine($"┌─ SALAIRE BRUT SOCIAL : {salaireBrutSocial,15:N2} FCFA");
+                Debug.WriteLine("");
+
+                // LOGEMENT
+                Debug.WriteLine("┌─ INDEMNITÉ LOGEMENT");
+                Debug.WriteLine($"│  Montant numéraire    : {logementNum,15:N2} FCFA");
+                Debug.WriteLine($"│  Montant nature       : {logementNat,15:N2} FCFA");
+
+                if (logementNum > 0m && logementNat == 0m)
+                {
+                    decimal plafondPct = 0.20m * salaireBrutSocial;
+                    decimal plafondFixe = 75000m;
+                    Debug.WriteLine($"│  ──────────────────────────────────────────────");
+                    Debug.WriteLine($"│  Type                 : Numéraire seul");
+                    Debug.WriteLine($"│  Plafond 20% BSoc     : {plafondPct,15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond fixe         : {plafondFixe,15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond MIN          : {Min(plafondPct, plafondFixe),15:N2} FCFA");
+                    Debug.WriteLine($"│  Exonération Logement : {exLog,15:N2} FCFA");
+                }
+                else if (logementNum == 0m && logementNat > 0m)
+                {
+                    decimal montantCalcule = logementNat / 240m;
+                    decimal plafondFixe = 75000m;
+                    Debug.WriteLine($"│  ──────────────────────────────────────────────");
+                    Debug.WriteLine($"│  Type                 : Nature seul");
+                    Debug.WriteLine($"│  Montant/240          : {montantCalcule,15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond fixe         : {plafondFixe,15:N2} FCFA");
+                    Debug.WriteLine($"│  Exonération Logement : {exLog,15:N2} FCFA");
+                }
+                else
+                {
+                    Debug.WriteLine($"│  ──────────────────────────────────────────────");
+                    Debug.WriteLine($"│  Type                 : Mixte ou nul");
+                    Debug.WriteLine($"│  Exonération Logement : {exLog,15:N2} FCFA");
+                }
+                Debug.WriteLine("");
+
+                // TRANSPORT
+                Debug.WriteLine("┌─ INDEMNITÉ TRANSPORT");
+                Debug.WriteLine($"│  Montant numéraire    : {transportNum,15:N2} FCFA");
+                Debug.WriteLine($"│  Montant nature       : {transportNat,15:N2} FCFA");
+
+                if (transportNum > 0m && transportNat == 0m)
+                {
+                    decimal plafondPct = 0.05m * salaireBrutSocial;
+                    decimal plafondFixe = 30000m;
+                    Debug.WriteLine($"│  ──────────────────────────────────────────────");
+                    Debug.WriteLine($"│  Type                 : Numéraire seul");
+                    Debug.WriteLine($"│  Plafond 5% BSoc      : {plafondPct,15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond fixe         : {plafondFixe,15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond MIN          : {Min(plafondPct, plafondFixe),15:N2} FCFA");
+                    Debug.WriteLine($"│  Exonération Transport: {exTrp,15:N2} FCFA");
+                }
+                else if (transportNum == 0m && transportNat > 0m)
+                {
+                    decimal montantCalcule = transportNat / 240m;
+                    decimal plafondPct = 0.05m * salaireBrutSocial;
+                    decimal plafondFixe = 30000m;
+                    Debug.WriteLine($"│  ──────────────────────────────────────────────");
+                    Debug.WriteLine($"│  Type                 : Nature seul");
+                    Debug.WriteLine($"│  Montant/240          : {montantCalcule,15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond 5% BSoc      : {plafondPct,15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond fixe         : {plafondFixe,15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond MIN          : {Min(plafondPct, plafondFixe),15:N2} FCFA");
+                    Debug.WriteLine($"│  Exonération Transport: {exTrp,15:N2} FCFA");
+                }
+                else
+                {
+                    Debug.WriteLine($"│  ──────────────────────────────────────────────");
+                    Debug.WriteLine($"│  Type                 : Mixte ou nul");
+                    Debug.WriteLine($"│  Exonération Transport: {exTrp,15:N2} FCFA");
+                }
+                Debug.WriteLine("");
+
+                // FONCTION
+                Debug.WriteLine("┌─ INDEMNITÉ FONCTION");
+                Debug.WriteLine($"│  Montant numéraire    : {fonctionNum,15:N2} FCFA");
+
+                if (fonctionNum > 0m)
+                {
+                    decimal plafondPct = 0.05m * salaireBrutSocial;
+                    decimal plafondFixe = 50000m;
+                    Debug.WriteLine($"│  ──────────────────────────────────────────────");
+                    Debug.WriteLine($"│  Plafond 5% BSoc      : {plafondPct,15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond fixe         : {plafondFixe,15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond MIN          : {Min(plafondPct, plafondFixe),15:N2} FCFA");
+                    Debug.WriteLine($"│  Exonération Fonction : {exFct,15:N2} FCFA");
+                }
+                else
+                {
+                    Debug.WriteLine($"│  ──────────────────────────────────────────────");
+                    Debug.WriteLine($"│  Exonération Fonction : {exFct,15:N2} FCFA");
+                }
+                Debug.WriteLine("");
+
+                // TOTAL
+                Debug.WriteLine("┌─ DÉDUCTIBILITÉ TOTALE");
+                Debug.WriteLine($"│  Exonération Logement : {exLog,15:N2} FCFA");
+                Debug.WriteLine($"│  Exonération Transport: {exTrp,15:N2} FCFA");
+                Debug.WriteLine($"│  Exonération Fonction : {exFct,15:N2} FCFA");
+                Debug.WriteLine($"│  ──────────────────────────────────────────────");
+                Debug.WriteLine($"│  TOTAL DÉDUCTIBLE     : {total,15:N2} FCFA");
+                Debug.WriteLine("");
+                Debug.WriteLine("═══════════════════════════════════════════════════════════════════════");
+                Debug.WriteLine("");
 
                 return total;
             }
@@ -646,10 +751,11 @@ public static class IUTS
                 break;
         }
 
-        iutsBrut = Math.Round(iuts, 2, MidpointRounding.AwayFromZero);
-        decimal iutsFinal = Math.Round(iutsBrut * (1m - reduction), 2, MidpointRounding.AwayFromZero);
+        // Arrondi au franc supérieur dès que > 0.5
+        iutsBrut = Math.Round(iuts, 0, MidpointRounding.AwayFromZero);
+        decimal iutsFinal = Math.Round(iutsBrut * (1m - reduction), 0, MidpointRounding.AwayFromZero);
 
-        Debug.WriteLine($"[IUTS] Base(⌊100⌋)={baseIUTS:N0} | Brut={iutsBrut:N2} | Charges={nombreCharges} (−{reduction:P0}) | Final={iutsFinal:N2}");
+        Debug.WriteLine($"[IUTS] Base(⌊100⌋)={baseIUTS:N0} | Brut={iutsBrut:N0} | Charges={nombreCharges} (−{reduction:P0}) | Final={iutsFinal:N0}");
         return iutsFinal;
     }
 }
@@ -1207,7 +1313,8 @@ public static class IUTS
                 // CALCUL BASE IUTS ,SALAIRE BRUT SOCIAL
 
                 var r = IUTSCalculator.CalculerIUTS(
-                    salaireBrut, cnssEmploye, emp.Cadre, deductibiliteIndem, salaireCategoriel, prime, floorCentaines: true);
+                    salaireBrut, cnssEmploye, emp.Cadre, deductibiliteIndem, salaireCategoriel, prime,
+                    salaireDeBase: salaireBase, sursalaire: sursalaire, floorCentaines: true);
 
                 decimal baseIutsArr = r.BaseIUTSArrondieCent; // ta base IUTS arrondie à la centaine (decimal)
                 int nombreCharges = ChargeClass.CountTotalCharges(idEmploye);
@@ -1257,6 +1364,7 @@ public static class IUTS
                 {
                     NomPrenom = employe.Nom ?? "",
                     Civilite = employe.Civilite ?? "",
+                    Police = employe.Police ?? "",
                     Matricule = employe.Matricule ?? "",
                     Identification = employe.Identification ?? "",
                     Poste = employe.Poste ?? "",
@@ -1559,6 +1667,7 @@ public static class IUTS
                 {
                     NomEmploye = _lastSnapshot.NomPrenom,
                     Civilite = _lastSnapshot.Civilite,
+                    Police = _lastSnapshot.Police,
                     Matricule = _lastSnapshot.Matricule,
                     Identification = _lastSnapshot.Identification,
                     Poste = _lastSnapshot.Poste,
@@ -1629,6 +1738,7 @@ public static class IUTS
                     Sursalaire = _lastSnapshot.Sursalaire,
                     //SALAIRE BRUT
                     SalaireBrut = (double)_lastSnapshot.SalaireBrut,
+                    BaseCNSSPlafonnee = (double)Math.Min(_lastSnapshot.SalaireBrut, CNSSCalculator.PLAFOND_CNSS),
                     //BASE IUTS
                     BaseIUTS = (double)_lastSnapshot.BaseIUTS,
                     //IUTS
@@ -1664,16 +1774,18 @@ public static class IUTS
                 {
                     saveDialog.Title = "Enregistrer le bulletin de paie";
                     saveDialog.Filter = "Fichier PDF (*.pdf)|*.pdf";
-                    // Nettoyer la période avant d'insérer dans le nom du fichier
-                    string periodeSafe = model.Periode
-                        .Replace("/", "-")   // remplace les slashs
-                        .Replace(" ", "_")   // remplace les espaces
-                        .Replace(":", "-");  // remplace les deux-points s'il y en a
 
-                    // Format: Bulletin_Periode_NomEntreprise_NomEmploye.pdf
-                    string nomEntrepriseSafe = model.NomEntreprise?.Replace(" ", "_") ?? "Entreprise";
-                    string nomEmployeSafe = model.NomEmploye?.Replace(" ", "_") ?? "Employe";
-                    saveDialog.FileName = $"Bulletin_{periodeSafe}_{nomEntrepriseSafe}_{nomEmployeSafe}.pdf";
+                    // Format standard pour le portail web: YYYY-MM-DD_au_YYYY-MM-DD
+                    // Utiliser les dates sources au lieu de parser la période affichée
+                    DateTime d0 = guna2DateTimePickerDebut.Value.Date;
+                    DateTime d1 = guna2DateTimePickerFin.Value.Date;
+                    string periodeSafe = $"{d0:yyyy-MM-dd}_au_{d1:yyyy-MM-dd}";
+
+                    // Format professionnel: Bulletin_Police_NomEmploye_Periode.pdf
+                    // Utilise le numéro de police unique au lieu du matricule
+                    string policeSafe = (model.Police ?? "SANS_POLICE").Replace(" ", "_").Replace("/", "-");
+                    string nomEmployeSafe = (model.NomEmploye ?? "Employe").Replace(" ", "_").Replace("/", "-");
+                    saveDialog.FileName = $"Bulletin_{policeSafe}_{nomEmployeSafe}_{periodeSafe}.pdf";
 
 
                     if (saveDialog.ShowDialog() == DialogResult.OK)

@@ -1,0 +1,140 @@
+═══════════════════════════════════════════════════════════════════════
+                    GESTION MODERNE RH - VERSION 1.1.6
+                    NOTES DE MISE À JOUR - 21/04/2026
+═══════════════════════════════════════════════════════════════════════
+
+AMÉLIORATIONS MAJEURES - CALCULS FISCAUX
+═══════════════════════════════════════════════════════════════════════
+
+✓ NOUVEAU CALCUL CNSS EXONÉRÉE
+  - Ajout du calcul de deux types de CNSS exonérée :
+    • CNSS Exonérée 1 : 8% × (Salaire base + Prime ancienneté + Sursalaire)
+    • CNSS Exonérée 2 : 5.5% × Salaire Brut
+  - Plafonnement automatique à 44 000 FCFA pour chaque type
+  - Sélection automatique du minimum entre les deux pour le calcul du salaire brut social
+
+✓ MODIFICATION DU SALAIRE BRUT SOCIAL
+  - Nouvelle formule : Salaire Brut - MIN(CNSS Exonérée 1, CNSS Exonérée 2)
+  - Remplace l'ancien calcul : Salaire Brut - CNSS Employé
+
+✓ AMÉLIORATION CALCUL ABATTEMENT FISCAL
+  - Ajout du sursalaire dans la base de calcul de l'abattement
+  - Nouvelle formule SBP : Salaire catégoriel + Prime ancienneté + Sursalaire
+  - Ancienne formule : Salaire catégoriel + Prime ancienneté
+
+OUTILS DE DÉBOGAGE AMÉLIORÉS
+═══════════════════════════════════════════════════════════════════════
+
+✓ DEBUGGER DÉTAILLÉ CALCUL BASE IUTS (6 étapes)
+  Étape 1 : CNSS Exonérée - Calcul et sélection
+    - Affichage des deux types de CNSS exonérée
+    - Indication de laquelle est retenue (la plus petite)
+    - Détection et signalement du plafonnement à 44 000 FCFA
+
+  Étape 2 : Salaire Brut Social (BSoc)
+    - Salaire Brut - CNSS Exonérée retenue
+
+  Étape 3 : Brut Fiscal
+    - Brut Social - Indemnités déductibles
+
+  Étape 4 : Détail CNSS Exonérée
+    - Calcul détaillé CNSS Exonérée 1 avec composants
+    - Calcul détaillé CNSS Exonérée 2 avec composants
+    - Affichage des plafonds appliqués
+
+  Étape 5 : Abattement
+    - Affichage du statut (cadre/non-cadre)
+    - Taux d'abattement (20% ou 25%)
+    - Détail SBP avec sursalaire
+    - Calcul montant abattement
+
+  Étape 6 : Base IUTS
+    - Base IUTS exacte
+    - Base IUTS arrondie à la centaine inférieure
+
+✓ DEBUGGER DÉTAILLÉ INDEMNITÉS DÉDUCTIBLES
+  - Détail complet pour l'indemnité Logement
+    • Type (numéraire/nature/mixte)
+    • Plafonds appliqués (20% BSoc et 75 000 FCFA)
+    • Calcul final de l'exonération
+
+  - Détail complet pour l'indemnité Transport
+    • Type (numéraire/nature/mixte)
+    • Plafonds appliqués (5% BSoc et 30 000 FCFA)
+    • Calcul final de l'exonération
+
+  - Détail complet pour l'indemnité Fonction
+    • Plafonds appliqués (5% BSoc et 50 000 FCFA)
+    • Calcul final de l'exonération
+
+  - Total déductibilité avec récapitulatif
+
+FICHIERS MODIFIÉS
+═══════════════════════════════════════════════════════════════════════
+
+RH_GRH/IUTSCalculator.cs
+  - Ajout calcul CNSS exonérée 1 et 2 avec plafonnement
+  - Modification calcul salaire brut social
+  - Ajout sursalaire dans calcul abattement
+  - Debugger détaillé en 6 étapes
+
+RH_GRH/GestionSalaireHoraireForm.cs
+  - Mise à jour appel IUTSCalculator avec paramètres sursalaire
+  - Debugger détaillé indemnités déductibles
+
+RH_GRH/GestionSalaireJournalierForm.cs
+  - Mise à jour appel IUTSCalculator avec paramètres sursalaire
+  - Debugger détaillé indemnités déductibles
+
+RH_GRH/SaisiePayeLotForm.cs
+  - Mise à jour appels IUTSCalculator (horaire et journalier)
+  - Ajout paramètres sursalaire et salaire de base
+
+IMPACT SUR LES CALCULS
+═══════════════════════════════════════════════════════════════════════
+
+⚠ IMPORTANT : Cette mise à jour modifie les calculs fiscaux
+
+1. Salaire Brut Social
+   Avant : Salaire Brut - CNSS Employé
+   Après : Salaire Brut - MIN(CNSS Exo 1, CNSS Exo 2)
+   Impact : Peut augmenter le salaire brut social
+
+2. Abattement Fiscal
+   Avant : Taux × (Sal. Cat + Prime Anc)
+   Après : Taux × (Sal. Cat + Prime Anc + Sursalaire)
+   Impact : Augmente l'abattement si sursalaire > 0
+
+3. Base IUTS
+   Impact : Peut être différente suite aux deux modifications ci-dessus
+
+Les bulletins de paie générés avec cette version utiliseront les nouveaux
+calculs conformes à la réglementation fiscale en vigueur.
+
+COMMENT VÉRIFIER LES CALCULS
+═══════════════════════════════════════════════════════════════════════
+
+1. Ouvrir Visual Studio
+2. Menu : View > Output
+3. Dans la liste déroulante, sélectionner "Debug"
+4. Générer un bulletin de paie
+5. Consulter les logs détaillés dans la fenêtre Output
+
+INSTALLATION
+═══════════════════════════════════════════════════════════════════════
+
+1. Fermer l'application RH+ Gestion
+2. Exécuter GestionModerneRH_v1.1.6_Update.exe
+3. Suivre les instructions de l'installateur
+4. Redémarrer l'application
+
+SUPPORT
+═══════════════════════════════════════════════════════════════════════
+
+Pour toute question ou assistance :
+- Documentation complète disponible dans le dossier d'installation
+- Logs de débogage disponibles dans Visual Studio (View > Output)
+
+═══════════════════════════════════════════════════════════════════════
+                            FIN DES NOTES
+═══════════════════════════════════════════════════════════════════════

@@ -92,15 +92,24 @@ namespace RH_GRH
             }
         }
 
-        // Employeur (mêmes formules que ton Java)
+        // Employeur - AVEC PLAFOND DE 800 000 FCFA
         public static decimal CalculerPensionEmployeur(decimal salaireBrut)    // 8,5%
-            => Math.Round(salaireBrut * 0.085m, 0, MidpointRounding.AwayFromZero);
+        {
+            decimal salaireAssiette = Math.Min(salaireBrut, PLAFOND_CNSS);
+            return Math.Round(salaireAssiette * 0.085m, 0, MidpointRounding.AwayFromZero);
+        }
 
         public static decimal CalculerRisqueProEmployeur(decimal salaireBrut)  // 1,5%
-            => Math.Round(salaireBrut * 0.015m, 0, MidpointRounding.AwayFromZero);
+        {
+            decimal salaireAssiette = Math.Min(salaireBrut, PLAFOND_CNSS);
+            return Math.Round(salaireAssiette * 0.015m, 0, MidpointRounding.AwayFromZero);
+        }
 
         public static decimal CalculerPFEmployeur(decimal salaireBrut)         // 6%
-            => Math.Round(salaireBrut * 0.06m, 0, MidpointRounding.AwayFromZero);
+        {
+            decimal salaireAssiette = Math.Min(salaireBrut, PLAFOND_CNSS);
+            return Math.Round(salaireAssiette * 0.06m, 0, MidpointRounding.AwayFromZero);
+        }
 
         public static decimal CalculerTpa(decimal salaireBrut, decimal tauxTpaPourcent)
             => Math.Round(salaireBrut * (tauxTpaPourcent / 100m), 0, MidpointRounding.AwayFromZero);

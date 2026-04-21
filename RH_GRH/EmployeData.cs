@@ -10,6 +10,7 @@ namespace RH_GRH
     public class Employe
     {
         public int Id { get; set; }
+        public string Police { get; set; } // Numéro de police unique généré automatiquement
         public string Nom { get; set; }
         public string Civilite { get; set; }
         public DateTime DateNaissance { get; set; } // Utilisation de DateTime pour les dates
@@ -63,9 +64,10 @@ namespace RH_GRH
                        string numeroCnssEmploye,string sexe,string dureeContrat, string sigle, string nomEntreprise,
                        string telephoneEntreprise, string emailEntreprise, string adressePhysiqueEntreprise,
                        string adressePostaleEntreprise, string responsableEntreprise, string responsablePaie = "",
-                       string registreCommerce = "", string numeroIFU = "", string numeroCNSSEntreprise = "")
+                       string registreCommerce = "", string numeroIFU = "", string numeroCNSSEntreprise = "", string police = "")
         {
             Id = id;
+            Police = police;
             Nom = nom;
             DateEntree = dateEntree;
             DateSortie = dateSortie;

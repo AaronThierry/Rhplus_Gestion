@@ -31,12 +31,14 @@ namespace RH_GRH
             bool arrondirNetAPayerCeil = true // ceil comme dans ton Java (Math.ceil)
         )
         {
-            // 1) Salaire net avant effort
+            // 1) Salaire net avant effort - Arrondi au franc supérieur dès que > 0.5
             decimal salaireNet = salaireBrut - cnssEmploye - iutsFinal - avantagesNature;
             if (salaireNet < 0m) salaireNet = 0m;
+            salaireNet = decimal.Round(salaireNet, 0, MidpointRounding.AwayFromZero);
 
-            // 2) Effort
+            // 2) Effort - Arrondi au franc supérieur dès que > 0.5
             decimal effort = salaireNet * tauxEffort;
+            effort = decimal.Round(effort, 0, MidpointRounding.AwayFromZero);
 
             // 3) Net à payer
             decimal netAPayer = salaireNet - effort;
@@ -50,9 +52,9 @@ namespace RH_GRH
 
             return new NetResult
             {
-                SalaireNet = decimal.Round(salaireNet, 2, MidpointRounding.AwayFromZero),
-                Effort = decimal.Round(effort, 2, MidpointRounding.AwayFromZero),
-                NetAPayer = netAPayer, // déjà ceiling
+                SalaireNet = salaireNet,  // déjà arrondi
+                Effort = effort,          // déjà arrondi
+                NetAPayer = netAPayer,    // déjà ceiling
                 NetAPayerFinal = netAPayerFinal
             };
         }

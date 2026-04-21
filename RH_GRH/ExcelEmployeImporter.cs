@@ -516,6 +516,7 @@ namespace RH_GRH
 
         // Données de l'employé - Aligné 100% avec table personnel
         public string Matricule { get; set; }
+        public string Police { get; set; }
         public string Identification { get; set; }
         public string Civilite { get; set; }
         public string Sexe { get; set; }

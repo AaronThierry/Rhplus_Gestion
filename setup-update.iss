@@ -1,8 +1,8 @@
-; Script d'installation Inno Setup pour Gestion Moderne RH v1.1.3 - UPDATE
-; Mise à jour : Corrections critiques CNSS, CDD et matricule
+; Script d'installation Inno Setup pour Gestion Moderne RH v1.1.6 - UPDATE
+; Mise à jour : CNSS Exonérée + Calculs fiscaux améliorés + Debugger détaillé
 
 #define MyAppName "Gestion Moderne RH"
-#define MyAppVersion "1.1.3"
+#define MyAppVersion "1.1.6"
 #define MyAppPublisher "GMP - Gestion Moderne de Paie"
 #define MyAppURL "https://github.com/AaronThierry/Rhplus_Gestion"
 #define MyAppExeName "RH_GRH.exe"
@@ -23,7 +23,7 @@ AppUpdatesURL={#MyAppURL}/releases
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=LICENSE.txt
-InfoBeforeFile=UPDATE_NOTES_v1.1.3.txt
+InfoBeforeFile=UPDATE_NOTES_v1.1.6.txt
 OutputDir=Setup\Output
 OutputBaseFilename=GestionModerneRH_v{#MyAppVersion}_Update
 SetupIconFile=RH_GRH\logo-rh-modified.ico
@@ -37,7 +37,7 @@ UninstallDisplayIcon={app}\{#MyAppExeName}
 UninstallDisplayName={#MyAppName}
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
-VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.1.3
+VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.1.6
 VersionInfoCopyright=Copyright (C) 2025 {#MyAppPublisher}
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
@@ -66,10 +66,10 @@ Source: "RH_GRH\bin\Release\x86\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Documentation
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "UPDATE_NOTES_v1.1.3.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "UPDATE_NOTES_v1.1.4.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Scripts SQL (optionnels)
-Source: "verify_column.sql"; DestDir: "{app}\Database"; Flags: ignoreversion; Check: FileExists(ExpandConstant('{#SourcePath}\verify_column.sql'))
+Source: "Database\*.sql"; DestDir: "{app}\Database"; Flags: ignoreversion skipifsourcedoesntexist
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
@@ -183,12 +183,13 @@ var
   S: String;
 begin
   S := '';
-  S := S + 'MISE À JOUR v1.1.3 - Corrections Critiques CNSS, CDD et Matricule' + NewLine + NewLine;
-  S := S + 'CORRECTIONS CRITIQUES :' + NewLine;
-  S := S + Space + '- CRITIQUE : Plafond CNSS de 800 000 FCFA - Cotisation max 44 000 FCFA' + NewLine;
-  S := S + Space + '- Gestion automatique date fin contrat CDD' + NewLine;
-  S := S + Space + '- Activation modification du matricule employé' + NewLine;
-  S := S + Space + '- Masquage nom complet entreprise sur bulletin' + NewLine + NewLine;
+  S := S + 'MISE À JOUR v1.1.4 - Système Mot de Passe et Restriction Admin RH' + NewLine + NewLine;
+  S := S + 'NOUVELLES FONCTIONNALITÉS :' + NewLine;
+  S := S + Space + '- Mot de passe par défaut "RHPlus2026!" pour nouveaux utilisateurs' + NewLine;
+  S := S + Space + '- Changement obligatoire à la première connexion' + NewLine;
+  S := S + Space + '- Restriction accès Admin RH (Utilisateurs/Logs/Rôles réservés au Super Admin)' + NewLine;
+  S := S + Space + '- Formulaire création utilisateur simplifié (pas de saisie mot de passe)' + NewLine + NewLine;
+  S := S + 'IMPORTANT : Exécuter le script SQL add_premier_connexion_column.sql après installation' + NewLine + NewLine;
 
   S := S + MemoDirInfo + NewLine + NewLine;
 

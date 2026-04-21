@@ -867,10 +867,11 @@ namespace RH_GRH
                 .Replace(" ", "_")
                 .Replace(":", "-");
 
-            // Format: Bulletin_Periode_NomEntreprise_NomEmploye.pdf
-            string nomEntrepriseSafe = model.NomEntreprise?.Replace(" ", "_") ?? "Entreprise";
-            string nomEmployeSafe = model.NomEmploye?.Replace(" ", "_") ?? "Employe";
-            string nomFichier = $"Bulletin_{periodeSafe}_{nomEntrepriseSafe}_{nomEmployeSafe}.pdf";
+            // Format professionnel: Bulletin_Matricule_NomEmploye_Periode.pdf
+            // Ce format facilite l'import en lot sur la plateforme web
+            string matriculeSafe = (model.Matricule ?? "SANS_MATRICULE").Replace(" ", "_").Replace("/", "-");
+            string nomEmployeSafe = (model.NomEmploye ?? "Employe").Replace(" ", "_").Replace("/", "-");
+            string nomFichier = $"Bulletin_{matriculeSafe}_{nomEmployeSafe}_{periodeSafe}.pdf";
             string cheminComplet = System.IO.Path.Combine(dossierDestination, nomFichier);
 
             // Debug: Afficher le chemin complet
@@ -1035,6 +1036,8 @@ namespace RH_GRH
                 deductibiliteIndem,
                 salaireCategoriel,
                 primeAnciennete,
+                salaireDeBase: salaireBase,
+                sursalaire: sursalaire,
                 floorCentaines: true
             );
 
@@ -1222,6 +1225,8 @@ namespace RH_GRH
                 deductibiliteIndem,
                 salaireCategoriel,
                 primeAnciennete,
+                salaireDeBase: salaireBase,
+                sursalaire: sursalaire,
                 floorCentaines: true
             );
 

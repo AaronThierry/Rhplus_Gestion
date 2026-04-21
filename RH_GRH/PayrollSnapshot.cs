@@ -28,6 +28,7 @@ namespace RH_GRH
         public string NomPrenom { get; set; } = "";
         public string Civilite { get; set; } = "";
         public string Poste { get; set; } = "";
+        public string Police { get; set; } = ""; // Numéro de police unique
         public string Matricule { get; set; } = "";
         public string Identification { get; set; } = "";
         public string NumeroEmploye { get; set; } = "";

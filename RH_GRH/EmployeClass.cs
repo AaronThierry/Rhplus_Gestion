@@ -75,15 +75,19 @@ public static class EmployeClass
                     }
                 }
 
-                // Insert minimal
+                // Générer le numéro de police unique
+                string numeroPolice = PoliceGenerator.GenererNumeroPolice();
+
+                // Insert avec le numéro de police
                 const string insertSql = @"
                 INSERT INTO personnel
-                    (matricule, nomPrenom, civilite, sexe, date_naissance, adresse, telephone, identification, poste, contrat, cadre, date_entree, date_sortie, typeContrat ,heureContrat, jourContrat, modePayement, banque, numeroBancaire, id_direction, id_categorie, id_service, id_entreprise, dureeContrat,numerocnss,salairemoyen)
+                    (police, matricule, nomPrenom, civilite, sexe, date_naissance, adresse, telephone, identification, poste, contrat, cadre, date_entree, date_sortie, typeContrat ,heureContrat, jourContrat, modePayement, banque, numeroBancaire, id_direction, id_categorie, id_service, id_entreprise, dureeContrat,numerocnss,salairemoyen)
                 VALUES
-                    (@matricule, @nomPrenom, @civilite, @sexe,  @date_naissance, @adresse, @telephone, @identification, @poste, @contrat, @cadre, @date_entree, @date_sortie, @typeContrat, @heureContrat, @jourContrat, @modePayement, @banque, @numeroBancaire, @id_direction, @id_categorie, @id_service, @id_entreprise, @dureeContrat,@numerocnss,@salairemoyen);";
+                    (@police, @matricule, @nomPrenom, @civilite, @sexe,  @date_naissance, @adresse, @telephone, @identification, @poste, @contrat, @cadre, @date_entree, @date_sortie, @typeContrat, @heureContrat, @jourContrat, @modePayement, @banque, @numeroBancaire, @id_direction, @id_categorie, @id_service, @id_entreprise, @dureeContrat,@numerocnss,@salairemoyen);";
 
                 using (var cmd = new MySqlCommand(insertSql, con))
                 {
+                    cmd.Parameters.AddWithValue("@police", numeroPolice);
                     cmd.Parameters.AddWithValue("@matricule", matricule);
                     cmd.Parameters.AddWithValue("@nomPrenom", nomPrenom);
                     cmd.Parameters.AddWithValue("@civilite", civilite);
@@ -106,7 +110,7 @@ public static class EmployeClass
                     cmd.Parameters.AddWithValue("@id_direction", idDirection);
                     cmd.Parameters.AddWithValue("@id_categorie", idCategorie);
                     cmd.Parameters.AddWithValue("@id_service", idService);
-                    cmd.Parameters.AddWithValue("@id_entreprise", idEntreprise); 
+                    cmd.Parameters.AddWithValue("@id_entreprise", idEntreprise);
                     cmd.Parameters.AddWithValue("@dureeContrat", dureeContrat);
                     cmd.Parameters.AddWithValue("@numerocnss", numerocnss);
                     cmd.Parameters.AddWithValue("@salairemoyen", salairemoyen);
@@ -114,7 +118,7 @@ public static class EmployeClass
                     cmd.ExecuteNonQuery();
                 }
 
-                MessageBox.Show("Employé enregistré avec succes .",
+                MessageBox.Show($"Employé enregistré avec succès.\nNuméro de police: {numeroPolice}",
                     "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -148,6 +152,7 @@ public static class EmployeClass
                             const string sql = @"
                 SELECT
                     p.id_personnel                    AS `Id`,
+                    p.police                          AS `Police`,
                     e.nomEntreprise                   AS `Entreprise`,
                     p.matricule                       AS `Matricule`,
                     p.nomPrenom                       AS `Nom Prenom`,
@@ -160,7 +165,7 @@ public static class EmployeClass
                 LEFT JOIN categorie  c ON c.id_categorie  = p.id_categorie
                 LEFT JOIN entreprise e ON e.id_entreprise = p.id_entreprise
                 WHERE (@idEnt IS NULL OR p.id_entreprise = @idEnt)
-                ORDER BY p.nomPrenom;";
+                ORDER BY p.police, p.nomPrenom;";
 
                             using (var cmd = new MySqlCommand(sql, con))
                             {
@@ -513,7 +518,7 @@ WHERE id_personnel  = @id_personnel;";
         var con = connect.getconnection;
         con.Open();
 
-        const string sql = @"SELECT id_personnel, nomPrenom FROM personnel WHERE id_entreprise=@e ORDER BY nomPrenom;";
+        const string sql = @"SELECT id_personnel, police, nomPrenom FROM personnel WHERE id_entreprise=@e ORDER BY police, nomPrenom;";
          var cmd = new MySqlCommand(sql, con);
         cmd.Parameters.Add("@e", MySqlDbType.Int32).Value = idEntreprise;
 
@@ -521,16 +526,27 @@ WHERE id_personnel  = @id_personnel;";
         var dt = new DataTable();
         da.Fill(dt);
 
+        // Ajouter une colonne pour afficher le numéro de police avec le nom
+        dt.Columns.Add("affichage", typeof(string));
+        foreach (DataRow row in dt.Rows)
+        {
+            string police = row["police"] != DBNull.Value ? row["police"].ToString() : "";
+            string nomPrenom = row["nomPrenom"].ToString();
+            row["affichage"] = !string.IsNullOrEmpty(police) ? $"[{police}] {nomPrenom}" : nomPrenom;
+        }
+
         if (placeholder)
         {
             var row = dt.NewRow();
             row["id_personnel"] = 0;
+            row["police"] = "";
             row["nomPrenom"] = "--- Sélectionner employé ---";
+            row["affichage"] = "--- Sélectionner employé ---";
             dt.Rows.InsertAt(row, 0);
         }
 
         combo.ValueMember = "id_personnel";
-        combo.DisplayMember = "nomPrenom";
+        combo.DisplayMember = "affichage";
         combo.DataSource = dt;
         combo.SelectedValue = idSel ?? (placeholder ? 0 : -1);
     }
@@ -543,11 +559,11 @@ WHERE id_personnel  = @id_personnel;";
         con.Open();
 
         const string sql = @"
-    SELECT id_personnel, nomPrenom 
-    FROM personnel 
+    SELECT id_personnel, police, nomPrenom
+    FROM personnel
     WHERE id_entreprise = @e
     AND typeContrat = 'Horaire'  -- Filtrer par typeContrat = 'Horaire'
-    ORDER BY nomPrenom;";
+    ORDER BY police, nomPrenom;";
 
         var cmd = new MySqlCommand(sql, con);
         cmd.Parameters.Add("@e", MySqlDbType.Int32).Value = idEntreprise;
@@ -556,16 +572,27 @@ WHERE id_personnel  = @id_personnel;";
         var dt = new DataTable();
         da.Fill(dt);
 
+        // Ajouter une colonne pour afficher le numéro de police avec le nom
+        dt.Columns.Add("affichage", typeof(string));
+        foreach (DataRow row in dt.Rows)
+        {
+            string police = row["police"] != DBNull.Value ? row["police"].ToString() : "";
+            string nomPrenom = row["nomPrenom"].ToString();
+            row["affichage"] = !string.IsNullOrEmpty(police) ? $"[{police}] {nomPrenom}" : nomPrenom;
+        }
+
         if (placeholder)
         {
             var row = dt.NewRow();
             row["id_personnel"] = 0;
+            row["police"] = "";
             row["nomPrenom"] = "--- Sélectionner employé ---";
+            row["affichage"] = "--- Sélectionner employé ---";
             dt.Rows.InsertAt(row, 0);
         }
 
         combo.ValueMember = "id_personnel";
-        combo.DisplayMember = "nomPrenom";
+        combo.DisplayMember = "affichage";
         combo.DataSource = dt;
         combo.SelectedValue = idSel ?? (placeholder ? 0 : -1);
     }
@@ -580,11 +607,11 @@ WHERE id_personnel  = @id_personnel;";
         con.Open();
 
         const string sql = @"
-    SELECT id_personnel, nomPrenom 
-    FROM personnel 
+    SELECT id_personnel, police, nomPrenom
+    FROM personnel
     WHERE id_entreprise = @e
     AND typeContrat = 'Journalier'  -- Filtrer par typeContrat = 'Journalier'
-    ORDER BY nomPrenom;";
+    ORDER BY police, nomPrenom;";
 
         var cmd = new MySqlCommand(sql, con);
         cmd.Parameters.Add("@e", MySqlDbType.Int32).Value = idEntreprise;
@@ -593,16 +620,27 @@ WHERE id_personnel  = @id_personnel;";
         var dt = new DataTable();
         da.Fill(dt);
 
+        // Ajouter une colonne pour afficher le numéro de police avec le nom
+        dt.Columns.Add("affichage", typeof(string));
+        foreach (DataRow row in dt.Rows)
+        {
+            string police = row["police"] != DBNull.Value ? row["police"].ToString() : "";
+            string nomPrenom = row["nomPrenom"].ToString();
+            row["affichage"] = !string.IsNullOrEmpty(police) ? $"[{police}] {nomPrenom}" : nomPrenom;
+        }
+
         if (placeholder)
         {
             var row = dt.NewRow();
             row["id_personnel"] = 0;
+            row["police"] = "";
             row["nomPrenom"] = "--- Sélectionner employé ---";
+            row["affichage"] = "--- Sélectionner employé ---";
             dt.Rows.InsertAt(row, 0);
         }
 
         combo.ValueMember = "id_personnel";
-        combo.DisplayMember = "nomPrenom";
+        combo.DisplayMember = "affichage";
         combo.DataSource = dt;
         combo.SelectedValue = idSel ?? (placeholder ? 0 : -1);
     }

@@ -230,7 +230,7 @@ ORDER BY p.nomPrenom, i.type;";
                             while (reader.Read())
                             {
                                 string nomIndemnite = reader.GetString("type");
-                                string montantIndemnite = reader.GetDouble("valeur").ToString();
+                                string montantIndemnite = reader.GetDouble("valeur").ToString("N0");
                                 string tauxIndem = reader.GetDouble("taux_indemnite").ToString();  // Ici tu peux personnaliser le taux d'indemnité si nécessaire
 
                                 listeIndemnites.Add(new IndemniteList(idEmploye, nomIndemnite, montantIndemnite, tauxIndem));

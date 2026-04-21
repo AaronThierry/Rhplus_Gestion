@@ -1,0 +1,107 @@
+================================================================================
+  GESTION MODERNE RH - MISE À JOUR v1.1.3
+  Date de release : 10 février 2026
+================================================================================
+
+CORRECTIONS CRITIQUES
+---------------------
+
+Cette mise à jour apporte des corrections importantes de conformité légale
+et des améliorations fonctionnelles majeures.
+
+1. PLAFOND CNSS - CONFORMITÉ LÉGALE ⚖️
+   ✓ Application du plafond légal de 800 000 FCFA
+   ✓ Cotisation employé limitée à 44 000 FCFA maximum
+
+   AVANT :
+   - Salaire 1 000 000 FCFA → CNSS = 55 000 FCFA (incorrect)
+
+   APRÈS :
+   - Salaire ≤ 800 000 FCFA → CNSS = salaire × 5.5%
+   - Salaire > 800 000 FCFA → CNSS = 44 000 FCFA (plafonné)
+   - Exemple : 1 000 000 FCFA → CNSS = 44 000 FCFA ✓
+
+   Impact : Conformité avec la législation CNSS du Burkina Faso
+
+2. GESTION DATE FIN CONTRAT CDD 📅
+   ✓ Activation automatique de la date de sortie pour les CDD
+   ✓ Validation obligatoire : impossible de créer un CDD sans date de fin
+   ✓ Amélioration UX : plus besoin de cocher manuellement le checkbox
+
+   Fonctionnement :
+   - Sélection "CDD" → Date de sortie activée automatiquement
+   - Tentative de sauvegarde sans date → Message d'erreur
+   - S'applique à l'ajout ET la modification d'employés
+
+3. MODIFICATION MATRICULE EMPLOYÉ ✏️
+   ✓ Le champ matricule est maintenant modifiable
+   ✓ Validation complète du format
+   ✓ Vérification des doublons
+   ✓ Normalisation automatique (majuscules)
+
+   Permet de corriger les matricules erronés sans recréer l'employé
+
+AMÉLIORATIONS SUPPLÉMENTAIRES
+------------------------------
+
+• Masquage du nom complet de l'entreprise sur les bulletins de paie
+  - Affichage uniquement : Sigle, Téléphone, Email
+  - Plus de confidentialité et esthétique épurée
+
+FICHIERS MODIFIÉS
+-----------------
+
+• CNSS_TPA_CALCULATOR.cs : Plafond CNSS légal + constantes
+• AjouterEmployeForm.cs : Gestion automatique CDD
+• ModifierEmployeForm.cs : Gestion CDD + Modification matricule
+• BulletinDocument.cs : Masquage nom entreprise
+• AssemblyInfo.cs : Version 1.1.3.0
+
+INSTALLATION
+------------
+
+1. Fermez complètement l'application RH+ si elle est en cours d'exécution
+2. Lancez cet installateur
+3. Suivez les instructions à l'écran
+4. L'application sera mise à jour automatiquement
+5. Vérifiez que la version affichée est bien 1.1.3
+
+CONFIGURATION REQUISE
+---------------------
+
+• Windows 7 SP1 ou supérieur
+• .NET Framework 4.7.2 ou supérieur
+• MySQL Server 5.7 ou supérieur
+• 2 GB RAM minimum
+• 100 MB d'espace disque
+
+COMPATIBILITÉ
+-------------
+
+✓ Compatible avec toutes les versions 1.1.x
+✓ Aucune modification de schéma de base de données
+✓ Migration transparente depuis v1.1.2
+✓ Recalcul automatique des cotisations avec nouveau plafond
+✓ Vos données et configurations seront préservées
+
+NOTES IMPORTANTES
+-----------------
+
+⚠️ PRIORITÉ HAUTE : Cette mise à jour est fortement recommandée pour :
+   • Assurer la conformité légale des cotisations CNSS
+   • Éviter les erreurs de calcul sur les salaires élevés
+   • Améliorer la gestion des contrats CDD
+
+💡 Les bulletins générés avec cette version appliqueront correctement
+   le plafond CNSS, assurant ainsi la conformité avec la législation.
+
+SUPPORT
+-------
+
+• Documentation complète : README.md
+• Changelog détaillé : CHANGELOG.md
+• Support technique : Contactez votre administrateur système
+
+================================================================================
+Copyright © 2025-2026 GMP - Gestion Moderne de Paie
+================================================================================

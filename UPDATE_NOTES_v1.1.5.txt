@@ -1,0 +1,46 @@
+===============================================================================
+  GESTION MODERNE RH - MISE À JOUR v1.1.5
+  Date: 23 Février 2026
+===============================================================================
+
+NOUVEAUTÉS ET CORRECTIONS MAJEURES
+-----------------------------------
+
+✅ PLAFOND CNSS DE 800 000 FCFA
+  • Application correcte du plafond CNSS sur toutes les cotisations
+  • CNSS Employé (5.5%) : plafonné à 44 000 FCFA maximum
+  • Pension Employeur (8.5%) : plafonné à 68 000 FCFA maximum
+  • Risque Professionnel (1.5%) : plafonné à 12 000 FCFA maximum
+  • Prestation Familiale (6%) : plafonné à 48 000 FCFA maximum
+  • Affichage correct de la base plafonnée dans les bulletins PDF
+
+✅ ARRONDISSEMENTS CONFORMES
+  • CNSS : Arrondi au franc supérieur dès que > 0.5
+  • TPA : Arrondi au franc supérieur dès que > 0.5
+  • IUTS : Arrondi au franc supérieur dès que > 0.5
+  • Salaire Net : Arrondi au franc supérieur dès que > 0.5
+  • Effort de Paix : Arrondi au franc supérieur dès que > 0.5
+
+✅ BULLETIN DE PAIE AMÉLIORÉ
+  • Ajout du titre "BULLETIN DE PAIE" élégant (Montserrat, italique)
+  • Positionnement centré entre QR code et infos employé
+  • Design professionnel et moderne
+
+IMPACT
+------
+Ces corrections assurent la conformité totale avec la législation CNSS
+du Burkina Faso et garantissent des calculs précis au franc près.
+
+Pour les salaires > 800 000 FCFA, les économies de cotisations sont
+maintenant correctement appliquées selon le plafond légal.
+
+INSTALLATION
+------------
+Cette mise à jour préserve toutes vos données existantes.
+Fermez l'application avant d'installer la mise à jour.
+
+SUPPORT
+-------
+En cas de problème : https://github.com/AaronThierry/Rhplus_Gestion/issues
+
+===============================================================================

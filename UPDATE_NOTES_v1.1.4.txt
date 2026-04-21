@@ -1,0 +1,380 @@
+================================================================================
+    GESTION MODERNE RH - NOTES DE MISE À JOUR v1.1.4
+================================================================================
+
+Date de publication : 13 février 2026
+Type de mise à jour : Fonctionnalités + Sécurité
+Priorité : MOYENNE (Recommandée)
+
+================================================================================
+ NOUVELLES FONCTIONNALITÉS
+================================================================================
+
+1. SYSTÈME DE MOT DE PASSE PAR DÉFAUT
+   ✓ Mot de passe automatique "RHPlus2026!" pour tous les nouveaux utilisateurs
+   ✓ Changement obligatoire à la première connexion
+   ✓ Validation stricte du nouveau mot de passe (8 cars min, maj/min/chiffre/spécial)
+   ✓ Impossibilité de réutiliser le mot de passe par défaut
+   ✓ Déconnexion forcée après changement
+   ✓ Audit complet des changements
+
+2. FORMULAIRE CRÉATION UTILISATEUR SIMPLIFIÉ
+   ✓ Suppression des champs de saisie du mot de passe
+   ✓ Message informatif sur le mot de passe par défaut
+   ✓ Affichage du mot de passe généré à l'administrateur
+   ✓ Interface plus épurée et intuitive
+
+3. RESTRICTION ACCÈS ADMINISTRATEUR RH
+   ✓ Menu "Gestion des Utilisateurs" : Réservé au Super Administrateur
+   ✓ Menu "Visualisation des Logs" : Réservé au Super Administrateur
+   ✓ Menu "Gestion des Rôles et Permissions" : Réservé au Super Administrateur
+   ✓ Administrateur RH conserve l'accès aux fonctions métier (Personnel, Salaire, Config)
+   ✓ Séparation claire entre fonctions système et fonctions métier
+
+================================================================================
+ MODIFICATIONS TECHNIQUES
+================================================================================
+
+FICHIERS CRÉÉS :
+  - RH_GRH\Auth\PasswordGenerator.cs
+    Générateur de mot de passe par défaut et validateur
+
+  - RH_GRH\ChangerMotDePasseObligatoireForm.cs
+    Formulaire de changement obligatoire à la première connexion
+
+  - Database\add_premier_connexion_column.sql
+    Script SQL de migration (compatible toutes versions MySQL)
+
+FICHIERS MODIFIÉS :
+  - RH_GRH\LoginFormModern.cs
+    Détection première connexion + affichage formulaire changement
+
+  - RH_GRH\AjouterModifierUtilisateurForm.cs
+    Génération automatique mot de passe + suppression validation
+
+  - RH_GRH\AjouterModifierUtilisateurForm.Designer.cs
+    Suppression champs de saisie mot de passe
+
+  - RH_GRH\Auth\Models\User.cs
+    Ajout méthode IsSuperAdmin()
+
+  - RH_GRH\Formmain.cs
+    Restriction visibilité menus système pour Admin RH
+
+  - RH_GRH\RH_GRH.csproj
+    Déclaration des nouveaux fichiers
+
+================================================================================
+ BASE DE DONNÉES - MIGRATION REQUISE
+================================================================================
+
+IMPORTANT : Cette mise à jour nécessite l'exécution d'un script SQL.
+
+Script à exécuter : Database\add_premier_connexion_column.sql
+
+Modifications apportées :
+  1. Ajout colonne "premier_connexion" (BOOLEAN)
+     - TRUE si l'utilisateur doit changer son mot de passe
+     - FALSE si déjà changé
+
+  2. Ajout colonne "mot_de_passe_par_defaut" (VARCHAR(20))
+     - Stocke le mot de passe temporaire pour référence admin
+     - NULL après changement
+
+  3. Mise à jour des utilisateurs existants
+     - Marqués comme "premier_connexion = FALSE"
+     - Pas de changement obligatoire pour les comptes existants
+
+MÉTHODES D'EXÉCUTION :
+
+A) Via MySQL Workbench (Recommandé) :
+   1. Ouvrir MySQL Workbench
+   2. Se connecter à votre base de données
+   3. File → Open SQL Script
+   4. Sélectionner : Database\add_premier_connexion_column.sql
+   5. Cliquer Execute (Ctrl+Shift+Enter)
+
+B) Via Ligne de Commande :
+   mysql -u utilisateur -p nom_base < Database\add_premier_connexion_column.sql
+
+VÉRIFICATION :
+  SHOW COLUMNS FROM utilisateurs LIKE 'premier_connexion';
+  SHOW COLUMNS FROM utilisateurs LIKE 'mot_de_passe_par_defaut';
+
+================================================================================
+ MATRICE DES PERMISSIONS - CHANGEMENTS
+================================================================================
+
+AVANT v1.1.4 :
+
+  Menu Administration      | Super Admin | Admin RH  |
+  -------------------------|-------------|-----------|
+  Entreprise               | OUI         | OUI       |
+  Direction                | OUI         | OUI       |
+  Service                  | OUI         | OUI       |
+  Catégorie                | OUI         | OUI       |
+  Utilisateurs             | OUI         | OUI       | ← Problème
+  Abonnement               | OUI         | OUI       |
+  Logs                     | OUI         | OUI       | ← Problème
+  Rôles & Permissions      | OUI         | OUI       | ← Problème
+
+APRÈS v1.1.4 :
+
+  Menu Administration      | Super Admin | Admin RH  |
+  -------------------------|-------------|-----------|
+  Entreprise               | OUI         | OUI       |
+  Direction                | OUI         | OUI       |
+  Service                  | OUI         | OUI       |
+  Catégorie                | OUI         | OUI       |
+  Utilisateurs             | OUI         | NON       | ✓ Corrigé
+  Abonnement               | OUI         | OUI       |
+  Logs                     | OUI         | NON       | ✓ Corrigé
+  Rôles & Permissions      | OUI         | NON       | ✓ Corrigé
+
+================================================================================
+ WORKFLOW UTILISATEUR
+================================================================================
+
+1. CRÉATION D'UN NOUVEL UTILISATEUR (Admin)
+
+   Étape 1 : Admin se connecte
+   Étape 2 : Administration → Gestion des Utilisateurs → Ajouter
+   Étape 3 : Remplir les informations (nom, email, rôles)
+   Étape 4 : Cliquer "Enregistrer"
+
+   Résultat : Message affiche "Mot de passe par défaut : RHPlus2026!"
+             Admin communique ce mot de passe à l'utilisateur
+
+2. PREMIÈRE CONNEXION (Nouvel Utilisateur)
+
+   Étape 1 : Utilisateur se connecte avec "RHPlus2026!"
+   Étape 2 : Message : "Première connexion détectée"
+   Étape 3 : Formulaire de changement s'affiche automatiquement
+   Étape 4 : Utilisateur saisit son nouveau mot de passe
+   Étape 5 : Validation stricte :
+             - Minimum 8 caractères
+             - Au moins 1 majuscule, 1 minuscule, 1 chiffre, 1 spécial
+             - Différent de "RHPlus2026!"
+   Étape 6 : Déconnexion automatique
+   Étape 7 : Reconnexion avec le nouveau mot de passe
+
+3. CONNEXIONS SUIVANTES
+
+   Utilisateur se connecte normalement avec son mot de passe personnel
+   Pas de formulaire de changement
+
+================================================================================
+ AVANTAGES DE CETTE MISE À JOUR
+================================================================================
+
+SÉCURITÉ :
+  ✓ Tous les nouveaux mots de passe sont forts (validation stricte)
+  ✓ Séparation fonctions système / fonctions métier
+  ✓ Principe du moindre privilège appliqué
+  ✓ Traçabilité complète (logs audit)
+
+SIMPLICITÉ :
+  ✓ Plus besoin de penser à un mot de passe lors de la création
+  ✓ Un seul mot de passe par défaut à retenir
+  ✓ Interface utilisateur plus épurée
+  ✓ Processus standardisé
+
+COHÉRENCE :
+  ✓ Tous les nouveaux utilisateurs suivent le même workflow
+  ✓ Pas de mots de passe faibles créés par les admins
+  ✓ Rôles clairement définis
+
+================================================================================
+ COMPATIBILITÉ
+================================================================================
+
+UTILISATEURS EXISTANTS :
+  ✓ Aucun impact - Conservent leur mot de passe actuel
+  ✓ Pas de changement obligatoire
+  ✓ Marqués automatiquement comme "premier_connexion = FALSE"
+
+NOUVELLES INSTALLATIONS :
+  ✓ Système actif automatiquement pour tous les nouveaux utilisateurs
+
+VERSIONS MYSQL :
+  ✓ Compatible MySQL 5.7+
+  ✓ Compatible MySQL 8.0+
+  ✓ Compatible MariaDB 10.0+
+
+SYSTÈME D'EXPLOITATION :
+  ✓ Windows 7 SP1 ou supérieur
+  ✓ Windows Server 2008 R2 SP1 ou supérieur
+  ✓ Nécessite .NET Framework 4.7.2 minimum
+
+================================================================================
+ PROCÉDURE D'INSTALLATION
+================================================================================
+
+ÉTAPE 1 : SAUVEGARDE
+  ✓ Sauvegarder la base de données MySQL
+  ✓ Sauvegarder l'application existante
+
+ÉTAPE 2 : INSTALLATION
+  ✓ Fermer l'application RH_GRH si elle est ouverte
+  ✓ Exécuter GestionModerneRH_v1.1.4_Update.exe
+  ✓ Suivre les instructions de l'assistant
+
+ÉTAPE 3 : MIGRATION BASE DE DONNÉES
+  ✓ Ouvrir MySQL Workbench
+  ✓ Exécuter Database\add_premier_connexion_column.sql
+  ✓ Vérifier que les colonnes ont été créées
+
+ÉTAPE 4 : TESTS
+  ✓ Lancer l'application
+  ✓ Se connecter en tant que Super Administrateur
+  ✓ Créer un utilisateur de test
+  ✓ Vérifier le message avec mot de passe par défaut
+  ✓ Se connecter avec le compte test
+  ✓ Vérifier le formulaire de changement
+  ✓ Changer le mot de passe
+  ✓ Se reconnecter avec le nouveau mot de passe
+
+ÉTAPE 5 : VÉRIFICATION ADMIN RH
+  ✓ Se connecter en tant qu'Administrateur RH
+  ✓ Vérifier que menus Utilisateurs/Logs/Rôles sont masqués
+  ✓ Vérifier accès aux menus Personnel et Salaire
+
+================================================================================
+ TESTS RECOMMANDÉS
+================================================================================
+
+TEST 1 : Création Utilisateur
+  [ ] Formulaire ne demande plus de mot de passe
+  [ ] Message affiche "RHPlus2026!"
+  [ ] Utilisateur créé avec succès
+
+TEST 2 : Première Connexion
+  [ ] Connexion avec mot de passe par défaut réussie
+  [ ] Formulaire de changement s'affiche
+  [ ] Validation stricte fonctionne
+  [ ] Changement réussi
+  [ ] Déconnexion automatique
+
+TEST 3 : Reconnexion
+  [ ] Connexion avec nouveau mot de passe réussie
+  [ ] Pas de formulaire de changement
+  [ ] Accès normal à l'application
+
+TEST 4 : Restriction Admin RH
+  [ ] Super Admin voit tous les menus
+  [ ] Admin RH ne voit pas Utilisateurs/Logs/Rôles
+  [ ] Admin RH a accès Personnel et Salaire
+
+TEST 5 : Utilisateurs Existants
+  [ ] Connexion normale (pas de changement forcé)
+  [ ] Aucun impact sur leur workflow
+
+================================================================================
+ COMMANDES SQL UTILES
+================================================================================
+
+LISTER UTILISATEURS EN ATTENTE DE CHANGEMENT :
+  SELECT nom_utilisateur, nom_complet, date_creation
+  FROM utilisateurs
+  WHERE premier_connexion = TRUE;
+
+RÉINITIALISER UN UTILISATEUR (forcer changement) :
+  UPDATE utilisateurs
+  SET premier_connexion = TRUE,
+      mot_de_passe_hash = SHA2('RHPlus2026!', 256),
+      mot_de_passe_par_defaut = 'RHPlus2026!'
+  WHERE nom_utilisateur = 'nom_user';
+
+DÉSACTIVER LE CHANGEMENT OBLIGATOIRE :
+  UPDATE utilisateurs
+  SET premier_connexion = FALSE,
+      mot_de_passe_par_defaut = NULL
+  WHERE nom_utilisateur = 'nom_user';
+
+VÉRIFIER L'ÉTAT D'UN UTILISATEUR :
+  SELECT nom_utilisateur, premier_connexion, mot_de_passe_par_defaut, actif
+  FROM utilisateurs
+  WHERE nom_utilisateur = 'nom_user';
+
+================================================================================
+ DÉPANNAGE
+================================================================================
+
+PROBLÈME : Erreur SQL lors de l'exécution du script
+SOLUTION : Vérifier que vous utilisez MySQL 5.7+ et que l'utilisateur a les
+           droits ALTER TABLE. Consulter CORRECTION_SQL_MIGRATION.md
+
+PROBLÈME : Formulaire de changement ne s'affiche pas
+SOLUTION : Vérifier que le script SQL a été exécuté et que
+           premier_connexion = TRUE dans la base
+
+PROBLÈME : Admin RH voit encore les menus système
+SOLUTION : Vérifier que l'application a été recompilée et redémarrée
+           Consulter TEST_RESTRICTION_ADMIN_RH.md
+
+PROBLÈME : Utilisateur bloqué après changement de mot de passe
+SOLUTION : Vérifier que premier_connexion est passé à FALSE
+           Si bloqué, exécuter : UPDATE utilisateurs SET premier_connexion = FALSE WHERE...
+
+================================================================================
+ DOCUMENTATION COMPLÈTE
+================================================================================
+
+Fichiers de référence inclus dans l'installation :
+
+  - SYSTEME_MOT_DE_PASSE_PAR_DEFAUT.md
+    Documentation complète du système de mot de passe
+
+  - MODIFICATION_FORMULAIRE_UTILISATEUR.md
+    Détails des changements UI
+
+  - RESTRICTION_ADMIN_RH.md
+    Explication des restrictions d'accès
+
+  - TEST_RESTRICTION_ADMIN_RH.md
+    Guide de test des permissions
+
+  - CORRECTION_SQL_MIGRATION.md
+    Guide de migration base de données
+
+  - RESUME_COMPLET_v1.1.4.md
+    Résumé technique complet
+
+  - GUIDE_RAPIDE_DEPLOIEMENT.md
+    Guide de déploiement rapide
+
+================================================================================
+ SUPPORT
+================================================================================
+
+Pour toute question ou problème :
+  - Consulter la documentation dans le dossier d'installation
+  - Vérifier les logs via menu Logs (Super Admin uniquement)
+  - Contact : support@gmp-rh.com
+
+================================================================================
+ NOTES IMPORTANTES
+================================================================================
+
+1. Le mot de passe par défaut "RHPlus2026!" est TEMPORAIRE
+   L'utilisateur DOIT le changer immédiatement
+
+2. Communiquer le mot de passe de manière SÉCURISÉE
+   Ne jamais l'envoyer par email non chiffré
+
+3. Toujours garder au moins UN compte Super Administrateur actif
+   Sinon, personne ne pourra gérer les utilisateurs
+
+4. Le script SQL est compatible avec toutes les versions de MySQL
+   Pas besoin de MySQL 8.0+
+
+5. Les utilisateurs existants ne sont PAS affectés
+   Pas de changement obligatoire pour eux
+
+================================================================================
+
+Merci d'utiliser Gestion Moderne RH !
+
+Pour plus d'informations : https://github.com/AaronThierry/Rhplus_Gestion
+
+================================================================================

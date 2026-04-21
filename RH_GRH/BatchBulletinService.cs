@@ -192,10 +192,11 @@ namespace RH_GRH
                     // Générer le PDF
                     var model = ConvertirSnapshotEnBulletinModel(snapshot);
 
-                    // Format: Bulletin_Periode_NomEntreprise_NomEmploye.pdf
-                    string nomEntrepriseSafe = model.NomEntreprise?.Replace(" ", "_") ?? "Entreprise";
-                    string nomEmployeSafe = employe.Nom?.Replace(" ", "_") ?? "Employe";
-                    string nomFichier = $"Bulletin_{periodeSafe}_{nomEntrepriseSafe}_{nomEmployeSafe}.pdf";
+                    // Format professionnel: Bulletin_Police_NomEmploye_Periode.pdf
+                    // Utilise le numéro de police unique au lieu du matricule
+                    string policeSafe = (employe.Police ?? "SANS_POLICE").Replace(" ", "_").Replace("/", "-");
+                    string nomEmployeSafe = (employe.Nom ?? "Employe").Replace(" ", "_").Replace("/", "-");
+                    string nomFichier = $"Bulletin_{policeSafe}_{nomEmployeSafe}_{periodeSafe}.pdf";
                     string cheminComplet = Path.Combine(sousDossier, nomFichier);
 
                     var document = new BulletinDocument(model);
@@ -356,6 +357,7 @@ namespace RH_GRH
 
                 // Bruts
                 SalaireBrut = (double)snapshot.SalaireBrut,
+                BaseCNSSPlafonnee = (double)Math.Min(snapshot.SalaireBrut, CNSSCalculator.PLAFOND_CNSS),
 
                 // CNSS/TPA
                 CnssEmploye = (double)snapshot.CNSS_Employe,

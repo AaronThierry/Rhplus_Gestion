@@ -219,7 +219,7 @@ namespace RH_GRH
                     rowIndex++;
 
                     AjouterLigne(table, ref rowIndex, "CNSS Employé (5.5%)",
-                        FormatMontant(model.SalaireBrut), "5.5%", FormatMontant(model.CnssEmploye));
+                        FormatMontant(model.BaseCNSSPlafonnee), "5.5%", FormatMontant(model.CnssEmploye));
 
                     AjouterLigne(table, ref rowIndex, "IUTS",
                         FormatMontant(model.BaseIUTS), $"{model.Charges} ch.", FormatMontant(model.Iuts));
