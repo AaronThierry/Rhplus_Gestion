@@ -355,11 +355,11 @@ namespace RH_GRH
                 int count = dtEmployes.Rows.Count;
                 if (count == 0)
                 {
-                    labelNombreEmployes.Text = "👥 Aucun employé trouvé";
+                    labelNombreEmployes.Text = "👤 Aucun employé trouvé";
                 }
                 else if (count == 1)
                 {
-                    labelNombreEmployes.Text = "👥 1 employé sélectionné";
+                    labelNombreEmployes.Text = "👤 1 employé sélectionné";
                 }
                 else
                 {
@@ -397,7 +397,7 @@ namespace RH_GRH
                         // Afficher la barre de progression avec animation
                         panelProgression.Visible = true;
                         guna2ProgressBar1.Value = 0;
-                        labelProgression.Text = "🔄 Préparation de la génération...";
+                        labelProgression.Text = "🔄 Préparation en cours...";
                         Application.DoEvents();
 
                         // Générer les bulletins individuels
@@ -538,9 +538,9 @@ namespace RH_GRH
 
                 // Texte de progression élégant avec emoji et informations claires
                 string nomEmploye = row["nom_prenom"].ToString();
-                if (nomEmploye.Length > 30) nomEmploye = nomEmploye.Substring(0, 30) + "...";
+                if (nomEmploye.Length > 35) nomEmploye = nomEmploye.Substring(0, 35) + "...";
 
-                labelProgression.Text = $"📄 Génération du bulletin {index}/{totalEmployes} • {nomEmploye} • {pourcentage}%";
+                labelProgression.Text = $"📄 Génération du bulletin {index}/{totalEmployes} - {nomEmploye} ({pourcentage}%)";
                 Application.DoEvents();
 
                 try
@@ -565,11 +565,11 @@ namespace RH_GRH
             // Message de fin avec résumé
             if (errorCount == 0)
             {
-                labelProgression.Text = $"✅ Génération terminée avec succès ! {successCount} bulletin(s) généré(s)";
+                labelProgression.Text = $"✅ Génération terminée - {successCount} bulletin(s) généré(s)";
             }
             else
             {
-                labelProgression.Text = $"⚠️ Génération terminée : {successCount} réussi(s), {errorCount} erreur(s)";
+                labelProgression.Text = $"⚠️ Génération terminée - {successCount} réussi(s), {errorCount} erreur(s)";
             }
             Application.DoEvents();
             System.Threading.Thread.Sleep(1500); // Afficher le message final pendant 1.5 secondes
@@ -634,8 +634,8 @@ namespace RH_GRH
                 DateSortie = employe.DateSortie,
                 Contrat = employe.Contrat ?? "",
                 PeriodeSalaire = $"{periodeDebut:dd/MM/yyyy} - {periodeFin:dd/MM/yyyy}",
-                NumeroEmploye = employe.Matricule, // Utiliser matricule comme numéro employé
-                AdresseEmploye = "", // Peut être récupéré de la BD si nécessaire
+                NumeroEmploye = employe.TelephoneEmploye ?? "", // Téléphone de l'employé
+                AdresseEmploye = employe.Adresse ?? "", // Adresse de l'employé
                 DureeContrat = employe.DureeContrat ?? "", // Durée du contrat (Permanent, Temporaire, etc.)
                 NombreCharges = nombreCharges,
 
@@ -996,8 +996,13 @@ namespace RH_GRH
             snapshot.TPA = tpa;
             snapshot.TauxTPA = tauxTpa;
 
-            // 8) Salaire brut social - MÉTHODE EXACTE (ligne 1251)
-            decimal salaireBrutSocial = salaireBrut - cnssEmploye;
+            // 8) Salaire brut social - MÉTHODE EXACTE avec CNSS exonérée
+            // IMPORTANT : Utiliser IUTSCalculator.CalculerSalaireBrutSocial pour cohérence avec calcul IUTS
+            decimal salaireBrutSocial = IUTSCalculator.CalculerSalaireBrutSocial(
+                salaireBrut,
+                salaireDeBase: salaireBase,
+                primeA: primeAnciennete,
+                sursalaire: sursalaire);
             snapshot.SalaireBrutSocial = salaireBrutSocial;
 
             // 9) Déductibilités pour IUTS - MÉTHODE EXACTE (lignes 1262-1280)
@@ -1185,8 +1190,13 @@ namespace RH_GRH
             snapshot.TPA = tpa;
             snapshot.TauxTPA = tauxTpa;
 
-            // 8) Salaire brut social - MÉTHODE EXACTE
-            decimal salaireBrutSocial = salaireBrut - cnssEmploye;
+            // 8) Salaire brut social - MÉTHODE EXACTE avec CNSS exonérée
+            // IMPORTANT : Utiliser IUTSCalculator.CalculerSalaireBrutSocial pour cohérence avec calcul IUTS
+            decimal salaireBrutSocial = IUTSCalculator.CalculerSalaireBrutSocial(
+                salaireBrut,
+                salaireDeBase: salaireBase,
+                primeA: primeAnciennete,
+                sursalaire: sursalaire);
             snapshot.SalaireBrutSocial = salaireBrutSocial;
 
             // 9) Déductibilités pour IUTS - MÉTHODE EXACTE

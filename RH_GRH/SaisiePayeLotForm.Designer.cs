@@ -127,35 +127,35 @@ namespace RH_GRH
             this.panelButtonsContainer.TabIndex = 4;
             // 
             // buttonAnnuler
-            // 
+            //
             this.buttonAnnuler.Animated = true;
             this.buttonAnnuler.BackColor = System.Drawing.Color.Transparent;
-            this.buttonAnnuler.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
-            this.buttonAnnuler.BorderRadius = 10;
-            this.buttonAnnuler.BorderThickness = 1;
+            this.buttonAnnuler.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.buttonAnnuler.BorderRadius = 12;
+            this.buttonAnnuler.BorderThickness = 2;
             this.buttonAnnuler.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.buttonAnnuler.DisabledState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.buttonAnnuler.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.buttonAnnuler.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
             this.buttonAnnuler.Dock = System.Windows.Forms.DockStyle.Right;
             this.buttonAnnuler.FillColor = System.Drawing.Color.White;
-            this.buttonAnnuler.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
-            this.buttonAnnuler.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(99)))), ((int)(((byte)(104)))));
-            this.buttonAnnuler.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
-            this.buttonAnnuler.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(237)))), ((int)(((byte)(237)))));
-            this.buttonAnnuler.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
+            this.buttonAnnuler.Font = new System.Drawing.Font("Montserrat", 9.5F, System.Drawing.FontStyle.Bold);
+            this.buttonAnnuler.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
+            this.buttonAnnuler.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(67)))), ((int)(((byte)(54)))));
+            this.buttonAnnuler.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(245)))), ((int)(((byte)(244)))));
+            this.buttonAnnuler.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(67)))), ((int)(((byte)(54)))));
             this.buttonAnnuler.Location = new System.Drawing.Point(469, 0);
             this.buttonAnnuler.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.buttonAnnuler.Name = "buttonAnnuler";
-            this.buttonAnnuler.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
-            this.buttonAnnuler.ShadowDecoration.BorderRadius = 10;
-            this.buttonAnnuler.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(35)))));
-            this.buttonAnnuler.ShadowDecoration.Depth = 12;
+            this.buttonAnnuler.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.buttonAnnuler.ShadowDecoration.BorderRadius = 12;
+            this.buttonAnnuler.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(25)))));
+            this.buttonAnnuler.ShadowDecoration.Depth = 8;
             this.buttonAnnuler.ShadowDecoration.Enabled = true;
-            this.buttonAnnuler.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 2, 0, 4);
+            this.buttonAnnuler.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 2, 0, 3);
             this.buttonAnnuler.Size = new System.Drawing.Size(208, 52);
             this.buttonAnnuler.TabIndex = 2;
-            this.buttonAnnuler.Text = "Annuler";
+            this.buttonAnnuler.Text = "✕ Annuler";
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
             // 
             // panelSpacer
@@ -169,69 +169,70 @@ namespace RH_GRH
             this.panelSpacer.TabIndex = 3;
             // 
             // buttonGenerer
-            // 
+            //
             this.buttonGenerer.Animated = true;
             this.buttonGenerer.AnimatedGIF = true;
             this.buttonGenerer.BackColor = System.Drawing.Color.Transparent;
-            this.buttonGenerer.BorderRadius = 10;
+            this.buttonGenerer.BorderRadius = 12;
             this.buttonGenerer.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.buttonGenerer.DisabledState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.buttonGenerer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.buttonGenerer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
             this.buttonGenerer.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonGenerer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
-            this.buttonGenerer.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
+            this.buttonGenerer.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
+            this.buttonGenerer.Font = new System.Drawing.Font("Montserrat", 9.5F, System.Drawing.FontStyle.Bold);
             this.buttonGenerer.ForeColor = System.Drawing.Color.White;
             this.buttonGenerer.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(142)))), ((int)(((byte)(60)))));
             this.buttonGenerer.Location = new System.Drawing.Point(697, 0);
             this.buttonGenerer.Margin = new System.Windows.Forms.Padding(4);
             this.buttonGenerer.Name = "buttonGenerer";
             this.buttonGenerer.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(32)))));
-            this.buttonGenerer.PressedDepth = 20;
-            this.buttonGenerer.ShadowDecoration.BorderRadius = 10;
-            this.buttonGenerer.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))), ((int)(((byte)(80)))));
-            this.buttonGenerer.ShadowDecoration.Depth = 15;
+            this.buttonGenerer.PressedDepth = 15;
+            this.buttonGenerer.ShadowDecoration.BorderRadius = 12;
+            this.buttonGenerer.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.buttonGenerer.ShadowDecoration.Depth = 10;
             this.buttonGenerer.ShadowDecoration.Enabled = true;
-            this.buttonGenerer.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 3, 0, 6);
+            this.buttonGenerer.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 2, 0, 5);
             this.buttonGenerer.Size = new System.Drawing.Size(228, 52);
             this.buttonGenerer.TabIndex = 1;
             this.buttonGenerer.Text = "📄 Générer PDF";
             this.buttonGenerer.Click += new System.EventHandler(this.buttonGenerer_Click);
             // 
             // panelStatistiques
-            // 
+            //
             this.panelStatistiques.BackColor = System.Drawing.Color.Transparent;
-            this.panelStatistiques.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(149)))), ((int)(((byte)(237)))));
-            this.panelStatistiques.BorderRadius = 10;
-            this.panelStatistiques.BorderThickness = 1;
+            this.panelStatistiques.BorderColor = System.Drawing.Color.Transparent;
+            this.panelStatistiques.BorderRadius = 12;
+            this.panelStatistiques.BorderThickness = 0;
             this.panelStatistiques.Controls.Add(this.labelNombreEmployes);
             this.panelStatistiques.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelStatistiques.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(248)))), ((int)(((byte)(255)))));
+            this.panelStatistiques.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
             this.panelStatistiques.Location = new System.Drawing.Point(24, 18);
             this.panelStatistiques.Margin = new System.Windows.Forms.Padding(4);
             this.panelStatistiques.Name = "panelStatistiques";
-            this.panelStatistiques.Padding = new System.Windows.Forms.Padding(18, 12, 18, 12);
-            this.panelStatistiques.ShadowDecoration.BorderRadius = 10;
-            this.panelStatistiques.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(133)))), ((int)(((byte)(244)))), ((int)(((byte)(60)))));
-            this.panelStatistiques.ShadowDecoration.Depth = 10;
+            this.panelStatistiques.Padding = new System.Windows.Forms.Padding(20, 14, 20, 14);
+            this.panelStatistiques.ShadowDecoration.BorderRadius = 12;
+            this.panelStatistiques.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(142)))), ((int)(((byte)(60)))), ((int)(((byte)(50)))));
+            this.panelStatistiques.ShadowDecoration.Depth = 8;
             this.panelStatistiques.ShadowDecoration.Enabled = true;
-            this.panelStatistiques.Size = new System.Drawing.Size(360, 52);
+            this.panelStatistiques.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 2, 0, 4);
+            this.panelStatistiques.Size = new System.Drawing.Size(320, 52);
             this.panelStatistiques.TabIndex = 0;
             // 
             // labelNombreEmployes
-            // 
+            //
             this.labelNombreEmployes.AutoSize = true;
             this.labelNombreEmployes.BackColor = System.Drawing.Color.Transparent;
             this.labelNombreEmployes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelNombreEmployes.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombreEmployes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(210)))));
-            this.labelNombreEmployes.Location = new System.Drawing.Point(18, 12);
+            this.labelNombreEmployes.Font = new System.Drawing.Font("Montserrat", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNombreEmployes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
+            this.labelNombreEmployes.Location = new System.Drawing.Point(20, 14);
             this.labelNombreEmployes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNombreEmployes.Name = "labelNombreEmployes";
-            this.labelNombreEmployes.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.labelNombreEmployes.Size = new System.Drawing.Size(247, 31);
+            this.labelNombreEmployes.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.labelNombreEmployes.Size = new System.Drawing.Size(236, 30);
             this.labelNombreEmployes.TabIndex = 0;
-            this.labelNombreEmployes.Text = "👥 0 employé sélectionné";
+            this.labelNombreEmployes.Text = "👤 0 employé sélectionné";
             this.labelNombreEmployes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panelMain
@@ -330,52 +331,52 @@ namespace RH_GRH
             this.dataGridViewEmployes.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
             // panelProgression
-            // 
+            //
             this.panelProgression.BackColor = System.Drawing.Color.Transparent;
-            this.panelProgression.BorderRadius = 8;
+            this.panelProgression.BorderRadius = 12;
             this.panelProgression.Controls.Add(this.labelProgression);
             this.panelProgression.Controls.Add(this.guna2ProgressBar1);
             this.panelProgression.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelProgression.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.panelProgression.FillColor = System.Drawing.Color.White;
             this.panelProgression.Location = new System.Drawing.Point(20, 509);
             this.panelProgression.Margin = new System.Windows.Forms.Padding(4);
             this.panelProgression.Name = "panelProgression";
-            this.panelProgression.Padding = new System.Windows.Forms.Padding(24, 16, 24, 16);
-            this.panelProgression.ShadowDecoration.BorderRadius = 8;
-            this.panelProgression.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(40)))));
-            this.panelProgression.ShadowDecoration.Depth = 12;
+            this.panelProgression.Padding = new System.Windows.Forms.Padding(28, 18, 28, 18);
+            this.panelProgression.ShadowDecoration.BorderRadius = 12;
+            this.panelProgression.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))), ((int)(((byte)(40)))));
+            this.panelProgression.ShadowDecoration.Depth = 10;
             this.panelProgression.ShadowDecoration.Enabled = true;
-            this.panelProgression.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 3, 0, 6);
-            this.panelProgression.Size = new System.Drawing.Size(1293, 80);
+            this.panelProgression.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 2, 0, 5);
+            this.panelProgression.Size = new System.Drawing.Size(1293, 72);
             this.panelProgression.TabIndex = 2;
             this.panelProgression.Visible = false;
             // 
             // labelProgression
-            // 
-            this.labelProgression.AutoSize = true;
+            //
+            this.labelProgression.AutoSize = false;
             this.labelProgression.BackColor = System.Drawing.Color.Transparent;
             this.labelProgression.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelProgression.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelProgression.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.labelProgression.Location = new System.Drawing.Point(24, 16);
+            this.labelProgression.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelProgression.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
+            this.labelProgression.Location = new System.Drawing.Point(28, 20);
             this.labelProgression.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelProgression.Name = "labelProgression";
-            this.labelProgression.Padding = new System.Windows.Forms.Padding(0, 0, 0, 8);
-            this.labelProgression.Size = new System.Drawing.Size(232, 32);
+            this.labelProgression.Size = new System.Drawing.Size(1200, 22);
             this.labelProgression.TabIndex = 1;
-            this.labelProgression.Text = "🔄 Génération en cours... 0%";
+            this.labelProgression.Text = "🔄 Génération en cours...";
+            this.labelProgression.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // guna2ProgressBar1
-            // 
-            this.guna2ProgressBar1.BorderRadius = 6;
+            //
+            this.guna2ProgressBar1.BorderRadius = 8;
             this.guna2ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.guna2ProgressBar1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(235)))), ((int)(((byte)(240)))));
-            this.guna2ProgressBar1.Location = new System.Drawing.Point(24, 52);
+            this.guna2ProgressBar1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
+            this.guna2ProgressBar1.Location = new System.Drawing.Point(28, 54);
             this.guna2ProgressBar1.Margin = new System.Windows.Forms.Padding(4);
             this.guna2ProgressBar1.Name = "guna2ProgressBar1";
-            this.guna2ProgressBar1.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(179)))), ((int)(((byte)(113)))));
-            this.guna2ProgressBar1.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
-            this.guna2ProgressBar1.Size = new System.Drawing.Size(1245, 12);
+            this.guna2ProgressBar1.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
+            this.guna2ProgressBar1.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(142)))), ((int)(((byte)(60)))));
+            this.guna2ProgressBar1.Size = new System.Drawing.Size(1237, 18);
             this.guna2ProgressBar1.TabIndex = 0;
             this.guna2ProgressBar1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             // 
