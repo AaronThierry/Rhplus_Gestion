@@ -1,8 +1,8 @@
-; Script d'installation Inno Setup pour Gestion Moderne RH v1.1.6 - UPDATE
-; Mise à jour : CNSS Exonérée + Calculs fiscaux améliorés + Debugger détaillé
+; Script d'installation Inno Setup pour Gestion Moderne RH v1.1.8 - UPDATE
+; Mise à jour : Améliorations UI saisie par lot et corrections adresse/téléphone
 
 #define MyAppName "Gestion Moderne RH"
-#define MyAppVersion "1.1.6"
+#define MyAppVersion "1.1.8"
 #define MyAppPublisher "GMP - Gestion Moderne de Paie"
 #define MyAppURL "https://github.com/AaronThierry/Rhplus_Gestion"
 #define MyAppExeName "RH_GRH.exe"
@@ -23,7 +23,7 @@ AppUpdatesURL={#MyAppURL}/releases
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=LICENSE.txt
-InfoBeforeFile=UPDATE_NOTES_v1.1.6.txt
+InfoBeforeFile=UPDATE_NOTES_v1.1.8.txt
 OutputDir=Setup\Output
 OutputBaseFilename=GestionModerneRH_v{#MyAppVersion}_Update
 SetupIconFile=RH_GRH\logo-rh-modified.ico
@@ -37,7 +37,7 @@ UninstallDisplayIcon={app}\{#MyAppExeName}
 UninstallDisplayName={#MyAppName}
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
-VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.1.6
+VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.1.8
 VersionInfoCopyright=Copyright (C) 2025 {#MyAppPublisher}
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
@@ -66,7 +66,7 @@ Source: "RH_GRH\bin\Release\x86\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Documentation
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "UPDATE_NOTES_v1.1.4.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "UPDATE_NOTES_v1.1.7.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Scripts SQL (optionnels)
 Source: "Database\*.sql"; DestDir: "{app}\Database"; Flags: ignoreversion skipifsourcedoesntexist
@@ -183,13 +183,13 @@ var
   S: String;
 begin
   S := '';
-  S := S + 'MISE À JOUR v1.1.4 - Système Mot de Passe et Restriction Admin RH' + NewLine + NewLine;
-  S := S + 'NOUVELLES FONCTIONNALITÉS :' + NewLine;
-  S := S + Space + '- Mot de passe par défaut "RHPlus2026!" pour nouveaux utilisateurs' + NewLine;
-  S := S + Space + '- Changement obligatoire à la première connexion' + NewLine;
-  S := S + Space + '- Restriction accès Admin RH (Utilisateurs/Logs/Rôles réservés au Super Admin)' + NewLine;
-  S := S + Space + '- Formulaire création utilisateur simplifié (pas de saisie mot de passe)' + NewLine + NewLine;
-  S := S + 'IMPORTANT : Exécuter le script SQL add_premier_connexion_column.sql après installation' + NewLine + NewLine;
+  S := S + 'MISE À JOUR v1.1.7 - Correction calcul BSoc pour déductibilité indemnités' + NewLine + NewLine;
+  S := S + 'CORRECTIONS :' + NewLine;
+  S := S + Space + '- Cohérence calcul Salaire Brut Social (BSoc) avec CNSS exonérée' + NewLine;
+  S := S + Space + '- Plafond 5% BSoc pour indemnités transport/fonction maintenant correct' + NewLine;
+  S := S + Space + '- Amélioration debugger avec affichage formule calcul plafond 5%' + NewLine;
+  S := S + Space + '- Centralisation calcul BSoc dans IUTSCalculator' + NewLine + NewLine;
+  S := S + 'IMPACT : Calculs fiscaux plus précis et cohérents' + NewLine + NewLine;
 
   S := S + MemoDirInfo + NewLine + NewLine;
 

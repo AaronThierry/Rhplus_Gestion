@@ -1,0 +1,72 @@
+===============================================================================
+    GESTION MODERNE RH - MISE À JOUR v1.1.8
+    Date de sortie : 27 Avril 2026
+===============================================================================
+
+NOUVEAUTÉS ET AMÉLIORATIONS UI
+-------------------------------
+
+1. SAISIE DE PAIE PAR LOT - Interface modernisée
+   ✓ Badge nombre d'employés avec design vert élégant
+   ✓ Bouton "Annuler" redesigné avec bordure et effets hover rouge
+   ✓ Bouton "Générer PDF" harmonisé avec palette verte
+   ✓ Barre de progression complètement redesignée :
+     - Fond blanc avec ombre verte subtile
+     - Texte de progression en vert foncé
+     - Format compact : "Génération du bulletin 1/5 - Nom (50%)"
+     - Police Segoe UI pour meilleur rendu
+     - Hauteur optimisée (72px)
+   ✓ Design cohérent avec border radius uniformes (12px)
+   ✓ Palette de couleurs harmonisée (vert RGB 46,125,50)
+
+CORRECTIONS CRITIQUES
+----------------------
+
+2. BULLETINS PDF - Données employés
+   ✓ Adresse employé maintenant affichée correctement
+   ✓ Numéro de téléphone employé corrigé sur les bulletins
+   ✓ Alignement avec système de saisie individuelle
+
+3. STABILITÉ
+   ✓ Correction erreur compilation FontStyle.SemiBold
+   ✓ Amélioration affichage texte sans espacement excessif
+
+DÉTAILS TECHNIQUES
+------------------
+
+Fichiers modifiés :
+- RH_GRH/SaisiePayeLotForm.cs
+- RH_GRH/SaisiePayeLotForm.Designer.cs
+
+Améliorations design :
+- Badge employés : fond RGB(232,245,233), texte RGB(46,125,50)
+- Bouton Annuler : bordure 2px, hover rouge RGB(244,67,54)
+- Bouton Générer : vert RGB(46,125,50) avec dégradé
+- Barre progression : hauteur 18px, border radius 8px
+
+INSTALLATION
+------------
+
+Cette mise à jour :
+✓ Préserve toutes vos données existantes
+✓ Met à jour uniquement les fichiers nécessaires
+✓ Compatible avec les versions 1.1.x
+✓ Temps d'installation : ~2 minutes
+
+PRÉREQUIS
+---------
+
+- Windows 7 SP1 ou supérieur (32-bit ou 64-bit)
+- .NET Framework 4.7.2 ou supérieur
+- Droits administrateur pour l'installation
+
+SUPPORT
+-------
+
+Pour toute question ou problème :
+- Email : secretariatrhplus@gmail.com
+- GitHub : https://github.com/AaronThierry/Rhplus_Gestion/issues
+
+===============================================================================
+© 2026 GMP - Gestion Moderne de Paie. Tous droits réservés.
+===============================================================================
