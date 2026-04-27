@@ -303,7 +303,7 @@ namespace RH_GRH
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(73, 18);
             this.labelVersion.TabIndex = 2;
-            this.labelVersion.Text = "Version 1.1.5";
+            this.labelVersion.Text = "Version 1.1.8";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelVersion.Click += new System.EventHandler(this.labelVersion_Click);
             // 
