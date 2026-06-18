@@ -1,5 +1,7 @@
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using RH_GRH.Auth;
 using RH_GRH.Auth.Models;
@@ -9,6 +11,11 @@ namespace RH_GRH
     public partial class LoginForm : Form
     {
         private AuthenticationService authService;
+
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn(
+            int nLeftRect, int nTopRect, int nRightRect, int nBottomRect,
+            int nWidthEllipse, int nHeightEllipse);
 
         public LoginForm()
         {
@@ -21,6 +28,9 @@ namespace RH_GRH
         {
             // Centrer le formulaire
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Coins arrondis
+            this.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, 900, 600, 20, 20));
 
             // Configuration du mot de passe
             textBoxMotDePasse.UseSystemPasswordChar = true;
@@ -132,6 +142,11 @@ namespace RH_GRH
         {
             CustomMessageBox.Show("Pour réinitialiser votre mot de passe, veuillez contacter l'administrateur système.",
                 "Mot de passe oublié", CustomMessageBox.MessageType.Info);
+        }
+
+        private void labelAppDesc_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

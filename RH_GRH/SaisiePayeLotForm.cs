@@ -80,24 +80,26 @@ namespace RH_GRH
             dataGridViewEmployes.ColumnHeadersHeight = 42;
             dataGridViewEmployes.RowTemplate.Height = 40;
 
-            // Style de l'en-tête - Élégant avec MidnightBlue
-            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.BackColor = Color.MidnightBlue;
+            // Style de l'en-tête - Élégant avec violet moderne
+            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(88, 43, 132);
             dataGridViewEmployes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.Font = new Font("Montserrat", 9.5F, FontStyle.Bold);
-            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.Font = new Font("Montserrat", 9F, FontStyle.Bold);
+            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewEmployes.ColumnHeadersDefaultCellStyle.Padding = new Padding(12, 0, 12, 0);
-            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.MidnightBlue;
+            dataGridViewEmployes.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(88, 43, 132);
 
             // Style des cellules par défaut - Soft et lisible
             dataGridViewEmployes.DefaultCellStyle.BackColor = Color.White;
-            dataGridViewEmployes.DefaultCellStyle.ForeColor = Color.FromArgb(50, 50, 50);
-            dataGridViewEmployes.DefaultCellStyle.Font = new Font("Montserrat", 9F, FontStyle.Regular);
+            dataGridViewEmployes.DefaultCellStyle.ForeColor = Color.FromArgb(30, 35, 45);
+            dataGridViewEmployes.DefaultCellStyle.Font = new Font("Montserrat", 8.5F, FontStyle.Regular);
             dataGridViewEmployes.DefaultCellStyle.Padding = new Padding(12, 8, 12, 8);
-            dataGridViewEmployes.DefaultCellStyle.SelectionBackColor = Color.FromArgb(176, 196, 222); // LightSteelBlue
-            dataGridViewEmployes.DefaultCellStyle.SelectionForeColor = Color.FromArgb(25, 25, 112); // MidnightBlue foncé
+            dataGridViewEmployes.DefaultCellStyle.SelectionBackColor = Color.FromArgb(237, 231, 246);
+            dataGridViewEmployes.DefaultCellStyle.SelectionForeColor = Color.FromArgb(88, 43, 132);
 
             // Style des lignes alternées - Très subtil
-            dataGridViewEmployes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 249, 252);
+            dataGridViewEmployes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(249, 250, 251);
+            dataGridViewEmployes.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(237, 231, 246);
+            dataGridViewEmployes.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.FromArgb(88, 43, 132);
             dataGridViewEmployes.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(50, 50, 50);
             dataGridViewEmployes.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(176, 196, 222);
             dataGridViewEmployes.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.FromArgb(25, 25, 112);
@@ -355,15 +357,15 @@ namespace RH_GRH
                 int count = dtEmployes.Rows.Count;
                 if (count == 0)
                 {
-                    labelNombreEmployes.Text = "👤 Aucun employé trouvé";
+                    labelNombreEmployes.Text = "AUCUN EMPLOYÉ";
                 }
                 else if (count == 1)
                 {
-                    labelNombreEmployes.Text = "👤 1 employé sélectionné";
+                    labelNombreEmployes.Text = "1 EMPLOYÉ";
                 }
                 else
                 {
-                    labelNombreEmployes.Text = $"👥 {count} employés sélectionnés";
+                    labelNombreEmployes.Text = $"{count} EMPLOYÉS";
                 }
             }
             catch (Exception ex)

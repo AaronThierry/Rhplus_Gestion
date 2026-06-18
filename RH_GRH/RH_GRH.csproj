@@ -16,7 +16,8 @@
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-  </PropertyGroup>  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -306,6 +307,12 @@
     <Compile Include="GestionSalaireJournalierForm.Designer.cs">
       <DependentUpon>GestionSalaireJournalierForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PaiePersonnaliseeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaiePersonnaliseeForm.Designer.cs">
+      <DependentUpon>PaiePersonnaliseeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Indemnite.cs" />
     <Compile Include="IndemniteClass.cs" />
     <Compile Include="IndemniteRepository.cs" />
@@ -339,6 +346,9 @@
     <Compile Include="LoginFormModern.Designer.cs">
       <DependentUpon>LoginFormModern.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginFormModern.resx">
       <DependentUpon>LoginFormModern.cs</DependentUpon>
     </EmbeddedResource>
@@ -515,11 +525,23 @@
     <Compile Include="SaisiePayeLotForm.Designer.cs">
       <DependentUpon>SaisiePayeLotForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SelectionEntrepriseForm.cs">
+    <Compile Include="SelectionEntrepriseModernForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelectionEntrepriseForm.Designer.cs">
-      <DependentUpon>SelectionEntrepriseForm.cs</DependentUpon>
+    <Compile Include="SelectionEntrepriseModernForm.Designer.cs">
+      <DependentUpon>SelectionEntrepriseModernForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectionEmployesElementsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectionEmployesElementsForm.Designer.cs">
+      <DependentUpon>SelectionEmployesElementsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectionElementsModernForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectionElementsModernForm.Designer.cs">
+      <DependentUpon>SelectionElementsModernForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ResultatsModal.cs">
       <SubType>Form</SubType>
@@ -564,6 +586,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GestionSalaireJournalierForm.resx">
       <DependentUpon>GestionSalaireJournalierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaiePersonnaliseeForm.resx">
+      <DependentUpon>PaiePersonnaliseeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionServiceForm.resx">
       <DependentUpon>GestionServiceForm.cs</DependentUpon>
@@ -632,11 +657,14 @@
     <EmbeddedResource Include="SaisiePayeLotForm.resx">
       <DependentUpon>SaisiePayeLotForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectionEntrepriseForm.resx">
-      <DependentUpon>SelectionEntrepriseForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectionEmployesElementsForm.resx">
+      <DependentUpon>SelectionEmployesElementsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ResultatsModal.resx">
       <DependentUpon>ResultatsModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectionEntrepriseModernForm.resx">
+      <DependentUpon>SelectionEntrepriseModernForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -653,6 +681,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="README.md" />
     <None Include="Resources\logo RH+.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -695,6 +724,7 @@
     <Content Include="logo-rh-modified.ico" />
     <Content Include="Resources\logo-genux.png" />
     <Content Include="Resources\logo-rh.png" />
+    <Content Include="Selection Entreprise.dc.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

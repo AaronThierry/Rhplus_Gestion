@@ -63,21 +63,20 @@ namespace RH_GRH
             this.panelHeader.ShadowDecoration.BorderRadius = 0;
             this.panelHeader.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(50)))));
             this.panelHeader.ShadowDecoration.Depth = 8;
-            this.panelHeader.ShadowDecoration.Enabled = true;
             this.panelHeader.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.panelHeader.Size = new System.Drawing.Size(1333, 80);
+            this.panelHeader.Size = new System.Drawing.Size(1333, 100);
             this.panelHeader.TabIndex = 0;
             // 
             // labelSousTitre
             // 
             this.labelSousTitre.AutoSize = true;
             this.labelSousTitre.BackColor = System.Drawing.Color.Transparent;
-            this.labelSousTitre.Font = new System.Drawing.Font("Montserrat", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSousTitre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(220)))));
-            this.labelSousTitre.Location = new System.Drawing.Point(29, 53);
+            this.labelSousTitre.Font = new System.Drawing.Font("Montserrat", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSousTitre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
+            this.labelSousTitre.Location = new System.Drawing.Point(41, 66);
             this.labelSousTitre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSousTitre.Name = "labelSousTitre";
-            this.labelSousTitre.Size = new System.Drawing.Size(394, 22);
+            this.labelSousTitre.Size = new System.Drawing.Size(419, 24);
             this.labelSousTitre.TabIndex = 1;
             this.labelSousTitre.Text = "Saisissez les données de paie pour générer les bulletins";
             // 
@@ -85,12 +84,12 @@ namespace RH_GRH
             // 
             this.labelTitre.AutoSize = true;
             this.labelTitre.BackColor = System.Drawing.Color.Transparent;
-            this.labelTitre.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitre.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTitre.ForeColor = System.Drawing.Color.White;
-            this.labelTitre.Location = new System.Drawing.Point(27, 18);
+            this.labelTitre.Location = new System.Drawing.Point(38, 24);
             this.labelTitre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitre.Name = "labelTitre";
-            this.labelTitre.Size = new System.Drawing.Size(286, 38);
+            this.labelTitre.Size = new System.Drawing.Size(323, 42);
             this.labelTitre.TabIndex = 0;
             this.labelTitre.Text = "Saisie de Paie par Lot";
             // 
@@ -121,13 +120,13 @@ namespace RH_GRH
             this.panelButtonsContainer.Controls.Add(this.buttonGenerer);
             this.panelButtonsContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelButtonsContainer.FillColor = System.Drawing.Color.Transparent;
-            this.panelButtonsContainer.Location = new System.Drawing.Point(384, 18);
+            this.panelButtonsContainer.Location = new System.Drawing.Point(344, 18);
             this.panelButtonsContainer.Name = "panelButtonsContainer";
-            this.panelButtonsContainer.Size = new System.Drawing.Size(925, 52);
+            this.panelButtonsContainer.Size = new System.Drawing.Size(965, 52);
             this.panelButtonsContainer.TabIndex = 4;
             // 
             // buttonAnnuler
-            //
+            // 
             this.buttonAnnuler.Animated = true;
             this.buttonAnnuler.BackColor = System.Drawing.Color.Transparent;
             this.buttonAnnuler.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
@@ -144,7 +143,7 @@ namespace RH_GRH
             this.buttonAnnuler.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(67)))), ((int)(((byte)(54)))));
             this.buttonAnnuler.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(245)))), ((int)(((byte)(244)))));
             this.buttonAnnuler.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(67)))), ((int)(((byte)(54)))));
-            this.buttonAnnuler.Location = new System.Drawing.Point(469, 0);
+            this.buttonAnnuler.Location = new System.Drawing.Point(509, 0);
             this.buttonAnnuler.Margin = new System.Windows.Forms.Padding(4, 4, 20, 4);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
@@ -163,13 +162,13 @@ namespace RH_GRH
             this.panelSpacer.BackColor = System.Drawing.Color.Transparent;
             this.panelSpacer.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelSpacer.FillColor = System.Drawing.Color.Transparent;
-            this.panelSpacer.Location = new System.Drawing.Point(677, 0);
+            this.panelSpacer.Location = new System.Drawing.Point(717, 0);
             this.panelSpacer.Name = "panelSpacer";
             this.panelSpacer.Size = new System.Drawing.Size(20, 52);
             this.panelSpacer.TabIndex = 3;
             // 
             // buttonGenerer
-            //
+            // 
             this.buttonGenerer.Animated = true;
             this.buttonGenerer.AnimatedGIF = true;
             this.buttonGenerer.BackColor = System.Drawing.Color.Transparent;
@@ -183,7 +182,7 @@ namespace RH_GRH
             this.buttonGenerer.Font = new System.Drawing.Font("Montserrat", 9.5F, System.Drawing.FontStyle.Bold);
             this.buttonGenerer.ForeColor = System.Drawing.Color.White;
             this.buttonGenerer.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(142)))), ((int)(((byte)(60)))));
-            this.buttonGenerer.Location = new System.Drawing.Point(697, 0);
+            this.buttonGenerer.Location = new System.Drawing.Point(737, 0);
             this.buttonGenerer.Margin = new System.Windows.Forms.Padding(4);
             this.buttonGenerer.Name = "buttonGenerer";
             this.buttonGenerer.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(32)))));
@@ -202,38 +201,35 @@ namespace RH_GRH
             //
             this.panelStatistiques.BackColor = System.Drawing.Color.Transparent;
             this.panelStatistiques.BorderColor = System.Drawing.Color.Transparent;
-            this.panelStatistiques.BorderRadius = 12;
-            this.panelStatistiques.BorderThickness = 0;
+            this.panelStatistiques.BorderRadius = 8;
             this.panelStatistiques.Controls.Add(this.labelNombreEmployes);
             this.panelStatistiques.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelStatistiques.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
+            this.panelStatistiques.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(43)))), ((int)(((byte)(132)))));
             this.panelStatistiques.Location = new System.Drawing.Point(24, 18);
             this.panelStatistiques.Margin = new System.Windows.Forms.Padding(4);
             this.panelStatistiques.Name = "panelStatistiques";
-            this.panelStatistiques.Padding = new System.Windows.Forms.Padding(20, 14, 20, 14);
-            this.panelStatistiques.ShadowDecoration.BorderRadius = 12;
-            this.panelStatistiques.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(142)))), ((int)(((byte)(60)))), ((int)(((byte)(50)))));
-            this.panelStatistiques.ShadowDecoration.Depth = 8;
+            this.panelStatistiques.Padding = new System.Windows.Forms.Padding(16, 10, 16, 10);
+            this.panelStatistiques.ShadowDecoration.BorderRadius = 8;
+            this.panelStatistiques.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(43)))), ((int)(((byte)(132)))));
+            this.panelStatistiques.ShadowDecoration.Depth = 10;
             this.panelStatistiques.ShadowDecoration.Enabled = true;
-            this.panelStatistiques.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 2, 0, 4);
-            this.panelStatistiques.Size = new System.Drawing.Size(320, 52);
+            this.panelStatistiques.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 2, 0, 5);
+            this.panelStatistiques.Size = new System.Drawing.Size(200, 52);
             this.panelStatistiques.TabIndex = 0;
             // 
             // labelNombreEmployes
             //
-            this.labelNombreEmployes.AutoSize = true;
             this.labelNombreEmployes.BackColor = System.Drawing.Color.Transparent;
             this.labelNombreEmployes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelNombreEmployes.Font = new System.Drawing.Font("Montserrat", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombreEmployes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
-            this.labelNombreEmployes.Location = new System.Drawing.Point(20, 14);
-            this.labelNombreEmployes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNombreEmployes.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNombreEmployes.ForeColor = System.Drawing.Color.White;
+            this.labelNombreEmployes.Location = new System.Drawing.Point(16, 10);
+            this.labelNombreEmployes.Margin = new System.Windows.Forms.Padding(0);
             this.labelNombreEmployes.Name = "labelNombreEmployes";
-            this.labelNombreEmployes.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.labelNombreEmployes.Size = new System.Drawing.Size(236, 30);
+            this.labelNombreEmployes.Size = new System.Drawing.Size(168, 32);
             this.labelNombreEmployes.TabIndex = 0;
-            this.labelNombreEmployes.Text = "👤 0 employé sélectionné";
-            this.labelNombreEmployes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelNombreEmployes.Text = "0 EMPLOYÉ";
+            this.labelNombreEmployes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelMain
             // 
@@ -242,11 +238,11 @@ namespace RH_GRH
             this.panelMain.Controls.Add(this.panelProgression);
             this.panelMain.Controls.Add(this.panelInfoBanner);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(0, 80);
+            this.panelMain.Location = new System.Drawing.Point(0, 100);
             this.panelMain.Margin = new System.Windows.Forms.Padding(4);
             this.panelMain.Name = "panelMain";
             this.panelMain.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
-            this.panelMain.Size = new System.Drawing.Size(1333, 607);
+            this.panelMain.Size = new System.Drawing.Size(1333, 587);
             this.panelMain.TabIndex = 2;
             // 
             // cardDataGrid
@@ -264,7 +260,7 @@ namespace RH_GRH
             this.cardDataGrid.ShadowDecoration.Depth = 8;
             this.cardDataGrid.ShadowDecoration.Enabled = true;
             this.cardDataGrid.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 2, 0, 4);
-            this.cardDataGrid.Size = new System.Drawing.Size(1293, 444);
+            this.cardDataGrid.Size = new System.Drawing.Size(1293, 432);
             this.cardDataGrid.TabIndex = 1;
             // 
             // dataGridViewEmployes
@@ -306,7 +302,7 @@ namespace RH_GRH
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Montserrat", 8.5F);
             this.dataGridViewEmployes.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewEmployes.RowTemplate.Height = 35;
-            this.dataGridViewEmployes.Size = new System.Drawing.Size(1291, 442);
+            this.dataGridViewEmployes.Size = new System.Drawing.Size(1291, 430);
             this.dataGridViewEmployes.TabIndex = 0;
             this.dataGridViewEmployes.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dataGridViewEmployes.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Montserrat", 9F);
@@ -331,14 +327,14 @@ namespace RH_GRH
             this.dataGridViewEmployes.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
             // panelProgression
-            //
+            // 
             this.panelProgression.BackColor = System.Drawing.Color.Transparent;
             this.panelProgression.BorderRadius = 12;
             this.panelProgression.Controls.Add(this.labelProgression);
             this.panelProgression.Controls.Add(this.guna2ProgressBar1);
             this.panelProgression.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelProgression.FillColor = System.Drawing.Color.White;
-            this.panelProgression.Location = new System.Drawing.Point(20, 509);
+            this.panelProgression.Location = new System.Drawing.Point(20, 497);
             this.panelProgression.Margin = new System.Windows.Forms.Padding(4);
             this.panelProgression.Name = "panelProgression";
             this.panelProgression.Padding = new System.Windows.Forms.Padding(28, 18, 28, 18);
@@ -352,26 +348,25 @@ namespace RH_GRH
             this.panelProgression.Visible = false;
             // 
             // labelProgression
-            //
-            this.labelProgression.AutoSize = false;
+            // 
             this.labelProgression.BackColor = System.Drawing.Color.Transparent;
             this.labelProgression.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelProgression.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelProgression.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
-            this.labelProgression.Location = new System.Drawing.Point(28, 20);
+            this.labelProgression.Location = new System.Drawing.Point(28, 18);
             this.labelProgression.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelProgression.Name = "labelProgression";
-            this.labelProgression.Size = new System.Drawing.Size(1200, 22);
+            this.labelProgression.Size = new System.Drawing.Size(1237, 22);
             this.labelProgression.TabIndex = 1;
             this.labelProgression.Text = "🔄 Génération en cours...";
             this.labelProgression.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // guna2ProgressBar1
-            //
+            // 
             this.guna2ProgressBar1.BorderRadius = 8;
             this.guna2ProgressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.guna2ProgressBar1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
-            this.guna2ProgressBar1.Location = new System.Drawing.Point(28, 54);
+            this.guna2ProgressBar1.Location = new System.Drawing.Point(28, 36);
             this.guna2ProgressBar1.Margin = new System.Windows.Forms.Padding(4);
             this.guna2ProgressBar1.Name = "guna2ProgressBar1";
             this.guna2ProgressBar1.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
@@ -436,7 +431,6 @@ namespace RH_GRH
             this.cardDataGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployes)).EndInit();
             this.panelProgression.ResumeLayout(false);
-            this.panelProgression.PerformLayout();
             this.panelInfoBanner.ResumeLayout(false);
             this.ResumeLayout(false);
 

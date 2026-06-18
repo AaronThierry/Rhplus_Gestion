@@ -29,7 +29,7 @@ namespace RH_GRH
         private void InitializeComponent()
         {
             this.panelMain = new System.Windows.Forms.Panel();
-            this.panelLogin = new System.Windows.Forms.Panel();
+            this.panelLogin = new Guna.UI2.WinForms.Guna2Panel();
             this.linkLabelMotDePasseOublie = new System.Windows.Forms.LinkLabel();
             this.checkBoxAfficherMdp = new Guna.UI2.WinForms.Guna2CheckBox();
             this.buttonAnnuler = new Guna.UI2.WinForms.Guna2Button();
@@ -40,26 +40,32 @@ namespace RH_GRH
             this.labelNomUtilisateur = new System.Windows.Forms.Label();
             this.labelSubTitle = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
+            this.panelLeft = new Guna.UI2.WinForms.Guna2Panel();
+            this.labelAppDesc = new System.Windows.Forms.Label();
+            this.labelAppName = new System.Windows.Forms.Label();
+            this.labelWelcome = new System.Windows.Forms.Label();
+            this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelMain.SuspendLayout();
             this.panelLogin.SuspendLayout();
+            this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // panelMain
-            //
-            this.panelMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            // 
+            this.panelMain.BackColor = System.Drawing.Color.White;
             this.panelMain.Controls.Add(this.panelLogin);
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Controls.Add(this.panelLeft);
             this.panelMain.Location = new System.Drawing.Point(0, 0);
+            this.panelMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Padding = new System.Windows.Forms.Padding(20);
-            this.panelMain.Size = new System.Drawing.Size(500, 650);
+            this.panelMain.Size = new System.Drawing.Size(1200, 738);
             this.panelMain.TabIndex = 0;
-            //
+            // 
             // panelLogin
-            //
-            this.panelLogin.BackColor = System.Drawing.Color.White;
+            // 
+            this.panelLogin.BackColor = System.Drawing.Color.Transparent;
             this.panelLogin.Controls.Add(this.linkLabelMotDePasseOublie);
             this.panelLogin.Controls.Add(this.checkBoxAfficherMdp);
             this.panelLogin.Controls.Add(this.buttonAnnuler);
@@ -70,190 +76,288 @@ namespace RH_GRH
             this.panelLogin.Controls.Add(this.labelNomUtilisateur);
             this.panelLogin.Controls.Add(this.labelSubTitle);
             this.panelLogin.Controls.Add(this.labelTitle);
-            this.panelLogin.Controls.Add(this.pictureBoxLogo);
             this.panelLogin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelLogin.Location = new System.Drawing.Point(20, 20);
+            this.panelLogin.FillColor = System.Drawing.Color.White;
+            this.panelLogin.Location = new System.Drawing.Point(644, 0);
+            this.panelLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelLogin.Name = "panelLogin";
-            this.panelLogin.Padding = new System.Windows.Forms.Padding(40);
-            this.panelLogin.Size = new System.Drawing.Size(460, 610);
-            this.panelLogin.TabIndex = 0;
-            //
+            this.panelLogin.Padding = new System.Windows.Forms.Padding(80, 98, 80, 98);
+            this.panelLogin.Size = new System.Drawing.Size(556, 738);
+            this.panelLogin.TabIndex = 1;
+            // 
             // linkLabelMotDePasseOublie
-            //
+            // 
             this.linkLabelMotDePasseOublie.AutoSize = true;
-            this.linkLabelMotDePasseOublie.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabelMotDePasseOublie.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.linkLabelMotDePasseOublie.Location = new System.Drawing.Point(291, 407);
+            this.linkLabelMotDePasseOublie.Font = new System.Drawing.Font("Montserrat", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabelMotDePasseOublie.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(43)))), ((int)(((byte)(132)))));
+            this.linkLabelMotDePasseOublie.Location = new System.Drawing.Point(287, 375);
+            this.linkLabelMotDePasseOublie.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabelMotDePasseOublie.Name = "linkLabelMotDePasseOublie";
-            this.linkLabelMotDePasseOublie.Size = new System.Drawing.Size(121, 15);
+            this.linkLabelMotDePasseOublie.Size = new System.Drawing.Size(156, 22);
             this.linkLabelMotDePasseOublie.TabIndex = 5;
             this.linkLabelMotDePasseOublie.TabStop = true;
             this.linkLabelMotDePasseOublie.Text = "Mot de passe oublié?";
             this.linkLabelMotDePasseOublie.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelMotDePasseOublie_LinkClicked);
-            //
+            // 
             // checkBoxAfficherMdp
-            //
+            // 
             this.checkBoxAfficherMdp.AutoSize = true;
-            this.checkBoxAfficherMdp.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.checkBoxAfficherMdp.CheckedState.BorderRadius = 2;
+            this.checkBoxAfficherMdp.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(43)))), ((int)(((byte)(132)))));
+            this.checkBoxAfficherMdp.CheckedState.BorderRadius = 3;
             this.checkBoxAfficherMdp.CheckedState.BorderThickness = 0;
-            this.checkBoxAfficherMdp.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.checkBoxAfficherMdp.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.checkBoxAfficherMdp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBoxAfficherMdp.Location = new System.Drawing.Point(48, 405);
+            this.checkBoxAfficherMdp.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(43)))), ((int)(((byte)(132)))));
+            this.checkBoxAfficherMdp.Font = new System.Drawing.Font("Montserrat", 8F);
+            this.checkBoxAfficherMdp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.checkBoxAfficherMdp.Location = new System.Drawing.Point(80, 373);
+            this.checkBoxAfficherMdp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxAfficherMdp.Name = "checkBoxAfficherMdp";
-            this.checkBoxAfficherMdp.Size = new System.Drawing.Size(149, 19);
+            this.checkBoxAfficherMdp.Size = new System.Drawing.Size(201, 26);
             this.checkBoxAfficherMdp.TabIndex = 4;
             this.checkBoxAfficherMdp.Text = "Afficher le mot de passe";
-            this.checkBoxAfficherMdp.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.checkBoxAfficherMdp.UncheckedState.BorderRadius = 2;
+            this.checkBoxAfficherMdp.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.checkBoxAfficherMdp.UncheckedState.BorderRadius = 3;
             this.checkBoxAfficherMdp.UncheckedState.BorderThickness = 2;
             this.checkBoxAfficherMdp.UncheckedState.FillColor = System.Drawing.Color.White;
             this.checkBoxAfficherMdp.UseVisualStyleBackColor = true;
             this.checkBoxAfficherMdp.CheckedChanged += new System.EventHandler(this.checkBoxAfficherMdp_CheckedChanged);
-            //
+            // 
             // buttonAnnuler
-            //
-            this.buttonAnnuler.BorderRadius = 8;
-            this.buttonAnnuler.BorderThickness = 1;
+            // 
+            this.buttonAnnuler.Animated = true;
+            this.buttonAnnuler.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(225)))));
+            this.buttonAnnuler.BorderRadius = 12;
+            this.buttonAnnuler.BorderThickness = 2;
             this.buttonAnnuler.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.buttonAnnuler.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buttonAnnuler.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonAnnuler.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.buttonAnnuler.FillColor = System.Drawing.Color.White;
-            this.buttonAnnuler.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.buttonAnnuler.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.buttonAnnuler.Location = new System.Drawing.Point(243, 460);
+            this.buttonAnnuler.Font = new System.Drawing.Font("Montserrat", 9.5F, System.Drawing.FontStyle.Bold);
+            this.buttonAnnuler.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.buttonAnnuler.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(43)))), ((int)(((byte)(132)))));
+            this.buttonAnnuler.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.buttonAnnuler.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(43)))), ((int)(((byte)(132)))));
+            this.buttonAnnuler.Location = new System.Drawing.Point(80, 498);
+            this.buttonAnnuler.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAnnuler.Name = "buttonAnnuler";
-            this.buttonAnnuler.Size = new System.Drawing.Size(169, 50);
+            this.buttonAnnuler.Size = new System.Drawing.Size(387, 59);
             this.buttonAnnuler.TabIndex = 7;
-            this.buttonAnnuler.Text = "ANNULER";
+            this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
-            //
+            // 
             // buttonConnexion
-            //
-            this.buttonConnexion.BorderRadius = 8;
+            // 
+            this.buttonConnexion.Animated = true;
+            this.buttonConnexion.BackColor = System.Drawing.Color.Transparent;
+            this.buttonConnexion.BorderRadius = 12;
             this.buttonConnexion.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.buttonConnexion.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buttonConnexion.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonConnexion.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.buttonConnexion.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.buttonConnexion.FillColor = System.Drawing.Color.MidnightBlue;
+            this.buttonConnexion.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
             this.buttonConnexion.ForeColor = System.Drawing.Color.White;
-            this.buttonConnexion.Location = new System.Drawing.Point(48, 460);
+            this.buttonConnexion.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(51)))), ((int)(((byte)(153)))));
+            this.buttonConnexion.Location = new System.Drawing.Point(80, 418);
+            this.buttonConnexion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonConnexion.Name = "buttonConnexion";
-            this.buttonConnexion.Size = new System.Drawing.Size(169, 50);
+            this.buttonConnexion.ShadowDecoration.BorderRadius = 12;
+            this.buttonConnexion.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(43)))), ((int)(((byte)(132)))));
+            this.buttonConnexion.ShadowDecoration.Depth = 20;
+            this.buttonConnexion.ShadowDecoration.Enabled = true;
+            this.buttonConnexion.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 5, 0, 10);
+            this.buttonConnexion.Size = new System.Drawing.Size(387, 64);
             this.buttonConnexion.TabIndex = 6;
-            this.buttonConnexion.Text = "SE CONNECTER";
+            this.buttonConnexion.Text = "Se connecter";
             this.buttonConnexion.Click += new System.EventHandler(this.buttonConnexion_Click);
-            //
+            // 
             // textBoxMotDePasse
-            //
-            this.textBoxMotDePasse.BorderRadius = 8;
+            // 
+            this.textBoxMotDePasse.Animated = true;
+            this.textBoxMotDePasse.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(225)))));
+            this.textBoxMotDePasse.BorderRadius = 12;
             this.textBoxMotDePasse.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxMotDePasse.DefaultText = "";
             this.textBoxMotDePasse.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.textBoxMotDePasse.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.textBoxMotDePasse.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxMotDePasse.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.textBoxMotDePasse.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxMotDePasse.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.textBoxMotDePasse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxMotDePasse.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.textBoxMotDePasse.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.textBoxMotDePasse.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(43)))), ((int)(((byte)(132)))));
+            this.textBoxMotDePasse.FocusedState.FillColor = System.Drawing.Color.White;
+            this.textBoxMotDePasse.Font = new System.Drawing.Font("Montserrat", 10F);
+            this.textBoxMotDePasse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(35)))), ((int)(((byte)(45)))));
+            this.textBoxMotDePasse.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(43)))), ((int)(((byte)(132)))));
             this.textBoxMotDePasse.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.textBoxMotDePasse.Location = new System.Drawing.Point(48, 350);
-            this.textBoxMotDePasse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxMotDePasse.Location = new System.Drawing.Point(80, 295);
+            this.textBoxMotDePasse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxMotDePasse.Name = "textBoxMotDePasse";
-            this.textBoxMotDePasse.PasswordChar = '\0';
-            this.textBoxMotDePasse.PlaceholderText = "Saisissez votre mot de passe";
+            this.textBoxMotDePasse.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.textBoxMotDePasse.PlaceholderText = "Mot de passe";
             this.textBoxMotDePasse.SelectedText = "";
-            this.textBoxMotDePasse.Size = new System.Drawing.Size(364, 45);
+            this.textBoxMotDePasse.Size = new System.Drawing.Size(387, 59);
             this.textBoxMotDePasse.TabIndex = 3;
-            this.textBoxMotDePasse.TextOffset = new System.Drawing.Point(10, 0);
-            //
+            this.textBoxMotDePasse.TextOffset = new System.Drawing.Point(5, 0);
+            // 
             // textBoxNomUtilisateur
-            //
-            this.textBoxNomUtilisateur.BorderRadius = 8;
+            // 
+            this.textBoxNomUtilisateur.Animated = true;
+            this.textBoxNomUtilisateur.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(225)))));
+            this.textBoxNomUtilisateur.BorderRadius = 12;
             this.textBoxNomUtilisateur.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxNomUtilisateur.DefaultText = "";
             this.textBoxNomUtilisateur.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.textBoxNomUtilisateur.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.textBoxNomUtilisateur.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.textBoxNomUtilisateur.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.textBoxNomUtilisateur.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.textBoxNomUtilisateur.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.textBoxNomUtilisateur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxNomUtilisateur.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.textBoxNomUtilisateur.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.textBoxNomUtilisateur.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(43)))), ((int)(((byte)(132)))));
+            this.textBoxNomUtilisateur.FocusedState.FillColor = System.Drawing.Color.White;
+            this.textBoxNomUtilisateur.Font = new System.Drawing.Font("Montserrat", 10F);
+            this.textBoxNomUtilisateur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(35)))), ((int)(((byte)(45)))));
+            this.textBoxNomUtilisateur.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(43)))), ((int)(((byte)(132)))));
             this.textBoxNomUtilisateur.IconLeftOffset = new System.Drawing.Point(10, 0);
-            this.textBoxNomUtilisateur.Location = new System.Drawing.Point(48, 258);
-            this.textBoxNomUtilisateur.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxNomUtilisateur.Location = new System.Drawing.Point(80, 197);
+            this.textBoxNomUtilisateur.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxNomUtilisateur.Name = "textBoxNomUtilisateur";
-            this.textBoxNomUtilisateur.PasswordChar = '\0';
-            this.textBoxNomUtilisateur.PlaceholderText = "Saisissez votre nom d\'utilisateur";
+            this.textBoxNomUtilisateur.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.textBoxNomUtilisateur.PlaceholderText = "Nom d\'utilisateur";
             this.textBoxNomUtilisateur.SelectedText = "";
-            this.textBoxNomUtilisateur.Size = new System.Drawing.Size(364, 45);
+            this.textBoxNomUtilisateur.Size = new System.Drawing.Size(387, 59);
             this.textBoxNomUtilisateur.TabIndex = 1;
-            this.textBoxNomUtilisateur.TextOffset = new System.Drawing.Point(10, 0);
-            //
+            this.textBoxNomUtilisateur.TextOffset = new System.Drawing.Point(5, 0);
+            // 
             // labelMotDePasse
-            //
+            // 
             this.labelMotDePasse.AutoSize = true;
-            this.labelMotDePasse.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMotDePasse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelMotDePasse.Location = new System.Drawing.Point(48, 322);
+            this.labelMotDePasse.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMotDePasse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.labelMotDePasse.Location = new System.Drawing.Point(80, 265);
+            this.labelMotDePasse.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelMotDePasse.Name = "labelMotDePasse";
-            this.labelMotDePasse.Size = new System.Drawing.Size(101, 19);
+            this.labelMotDePasse.Size = new System.Drawing.Size(112, 24);
             this.labelMotDePasse.TabIndex = 2;
             this.labelMotDePasse.Text = "Mot de passe";
-            //
+            // 
             // labelNomUtilisateur
-            //
+            // 
             this.labelNomUtilisateur.AutoSize = true;
-            this.labelNomUtilisateur.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNomUtilisateur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelNomUtilisateur.Location = new System.Drawing.Point(48, 230);
+            this.labelNomUtilisateur.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNomUtilisateur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.labelNomUtilisateur.Location = new System.Drawing.Point(80, 166);
+            this.labelNomUtilisateur.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNomUtilisateur.Name = "labelNomUtilisateur";
-            this.labelNomUtilisateur.Size = new System.Drawing.Size(126, 19);
+            this.labelNomUtilisateur.Size = new System.Drawing.Size(146, 24);
             this.labelNomUtilisateur.TabIndex = 0;
             this.labelNomUtilisateur.Text = "Nom d\'utilisateur";
-            //
+            // 
             // labelSubTitle
-            //
-            this.labelSubTitle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSubTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.labelSubTitle.Location = new System.Drawing.Point(48, 180);
+            // 
+            this.labelSubTitle.Font = new System.Drawing.Font("Montserrat", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSubTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(120)))), ((int)(((byte)(125)))));
+            this.labelSubTitle.Location = new System.Drawing.Point(80, 129);
+            this.labelSubTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSubTitle.Name = "labelSubTitle";
-            this.labelSubTitle.Size = new System.Drawing.Size(364, 23);
+            this.labelSubTitle.Size = new System.Drawing.Size(387, 27);
             this.labelSubTitle.TabIndex = 1;
-            this.labelSubTitle.Text = "Connectez-vous pour accéder au système";
-            this.labelSubTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //
+            this.labelSubTitle.Text = "Accédez à votre espace";
+            this.labelSubTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // labelTitle
-            //
-            this.labelTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelTitle.Location = new System.Drawing.Point(48, 140);
+            // 
+            this.labelTitle.Font = new System.Drawing.Font("Montserrat", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(35)))), ((int)(((byte)(45)))));
+            this.labelTitle.Location = new System.Drawing.Point(84, 58);
+            this.labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(364, 32);
+            this.labelTitle.Size = new System.Drawing.Size(387, 49);
             this.labelTitle.TabIndex = 0;
-            this.labelTitle.Text = "CONNEXION";
-            this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //
+            this.labelTitle.Text = "Connexion";
+            this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panelLeft
+            // 
+            this.panelLeft.BackColor = System.Drawing.Color.Transparent;
+            this.panelLeft.Controls.Add(this.pictureBoxLogo);
+            this.panelLeft.Controls.Add(this.guna2VSeparator1);
+            this.panelLeft.Controls.Add(this.labelAppDesc);
+            this.panelLeft.Controls.Add(this.labelAppName);
+            this.panelLeft.Controls.Add(this.labelWelcome);
+            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLeft.FillColor = System.Drawing.Color.MidnightBlue;
+            this.panelLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelLeft.Name = "panelLeft";
+            this.panelLeft.Padding = new System.Windows.Forms.Padding(53, 49, 53, 49);
+            this.panelLeft.Size = new System.Drawing.Size(644, 738);
+            this.panelLeft.TabIndex = 0;
+            // 
+            // labelAppDesc
+            // 
+            this.labelAppDesc.Font = new System.Drawing.Font("Montserrat", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAppDesc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
+            this.labelAppDesc.Location = new System.Drawing.Point(64, 461);
+            this.labelAppDesc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAppDesc.Name = "labelAppDesc";
+            this.labelAppDesc.Size = new System.Drawing.Size(427, 98);
+            this.labelAppDesc.TabIndex = 2;
+            this.labelAppDesc.Text = "Progiciel complet de gestion des ressources humaines pour optimisation des proces" +
+    "sus RH.";
+            this.labelAppDesc.Click += new System.EventHandler(this.labelAppDesc_Click);
+            // 
+            // labelAppName
+            // 
+            this.labelAppName.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAppName.ForeColor = System.Drawing.Color.White;
+            this.labelAppName.Location = new System.Drawing.Point(62, 395);
+            this.labelAppName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAppName.Name = "labelAppName";
+            this.labelAppName.Size = new System.Drawing.Size(427, 49);
+            this.labelAppName.TabIndex = 1;
+            this.labelAppName.Text = "Gestion Moderne RH";
+            this.labelAppName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelWelcome
+            // 
+            this.labelWelcome.Font = new System.Drawing.Font("Montserrat ExtraBold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWelcome.ForeColor = System.Drawing.Color.White;
+            this.labelWelcome.Location = new System.Drawing.Point(53, 312);
+            this.labelWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelWelcome.Name = "labelWelcome";
+            this.labelWelcome.Size = new System.Drawing.Size(427, 74);
+            this.labelWelcome.TabIndex = 0;
+            this.labelWelcome.Text = "Bienvenue !";
+            this.labelWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // guna2VSeparator1
+            // 
+            this.guna2VSeparator1.FillColor = System.Drawing.Color.White;
+            this.guna2VSeparator1.FillThickness = 4;
+            this.guna2VSeparator1.Location = new System.Drawing.Point(45, 338);
+            this.guna2VSeparator1.Name = "guna2VSeparator1";
+            this.guna2VSeparator1.Size = new System.Drawing.Size(12, 169);
+            this.guna2VSeparator1.TabIndex = 3;
+            // 
             // pictureBoxLogo
-            //
-            this.pictureBoxLogo.Location = new System.Drawing.Point(155, 40);
+            // 
+            this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxLogo.Image = global::RH_GRH.Properties.Resources.logo_RH___1_;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(145, 58);
+            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(150, 80);
-            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxLogo.TabIndex = 0;
+            this.pictureBoxLogo.Size = new System.Drawing.Size(244, 231);
+            this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxLogo.TabIndex = 4;
             this.pictureBoxLogo.TabStop = false;
-            //
+            // 
             // LoginForm
-            //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 650);
+            this.ClientSize = new System.Drawing.Size(1200, 628);
             this.Controls.Add(this.panelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoginForm";
@@ -264,6 +368,7 @@ namespace RH_GRH
             this.panelMain.ResumeLayout(false);
             this.panelLogin.ResumeLayout(false);
             this.panelLogin.PerformLayout();
+            this.panelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
 
@@ -272,8 +377,11 @@ namespace RH_GRH
         #endregion
 
         private System.Windows.Forms.Panel panelMain;
-        private System.Windows.Forms.Panel panelLogin;
-        private System.Windows.Forms.PictureBox pictureBoxLogo;
+        private Guna.UI2.WinForms.Guna2Panel panelLeft;
+        private System.Windows.Forms.Label labelWelcome;
+        private System.Windows.Forms.Label labelAppName;
+        private System.Windows.Forms.Label labelAppDesc;
+        private Guna.UI2.WinForms.Guna2Panel panelLogin;
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Label labelSubTitle;
         private System.Windows.Forms.Label labelNomUtilisateur;
@@ -284,5 +392,7 @@ namespace RH_GRH
         private Guna.UI2.WinForms.Guna2Button buttonAnnuler;
         private Guna.UI2.WinForms.Guna2CheckBox checkBoxAfficherMdp;
         private System.Windows.Forms.LinkLabel linkLabelMotDePasseOublie;
+        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator1;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
     }
 }
