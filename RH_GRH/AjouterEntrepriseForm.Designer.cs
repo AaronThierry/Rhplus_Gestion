@@ -75,23 +75,22 @@ namespace RH_GRH
             this.panelContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // panelFooter
             // 
             this.panelFooter.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelFooter.Controls.Add(this.buttonValider);
             this.panelFooter.Controls.Add(this.buttonAnnuler);
             this.panelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelFooter.Location = new System.Drawing.Point(0, 862);
-            this.panelFooter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelFooter.Location = new System.Drawing.Point(0, 874);
+            this.panelFooter.Margin = new System.Windows.Forms.Padding(4);
             this.panelFooter.Name = "panelFooter";
             this.panelFooter.Size = new System.Drawing.Size(1000, 86);
             this.panelFooter.TabIndex = 1;
             // 
             // buttonValider
-            //
+            // 
             this.buttonValider.Animated = true;
-            this.buttonValider.BorderRadius = 0;
             this.buttonValider.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.buttonValider.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buttonValider.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -100,17 +99,16 @@ namespace RH_GRH
             this.buttonValider.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
             this.buttonValider.ForeColor = System.Drawing.Color.White;
             this.buttonValider.Location = new System.Drawing.Point(747, 18);
-            this.buttonValider.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonValider.Margin = new System.Windows.Forms.Padding(4);
             this.buttonValider.Name = "buttonValider";
             this.buttonValider.Size = new System.Drawing.Size(227, 55);
             this.buttonValider.TabIndex = 24;
             this.buttonValider.Text = "Valider";
             this.buttonValider.Click += new System.EventHandler(this.buttonValider_Click);
-            //
+            // 
             // buttonAnnuler
-            //
+            // 
             this.buttonAnnuler.Animated = true;
-            this.buttonAnnuler.BorderRadius = 0;
             this.buttonAnnuler.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.buttonAnnuler.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buttonAnnuler.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -119,7 +117,7 @@ namespace RH_GRH
             this.buttonAnnuler.Font = new System.Drawing.Font("Montserrat", 10F, System.Drawing.FontStyle.Bold);
             this.buttonAnnuler.ForeColor = System.Drawing.Color.White;
             this.buttonAnnuler.Location = new System.Drawing.Point(507, 18);
-            this.buttonAnnuler.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAnnuler.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAnnuler.Name = "buttonAnnuler";
             this.buttonAnnuler.Size = new System.Drawing.Size(227, 55);
             this.buttonAnnuler.TabIndex = 25;
@@ -132,14 +130,14 @@ namespace RH_GRH
             this.panelScrollable.Controls.Add(this.panelContent);
             this.panelScrollable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelScrollable.Location = new System.Drawing.Point(0, 0);
-            this.panelScrollable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelScrollable.Margin = new System.Windows.Forms.Padding(4);
             this.panelScrollable.Name = "panelScrollable";
-            this.panelScrollable.Size = new System.Drawing.Size(1000, 862);
+            this.panelScrollable.Size = new System.Drawing.Size(1000, 874);
             this.panelScrollable.TabIndex = 2;
             // 
             // panelContent
-            //
-            this.panelContent.BackColor = System.Drawing.Color.FromArgb(250, 250, 250);
+            // 
+            this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.panelContent.Controls.Add(this.labelTitre);
             this.panelContent.Controls.Add(this.labelNomEntreprise);
             this.panelContent.Controls.Add(this.textBoxNomEntreprise);
@@ -190,31 +188,29 @@ namespace RH_GRH
             this.panelContent.Controls.Add(this.buttonParcourir);
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelContent.Location = new System.Drawing.Point(0, 0);
-            this.panelContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelContent.Margin = new System.Windows.Forms.Padding(4);
             this.panelContent.Name = "panelContent";
             this.panelContent.Padding = new System.Windows.Forms.Padding(27, 25, 27, 25);
             this.panelContent.Size = new System.Drawing.Size(979, 1760);
             this.panelContent.TabIndex = 0;
-            //
+            // 
             // labelTitre
-            //
-            this.labelTitre.AutoSize = false;
+            // 
             this.labelTitre.BackColor = System.Drawing.Color.MidnightBlue;
-            this.labelTitre.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelTitre.Font = new System.Drawing.Font("Montserrat", 14F, System.Drawing.FontStyle.Bold);
             this.labelTitre.ForeColor = System.Drawing.Color.White;
             this.labelTitre.Location = new System.Drawing.Point(0, 0);
             this.labelTitre.Name = "labelTitre";
-            this.labelTitre.Size = new System.Drawing.Size(979, 60);
+            this.labelTitre.Size = new System.Drawing.Size(979, 87);
             this.labelTitre.TabIndex = 0;
             this.labelTitre.Text = "Ajouter une entreprise";
             this.labelTitre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //
+            // 
             // labelNomEntreprise
             // 
             this.labelNomEntreprise.AutoSize = true;
             this.labelNomEntreprise.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold);
-            this.labelNomEntreprise.Location = new System.Drawing.Point(40, 85);
+            this.labelNomEntreprise.Location = new System.Drawing.Point(40, 102);
             this.labelNomEntreprise.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNomEntreprise.Name = "labelNomEntreprise";
             this.labelNomEntreprise.Size = new System.Drawing.Size(201, 24);
@@ -223,12 +219,11 @@ namespace RH_GRH
             // 
             // textBoxNomEntreprise
             // 
-            this.textBoxNomEntreprise.BorderRadius = 0;
             this.textBoxNomEntreprise.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxNomEntreprise.DefaultText = "";
             this.textBoxNomEntreprise.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxNomEntreprise.ForeColor = System.Drawing.Color.Black;
-            this.textBoxNomEntreprise.Location = new System.Drawing.Point(44, 49);
+            this.textBoxNomEntreprise.Location = new System.Drawing.Point(44, 126);
             this.textBoxNomEntreprise.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxNomEntreprise.Name = "textBoxNomEntreprise";
             this.textBoxNomEntreprise.PlaceholderText = "";
@@ -240,7 +235,7 @@ namespace RH_GRH
             // 
             this.labelFormeJuridique.AutoSize = true;
             this.labelFormeJuridique.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.labelFormeJuridique.Location = new System.Drawing.Point(507, 25);
+            this.labelFormeJuridique.Location = new System.Drawing.Point(507, 102);
             this.labelFormeJuridique.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFormeJuridique.Name = "labelFormeJuridique";
             this.labelFormeJuridique.Size = new System.Drawing.Size(137, 24);
@@ -249,12 +244,11 @@ namespace RH_GRH
             // 
             // textBoxFormeJuridique
             // 
-            this.textBoxFormeJuridique.BorderRadius = 0;
             this.textBoxFormeJuridique.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxFormeJuridique.DefaultText = "";
             this.textBoxFormeJuridique.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxFormeJuridique.ForeColor = System.Drawing.Color.Black;
-            this.textBoxFormeJuridique.Location = new System.Drawing.Point(511, 49);
+            this.textBoxFormeJuridique.Location = new System.Drawing.Point(511, 126);
             this.textBoxFormeJuridique.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxFormeJuridique.Name = "textBoxFormeJuridique";
             this.textBoxFormeJuridique.PlaceholderText = "";
@@ -266,7 +260,7 @@ namespace RH_GRH
             // 
             this.labelSigle.AutoSize = true;
             this.labelSigle.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.labelSigle.Location = new System.Drawing.Point(40, 106);
+            this.labelSigle.Location = new System.Drawing.Point(40, 183);
             this.labelSigle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSigle.Name = "labelSigle";
             this.labelSigle.Size = new System.Drawing.Size(53, 24);
@@ -275,12 +269,11 @@ namespace RH_GRH
             // 
             // textBoxSigle
             // 
-            this.textBoxSigle.BorderRadius = 0;
             this.textBoxSigle.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxSigle.DefaultText = "";
             this.textBoxSigle.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxSigle.ForeColor = System.Drawing.Color.Black;
-            this.textBoxSigle.Location = new System.Drawing.Point(44, 130);
+            this.textBoxSigle.Location = new System.Drawing.Point(44, 207);
             this.textBoxSigle.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxSigle.Name = "textBoxSigle";
             this.textBoxSigle.PlaceholderText = "";
@@ -292,7 +285,7 @@ namespace RH_GRH
             // 
             this.labelActivite.AutoSize = true;
             this.labelActivite.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.labelActivite.Location = new System.Drawing.Point(507, 106);
+            this.labelActivite.Location = new System.Drawing.Point(507, 183);
             this.labelActivite.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelActivite.Name = "labelActivite";
             this.labelActivite.Size = new System.Drawing.Size(73, 24);
@@ -301,12 +294,11 @@ namespace RH_GRH
             // 
             // textBoxActivite
             // 
-            this.textBoxActivite.BorderRadius = 0;
             this.textBoxActivite.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxActivite.DefaultText = "";
             this.textBoxActivite.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxActivite.ForeColor = System.Drawing.Color.Black;
-            this.textBoxActivite.Location = new System.Drawing.Point(511, 130);
+            this.textBoxActivite.Location = new System.Drawing.Point(511, 207);
             this.textBoxActivite.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxActivite.Name = "textBoxActivite";
             this.textBoxActivite.PlaceholderText = "";
@@ -318,7 +310,7 @@ namespace RH_GRH
             // 
             this.labelAdressePhysique.AutoSize = true;
             this.labelAdressePhysique.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.labelAdressePhysique.Location = new System.Drawing.Point(40, 187);
+            this.labelAdressePhysique.Location = new System.Drawing.Point(40, 264);
             this.labelAdressePhysique.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAdressePhysique.Name = "labelAdressePhysique";
             this.labelAdressePhysique.Size = new System.Drawing.Size(148, 24);
@@ -327,12 +319,11 @@ namespace RH_GRH
             // 
             // textBoxAdressePhysique
             // 
-            this.textBoxAdressePhysique.BorderRadius = 0;
             this.textBoxAdressePhysique.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxAdressePhysique.DefaultText = "";
             this.textBoxAdressePhysique.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxAdressePhysique.ForeColor = System.Drawing.Color.Black;
-            this.textBoxAdressePhysique.Location = new System.Drawing.Point(44, 212);
+            this.textBoxAdressePhysique.Location = new System.Drawing.Point(44, 289);
             this.textBoxAdressePhysique.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxAdressePhysique.Name = "textBoxAdressePhysique";
             this.textBoxAdressePhysique.PlaceholderText = "";
@@ -344,7 +335,7 @@ namespace RH_GRH
             // 
             this.labelAdressePostale.AutoSize = true;
             this.labelAdressePostale.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.labelAdressePostale.Location = new System.Drawing.Point(40, 268);
+            this.labelAdressePostale.Location = new System.Drawing.Point(40, 345);
             this.labelAdressePostale.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAdressePostale.Name = "labelAdressePostale";
             this.labelAdressePostale.Size = new System.Drawing.Size(134, 24);
@@ -353,12 +344,11 @@ namespace RH_GRH
             // 
             // textBoxAdressePostale
             // 
-            this.textBoxAdressePostale.BorderRadius = 0;
             this.textBoxAdressePostale.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxAdressePostale.DefaultText = "";
             this.textBoxAdressePostale.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxAdressePostale.ForeColor = System.Drawing.Color.Black;
-            this.textBoxAdressePostale.Location = new System.Drawing.Point(44, 293);
+            this.textBoxAdressePostale.Location = new System.Drawing.Point(44, 370);
             this.textBoxAdressePostale.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxAdressePostale.Name = "textBoxAdressePostale";
             this.textBoxAdressePostale.PlaceholderText = "";
@@ -370,7 +360,7 @@ namespace RH_GRH
             // 
             this.labelTelephone.AutoSize = true;
             this.labelTelephone.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold);
-            this.labelTelephone.Location = new System.Drawing.Point(40, 350);
+            this.labelTelephone.Location = new System.Drawing.Point(40, 427);
             this.labelTelephone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTelephone.Name = "labelTelephone";
             this.labelTelephone.Size = new System.Drawing.Size(160, 24);
@@ -379,12 +369,11 @@ namespace RH_GRH
             // 
             // textBoxTelephone
             // 
-            this.textBoxTelephone.BorderRadius = 0;
             this.textBoxTelephone.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxTelephone.DefaultText = "";
             this.textBoxTelephone.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxTelephone.ForeColor = System.Drawing.Color.Black;
-            this.textBoxTelephone.Location = new System.Drawing.Point(44, 374);
+            this.textBoxTelephone.Location = new System.Drawing.Point(44, 451);
             this.textBoxTelephone.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxTelephone.Name = "textBoxTelephone";
             this.textBoxTelephone.PlaceholderText = "";
@@ -396,7 +385,7 @@ namespace RH_GRH
             // 
             this.labelCommune.AutoSize = true;
             this.labelCommune.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.labelCommune.Location = new System.Drawing.Point(507, 350);
+            this.labelCommune.Location = new System.Drawing.Point(507, 427);
             this.labelCommune.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCommune.Name = "labelCommune";
             this.labelCommune.Size = new System.Drawing.Size(98, 24);
@@ -405,12 +394,11 @@ namespace RH_GRH
             // 
             // textBoxCommune
             // 
-            this.textBoxCommune.BorderRadius = 0;
             this.textBoxCommune.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxCommune.DefaultText = "";
             this.textBoxCommune.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxCommune.ForeColor = System.Drawing.Color.Black;
-            this.textBoxCommune.Location = new System.Drawing.Point(511, 374);
+            this.textBoxCommune.Location = new System.Drawing.Point(511, 451);
             this.textBoxCommune.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxCommune.Name = "textBoxCommune";
             this.textBoxCommune.PlaceholderText = "";
@@ -422,7 +410,7 @@ namespace RH_GRH
             // 
             this.labelQuartier.AutoSize = true;
             this.labelQuartier.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.labelQuartier.Location = new System.Drawing.Point(40, 431);
+            this.labelQuartier.Location = new System.Drawing.Point(40, 508);
             this.labelQuartier.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelQuartier.Name = "labelQuartier";
             this.labelQuartier.Size = new System.Drawing.Size(80, 24);
@@ -431,12 +419,11 @@ namespace RH_GRH
             // 
             // textBoxQuartier
             // 
-            this.textBoxQuartier.BorderRadius = 0;
             this.textBoxQuartier.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxQuartier.DefaultText = "";
             this.textBoxQuartier.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxQuartier.ForeColor = System.Drawing.Color.Black;
-            this.textBoxQuartier.Location = new System.Drawing.Point(44, 455);
+            this.textBoxQuartier.Location = new System.Drawing.Point(44, 532);
             this.textBoxQuartier.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxQuartier.Name = "textBoxQuartier";
             this.textBoxQuartier.PlaceholderText = "";
@@ -448,7 +435,7 @@ namespace RH_GRH
             // 
             this.labelRue.AutoSize = true;
             this.labelRue.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.labelRue.Location = new System.Drawing.Point(507, 431);
+            this.labelRue.Location = new System.Drawing.Point(507, 508);
             this.labelRue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRue.Name = "labelRue";
             this.labelRue.Size = new System.Drawing.Size(47, 24);
@@ -457,12 +444,11 @@ namespace RH_GRH
             // 
             // textBoxRue
             // 
-            this.textBoxRue.BorderRadius = 0;
             this.textBoxRue.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxRue.DefaultText = "";
             this.textBoxRue.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxRue.ForeColor = System.Drawing.Color.Black;
-            this.textBoxRue.Location = new System.Drawing.Point(511, 455);
+            this.textBoxRue.Location = new System.Drawing.Point(511, 532);
             this.textBoxRue.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxRue.Name = "textBoxRue";
             this.textBoxRue.PlaceholderText = "";
@@ -474,7 +460,7 @@ namespace RH_GRH
             // 
             this.labelLot.AutoSize = true;
             this.labelLot.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.labelLot.Location = new System.Drawing.Point(40, 512);
+            this.labelLot.Location = new System.Drawing.Point(40, 589);
             this.labelLot.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLot.Name = "labelLot";
             this.labelLot.Size = new System.Drawing.Size(41, 24);
@@ -483,12 +469,11 @@ namespace RH_GRH
             // 
             // textBoxLot
             // 
-            this.textBoxLot.BorderRadius = 0;
             this.textBoxLot.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxLot.DefaultText = "";
             this.textBoxLot.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxLot.ForeColor = System.Drawing.Color.Black;
-            this.textBoxLot.Location = new System.Drawing.Point(44, 537);
+            this.textBoxLot.Location = new System.Drawing.Point(44, 614);
             this.textBoxLot.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxLot.Name = "textBoxLot";
             this.textBoxLot.PlaceholderText = "";
@@ -500,7 +485,7 @@ namespace RH_GRH
             // 
             this.labelCentreImpots.AutoSize = true;
             this.labelCentreImpots.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.labelCentreImpots.Location = new System.Drawing.Point(507, 512);
+            this.labelCentreImpots.Location = new System.Drawing.Point(507, 589);
             this.labelCentreImpots.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCentreImpots.Name = "labelCentreImpots";
             this.labelCentreImpots.Size = new System.Drawing.Size(137, 24);
@@ -509,12 +494,11 @@ namespace RH_GRH
             // 
             // textBoxCentreImpots
             // 
-            this.textBoxCentreImpots.BorderRadius = 0;
             this.textBoxCentreImpots.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxCentreImpots.DefaultText = "";
             this.textBoxCentreImpots.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxCentreImpots.ForeColor = System.Drawing.Color.Black;
-            this.textBoxCentreImpots.Location = new System.Drawing.Point(511, 537);
+            this.textBoxCentreImpots.Location = new System.Drawing.Point(511, 614);
             this.textBoxCentreImpots.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxCentreImpots.Name = "textBoxCentreImpots";
             this.textBoxCentreImpots.PlaceholderText = "";
@@ -526,7 +510,7 @@ namespace RH_GRH
             // 
             this.labelNumeroIfu.AutoSize = true;
             this.labelNumeroIfu.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.labelNumeroIfu.Location = new System.Drawing.Point(40, 593);
+            this.labelNumeroIfu.Location = new System.Drawing.Point(40, 670);
             this.labelNumeroIfu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNumeroIfu.Name = "labelNumeroIfu";
             this.labelNumeroIfu.Size = new System.Drawing.Size(109, 24);
@@ -535,12 +519,11 @@ namespace RH_GRH
             // 
             // textBoxNumeroIfu
             // 
-            this.textBoxNumeroIfu.BorderRadius = 0;
             this.textBoxNumeroIfu.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxNumeroIfu.DefaultText = "";
             this.textBoxNumeroIfu.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxNumeroIfu.ForeColor = System.Drawing.Color.Black;
-            this.textBoxNumeroIfu.Location = new System.Drawing.Point(44, 618);
+            this.textBoxNumeroIfu.Location = new System.Drawing.Point(44, 695);
             this.textBoxNumeroIfu.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxNumeroIfu.Name = "textBoxNumeroIfu";
             this.textBoxNumeroIfu.PlaceholderText = "";
@@ -552,7 +535,7 @@ namespace RH_GRH
             // 
             this.labelNumeroCnss.AutoSize = true;
             this.labelNumeroCnss.Font = new System.Drawing.Font("Montserrat", 9F);
-            this.labelNumeroCnss.Location = new System.Drawing.Point(507, 593);
+            this.labelNumeroCnss.Location = new System.Drawing.Point(507, 670);
             this.labelNumeroCnss.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNumeroCnss.Name = "labelNumeroCnss";
             this.labelNumeroCnss.Size = new System.Drawing.Size(124, 24);
@@ -561,12 +544,11 @@ namespace RH_GRH
             // 
             // textBoxNumeroCnss
             // 
-            this.textBoxNumeroCnss.BorderRadius = 0;
             this.textBoxNumeroCnss.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxNumeroCnss.DefaultText = "";
             this.textBoxNumeroCnss.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxNumeroCnss.ForeColor = System.Drawing.Color.Black;
-            this.textBoxNumeroCnss.Location = new System.Drawing.Point(511, 618);
+            this.textBoxNumeroCnss.Location = new System.Drawing.Point(511, 695);
             this.textBoxNumeroCnss.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxNumeroCnss.Name = "textBoxNumeroCnss";
             this.textBoxNumeroCnss.PlaceholderText = "";
@@ -579,7 +561,7 @@ namespace RH_GRH
             this.labelCodeActivite.AutoSize = true;
             this.labelCodeActivite.Font = new System.Drawing.Font("Montserrat", 9F);
             this.labelCodeActivite.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelCodeActivite.Location = new System.Drawing.Point(40, 674);
+            this.labelCodeActivite.Location = new System.Drawing.Point(40, 751);
             this.labelCodeActivite.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCodeActivite.Name = "labelCodeActivite";
             this.labelCodeActivite.Size = new System.Drawing.Size(127, 24);
@@ -588,12 +570,11 @@ namespace RH_GRH
             // 
             // textBoxCodeActivite
             // 
-            this.textBoxCodeActivite.BorderRadius = 0;
             this.textBoxCodeActivite.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxCodeActivite.DefaultText = "";
             this.textBoxCodeActivite.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxCodeActivite.ForeColor = System.Drawing.Color.Black;
-            this.textBoxCodeActivite.Location = new System.Drawing.Point(44, 699);
+            this.textBoxCodeActivite.Location = new System.Drawing.Point(44, 776);
             this.textBoxCodeActivite.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxCodeActivite.Name = "textBoxCodeActivite";
             this.textBoxCodeActivite.PlaceholderText = "";
@@ -606,7 +587,7 @@ namespace RH_GRH
             this.labelRegimeFiscal.AutoSize = true;
             this.labelRegimeFiscal.Font = new System.Drawing.Font("Montserrat", 9F);
             this.labelRegimeFiscal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelRegimeFiscal.Location = new System.Drawing.Point(507, 674);
+            this.labelRegimeFiscal.Location = new System.Drawing.Point(507, 751);
             this.labelRegimeFiscal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRegimeFiscal.Name = "labelRegimeFiscal";
             this.labelRegimeFiscal.Size = new System.Drawing.Size(117, 24);
@@ -615,12 +596,11 @@ namespace RH_GRH
             // 
             // textBoxRegimeFiscal
             // 
-            this.textBoxRegimeFiscal.BorderRadius = 0;
             this.textBoxRegimeFiscal.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxRegimeFiscal.DefaultText = "";
             this.textBoxRegimeFiscal.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxRegimeFiscal.ForeColor = System.Drawing.Color.Black;
-            this.textBoxRegimeFiscal.Location = new System.Drawing.Point(511, 699);
+            this.textBoxRegimeFiscal.Location = new System.Drawing.Point(511, 776);
             this.textBoxRegimeFiscal.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxRegimeFiscal.Name = "textBoxRegimeFiscal";
             this.textBoxRegimeFiscal.PlaceholderText = "";
@@ -633,7 +613,7 @@ namespace RH_GRH
             this.labelRegistreCommerce.AutoSize = true;
             this.labelRegistreCommerce.Font = new System.Drawing.Font("Montserrat", 9F);
             this.labelRegistreCommerce.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelRegistreCommerce.Location = new System.Drawing.Point(40, 756);
+            this.labelRegistreCommerce.Location = new System.Drawing.Point(40, 833);
             this.labelRegistreCommerce.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRegistreCommerce.Name = "labelRegistreCommerce";
             this.labelRegistreCommerce.Size = new System.Drawing.Size(187, 24);
@@ -642,12 +622,11 @@ namespace RH_GRH
             // 
             // textBoxRegistreCommerce
             // 
-            this.textBoxRegistreCommerce.BorderRadius = 0;
             this.textBoxRegistreCommerce.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxRegistreCommerce.DefaultText = "";
             this.textBoxRegistreCommerce.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxRegistreCommerce.ForeColor = System.Drawing.Color.Black;
-            this.textBoxRegistreCommerce.Location = new System.Drawing.Point(44, 780);
+            this.textBoxRegistreCommerce.Location = new System.Drawing.Point(44, 857);
             this.textBoxRegistreCommerce.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxRegistreCommerce.Name = "textBoxRegistreCommerce";
             this.textBoxRegistreCommerce.PlaceholderText = "";
@@ -660,7 +639,7 @@ namespace RH_GRH
             this.labelNumeroBancaire.AutoSize = true;
             this.labelNumeroBancaire.Font = new System.Drawing.Font("Montserrat", 9F);
             this.labelNumeroBancaire.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelNumeroBancaire.Location = new System.Drawing.Point(507, 756);
+            this.labelNumeroBancaire.Location = new System.Drawing.Point(507, 833);
             this.labelNumeroBancaire.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNumeroBancaire.Name = "labelNumeroBancaire";
             this.labelNumeroBancaire.Size = new System.Drawing.Size(148, 24);
@@ -669,12 +648,11 @@ namespace RH_GRH
             // 
             // textBoxNumeroBancaire
             // 
-            this.textBoxNumeroBancaire.BorderRadius = 0;
             this.textBoxNumeroBancaire.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxNumeroBancaire.DefaultText = "";
             this.textBoxNumeroBancaire.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxNumeroBancaire.ForeColor = System.Drawing.Color.Black;
-            this.textBoxNumeroBancaire.Location = new System.Drawing.Point(511, 780);
+            this.textBoxNumeroBancaire.Location = new System.Drawing.Point(511, 857);
             this.textBoxNumeroBancaire.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxNumeroBancaire.Name = "textBoxNumeroBancaire";
             this.textBoxNumeroBancaire.PlaceholderText = "";
@@ -687,7 +665,7 @@ namespace RH_GRH
             this.labelTPA.AutoSize = true;
             this.labelTPA.Font = new System.Drawing.Font("Montserrat", 9F);
             this.labelTPA.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelTPA.Location = new System.Drawing.Point(40, 837);
+            this.labelTPA.Location = new System.Drawing.Point(40, 914);
             this.labelTPA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTPA.Name = "labelTPA";
             this.labelTPA.Size = new System.Drawing.Size(47, 24);
@@ -696,12 +674,11 @@ namespace RH_GRH
             // 
             // textBoxTPA
             // 
-            this.textBoxTPA.BorderRadius = 0;
             this.textBoxTPA.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxTPA.DefaultText = "";
             this.textBoxTPA.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxTPA.ForeColor = System.Drawing.Color.Black;
-            this.textBoxTPA.Location = new System.Drawing.Point(44, 862);
+            this.textBoxTPA.Location = new System.Drawing.Point(44, 939);
             this.textBoxTPA.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxTPA.Name = "textBoxTPA";
             this.textBoxTPA.PlaceholderText = "";
@@ -714,7 +691,7 @@ namespace RH_GRH
             this.labelEmail.AutoSize = true;
             this.labelEmail.Font = new System.Drawing.Font("Montserrat", 9F);
             this.labelEmail.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelEmail.Location = new System.Drawing.Point(507, 837);
+            this.labelEmail.Location = new System.Drawing.Point(507, 914);
             this.labelEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(60, 24);
@@ -723,78 +700,75 @@ namespace RH_GRH
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.BorderRadius = 0;
             this.textBoxEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxEmail.DefaultText = "";
             this.textBoxEmail.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxEmail.ForeColor = System.Drawing.Color.Black;
-            this.textBoxEmail.Location = new System.Drawing.Point(511, 862);
+            this.textBoxEmail.Location = new System.Drawing.Point(511, 939);
             this.textBoxEmail.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.PlaceholderText = "";
             this.textBoxEmail.SelectedText = "";
             this.textBoxEmail.Size = new System.Drawing.Size(400, 44);
             this.textBoxEmail.TabIndex = 20;
-            //
+            // 
             // labelResponsable
-            //
+            // 
             this.labelResponsable.AutoSize = true;
             this.labelResponsable.Font = new System.Drawing.Font("Montserrat", 9F);
             this.labelResponsable.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelResponsable.Location = new System.Drawing.Point(40, 918);
+            this.labelResponsable.Location = new System.Drawing.Point(40, 995);
             this.labelResponsable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelResponsable.Name = "labelResponsable";
-            this.labelResponsable.Size = new System.Drawing.Size(102, 24);
+            this.labelResponsable.Size = new System.Drawing.Size(112, 24);
             this.labelResponsable.TabIndex = 42;
             this.labelResponsable.Text = "Responsable :";
-            //
+            // 
             // textBoxResponsable
-            //
-            this.textBoxResponsable.BorderRadius = 0;
+            // 
             this.textBoxResponsable.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxResponsable.DefaultText = "";
             this.textBoxResponsable.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxResponsable.ForeColor = System.Drawing.Color.Black;
-            this.textBoxResponsable.Location = new System.Drawing.Point(44, 943);
+            this.textBoxResponsable.Location = new System.Drawing.Point(44, 1020);
             this.textBoxResponsable.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxResponsable.Name = "textBoxResponsable";
             this.textBoxResponsable.PlaceholderText = "";
             this.textBoxResponsable.SelectedText = "";
             this.textBoxResponsable.Size = new System.Drawing.Size(867, 44);
             this.textBoxResponsable.TabIndex = 21;
-            //
+            // 
             // labelResponsablePaie
-            //
+            // 
             this.labelResponsablePaie.AutoSize = true;
             this.labelResponsablePaie.Font = new System.Drawing.Font("Montserrat", 9F);
             this.labelResponsablePaie.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelResponsablePaie.Location = new System.Drawing.Point(40, 1000);
+            this.labelResponsablePaie.Location = new System.Drawing.Point(40, 1077);
             this.labelResponsablePaie.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelResponsablePaie.Name = "labelResponsablePaie";
-            this.labelResponsablePaie.Size = new System.Drawing.Size(139, 24);
+            this.labelResponsablePaie.Size = new System.Drawing.Size(149, 24);
             this.labelResponsablePaie.TabIndex = 44;
             this.labelResponsablePaie.Text = "Responsable Paie :";
-            //
+            // 
             // textBoxResponsablePaie
-            //
-            this.textBoxResponsablePaie.BorderRadius = 0;
+            // 
             this.textBoxResponsablePaie.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxResponsablePaie.DefaultText = "";
             this.textBoxResponsablePaie.Font = new System.Drawing.Font("Montserrat", 9F);
             this.textBoxResponsablePaie.ForeColor = System.Drawing.Color.Black;
-            this.textBoxResponsablePaie.Location = new System.Drawing.Point(44, 1025);
+            this.textBoxResponsablePaie.Location = new System.Drawing.Point(44, 1102);
             this.textBoxResponsablePaie.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.textBoxResponsablePaie.Name = "textBoxResponsablePaie";
             this.textBoxResponsablePaie.PlaceholderText = "";
             this.textBoxResponsablePaie.SelectedText = "";
             this.textBoxResponsablePaie.Size = new System.Drawing.Size(867, 44);
             this.textBoxResponsablePaie.TabIndex = 22;
-            //
+            // 
             // labelLogo
-            //
+            // 
             this.labelLogo.AutoSize = true;
             this.labelLogo.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold);
-            this.labelLogo.Location = new System.Drawing.Point(40, 1086);
+            this.labelLogo.Location = new System.Drawing.Point(40, 1163);
             this.labelLogo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLogo.Name = "labelLogo";
             this.labelLogo.Size = new System.Drawing.Size(119, 24);
@@ -802,20 +776,18 @@ namespace RH_GRH
             this.labelLogo.Text = "Logo (requis) :";
             // 
             // pictureBoxLogo
-            //
-            this.pictureBoxLogo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(44, 1123);
-            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            // 
+            this.pictureBoxLogo.Location = new System.Drawing.Point(44, 1200);
+            this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
             this.pictureBoxLogo.Size = new System.Drawing.Size(266, 246);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLogo.TabIndex = 41;
             this.pictureBoxLogo.TabStop = false;
-            //
+            // 
             // buttonParcourir
-            //
+            // 
             this.buttonParcourir.Animated = true;
-            this.buttonParcourir.BorderRadius = 0;
             this.buttonParcourir.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.buttonParcourir.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buttonParcourir.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -823,8 +795,8 @@ namespace RH_GRH
             this.buttonParcourir.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.buttonParcourir.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Bold);
             this.buttonParcourir.ForeColor = System.Drawing.Color.White;
-            this.buttonParcourir.Location = new System.Drawing.Point(44, 1394);
-            this.buttonParcourir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonParcourir.Location = new System.Drawing.Point(44, 1471);
+            this.buttonParcourir.Margin = new System.Windows.Forms.Padding(4);
             this.buttonParcourir.Name = "buttonParcourir";
             this.buttonParcourir.Size = new System.Drawing.Size(267, 49);
             this.buttonParcourir.TabIndex = 23;
@@ -835,11 +807,11 @@ namespace RH_GRH
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 948);
+            this.ClientSize = new System.Drawing.Size(1000, 960);
             this.Controls.Add(this.panelScrollable);
             this.Controls.Add(this.panelFooter);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AjouterEntrepriseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Ajouter une entreprise";

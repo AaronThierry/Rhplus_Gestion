@@ -462,70 +462,88 @@ namespace RH_GRH
                     table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
                     table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
 
-                    // 19 Base IUTS
-                    table.Cell().Element(BodyCell).AlignCenter().Text("19").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).Text("Base IUTS").FontSize(8).FontFamily("Montserrat").AlignRight();
-                    table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.BaseIUTS.ToString("N0")).FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
+                    // 19 Base IUTS - Afficher uniquement si AfficherIUTS est true
+                    if (model.AfficherIUTS)
+                    {
+                        table.Cell().Element(BodyCell).AlignCenter().Text("19").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).Text("Base IUTS").FontSize(8).FontFamily("Montserrat").AlignRight();
+                        table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.BaseIUTS.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
+                    }
 
 
-                    // 20 IUTS
-                    table.Cell().Element(BodyCell).AlignCenter().Text("20").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).Text("IUTS").FontSize(8).FontFamily("Montserrat").AlignCenter();
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.BaseIUTS.ToString("N0")).FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("1").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.Iuts.ToString("N0")).FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
+                    // 20 IUTS - Afficher uniquement si AfficherIUTS est true
+                    if (model.AfficherIUTS)
+                    {
+                        table.Cell().Element(BodyCell).AlignCenter().Text("20").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).Text("IUTS").FontSize(8).FontFamily("Montserrat").AlignCenter();
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.BaseIUTS.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("1").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.Iuts.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
+                    }
 
 
-                    // 21 TPA 
-                    table.Cell().Element(BodyCell).AlignCenter().Text("21").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).Text("Tpa").FontSize(8).FontFamily("Montserrat").AlignCenter();
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.SalaireBrut.ToString("N0")).FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.TauxTpa.ToString()).FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.Tpa.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                    // 21 TPA - Afficher uniquement si AfficherTPA est true
+                    if (model.AfficherTPA)
+                    {
+                        table.Cell().Element(BodyCell).AlignCenter().Text("21").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).Text("Tpa").FontSize(8).FontFamily("Montserrat").AlignCenter();
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.SalaireBrut.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.TauxTpa.ToString()).FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.Tpa.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                    }
 
 
-                    // 22 Pensions
-                    table.Cell().Element(BodyCell).AlignCenter().Text("22").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).Text("Pensions").FontSize(8).FontFamily("Montserrat").AlignCenter();
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.BaseCNSSPlafonnee.ToString("N0")).FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("5.5").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.CnssEmploye.ToString("N0")).FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("8.5").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.CnssEmployeur.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                    // 22 Pensions - Afficher uniquement si AfficherCNSS est true
+                    if (model.AfficherCNSS)
+                    {
+                        table.Cell().Element(BodyCell).AlignCenter().Text("22").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).Text("Pensions").FontSize(8).FontFamily("Montserrat").AlignCenter();
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.BaseCNSSPlafonnee.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("5.5").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.CnssEmploye.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("8.5").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.CnssEmployeur.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                    }
 
 
-                    // 23 Risque professionnel
-                    table.Cell().Element(BodyCell).AlignCenter().Text("23").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).Text("Risque professionnel").FontSize(8).FontFamily("Montserrat").AlignCenter();
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.BaseCNSSPlafonnee.ToString("N0")).FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("1.5").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.RisqueProfessionnel.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                    // 23 Risque professionnel - Afficher uniquement si AfficherCNSS est true
+                    if (model.AfficherCNSS)
+                    {
+                        table.Cell().Element(BodyCell).AlignCenter().Text("23").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).Text("Risque professionnel").FontSize(8).FontFamily("Montserrat").AlignCenter();
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.BaseCNSSPlafonnee.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("1.5").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.RisqueProfessionnel.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                    }
 
 
-                    // 24 Prestation familliale
-                    table.Cell().Element(BodyCell).AlignCenter().Text("24").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).Text("Prestation familliale").FontSize(8).FontFamily("Montserrat").AlignCenter();
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.BaseCNSSPlafonnee.ToString("N0")).FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("6").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.PrestationFamiliale.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                    // 24 Prestation familliale - Afficher uniquement si AfficherCNSS est true
+                    if (model.AfficherCNSS)
+                    {
+                        table.Cell().Element(BodyCell).AlignCenter().Text("24").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).Text("Prestation familliale").FontSize(8).FontFamily("Montserrat").AlignCenter();
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.BaseCNSSPlafonnee.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("6").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.PrestationFamiliale.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                    }
 
 
                     // 25 Avantages natures
@@ -553,15 +571,18 @@ namespace RH_GRH
                     table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
 
 
-                    // 29 Effort de paix
-                    table.Cell().Element(BodyCell).AlignCenter().Text("20").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).Text("Effort de paix").FontSize(8).FontFamily("Montserrat").AlignCenter();
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.SalaireNet.ToString("N0")).FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("1").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text(model.EffortDePaix.ToString("N0")).FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
-                    table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
+                    // 29 Effort de paix - Afficher uniquement si AfficherEffortPaix est true
+                    if (model.AfficherEffortPaix)
+                    {
+                        table.Cell().Element(BodyCell).AlignCenter().Text("20").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).Text("Effort de paix").FontSize(8).FontFamily("Montserrat").AlignCenter();
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.SalaireNet.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("1").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text(model.EffortDePaix.ToString("N0")).FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignCenter().Text("").FontSize(8).FontFamily("Montserrat");
+                        table.Cell().Element(BodyCell).AlignRight().Text("").FontSize(8).FontFamily("Montserrat");
+                    }
 
 
 

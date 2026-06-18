@@ -1,0 +1,67 @@
+═══════════════════════════════════════════════════════════════════════
+  GESTION MODERNE RH - MISE À JOUR v1.1.9
+  Modernisation complète de l'interface utilisateur
+═══════════════════════════════════════════════════════════════════════
+
+Date de publication : 18 juin 2026
+
+NOUVEAUTÉS ET AMÉLIORATIONS
+───────────────────────────────────────────────────────────────────────
+
+✓ INTERFACE UTILISATEUR MODERNISÉE
+  • Écran de connexion entièrement repensé
+    - Design moderne split-screen avec logo d'entreprise
+    - Interface bicolore : MidnightBlue et blanc
+    - Expérience utilisateur améliorée avec branding cohérent
+    - Séparateur visuel élégant entre les panneaux
+
+  • Compteurs d'employés améliorés
+    - Affichage clair sans emojis pour meilleure lisibilité
+    - Texte intelligent : "AUCUN EMPLOYÉ", "1 EMPLOYÉ", "X EMPLOYÉS"
+    - Thème violet moderne RGB(88, 43, 132)
+    - Panneaux avec ombres et coins arrondis
+
+  • Typographie modernisée
+    - Police Montserrat Bold utilisée partout
+    - Cohérence visuelle dans toute l'application
+    - Meilleure lisibilité des textes et compteurs
+
+CORRECTIONS TECHNIQUES
+───────────────────────────────────────────────────────────────────────
+
+✓ Correction du problème d'espacement dans les compteurs d'employés
+✓ Suppression des emojis causant des problèmes de formatage
+✓ Amélioration de la cohérence visuelle entre les formulaires
+✓ Optimisation de l'affichage des statistiques
+
+COMPATIBILITÉ
+───────────────────────────────────────────────────────────────────────
+
+Configuration requise :
+  • .NET Framework 4.7.2 ou supérieur
+  • MySQL Server 5.7 ou supérieur
+  • Windows 7 SP1 / Windows Server 2008 R2 SP1 ou supérieur
+  • 4 Go RAM minimum (8 Go recommandé)
+  • 500 Mo d'espace disque disponible
+
+INSTALLATION
+───────────────────────────────────────────────────────────────────────
+
+Cette mise à jour s'installe par-dessus la version précédente.
+Vos données et configurations seront préservées.
+
+1. Fermez l'application si elle est en cours d'exécution
+2. Lancez le programme d'installation
+3. Suivez les instructions à l'écran
+4. Redémarrez l'application
+
+NOTES IMPORTANTES
+───────────────────────────────────────────────────────────────────────
+
+→ Aucune modification de la base de données requise
+→ Compatible avec toutes les versions précédentes (1.0.x - 1.1.x)
+→ Sauvegarde automatique des paramètres existants
+
+═══════════════════════════════════════════════════════════════════════
+Pour toute assistance : https://github.com/AaronThierry/Rhplus_Gestion
+═══════════════════════════════════════════════════════════════════════

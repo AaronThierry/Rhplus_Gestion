@@ -597,27 +597,53 @@ namespace RH_GRH
                 {
                     decimal plafondPct = 0.20m * salaireBrutSocial;
                     decimal plafondFixe = 75000m;
+                    decimal plafondMin = Min(plafondPct, plafondFixe);
+                    decimal montantRetenu = Min(logementNum, plafondMin);
                     Debug.WriteLine($"│  ──────────────────────────────────────────────");
                     Debug.WriteLine($"│  Type                 : Numéraire seul");
                     Debug.WriteLine($"│  Plafond 20% BSoc     : {plafondPct,15:N2} FCFA");
                     Debug.WriteLine($"│  Plafond fixe         : {plafondFixe,15:N2} FCFA");
-                    Debug.WriteLine($"│  Plafond MIN          : {Min(plafondPct, plafondFixe),15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond MIN          : {plafondMin,15:N2} FCFA");
+                    Debug.WriteLine($"│  Montant retenu       : MIN({logementNum:N2}, {plafondMin:N2})");
                     Debug.WriteLine($"│  Exonération Logement : {exLog,15:N2} FCFA");
                 }
                 else if (logementNum == 0m && logementNat > 0m)
                 {
                     decimal montantCalcule = logementNat / 240m;
                     decimal plafondFixe = 75000m;
+                    decimal montantRetenu = Min(montantCalcule, plafondFixe);
                     Debug.WriteLine($"│  ──────────────────────────────────────────────");
                     Debug.WriteLine($"│  Type                 : Nature seul");
+                    Debug.WriteLine($"│  Montant nature       : {logementNat,15:N2} FCFA");
                     Debug.WriteLine($"│  Montant/240          : {montantCalcule,15:N2} FCFA");
                     Debug.WriteLine($"│  Plafond fixe         : {plafondFixe,15:N2} FCFA");
+                    Debug.WriteLine($"│  Montant retenu       : MIN({montantCalcule:N2}, {plafondFixe:N2})");
+                    Debug.WriteLine($"│  Exonération Logement : {exLog,15:N2} FCFA");
+                }
+                else if (logementNum > 0m && logementNat > 0m)
+                {
+                    decimal plafondPct = 0.20m * salaireBrutSocial;
+                    decimal plafondFixe = 75000m;
+                    decimal montantNatureCalcule = logementNat / 240m;
+                    decimal totalLogement = logementNum + montantNatureCalcule;
+                    decimal plafondMin = Min(plafondPct, plafondFixe);
+                    decimal montantRetenu = Min(totalLogement, plafondMin);
+                    Debug.WriteLine($"│  ──────────────────────────────────────────────");
+                    Debug.WriteLine($"│  Type                 : Mixte (Numéraire + Nature)");
+                    Debug.WriteLine($"│  Montant numéraire    : {logementNum,15:N2} FCFA");
+                    Debug.WriteLine($"│  Montant nature       : {logementNat,15:N2} FCFA");
+                    Debug.WriteLine($"│  Nature/240           : {montantNatureCalcule,15:N2} FCFA");
+                    Debug.WriteLine($"│  Total (Num + Nat/240): {totalLogement,15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond 20% BSoc     : {plafondPct,15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond fixe         : {plafondFixe,15:N2} FCFA");
+                    Debug.WriteLine($"│  Plafond MIN          : {plafondMin,15:N2} FCFA");
+                    Debug.WriteLine($"│  Montant retenu       : MIN({totalLogement:N2}, {plafondMin:N2})");
                     Debug.WriteLine($"│  Exonération Logement : {exLog,15:N2} FCFA");
                 }
                 else
                 {
                     Debug.WriteLine($"│  ──────────────────────────────────────────────");
-                    Debug.WriteLine($"│  Type                 : Mixte ou nul");
+                    Debug.WriteLine($"│  Type                 : Aucun montant");
                     Debug.WriteLine($"│  Exonération Logement : {exLog,15:N2} FCFA");
                 }
                 Debug.WriteLine("");
@@ -633,6 +659,7 @@ namespace RH_GRH
                     decimal plafondFixe = 30000m;
                     Debug.WriteLine($"│  ──────────────────────────────────────────────");
                     Debug.WriteLine($"│  Type                 : Numéraire seul");
+                    Debug.WriteLine($"│  Calcul plafond 5%    : 5% × {salaireBrutSocial,15:N2} FCFA (BSoc)");
                     Debug.WriteLine($"│  Plafond 5% BSoc      : {plafondPct,15:N2} FCFA");
                     Debug.WriteLine($"│  Plafond fixe         : {plafondFixe,15:N2} FCFA");
                     Debug.WriteLine($"│  Plafond MIN          : {Min(plafondPct, plafondFixe),15:N2} FCFA");
@@ -646,6 +673,7 @@ namespace RH_GRH
                     Debug.WriteLine($"│  ──────────────────────────────────────────────");
                     Debug.WriteLine($"│  Type                 : Nature seul");
                     Debug.WriteLine($"│  Montant/240          : {montantCalcule,15:N2} FCFA");
+                    Debug.WriteLine($"│  Calcul plafond 5%    : 5% × {salaireBrutSocial,15:N2} FCFA (BSoc)");
                     Debug.WriteLine($"│  Plafond 5% BSoc      : {plafondPct,15:N2} FCFA");
                     Debug.WriteLine($"│  Plafond fixe         : {plafondFixe,15:N2} FCFA");
                     Debug.WriteLine($"│  Plafond MIN          : {Min(plafondPct, plafondFixe),15:N2} FCFA");
@@ -668,6 +696,7 @@ namespace RH_GRH
                     decimal plafondPct = 0.05m * salaireBrutSocial;
                     decimal plafondFixe = 50000m;
                     Debug.WriteLine($"│  ──────────────────────────────────────────────");
+                    Debug.WriteLine($"│  Calcul plafond 5%    : 5% × {salaireBrutSocial,15:N2} FCFA (BSoc)");
                     Debug.WriteLine($"│  Plafond 5% BSoc      : {plafondPct,15:N2} FCFA");
                     Debug.WriteLine($"│  Plafond fixe         : {plafondFixe,15:N2} FCFA");
                     Debug.WriteLine($"│  Plafond MIN          : {Min(plafondPct, plafondFixe),15:N2} FCFA");
@@ -1276,8 +1305,13 @@ public static class IUTS
 
 
 
-                // 1) Tu as déjà le Salaire Brut Social (BSoc) = Brut - CNSS(employé)
-                decimal SalairebrutSocial = salaireBrut - cnssEmploye; // ou calcule-le avant
+                // 1) Calculer le Salaire Brut Social (BSoc) CORRECTEMENT avec CNSS exonérée
+                // IMPORTANT : Utiliser la méthode IUTSCalculator.CalculerSalaireBrutSocial pour avoir le BSoc correct
+                decimal SalairebrutSocial = IUTSCalculator.CalculerSalaireBrutSocial(
+                    salaireBrut,
+                    salaireDeBase: salaireBase,
+                    primeA: prime,
+                    sursalaire: sursalaire);
 
 
 
@@ -1897,14 +1931,14 @@ public static class IUTS
             try
             {
                 // Ouvrir le formulaire de sélection d'entreprise et de période
-                using (var formSelection = new SelectionEntrepriseForm())
+                using (var formSelection = new SelectionEntrepriseModernForm())
                 {
                     if (formSelection.ShowDialog() == DialogResult.OK)
                     {
-                        int idEntreprise = formSelection.EntrepriseSelectionnee;
-                        string nomEntreprise = formSelection.NomEntrepriseSelectionnee;
-                        DateTime periodeDebut = formSelection.DateDebut;
-                        DateTime periodeFin = formSelection.DateFin;
+                        int idEntreprise = formSelection.EntrepriseSelectionneeId;
+                        string nomEntreprise = formSelection.EntrepriseSelectionneeNom;
+                        DateTime periodeDebut = formSelection.PeriodeDebut;
+                        DateTime periodeFin = formSelection.PeriodeFin;
 
                         // Ouvrir le formulaire de saisie en lot pour les Horaires
                         using (var formSaisie = new SaisiePayeLotForm(idEntreprise, periodeDebut, periodeFin, "Horaire"))

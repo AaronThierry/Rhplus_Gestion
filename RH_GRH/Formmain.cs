@@ -106,6 +106,7 @@ namespace RH_GRH
             bool hasSalaireAccess = isAdmin ||
                 HasPermission(currentUser, "SALAIRE_HORAIRE_VIEW") ||
                 HasPermission(currentUser, "SALAIRE_JOURNALIER_VIEW") ||
+                HasPermission(currentUser, "PAIE_PERSONNALISEE_VIEW") ||
                 HasPermission(currentUser, "BULLETIN_VIEW");
 
             if (!hasSalaireAccess)
@@ -295,6 +296,12 @@ namespace RH_GRH
                 HasPermission(user, "SURSALAIRE_VIEW") ||
                 HasPermission(user, "SURSALAIRE_CREATE") ||
                 HasPermission(user, "SURSALAIRE_EDIT");
+
+            // Paie Personnalisée - Admin ou permission VIEW/CREATE/EDIT
+            button_paie_personnalisee.Visible = isAdmin ||
+                HasPermission(user, "PAIE_PERSONNALISEE_VIEW") ||
+                HasPermission(user, "PAIE_PERSONNALISEE_CREATE") ||
+                HasPermission(user, "PAIE_PERSONNALISEE_EDIT");
 
             // Horaires - Admin ou permission VIEW/CREATE/EDIT
             button_horaire.Visible = isAdmin ||
@@ -648,6 +655,13 @@ namespace RH_GRH
         {
             SetActiveButton(button_horaire);
             OpenChildForm(new GestionSalaireHoraireForm());
+            hideSubmenu();
+        }
+
+        private void button_paie_personnalisee_Click(object sender, EventArgs e)
+        {
+            SetActiveButton(button_paie_personnalisee);
+            OpenChildForm(new PaiePersonnaliseeForm());
             hideSubmenu();
         }
 

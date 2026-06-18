@@ -1,0 +1,112 @@
+===============================================================================
+         GESTION MODERNE RH - MISE À JOUR v1.1.7
+===============================================================================
+
+Date de release : 24 avril 2026
+
+===============================================================================
+                        CORRECTIONS CRITIQUES
+===============================================================================
+
+1. COHÉRENCE CALCUL SALAIRE BRUT SOCIAL (BSoc)
+   -----------------------------------------------
+   Problème résolu :
+   - Deux valeurs différentes de BSoc utilisées dans l'application
+   - Calcul IUTS utilisait : BSoc = Brut - CNSS exonérée (correct)
+   - Calcul déductibilité utilisait : BSoc = Brut - CNSS employé (incorrect)
+
+   Impact :
+   - Plafond 5% BSoc pour indemnités transport/fonction calculé avec mauvaise base
+   - Écart pouvant atteindre plusieurs milliers de FCFA
+
+   Solution :
+   - Nouvelle méthode centralisée IUTSCalculator.CalculerSalaireBrutSocial()
+   - BSoc = Salaire Brut - MIN(CNSS Exo 1 [8%], CNSS Exo 2 [5.5%])
+   - Utilisation systématique dans tous les calculs
+
+2. AMÉLIORATION DEBUGGER DÉDUCTIBILITÉ INDEMNITÉS
+   ------------------------------------------------
+   - Ajout ligne explicite montrant la formule de calcul
+   - Affichage : "Calcul plafond 5% : 5% × [BSoc] FCFA (BSoc)"
+   - Meilleure traçabilité pour validation des calculs fiscaux
+
+===============================================================================
+                        FICHIERS MODIFIÉS
+===============================================================================
+
+• RH_GRH/IUTSCalculator.cs
+  - Ajout méthode CalculerSalaireBrutSocial() pour centraliser calcul BSoc
+
+• RH_GRH/GestionSalaireHoraireForm.cs
+  - Utilisation BSoc correct avec CNSS exonérée
+  - Debug amélioré pour indemnités transport/fonction
+
+• RH_GRH/GestionSalaireJournalierForm.cs
+  - Utilisation BSoc correct avec CNSS exonérée
+  - Debug amélioré pour indemnités transport/fonction
+
+• RH_GRH/SaisiePayeLotForm.cs
+  - Correction calcul BSoc pour salaires horaires
+  - Correction calcul BSoc pour salaires journaliers
+
+===============================================================================
+                        DÉTAILS TECHNIQUES
+===============================================================================
+
+Formule CNSS Exonérée :
+-----------------------
+CNSS Exo 1 = MIN(8% × (Sal. Base + Prime Anc. + Sursalaire), 44 000 FCFA)
+CNSS Exo 2 = MIN(5.5% × Salaire Brut, 44 000 FCFA)
+CNSS Retenue = MIN(CNSS Exo 1, CNSS Exo 2)
+BSoc = Salaire Brut - CNSS Retenue
+
+Plafonds indemnités déductibles :
+----------------------------------
+• Indemnité Transport : MIN(5% BSoc, 30 000 FCFA)
+• Indemnité Fonction  : MIN(5% BSoc, 50 000 FCFA)
+• Indemnité Logement  : MIN(20% BSoc, 75 000 FCFA)
+
+===============================================================================
+                        IMPACT UTILISATEUR
+===============================================================================
+
+✓ Calculs plus précis pour plafonds indemnités déductibles
+✓ Cohérence totale entre affichage debugger et calculs réels
+✓ Pas de changement interface utilisateur
+✓ Pas de migration base de données requise
+✓ Recalcul automatique à la prochaine paie
+
+===============================================================================
+                        COMPATIBILITÉ
+===============================================================================
+
+• Compatible avec versions 1.1.x
+• Aucune migration de données nécessaire
+• Configuration requise inchangée :
+  - .NET Framework 4.7.2 ou supérieur
+  - MySQL Server 5.7 ou supérieur
+  - Windows 7 SP1 ou supérieur
+
+===============================================================================
+                        INSTALLATION
+===============================================================================
+
+1. Fermer complètement l'application Gestion Moderne RH
+2. Exécuter GestionModerneRH_v1.1.7_Update.exe
+3. Suivre les instructions d'installation
+4. Redémarrer l'application
+5. Vérifier la version dans "À propos"
+
+Aucun script SQL à exécuter pour cette mise à jour.
+
+===============================================================================
+                        SUPPORT
+===============================================================================
+
+Pour toute question ou problème :
+• GitHub : https://github.com/AaronThierry/Rhplus_Gestion/issues
+• Email : support@gmp-rh.com
+
+===============================================================================
+         Copyright (C) 2025-2026 GMP - Gestion Moderne de Paie
+===============================================================================

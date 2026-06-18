@@ -1,8 +1,8 @@
-; Script d'installation Inno Setup pour Gestion Moderne RH v1.1.8 - UPDATE
-; Mise à jour : Améliorations UI saisie par lot et corrections adresse/téléphone
+; Script d'installation Inno Setup pour Gestion Moderne RH v1.1.9 - UPDATE
+; Mise à jour : Modernisation complète de l'interface utilisateur
 
 #define MyAppName "Gestion Moderne RH"
-#define MyAppVersion "1.1.8"
+#define MyAppVersion "1.1.9"
 #define MyAppPublisher "GMP - Gestion Moderne de Paie"
 #define MyAppURL "https://github.com/AaronThierry/Rhplus_Gestion"
 #define MyAppExeName "RH_GRH.exe"
@@ -23,7 +23,7 @@ AppUpdatesURL={#MyAppURL}/releases
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=LICENSE.txt
-InfoBeforeFile=UPDATE_NOTES_v1.1.8.txt
+InfoBeforeFile=UPDATE_NOTES_v1.1.9.txt
 OutputDir=Setup\Output
 OutputBaseFilename=GestionModerneRH_v{#MyAppVersion}_Update
 SetupIconFile=RH_GRH\logo-rh-modified.ico
@@ -37,7 +37,7 @@ UninstallDisplayIcon={app}\{#MyAppExeName}
 UninstallDisplayName={#MyAppName}
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
-VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.1.8
+VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.1.9
 VersionInfoCopyright=Copyright (C) 2025 {#MyAppPublisher}
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
@@ -66,7 +66,7 @@ Source: "RH_GRH\bin\Release\x86\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Documentation
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
-Source: "UPDATE_NOTES_v1.1.7.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "UPDATE_NOTES_v1.1.9.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Scripts SQL (optionnels)
 Source: "Database\*.sql"; DestDir: "{app}\Database"; Flags: ignoreversion skipifsourcedoesntexist
@@ -183,13 +183,16 @@ var
   S: String;
 begin
   S := '';
-  S := S + 'MISE À JOUR v1.1.7 - Correction calcul BSoc pour déductibilité indemnités' + NewLine + NewLine;
+  S := S + 'MISE À JOUR v1.1.9 - Modernisation complète de l''interface utilisateur' + NewLine + NewLine;
+  S := S + 'NOUVEAUTÉS :' + NewLine;
+  S := S + Space + '- Écran de connexion entièrement redesigné avec logo d''entreprise' + NewLine;
+  S := S + Space + '- Design moderne split-screen MidnightBlue et blanc' + NewLine;
+  S := S + Space + '- Compteurs d''employés améliorés sans emojis' + NewLine;
+  S := S + Space + '- Thème violet moderne RGB(88, 43, 132)' + NewLine;
+  S := S + Space + '- Typographie Montserrat cohérente dans toute l''application' + NewLine + NewLine;
   S := S + 'CORRECTIONS :' + NewLine;
-  S := S + Space + '- Cohérence calcul Salaire Brut Social (BSoc) avec CNSS exonérée' + NewLine;
-  S := S + Space + '- Plafond 5% BSoc pour indemnités transport/fonction maintenant correct' + NewLine;
-  S := S + Space + '- Amélioration debugger avec affichage formule calcul plafond 5%' + NewLine;
-  S := S + Space + '- Centralisation calcul BSoc dans IUTSCalculator' + NewLine + NewLine;
-  S := S + 'IMPACT : Calculs fiscaux plus précis et cohérents' + NewLine + NewLine;
+  S := S + Space + '- Problème d''espacement dans les compteurs corrigé' + NewLine;
+  S := S + Space + '- Cohérence visuelle entre tous les formulaires' + NewLine + NewLine;
 
   S := S + MemoDirInfo + NewLine + NewLine;
 

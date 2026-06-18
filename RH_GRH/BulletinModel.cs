@@ -170,6 +170,18 @@ namespace RH_GRH
 
         public string courrier { get; set; }
 
+        // Pour la paie personnalisée : indique si la CNSS doit être affichée sur le bulletin
+        public bool AfficherCNSS { get; set; } = true;
+
+        // Pour la paie personnalisée : indique si l'IUTS doit être affiché sur le bulletin
+        public bool AfficherIUTS { get; set; } = true;
+
+        // Pour la paie personnalisée : indique si le TPA doit être affiché sur le bulletin
+        public bool AfficherTPA { get; set; } = true;
+
+        // Pour la paie personnalisée : indique si l'Effort de Paix doit être affiché sur le bulletin
+        public bool AfficherEffortPaix { get; set; } = true;
+
 
     }
 

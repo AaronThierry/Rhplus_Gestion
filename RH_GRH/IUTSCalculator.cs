@@ -17,6 +17,33 @@ namespace RH_GRH
     public static class IUTSCalculator
     {
         /// <summary>
+        /// Calcule uniquement le salaire brut social (BSoc) en utilisant la CNSS exonérée.
+        /// BSoc = Salaire Brut - MIN(CNSS Exo 1, CNSS Exo 2)
+        /// </summary>
+        public static decimal CalculerSalaireBrutSocial(
+            decimal salaireBrut,
+            decimal salaireDeBase = 0m,
+            decimal primeA = 0m,
+            decimal sursalaire = 0m)
+        {
+            // Calcul CNSS Exonérée 1 (8%)
+            decimal baseCnssExonere1 = salaireDeBase + primeA + sursalaire;
+            decimal cnssExonere1Brut = baseCnssExonere1 * 0.08m;  // 8%
+            decimal cnssExonere1 = Math.Min(cnssExonere1Brut, 44000m); // Plafonné à 44 000 FCFA
+
+            // Calcul CNSS Exonérée 2 (5.5%)
+            decimal cnssExonere2Brut = salaireBrut * 0.055m;       // 5.5%
+            decimal cnssExonere2 = Math.Min(cnssExonere2Brut, 44000m); // Plafonné à 44 000 FCFA
+
+            // Prendre le minimum entre les deux CNSS exonérées
+            decimal cnssExonereeRetenue = Math.Min(cnssExonere1, cnssExonere2);
+
+            // Calcul du salaire brut social
+            decimal bsoc = salaireBrut - cnssExonereeRetenue;
+            return Math.Round(bsoc, 2, MidpointRounding.AwayFromZero);
+        }
+
+        /// <summary>
         /// Calcule BSoc et Base IUTS.
         /// statut: "oui" = cadre (20%), "non" = non-cadre (25%), autre = 25% par défaut.
         /// deducIndem = déductibilité indemnités.

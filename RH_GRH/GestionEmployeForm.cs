@@ -413,6 +413,7 @@ namespace RH_GRH
                                     string numeroBancaire = reader["numeroBancaire"]?.ToString();
                                     string banque = reader["banque"]?.ToString();
                                     decimal? salaireMoyen = reader["salairemoyen"] != DBNull.Value ? Convert.ToDecimal(reader["salairemoyen"]) : (decimal?)null;
+                                    bool conformite = reader["Conformite"] != DBNull.Value ? Convert.ToBoolean(reader["Conformite"]) : true;
 
                                     connect.closeConnect();
 
@@ -421,7 +422,7 @@ namespace RH_GRH
                                         idPersonnel, nomPrenom, matricule, civilite, sexe, dateNaissance,
                                         adresse, telephone, identification, idEntreprise, idDirection, idService,
                                         idCategorie, poste, cnss, contrat, typeContrat, modePayement, cadre,
-                                        dateEntree, dateSortie, heureContrat, jourContrat, numeroBancaire, banque, salaireMoyen);
+                                        dateEntree, dateSortie, heureContrat, jourContrat, numeroBancaire, banque, salaireMoyen, conformite);
                                 }
                                 else
                                 {
@@ -508,13 +509,13 @@ namespace RH_GRH
             int idEntreprise, int? idDirection, int? idService, int idCategorie,
             string poste, string cnss, string contrat, string typeContrat, string modePayement, string cadre,
             DateTime dateEntree, DateTime? dateSortie, decimal? heureContrat, int? jourContrat,
-            string numeroBancaire, string banque, decimal? salaireMoyen)
+            string numeroBancaire, string banque, decimal? salaireMoyen, bool conformite)
         {
             using (var formModifier = new ModifierEmployeForm(
                 idPersonnel, nomPrenom, matricule, civilite, sexe, dateNaissance,
                 adresse, telephone, identification, idEntreprise, idDirection, idService,
                 idCategorie, poste, cnss, contrat, typeContrat, modePayement, cadre,
-                dateEntree, dateSortie, heureContrat, jourContrat, numeroBancaire, banque, salaireMoyen))
+                dateEntree, dateSortie, heureContrat, jourContrat, numeroBancaire, banque, salaireMoyen, conformite))
             {
                 var result = formModifier.ShowDialog(this);
                 if (result == DialogResult.OK)

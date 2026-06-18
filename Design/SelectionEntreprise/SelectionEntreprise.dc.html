@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sélection d'Entreprise - Design Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Montserrat:wght@400;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           DESIGN TOKENS - Source de vérité
+           ============================================ */
+        :root {
+            /* Couleurs principales */
+            --color-primary: #191970;
+            --color-primary-light: #B0C4DE;
+            --color-cream: #FFFAEB;
+            --color-accent-red: #DC3545;
+            --color-white: #FFFFFF;
+
+            /* Couleurs de fond */
+            --bg-main: #FAFAFA;
+            --bg-footer: #F5F5FA;
+            --bg-card: #FFFFFF;
+
+            /* Couleurs de texte */
+            --text-primary: #191970;
+            --text-secondary: #464646;
+            --text-muted: #646464;
+            --text-on-primary: #FFFAEB;
+
+            /* Bordures */
+            --border-primary: #191970;
+            --border-light: #EBE9F5;
+            --border-grid: #E7EDF2;
+
+            /* Ombres brutales */
+            --shadow-brutal-primary: 6px 6px 0 0 #191970;
+            --shadow-brutal-red: 5px 5px 0 0 #DC3545;
+            --shadow-brutal-stats: 4px 4px 0 0 #191970;
+            --shadow-soft: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow-header: 0 0 0 5px rgba(0, 0, 0, 0.05);
+
+            /* Typographie */
+            --font-heading: 'Space Grotesk', 'Segoe UI', -apple-system, system-ui, sans-serif;
+            --font-body: 'Montserrat', 'Segoe UI', -apple-system, system-ui, sans-serif;
+            --font-mono: 'IBM Plex Mono', 'Consolas', 'Monaco', monospace;
+            --font-system: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            /* Espacements */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 12px;
+            --spacing-lg: 16px;
+            --spacing-xl: 20px;
+            --spacing-2xl: 24px;
+            --spacing-3xl: 32px;
+
+            /* Dimensions */
+            --width-form: 1000px;
+            --height-header: 80px;
+            --height-footer: 150px;
+
+            /* Transitions */
+            --transition-fast: 150ms;
+            --transition-base: 200ms;
+            --transition-slow: 300ms;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        /* ============================================
+           FORMULAIRE PRINCIPAL
+           ============================================ */
+        .form-container {
+            width: var(--width-form);
+            background: var(--bg-card);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeInScale 400ms var(--ease-out);
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ============================================
+           EN-TÊTE
+           ============================================ */
+        .panel-header {
+            height: var(--height-header);
+            background: var(--color-primary);
+            padding: 18px 32px;
+            position: relative;
+        }
+
+        .panel-header::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .header-title {
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .header-subtitle {
+            font-family: var(--font-body);
+            font-size: 8px;
+            font-weight: 400;
+            color: rgba(200, 200, 220, 1);
+            letter-spacing: 0.2px;
+        }
+
+        /* ============================================
+           ZONE PRINCIPALE
+           ============================================ */
+        .panel-main {
+            background: var(--bg-main);
+            padding: 20px;
+            min-height: 480px;
+        }
+
+        .card-datagrid {
+            background: var(--bg-card);
+            border-radius: 6px;
+            box-shadow: var(--shadow-soft);
+            padding: 1px;
+            overflow: hidden;
+        }
+
+        /* ============================================
+           DATAGRID
+           ============================================ */
+        .data-grid {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-body);
+        }
+
+        .data-grid thead {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .data-grid th {
+            font-size: 9px;
+            font-weight: 700;
+            text-align: left;
+            padding: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .data-grid tbody tr {
+            transition: background-color var(--transition-fast) ease-out;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-grid);
+        }
+
+        .data-grid tbody tr:nth-child(even) {
+            background: #F8F9FC;
+        }
+
+        .data-grid tbody tr:hover {
+            background: rgba(176, 196, 222, 0.3);
+        }
+
+        .data-grid tbody tr.selected {
+            background: var(--color-primary-light);
+        }
+
+        .data-grid tbody tr.selected:hover {
+            background: #A0B4CE;
+        }
+
+        .data-grid td {
+            padding: 12px;
+            font-size: 8.5px;
+            color: var(--text-secondary);
+        }
+
+        .data-grid td.col-id {
+            width: 55px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 7.5px;
+            color: var(--text-muted);
+        }
+
+        .data-grid td.col-sigle {
+            width: 180px;
+            font-weight: 700;
+            font-size: 9px;
+            color: var(--color-primary);
+        }
+
+        .data-grid td.col-nom {
+            font-weight: 400;
+            font-size: 9px;
+        }
+
+        /* ============================================
+           PIED DE PAGE
+           ============================================ */
+        .panel-footer {
+            height: var(--height-footer);
+            background: var(--bg-footer);
+            padding: 15px 20px;
+            position: relative;
+        }
+
+        .panel-footer::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        /* ============================================
+           CARTE PÉRIODE
+           ============================================ */
+        .card-periode {
+            background: var(--color-cream);
+            border: 3px solid var(--border-primary);
+            box-shadow: var(--shadow-brutal-primary);
+            padding: 0;
+            margin-bottom: 20px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            padding: 0 18px;
+            gap: 24px;
+        }
+
+        .label-periode {
+            background: var(--color-primary);
+            color: var(--text-on-primary);
+            font-family: var(--font-system);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 12px;
+            letter-spacing: 0.8px;
+            white-space: nowrap;
+        }
+
+        .date-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .date-label {
+            font-family: var(--font-body);
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .date-picker {
+            width: 180px;
+            height: 42px;
+            border: 2px solid var(--border-primary);
+            background: var(--color-white);
+            font-family: var(--font-system);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--color-primary);
+            padding: 0 12px;
+            outline: none;
+            transition: box-shadow var(--transition-base) var(--ease-in-out);
+        }
+
+        .date-picker:focus {
+            box-shadow: 0 0 0 3px rgba(25, 25, 112, 0.1);
+        }
+
+        /* ============================================
+           BARRE D'ACTIONS
+           ============================================ */
+        .actions-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-stats {
+            background: var(--color-cream);
+            border: 3px solid var(--border-primary);
+            box-shadow: var(--shadow-brutal-stats);
+            padding: 14px 16px;
+            width: 320px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .label-stats {
+            font-family: var(--font-system);
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* ============================================
+           BOUTONS
+           ============================================ */
+        .btn {
+            height: 50px;
+            border: 2px solid;
+            font-family: var(--font-system);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            transition: all var(--transition-base) var(--ease-in-out);
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            transform: translate(-2px, -2px);
+        }
+
+        .btn:active {
+            transform: translate(2px, 2px);
+        }
+
+        .btn-cancel {
+            width: 155px;
+            background: var(--color-white);
+            border-color: var(--color-accent-red);
+            color: var(--color-accent-red);
+            box-shadow: var(--shadow-brutal-red);
+        }
+
+        .btn-cancel:hover {
+            background: var(--color-accent-red);
+            color: var(--color-white);
+            box-shadow: 7px 7px 0 0 var(--color-accent-red);
+        }
+
+        .btn-cancel:active {
+            box-shadow: 3px 3px 0 0 var(--color-accent-red);
+        }
+
+        .btn-validate {
+            width: 165px;
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: var(--text-on-primary);
+            box-shadow: var(--shadow-brutal-primary);
+        }
+
+        .btn-validate:hover {
+            background: var(--color-cream);
+            color: var(--color-primary);
+            box-shadow: 7px 7px 0 0 var(--color-primary);
+        }
+
+        .btn-validate:active {
+            box-shadow: 3px 3px 0 0 var(--color-primary);
+        }
+
+        .btn:disabled {
+            background: #A9A9A9;
+            border-color: #A9A9A9;
+            color: #8D8D8D;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn:disabled:hover,
+        .btn:disabled:active {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* ============================================
+           ÉTATS & VARIANTES
+           ============================================ */
+        .state-label {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            z-index: 1000;
+        }
+
+        /* ============================================
+           RESPONSIVE (pour la démo)
+           ============================================ */
+        @media (max-width: 1100px) {
+            body {
+                padding: 20px;
+            }
+
+            .form-container {
+                width: 100%;
+                max-width: var(--width-form);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="state-label">État: Entreprise sélectionnée</div>
+
+    <div class="form-container">
+        <!-- EN-TÊTE -->
+        <div class="panel-header">
+            <h1 class="header-title">Sélection de l'Entreprise</h1>
+            <p class="header-subtitle">Choisissez une entreprise et la période de paie</p>
+        </div>
+
+        <!-- ZONE PRINCIPALE -->
+        <div class="panel-main">
+            <div class="card-datagrid">
+                <table class="data-grid">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Sigle</th>
+                            <th>Nom de l'Entreprise</th>
+                        </tr>
+                    </thead>
+                    <tbody id="gridBody">
+                        <tr class="selected" data-id="10">
+                            <td class="col-id">10</td>
+                            <td class="col-sigle">AGRO BURKINA SARL</td>
+                            <td class="col-nom">AGRO BURKINA</td>
+                        </tr>
+                        <tr data-id="12">
+                            <td class="col-id">12</td>
+                            <td class="col-sigle">CEDIS BF SARL</td>
+                            <td class="col-nom">CEDIS</td>
+                        </tr>
+                        <tr data-id="16">
+                            <td class="col-id">16</td>
+                            <td class="col-sigle">CBIT</td>
+                            <td class="col-nom">COMPTOIRE BURKINABE DE L'INDUSTRIE</td>
+                        </tr>
+                        <tr data-id="15">
+                            <td class="col-id">15</td>
+                            <td class="col-sigle">DEN AUTO ECOLE</td>
+                            <td class="col-nom">DEN AUTO ECOLE SARL</td>
+                        </tr>
+                        <tr data-id="13">
+                            <td class="col-id">13</td>
+                            <td class="col-sigle">ESME SARL</td>
+                            <td class="col-nom">ESME</td>
+                        </tr>
+                        <tr data-id="17">
+                            <td class="col-id">17</td>
+                            <td class="col-sigle">IMPRIMERIE PONCTUELLE</td>
+                            <td class="col-nom">IMPRIMERIE PONCTUELLE</td>
+                        </tr>
+                        <tr data-id="14">
+                            <td class="col-id">14</td>
+                            <td class="col-sigle">KAIROS SARL</td>
+                            <td class="col-nom">KAIROS CONSTRUCTION</td>
+                        </tr>
+                        <tr data-id="18">
+                            <td class="col-id">18</td>
+                            <td class="col-sigle">LOGISTIQUE EXPRESS</td>
+                            <td class="col-nom">LOGISTIQUE EXPRESS BURKINA</td>
+                        </tr>
+                        <tr data-id="19">
+                            <td class="col-id">19</td>
+                            <td class="col-sigle">MEDIA PLUS</td>
+                            <td class="col-nom">MEDIA PLUS COMMUNICATION</td>
+                        </tr>
+                        <tr data-id="20">
+                            <td class="col-id">20</td>
+                            <td class="col-sigle">NANO TECH</td>
+                            <td class="col-nom">NANO TECHNOLOGIES SARL</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PIED DE PAGE -->
+        <div class="panel-footer">
+            <!-- Carte Période -->
+            <div class="card-periode">
+                <div class="label-periode">⚡ PÉRIODE DE PAIE</div>
+
+                <div class="date-group">
+                    <label class="date-label">Début:</label>
+                    <input type="date" class="date-picker" id="dateDebut" value="2026-06-17">
+                </div>
+
+                <div class="date-group">
+                    <label class="date-label">Fin:</label>
+                    <input type="date" class="date-picker" id="dateFin" value="2026-06-17">
+                </div>
+            </div>
+
+            <!-- Barre d'actions -->
+            <div class="actions-bar">
+                <div class="panel-stats">
+                    <span class="label-stats" id="statsLabel">12 entreprise(s) disponible(s)</span>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-cancel" id="btnCancel">✕ ANNULER</button>
+                    <button class="btn btn-validate" id="btnValidate">✓ VALIDER</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ============================================
+           INTERACTIONS JAVASCRIPT
+           ============================================ */
+
+        // Sélection de ligne dans le DataGrid
+        const gridBody = document.getElementById('gridBody');
+        const rows = gridBody.querySelectorAll('tr');
+        const stateLabel = document.querySelector('.state-label');
+
+        let selectedRow = null;
+
+        rows.forEach(row => {
+            // Clic simple pour sélectionner
+            row.addEventListener('click', function() {
+                // Désélectionner la ligne précédente
+                if (selectedRow) {
+                    selectedRow.classList.remove('selected');
+                }
+
+                // Sélectionner la nouvelle ligne
+                this.classList.add('selected');
+                selectedRow = this;
+
+                stateLabel.textContent = `État: Entreprise ${this.dataset.id} sélectionnée`;
+            });
+
+            // Double-clic pour valider
+            row.addEventListener('dblclick', function() {
+                validateSelection();
+            });
+        });
+
+        // Initialiser la première ligne comme sélectionnée
+        if (rows.length > 0) {
+            selectedRow = rows[0];
+            selectedRow.classList.add('selected');
+        }
+
+        // Validation des dates
+        const dateDebut = document.getElementById('dateDebut');
+        const dateFin = document.getElementById('dateFin');
+        const btnValidate = document.getElementById('btnValidate');
+        const btnCancel = document.getElementById('btnCancel');
+
+        function validateDates() {
+            const debut = new Date(dateDebut.value);
+            const fin = new Date(dateFin.value);
+
+            if (debut > fin) {
+                alert('⚠️ Validation\n\nLa date de début ne peut pas être supérieure à la date de fin.');
+                dateDebut.focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateSelection() {
+            if (!selectedRow) {
+                alert('ℹ️ Information\n\nVeuillez sélectionner une entreprise.');
+                return;
+            }
+
+            if (!validateDates()) {
+                return;
+            }
+
+            const entrepriseId = selectedRow.dataset.id;
+            const entrepriseName = selectedRow.querySelector('.col-nom').textContent;
+
+            stateLabel.textContent = 'État: Validation réussie ✓';
+            stateLabel.style.background = 'rgba(0, 128, 0, 0.9)';
+
+            console.log('Validation:', {
+                entrepriseId,
+                entrepriseName,
+                dateDebut: dateDebut.value,
+                dateFin: dateFin.value
+            });
+
+            setTimeout(() => {
+                alert(`✓ Succès\n\nEntreprise: ${entrepriseName}\nPériode: du ${dateDebut.value} au ${dateFin.value}`);
+                stateLabel.style.background = 'rgba(0, 0, 0, 0.8)';
+                stateLabel.textContent = `État: Entreprise ${entrepriseId} sélectionnée`;
+            }, 300);
+        }
+
+        // Événements des boutons
+        btnValidate.addEventListener('click', validateSelection);
+
+        btnCancel.addEventListener('click', function() {
+            stateLabel.textContent = 'État: Annulation';
+            stateLabel.style.background = 'rgba(220, 53, 69, 0.9)';
+
+            setTimeout(() => {
+                alert('✕ Annulation\n\nOpération annulée.');
+                stateLabel.style.background = 'rgba(0, 0, 0, 0.8)';
+                if (selectedRow) {
+                    stateLabel.textContent = `État: Entreprise ${selectedRow.dataset.id} sélectionnée`;
+                } else {
+                    stateLabel.textContent = 'État: Aucune sélection';
+                }
+            }, 300);
+        });
+
+        // Validation des dates en temps réel
+        dateDebut.addEventListener('change', function() {
+            if (dateDebut.value && dateFin.value) {
+                validateDates();
+            }
+        });
+
+        dateFin.addEventListener('change', function() {
+            if (dateDebut.value && dateFin.value) {
+                validateDates();
+            }
+        });
+
+        // Navigation au clavier
+        document.addEventListener('keydown', function(e) {
+            // Enter pour valider
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                validateSelection();
+            }
+
+            // Escape pour annuler
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                btnCancel.click();
+            }
+
+            // Flèches haut/bas pour naviguer dans le grid
+            if ((e.key === 'ArrowUp' || e.key === 'ArrowDown') && selectedRow) {
+                e.preventDefault();
+
+                const currentIndex = Array.from(rows).indexOf(selectedRow);
+                let newIndex = currentIndex;
+
+                if (e.key === 'ArrowUp' && currentIndex > 0) {
+                    newIndex = currentIndex - 1;
+                } else if (e.key === 'ArrowDown' && currentIndex < rows.length - 1) {
+                    newIndex = currentIndex + 1;
+                }
+
+                if (newIndex !== currentIndex) {
+                    selectedRow.classList.remove('selected');
+                    selectedRow = rows[newIndex];
+                    selectedRow.classList.add('selected');
+                    selectedRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    stateLabel.textContent = `État: Entreprise ${selectedRow.dataset.id} sélectionnée`;
+                }
+            }
+        });
+
+        // Mise à jour du compteur d'entreprises
+        const statsLabel = document.getElementById('statsLabel');
+        statsLabel.textContent = `${rows.length} entreprise(s) disponible(s)`;
+
+        console.log('✓ Prototype chargé avec succès');
+        console.log('Design Tokens:', {
+            colorPrimary: getComputedStyle(document.documentElement).getPropertyValue('--color-primary'),
+            colorCream: getComputedStyle(document.documentElement).getPropertyValue('--color-cream'),
+            shadowBrutalPrimary: getComputedStyle(document.documentElement).getPropertyValue('--shadow-brutal-primary')
+        });
+    </script>
+</body>
+</html>

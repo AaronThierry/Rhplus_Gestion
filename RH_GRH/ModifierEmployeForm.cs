@@ -2,6 +2,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace RH_GRH
@@ -11,21 +12,29 @@ namespace RH_GRH
         private Dbconnect connect = new Dbconnect();
         private int idPersonnel;
         private string matriculeOriginal;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch toggleConformite;
 
         public ModifierEmployeForm(int idPersonnel, string nomPrenom, string matricule, string civilite, string sexe,
             DateTime? dateNaissance, string adresse, string telephone, string identification,
             int idEntreprise, int? idDirection, int? idService, int idCategorie,
             string poste, string cnss, string contrat, string typeContrat, string modePayement, string cadre,
             DateTime dateEntree, DateTime? dateSortie, decimal? heureContrat, int? jourContrat,
-            string numeroBancaire, string banque, decimal? salaireMoyen, string dureeContrat = "Permanent")
+            string numeroBancaire, string banque, decimal? salaireMoyen, bool conformite, string dureeContrat = "Permanent")
         {
             InitializeComponent();
             this.idPersonnel = idPersonnel;
 
+            AjouterControleConformite();
             InitialiserDonnees();
             ChargerDonnees(nomPrenom, matricule, civilite, sexe, dateNaissance, adresse, telephone, identification,
                 idEntreprise, idDirection, idService, idCategorie, poste, cnss, contrat, typeContrat, modePayement,
                 cadre, dateEntree, dateSortie, heureContrat, jourContrat, numeroBancaire, banque, salaireMoyen, dureeContrat);
+
+            // Charger la valeur de conformité dans le toggle switch
+            if (toggleConformite != null)
+            {
+                toggleConformite.Checked = conformite;
+            }
         }
 
         private void InitialiserDonnees()
@@ -49,6 +58,119 @@ namespace RH_GRH
             comboBoxDirection.SelectedIndexChanged += ComboBoxDirection_SelectedIndexChanged;
             comboBoxModePayement.SelectedIndexChanged += ComboBoxModePayement_SelectedIndexChanged;
             comboBoxContrat.SelectedIndexChanged += ComboBoxContrat_SelectedIndexChanged;
+        }
+
+        /// <summary>
+        /// Ajoute dynamiquement un Toggle Switch pour la conformité de l'employé
+        /// </summary>
+        private void AjouterControleConformite()
+        {
+            // Trouver le GroupBox des informations personnelles
+            var groupBoxInfoPerso = this.Controls.Find("groupBoxInfoPerso", true).FirstOrDefault() as GroupBox;
+            if (groupBoxInfoPerso == null) return;
+
+            // === PANEL CONTENEUR POUR LE CONTRÔLE DE CONFORMITÉ ===
+            var panelConformite = new Panel
+            {
+                Location = new Point(294, 370),
+                Size = new Size(400, 75),
+                BackColor = Color.White,
+                BorderStyle = BorderStyle.None
+            };
+
+            // Cadre avec bordure élégante
+            var panelBorder = new Panel
+            {
+                Location = new Point(0, 0),
+                Size = new Size(400, 75),
+                BackColor = Color.FromArgb(245, 249, 252),
+                BorderStyle = BorderStyle.None
+            };
+
+            // === LABEL TITRE ===
+            var labelTitre = new Label
+            {
+                AutoSize = false,
+                Font = new Font("Montserrat", 9.5F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(142, 68, 173),
+                Location = new Point(15, 8),
+                Size = new Size(150, 22),
+                Text = "✓ Conformité",
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+
+            // === TOGGLE SWITCH GUNA2 ===
+            toggleConformite = new Guna.UI2.WinForms.Guna2ToggleSwitch
+            {
+                Checked = true,
+                CheckedState = {
+                    BorderColor = Color.FromArgb(39, 174, 96),
+                    FillColor = Color.FromArgb(39, 174, 96),
+                    InnerBorderColor = Color.White,
+                    InnerColor = Color.White
+                },
+                Location = new Point(180, 6),
+                Name = "toggleConformite",
+                Size = new Size(50, 25),
+                TabIndex = 9,
+                UncheckedState = {
+                    BorderColor = Color.FromArgb(231, 76, 60),
+                    FillColor = Color.FromArgb(231, 76, 60),
+                    InnerBorderColor = Color.White,
+                    InnerColor = Color.White
+                }
+            };
+
+            // === LABEL STATUT (dynamique) ===
+            var labelStatut = new Label
+            {
+                AutoSize = false,
+                Font = new Font("Montserrat", 8.5F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(39, 174, 96),
+                Location = new Point(240, 8),
+                Size = new Size(150, 22),
+                Text = "CONFORME",
+                TextAlign = ContentAlignment.MiddleLeft,
+                Name = "labelStatutConformite"
+            };
+
+            // === LABEL DESCRIPTION ===
+            var labelDescription = new Label
+            {
+                AutoSize = false,
+                Font = new Font("Montserrat", 7F, FontStyle.Regular),
+                ForeColor = Color.FromArgb(127, 140, 141),
+                Location = new Point(15, 38),
+                Size = new Size(370, 30),
+                Text = "Active pour afficher l'employé dans la paie personnalisée.\nDésactive pour les employés non conformes.",
+                TextAlign = ContentAlignment.TopLeft
+            };
+
+            // === EVENT HANDLER POUR CHANGER LE LABEL ===
+            toggleConformite.CheckedChanged += (s, e) =>
+            {
+                if (toggleConformite.Checked)
+                {
+                    labelStatut.Text = "CONFORME";
+                    labelStatut.ForeColor = Color.FromArgb(39, 174, 96);
+                }
+                else
+                {
+                    labelStatut.Text = "NON CONFORME";
+                    labelStatut.ForeColor = Color.FromArgb(231, 76, 60);
+                }
+            };
+
+            // === ASSEMBLAGE DES CONTRÔLES ===
+            panelBorder.Controls.Add(labelTitre);
+            panelBorder.Controls.Add(toggleConformite);
+            panelBorder.Controls.Add(labelStatut);
+            panelBorder.Controls.Add(labelDescription);
+            panelConformite.Controls.Add(panelBorder);
+
+            // Ajouter au GroupBox
+            groupBoxInfoPerso.Controls.Add(panelConformite);
+            panelConformite.BringToFront();
         }
 
         private void ChargerDonnees(string nomPrenom, string matricule, string civilite, string sexe,
@@ -460,6 +582,9 @@ namespace RH_GRH
                 }
                 dureeContrat = dureeContrat.ToLower(); // Convertir en minuscules
 
+                // Récupérer la valeur de conformité depuis le Toggle Switch
+                bool conformite = toggleConformite?.Checked ?? true;
+
                 string query = @"UPDATE personnel SET
                     nomPrenom = @nomPrenom,
                     matricule = @matricule,
@@ -486,7 +611,8 @@ namespace RH_GRH
                     numeroBancaire = @numeroBancaire,
                     banque = @banque,
                     salairemoyen = @salaireMoyen,
-                    dureeContrat = @dureeContrat
+                    dureeContrat = @dureeContrat,
+                    Conformite = @conformite
                 WHERE id_personnel = @idPersonnel";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, connect.getconnection))
@@ -518,6 +644,7 @@ namespace RH_GRH
                     cmd.Parameters.AddWithValue("@banque", string.IsNullOrWhiteSpace(banque) ? (object)DBNull.Value : banque);
                     cmd.Parameters.AddWithValue("@salaireMoyen", (object)salaireMoyen ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@dureeContrat", dureeContrat);
+                    cmd.Parameters.AddWithValue("@conformite", conformite);
 
                     connect.openConnect();
                     int result = cmd.ExecuteNonQuery();

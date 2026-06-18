@@ -37,6 +37,7 @@ namespace RH_GRH
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Formmain));
             this.panel_slide = new System.Windows.Forms.Panel();
+            this.labelUtilisateur = new System.Windows.Forms.Label();
             this.button_exit = new System.Windows.Forms.Button();
             this.panel_administration_submenu = new System.Windows.Forms.Panel();
             this.button_roles = new System.Windows.Forms.Button();
@@ -48,6 +49,7 @@ namespace RH_GRH
             this.button_entreprise = new System.Windows.Forms.Button();
             this.button_administration = new System.Windows.Forms.Button();
             this.panel_salaire_submenu = new System.Windows.Forms.Panel();
+            this.button_paie_personnalisee = new System.Windows.Forms.Button();
             this.button_journalier = new System.Windows.Forms.Button();
             this.button_horaire = new System.Windows.Forms.Button();
             this.button_salaire = new System.Windows.Forms.Button();
@@ -58,11 +60,10 @@ namespace RH_GRH
             this.button_charge = new System.Windows.Forms.Button();
             this.button_employe = new System.Windows.Forms.Button();
             this.button_personnel = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.labelVersion = new System.Windows.Forms.Label();
-            this.labelUtilisateur = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelVersion = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel_main = new System.Windows.Forms.Panel();
             this.panel_cover = new System.Windows.Forms.Panel();
@@ -116,6 +117,13 @@ namespace RH_GRH
             this.panel_slide.Controls.Add(this.panel1);
             this.panel_slide.Name = "panel_slide";
             // 
+            // labelUtilisateur
+            // 
+            resources.ApplyResources(this.labelUtilisateur, "labelUtilisateur");
+            this.labelUtilisateur.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(45)))), ((int)(((byte)(95)))));
+            this.labelUtilisateur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
+            this.labelUtilisateur.Name = "labelUtilisateur";
+            // 
             // button_exit
             // 
             resources.ApplyResources(this.button_exit, "button_exit");
@@ -138,24 +146,24 @@ namespace RH_GRH
             resources.ApplyResources(this.panel_administration_submenu, "panel_administration_submenu");
             this.panel_administration_submenu.Name = "panel_administration_submenu";
             // 
-            // button_profil
-            //
-            resources.ApplyResources(this.button_profil, "button_profil");
-            this.button_profil.FlatAppearance.BorderSize = 0;
-            this.button_profil.ForeColor = System.Drawing.Color.White;
-            this.button_profil.Name = "button_profil";
-            this.button_profil.UseVisualStyleBackColor = true;
-            this.button_profil.Click += new System.EventHandler(this.button_profil_Click);
-            //
             // button_roles
-            //
+            // 
             resources.ApplyResources(this.button_roles, "button_roles");
             this.button_roles.FlatAppearance.BorderSize = 0;
             this.button_roles.ForeColor = System.Drawing.Color.White;
             this.button_roles.Name = "button_roles";
             this.button_roles.UseVisualStyleBackColor = true;
             this.button_roles.Click += new System.EventHandler(this.button_roles_Click);
-            //
+            // 
+            // button_profil
+            // 
+            resources.ApplyResources(this.button_profil, "button_profil");
+            this.button_profil.FlatAppearance.BorderSize = 0;
+            this.button_profil.ForeColor = System.Drawing.Color.White;
+            this.button_profil.Name = "button_profil";
+            this.button_profil.UseVisualStyleBackColor = true;
+            this.button_profil.Click += new System.EventHandler(this.button_profil_Click);
+            // 
             // button_utilisateur
             // 
             resources.ApplyResources(this.button_utilisateur, "button_utilisateur");
@@ -213,10 +221,20 @@ namespace RH_GRH
             // panel_salaire_submenu
             // 
             this.panel_salaire_submenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(37)))), ((int)(((byte)(80)))));
+            this.panel_salaire_submenu.Controls.Add(this.button_paie_personnalisee);
             this.panel_salaire_submenu.Controls.Add(this.button_journalier);
             this.panel_salaire_submenu.Controls.Add(this.button_horaire);
             resources.ApplyResources(this.panel_salaire_submenu, "panel_salaire_submenu");
             this.panel_salaire_submenu.Name = "panel_salaire_submenu";
+            // 
+            // button_paie_personnalisee
+            // 
+            resources.ApplyResources(this.button_paie_personnalisee, "button_paie_personnalisee");
+            this.button_paie_personnalisee.FlatAppearance.BorderSize = 0;
+            this.button_paie_personnalisee.ForeColor = System.Drawing.Color.White;
+            this.button_paie_personnalisee.Name = "button_paie_personnalisee";
+            this.button_paie_personnalisee.UseVisualStyleBackColor = true;
+            this.button_paie_personnalisee.Click += new System.EventHandler(this.button_paie_personnalisee_Click);
             // 
             // button_journalier
             // 
@@ -246,7 +264,7 @@ namespace RH_GRH
             this.button_salaire.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel_personnel_submenu
-            //
+            // 
             this.panel_personnel_submenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(37)))), ((int)(((byte)(80)))));
             this.panel_personnel_submenu.Controls.Add(this.button_sursalaire);
             this.panel_personnel_submenu.Controls.Add(this.button_abonnement);
@@ -257,32 +275,32 @@ namespace RH_GRH
             this.panel_personnel_submenu.Name = "panel_personnel_submenu";
             // 
             // button_sursalaire
-            //
+            // 
             resources.ApplyResources(this.button_sursalaire, "button_sursalaire");
             this.button_sursalaire.FlatAppearance.BorderSize = 0;
             this.button_sursalaire.ForeColor = System.Drawing.Color.White;
             this.button_sursalaire.Name = "button_sursalaire";
             this.button_sursalaire.UseVisualStyleBackColor = true;
             this.button_sursalaire.Click += new System.EventHandler(this.button_sursalaire_Click);
-            //
+            // 
             // button_abonnement
-            //
+            // 
             resources.ApplyResources(this.button_abonnement, "button_abonnement");
             this.button_abonnement.FlatAppearance.BorderSize = 0;
             this.button_abonnement.ForeColor = System.Drawing.Color.White;
             this.button_abonnement.Name = "button_abonnement";
             this.button_abonnement.UseVisualStyleBackColor = true;
             this.button_abonnement.Click += new System.EventHandler(this.button_abonnement_Click);
-            //
+            // 
             // button_indemnite
-            //
+            // 
             resources.ApplyResources(this.button_indemnite, "button_indemnite");
             this.button_indemnite.FlatAppearance.BorderSize = 0;
             this.button_indemnite.ForeColor = System.Drawing.Color.White;
             this.button_indemnite.Name = "button_indemnite";
             this.button_indemnite.UseVisualStyleBackColor = true;
             this.button_indemnite.Click += new System.EventHandler(this.button_indemnite_Click);
-            //
+            // 
             // button_charge
             // 
             resources.ApplyResources(this.button_charge, "button_charge");
@@ -311,17 +329,9 @@ namespace RH_GRH
             this.button_personnel.UseVisualStyleBackColor = true;
             this.button_personnel.Click += new System.EventHandler(this.button_personnel_Click);
             // 
-            // panel1
-            //
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.labelVersion);
-            resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Name = "panel1";
-            // 
             // button2
-            //
+            // 
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
             resources.ApplyResources(this.button2, "button2");
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.ForeColor = System.Drawing.Color.White;
@@ -329,40 +339,26 @@ namespace RH_GRH
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // labelVersion
-            //
-            this.labelVersion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelVersion.Font = new System.Drawing.Font("Montserrat", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVersion.ForeColor = System.Drawing.Color.LightGray;
-            this.labelVersion.Location = new System.Drawing.Point(0, 0);
-            this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(250, 25);
-            this.labelVersion.TabIndex = 2;
-            this.labelVersion.Text = "Version 1.1.5";
-            this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //
-            // labelUtilisateur
-            //
-            this.labelUtilisateur.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelUtilisateur.Font = new System.Drawing.Font("Montserrat", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUtilisateur.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
-            this.labelUtilisateur.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(45)))), ((int)(((byte)(95)))));
-            this.labelUtilisateur.Location = new System.Drawing.Point(0, 680);
-            this.labelUtilisateur.Margin = new System.Windows.Forms.Padding(0);
-            this.labelUtilisateur.Padding = new System.Windows.Forms.Padding(15, 12, 15, 12);
-            this.labelUtilisateur.Name = "labelUtilisateur";
-            this.labelUtilisateur.Size = new System.Drawing.Size(250, 50);
-            this.labelUtilisateur.TabIndex = 3;
-            this.labelUtilisateur.Text = "👤  Utilisateur";
-            this.labelUtilisateur.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.labelVersion);
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Name = "panel1";
+            // 
             // pictureBox1
-            //
+            // 
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Image = global::RH_GRH.Properties.Resources.logo_RH___1_;
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // labelVersion
+            // 
+            resources.ApplyResources(this.labelVersion, "labelVersion");
+            this.labelVersion.ForeColor = System.Drawing.Color.LightGray;
+            this.labelVersion.Name = "labelVersion";
             // 
             // panel2
             // 
@@ -539,6 +535,7 @@ namespace RH_GRH
         private Button button_direction;
         private Button button_entreprise;
         private Button button_administration;
+        private Button button_paie_personnalisee;
         private Button button_journalier;
         private Button button_horaire;
         private Button button_salaire;

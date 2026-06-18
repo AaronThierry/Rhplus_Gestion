@@ -13,11 +13,13 @@ namespace RH_GRH
         private Guna.UI2.WinForms.Guna2TextBox textBoxMatricule;
         private Guna.UI2.WinForms.Guna2CheckBox checkBoxMatriculeManuel;
         private System.Windows.Forms.Label labelMatricule;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch toggleConformite;
 
         public AjouterEmployeForm()
         {
             InitializeComponent();
             AjouterControlesMatricule();
+            AjouterControleConformite();
             InitialiserDonnees();
         }
 
@@ -34,7 +36,7 @@ namespace RH_GRH
             var panelMatriculeHeader = new Panel
             {
                 Location = new Point(30, 395),
-                Size = new Size(540, 35),
+                Size = new Size(340, 35),
                 BackColor = Color.Transparent
             };
 
@@ -110,7 +112,7 @@ namespace RH_GRH
                 PlaceholderForeColor = Color.FromArgb(149, 165, 166),
                 PlaceholderText = "● Généré automatiquement lors de l'enregistrement",
                 SelectedText = "",
-                Size = new Size(540, 45),
+                Size = new Size(340, 45),
                 TabIndex = 22,
                 TextAlign = HorizontalAlignment.Left
             };
@@ -120,7 +122,7 @@ namespace RH_GRH
             var panelValidation = new Panel
             {
                 Location = new Point(30, 485),
-                Size = new Size(540, 25),
+                Size = new Size(340, 25),
                 BackColor = Color.Transparent,
                 Name = "panelValidationMatricule",
                 Visible = false
@@ -132,7 +134,7 @@ namespace RH_GRH
                 Font = new Font("Montserrat", 7.5F, FontStyle.Regular),
                 Location = new Point(0, 0),
                 Name = "labelValidationMatricule",
-                Size = new Size(540, 25),
+                Size = new Size(340, 25),
                 TextAlign = ContentAlignment.MiddleLeft
             };
             panelValidation.Controls.Add(labelValidation);
@@ -154,6 +156,120 @@ namespace RH_GRH
             {
                 groupBoxInfoPerso.Height = requiredHeight;
             }
+        }
+
+        /// <summary>
+        /// Ajoute dynamiquement un Toggle Switch pour la conformité de l'employé
+        /// </summary>
+        private void AjouterControleConformite()
+        {
+            // Trouver le GroupBox des informations personnelles
+            var groupBoxInfoPerso = this.Controls.Find("groupBoxInfoPerso", true).FirstOrDefault() as GroupBox;
+            if (groupBoxInfoPerso == null) return;
+
+            // === PANEL CONTENEUR POUR LE CONTRÔLE DE CONFORMITÉ ===
+            var panelConformite = new Panel
+            {
+                Location = new Point(510, 400),
+                Size = new Size(400, 75),
+                BackColor = Color.White,
+                BorderStyle = BorderStyle.None
+            };
+
+            // Cadre avec bordure élégante
+            var panelBorder = new Panel
+            {
+                Location = new Point(0, 0),
+                Size = new Size(400, 75),
+                BackColor = Color.FromArgb(245, 249, 252),
+                BorderStyle = BorderStyle.None,
+                Padding = new Padding(10)
+            };
+
+            // === LABEL TITRE ===
+            var labelTitre = new Label
+            {
+                AutoSize = false,
+                Font = new Font("Montserrat", 9.5F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(142, 68, 173),
+                Location = new Point(12, 8),
+                Size = new Size(120, 22),
+                Text = "✓ Conformité",
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+
+            // === TOGGLE SWITCH GUNA2 ===
+            toggleConformite = new Guna.UI2.WinForms.Guna2ToggleSwitch
+            {
+                Checked = true,
+                CheckedState = {
+                    BorderColor = Color.FromArgb(39, 174, 96),
+                    FillColor = Color.FromArgb(39, 174, 96),
+                    InnerBorderColor = Color.White,
+                    InnerColor = Color.White
+                },
+                Location = new Point(140, 6),
+                Name = "toggleConformite",
+                Size = new Size(45, 22),
+                TabIndex = 9,
+                UncheckedState = {
+                    BorderColor = Color.FromArgb(231, 76, 60),
+                    FillColor = Color.FromArgb(231, 76, 60),
+                    InnerBorderColor = Color.White,
+                    InnerColor = Color.White
+                }
+            };
+
+            // === LABEL STATUT (dynamique) ===
+            var labelStatut = new Label
+            {
+                AutoSize = false,
+                Font = new Font("Montserrat", 8.5F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(39, 174, 96),
+                Location = new Point(195, 8),
+                Size = new Size(140, 22),
+                Text = "CONFORME",
+                TextAlign = ContentAlignment.MiddleLeft,
+                Name = "labelStatutConformite"
+            };
+
+            // === LABEL DESCRIPTION ===
+            var labelDescription = new Label
+            {
+                AutoSize = false,
+                Font = new Font("Montserrat", 7F, FontStyle.Regular),
+                ForeColor = Color.FromArgb(127, 140, 141),
+                Location = new Point(12, 38),
+                Size = new Size(370, 30),
+                Text = "Active pour afficher l'employé dans la paie personnalisée.\nDésactive pour les employés non conformes.",
+                TextAlign = ContentAlignment.TopLeft
+            };
+
+            // === EVENT HANDLER POUR CHANGER LE LABEL ===
+            toggleConformite.CheckedChanged += (s, e) =>
+            {
+                if (toggleConformite.Checked)
+                {
+                    labelStatut.Text = "CONFORME";
+                    labelStatut.ForeColor = Color.FromArgb(39, 174, 96);
+                }
+                else
+                {
+                    labelStatut.Text = "NON CONFORME";
+                    labelStatut.ForeColor = Color.FromArgb(231, 76, 60);
+                }
+            };
+
+            // === ASSEMBLAGE DES CONTRÔLES ===
+            panelBorder.Controls.Add(labelTitre);
+            panelBorder.Controls.Add(toggleConformite);
+            panelBorder.Controls.Add(labelStatut);
+            panelBorder.Controls.Add(labelDescription);
+            panelConformite.Controls.Add(panelBorder);
+
+            // Ajouter au GroupBox
+            groupBoxInfoPerso.Controls.Add(panelConformite);
+            panelConformite.BringToFront();
         }
 
         /// <summary>
@@ -609,16 +725,19 @@ namespace RH_GRH
                 string numeroPolice = PoliceGenerator.GenererNumeroPolice();
                 System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: Numéro de police généré: {numeroPolice}\n");
 
+                // Récupérer la valeur de conformité depuis le Toggle Switch
+                bool conformite = toggleConformite?.Checked ?? true;
+
                 string query = @"INSERT INTO personnel (
                     nomPrenom, matricule, police, civilite, sexe, date_naissance, adresse, telephone, poste, numerocnss, identification,
                     id_entreprise, id_direction, id_service, id_categorie,
                     contrat, typeContrat, modePayement, cadre, date_entree, date_sortie,
-                    heureContrat, jourContrat, numeroBancaire, banque, salairemoyen, dureeContrat
+                    heureContrat, jourContrat, numeroBancaire, banque, salairemoyen, dureeContrat, Conformite
                 ) VALUES (
                     @nomPrenom, @matricule, @police, @civilite, @sexe, @dateNaissance, @adresse, @telephone, @poste, @numerocnss, @identification,
                     @idEntreprise, @idDirection, @idService, @idCategorie,
                     @contrat, @typeContrat, @modePayement, @cadre, @dateEntree, @dateSortie,
-                    @heureContrat, @jourContrat, @numeroBancaire, @banque, @salaireMoyen, @dureeContrat
+                    @heureContrat, @jourContrat, @numeroBancaire, @banque, @salaireMoyen, @dureeContrat, @conformite
                 )";
 
                 System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: Requête SQL créée\n");
@@ -652,6 +771,7 @@ namespace RH_GRH
                     cmd.Parameters.AddWithValue("@banque", string.IsNullOrWhiteSpace(banque) ? (object)DBNull.Value : banque);
                     cmd.Parameters.AddWithValue("@salaireMoyen", (object)salaireMoyen ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@dureeContrat", dureeContrat);
+                    cmd.Parameters.AddWithValue("@conformite", conformite);
 
                     System.IO.File.AppendAllText(logPath, $"{DateTime.Now}: Tous les paramètres ajoutés\n");
                     connect.openConnect();

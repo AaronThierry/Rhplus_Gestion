@@ -30,7 +30,7 @@ namespace RH_GRH
             while (continuerApplication)
             {
                 // Afficher le formulaire de connexion moderne
-                using (LoginFormModern loginForm = new LoginFormModern())
+                using (LoginForm loginForm = new LoginForm())
                 {
                     DialogResult loginResult = loginForm.ShowDialog();
 

@@ -42,6 +42,7 @@ namespace RH_GRH
             this.textBoxJourContrat = new Guna.UI2.WinForms.Guna2TextBox();
             this.textBoxHeureContrat = new Guna.UI2.WinForms.Guna2TextBox();
             this.checkBoxDateSortie = new System.Windows.Forms.CheckBox();
+            this.checkBoxConformite = new System.Windows.Forms.CheckBox();
             this.datePickerSortie = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.datePickerEntree = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.comboBoxCadre = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -461,9 +462,24 @@ namespace RH_GRH
             this.checkBoxDateSortie.TabIndex = 6;
             this.checkBoxDateSortie.Text = "L\'employé est sorti";
             this.checkBoxDateSortie.UseVisualStyleBackColor = true;
-            // 
+            //
+            // checkBoxConformite
+            //
+            this.checkBoxConformite.AutoSize = true;
+            this.checkBoxConformite.Checked = true;
+            this.checkBoxConformite.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxConformite.Font = new System.Drawing.Font("Montserrat", 8F);
+            this.checkBoxConformite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.checkBoxConformite.Location = new System.Drawing.Point(1050, 340);
+            this.checkBoxConformite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxConformite.Name = "checkBoxConformite";
+            this.checkBoxConformite.Size = new System.Drawing.Size(120, 26);
+            this.checkBoxConformite.TabIndex = 8;
+            this.checkBoxConformite.Text = "Conforme";
+            this.checkBoxConformite.UseVisualStyleBackColor = true;
+            //
             // datePickerSortie
-            // 
+            //
             this.datePickerSortie.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.datePickerSortie.BorderRadius = 4;
             this.datePickerSortie.BorderThickness = 2;
@@ -831,6 +847,7 @@ namespace RH_GRH
             this.groupBoxInfoPerso.Controls.Add(this.comboBoxSexe);
             this.groupBoxInfoPerso.Controls.Add(this.comboBoxCivilite);
             this.groupBoxInfoPerso.Controls.Add(this.textBoxNomPrenom);
+            this.groupBoxInfoPerso.Controls.Add(this.checkBoxConformite);
             this.groupBoxInfoPerso.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBoxInfoPerso.Font = new System.Drawing.Font("Montserrat", 11F, System.Drawing.FontStyle.Bold);
             this.groupBoxInfoPerso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(120)))), ((int)(((byte)(140)))));
@@ -838,7 +855,7 @@ namespace RH_GRH
             this.groupBoxInfoPerso.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxInfoPerso.Name = "groupBoxInfoPerso";
             this.groupBoxInfoPerso.Padding = new System.Windows.Forms.Padding(20, 18, 20, 18);
-            this.groupBoxInfoPerso.Size = new System.Drawing.Size(1258, 400);
+            this.groupBoxInfoPerso.Size = new System.Drawing.Size(1258, 520);
             this.groupBoxInfoPerso.TabIndex = 0;
             this.groupBoxInfoPerso.TabStop = false;
             this.groupBoxInfoPerso.Text = "Informations Personnelles";
@@ -1131,6 +1148,7 @@ namespace RH_GRH
         private Guna.UI2.WinForms.Guna2TextBox textBoxJourContrat;
         private Guna.UI2.WinForms.Guna2TextBox textBoxHeureContrat;
         private System.Windows.Forms.CheckBox checkBoxDateSortie;
+        private System.Windows.Forms.CheckBox checkBoxConformite;
         private Guna.UI2.WinForms.Guna2DateTimePicker datePickerSortie;
         private Guna.UI2.WinForms.Guna2DateTimePicker datePickerEntree;
         private Guna.UI2.WinForms.Guna2ComboBox comboBoxCadre;
