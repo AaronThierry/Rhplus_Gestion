@@ -101,7 +101,7 @@ namespace RH_GRH
             // 
             // panelContent
             // 
-            this.panelContent.BackColor = System.Drawing.Color.Transparent;
+            this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelContent.Controls.Add(this.flowPanelEntreprises);
             this.panelContent.Controls.Add(this.cardSearch);
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -111,9 +111,9 @@ namespace RH_GRH
             this.panelContent.Padding = new System.Windows.Forms.Padding(50, 0, 50, 0);
             this.panelContent.Size = new System.Drawing.Size(1375, 700);
             this.panelContent.TabIndex = 1;
-            //
+            // 
             // flowPanelEntreprises
-            //
+            // 
             this.flowPanelEntreprises.AutoScroll = true;
             this.flowPanelEntreprises.BackColor = System.Drawing.Color.Transparent;
             this.flowPanelEntreprises.Location = new System.Drawing.Point(50, 127);
@@ -200,7 +200,7 @@ namespace RH_GRH
             // 
             // panelFooter
             // 
-            this.panelFooter.BackColor = System.Drawing.Color.White;
+            this.panelFooter.BackColor = System.Drawing.Color.MidnightBlue;
             this.panelFooter.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(232)))), ((int)(((byte)(240)))));
             this.panelFooter.Controls.Add(this.cardPeriod);
             this.panelFooter.Controls.Add(this.buttonCancel);
@@ -232,7 +232,7 @@ namespace RH_GRH
             this.cardPeriod.Margin = new System.Windows.Forms.Padding(4);
             this.cardPeriod.Name = "cardPeriod";
             this.cardPeriod.Padding = new System.Windows.Forms.Padding(22, 18, 22, 18);
-            this.cardPeriod.Size = new System.Drawing.Size(775, 88);
+            this.cardPeriod.Size = new System.Drawing.Size(713, 98);
             this.cardPeriod.TabIndex = 0;
             // 
             // labelPeriodIcon
@@ -274,7 +274,7 @@ namespace RH_GRH
             this.datePickerDebut.Font = new System.Drawing.Font("Montserrat", 8F);
             this.datePickerDebut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
             this.datePickerDebut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datePickerDebut.Location = new System.Drawing.Point(350, 22);
+            this.datePickerDebut.Location = new System.Drawing.Point(288, 22);
             this.datePickerDebut.Margin = new System.Windows.Forms.Padding(4);
             this.datePickerDebut.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.datePickerDebut.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
@@ -283,7 +283,7 @@ namespace RH_GRH
             this.datePickerDebut.TabIndex = 2;
             this.datePickerDebut.Value = new System.DateTime(2026, 6, 18, 0, 0, 0, 0);
             this.datePickerDebut.ValueChanged += new System.EventHandler(this.datePickerDebut_ValueChanged);
-            //
+            // 
             // labelArrow
             // 
             this.labelArrow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -291,7 +291,7 @@ namespace RH_GRH
             this.labelArrow.BackColor = System.Drawing.Color.Transparent;
             this.labelArrow.Font = new System.Drawing.Font("Montserrat", 10F);
             this.labelArrow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.labelArrow.Location = new System.Drawing.Point(519, 31);
+            this.labelArrow.Location = new System.Drawing.Point(478, 31);
             this.labelArrow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelArrow.Name = "labelArrow";
             this.labelArrow.Size = new System.Drawing.Size(22, 27);
@@ -311,7 +311,7 @@ namespace RH_GRH
             this.datePickerFin.Font = new System.Drawing.Font("Montserrat", 8F);
             this.datePickerFin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
             this.datePickerFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datePickerFin.Location = new System.Drawing.Point(559, 22);
+            this.datePickerFin.Location = new System.Drawing.Point(529, 22);
             this.datePickerFin.Margin = new System.Windows.Forms.Padding(4);
             this.datePickerFin.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.datePickerFin.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);

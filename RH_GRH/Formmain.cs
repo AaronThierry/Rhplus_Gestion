@@ -25,9 +25,17 @@ namespace RH_GRH
         // Bouton actuellement sélectionné
         private Button currentActiveButton = null;
 
+        // Animation de fondu d'entrée
+        private Timer fadeInTimer;
+        private double currentOpacity = 0.0;
+
         public Formmain()
         {
             InitializeComponent();
+
+            // Démarrer avec opacité 0 pour l'animation de fondu
+            this.Opacity = 0;
+
             customDesign();
             count();
             InitializeAnimations();
@@ -36,6 +44,7 @@ namespace RH_GRH
             ConfigureUserPermissions();
             UpdateUserLabel();
             SetupUserLabelDesign();
+            InitializeFadeIn();
 
             // Espacements uniformes dans la sidebar
             button2.Margin = new Padding(0, 5, 0, 0);              // Tableau de bord
@@ -352,6 +361,36 @@ namespace RH_GRH
             animationTimer = new Timer();
             animationTimer.Interval = ANIMATION_INTERVAL;
             animationTimer.Tick += AnimationTimer_Tick;
+        }
+
+        private void InitializeFadeIn()
+        {
+            fadeInTimer = new Timer();
+            fadeInTimer.Interval = 20; // 20ms entre chaque frame pour un effet fluide
+            fadeInTimer.Tick += FadeInTimer_Tick;
+        }
+
+        private void FadeInTimer_Tick(object sender, EventArgs e)
+        {
+            currentOpacity += 0.05; // Augmenter l'opacité progressivement
+
+            if (currentOpacity >= 1.0)
+            {
+                fadeInTimer.Stop();
+                this.Opacity = 1.0;
+                currentOpacity = 1.0;
+            }
+            else
+            {
+                this.Opacity = currentOpacity;
+            }
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            // Démarrer l'animation de fondu d'entrée une fois le formulaire affiché
+            fadeInTimer.Start();
         }
 
         private void AnimationTimer_Tick(object sender, EventArgs e)
