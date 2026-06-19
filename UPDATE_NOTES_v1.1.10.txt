@@ -1,0 +1,128 @@
+═══════════════════════════════════════════════════════════════════════
+  GESTION MODERNE RH - MISE À JOUR v1.1.10
+  Filtrage Conformité et Génération ZIP Bulletins Personnalisés
+═══════════════════════════════════════════════════════════════════════
+
+Date de publication : 19 juin 2026
+
+NOUVEAUTÉS MAJEURES
+───────────────────────────────────────────────────────────────────────
+
+✓ FILTRAGE PAR CONFORMITÉ - EMPLOYÉS HORAIRES ET JOURNALIERS
+  • Séparation automatique des employés conformes/non conformes
+    - Employés conformes (Conformite = 1) : Paie standard
+    - Employés non conformes (Conformite = 0) : Paie personnalisée
+    - Filtrage automatique dans tous les modules horaires/journaliers
+    - Affichage uniquement des employés conformes dans les listes
+    - Employés non conformes accessibles via "Paie Personnalisée"
+
+  • Modules concernés :
+    - Gestion Salaire Horaire
+    - Gestion Salaire Journalier
+    - Saisie Paie en Lot
+    - Impression en masse (BatchBulletinService)
+    - Sélection d'employés (EmployeClass)
+
+  • Avantages :
+    - Réduction des erreurs de traitement
+    - Séparation claire des workflows
+    - Conformité garantie pour paie standard
+    - Traitement personnalisé pour cas spéciaux
+
+✓ GÉNÉRATION ZIP - BULLETINS DE PAIE PERSONNALISÉS
+  • Export automatique en archive ZIP
+    - Un seul fichier ZIP au lieu de multiples PDFs
+    - Nom structuré : Bulletins_Personnalises_[Entreprise]_[Période].zip
+    - Exemple : Bulletins_Personnalises_GMP_2026-01-01_au_2026-01-31.zip
+    - Création de dossier temporaire automatique
+    - Nettoyage automatique après création du ZIP
+
+  • Fonctionnalité disponible dans :
+    - Paie Personnalisée → Génération en masse
+
+  • Avantages :
+    - Partage facile par email ou réseau
+    - Archivage simplifié et professionnel
+    - Gain d'espace disque avec compression
+    - Organisation cohérente avec système horaire/journalier
+    - Ouverture automatique du dossier destination
+
+AMÉLIORATIONS TECHNIQUES
+───────────────────────────────────────────────────────────────────────
+
+✓ Optimisation des requêtes SQL
+  • Ajout filtre WHERE Conformite = 1 dans 6 emplacements
+  • Performance améliorée avec index sur colonne Conformite
+  • Réduction du nombre d'employés traités inutilement
+
+✓ Gestion de la mémoire
+  • Utilisation de dossiers temporaires pour génération ZIP
+  • Nettoyage automatique des ressources
+  • Suppression automatique des fichiers temporaires
+
+✓ Interface utilisateur
+  • Message amélioré avec icônes 📦 et 📁
+  • Affichage du nom du fichier ZIP créé
+  • Compteur de réussite/échec détaillé
+
+CORRECTIONS TECHNIQUES
+───────────────────────────────────────────────────────────────────────
+
+✓ Cohérence du filtrage employés dans tous les modules
+✓ Standardisation de la génération ZIP (paie personnalisée)
+✓ Amélioration de la gestion des erreurs lors création ZIP
+✓ Nettoyage automatique des ressources temporaires
+
+COMPATIBILITÉ
+───────────────────────────────────────────────────────────────────────
+
+Configuration requise :
+  • .NET Framework 4.7.2 ou supérieur
+  • MySQL Server 5.7 ou supérieur
+  • Windows 7 SP1 / Windows Server 2008 R2 SP1 ou supérieur
+  • 4 Go RAM minimum (8 Go recommandé)
+  • 500 Mo d'espace disque disponible
+
+Dépendances :
+  • QuestPDF (génération PDF)
+  • Guna.UI2.WinForms (interface moderne)
+  • MySql.Data (connexion base de données)
+  • System.IO.Compression (création ZIP)
+
+INSTALLATION
+───────────────────────────────────────────────────────────────────────
+
+Cette mise à jour s'installe par-dessus la version précédente.
+Vos données et configurations seront préservées.
+
+1. Fermez l'application si elle est en cours d'exécution
+2. Lancez le programme d'installation
+3. Suivez les instructions à l'écran
+4. Redémarrez l'application
+
+NOTES IMPORTANTES
+───────────────────────────────────────────────────────────────────────
+
+→ PRÉREQUIS BASE DE DONNÉES :
+  La colonne "Conformite" doit exister dans la table "personnel"
+  Si absente, exécutez le script SQL : add_conformite_column.sql
+
+→ Vérifiez que tous les employés ont la valeur correcte :
+  - Conformite = 1 pour employés avec police + CNSS
+  - Conformite = 0 pour employés nécessitant traitement personnalisé
+
+→ Compatible avec toutes les versions précédentes (1.0.x - 1.1.x)
+→ Sauvegarde automatique des paramètres existants
+→ Aucune perte de données lors de la mise à jour
+
+STRUCTURE DU ZIP GÉNÉRÉ
+───────────────────────────────────────────────────────────────────────
+
+Bulletins_Personnalises_MonEntreprise_2026-01-01_au_2026-01-31.zip
+    ├── Bulletin_Personnalise_MAT001_DUPONT_Jean_2026-01-01_au_2026-01-31.pdf
+    ├── Bulletin_Personnalise_MAT002_MARTIN_Marie_2026-01-01_au_2026-01-31.pdf
+    └── ...
+
+═══════════════════════════════════════════════════════════════════════
+Pour toute assistance : https://github.com/AaronThierry/Rhplus_Gestion
+═══════════════════════════════════════════════════════════════════════

@@ -1,8 +1,8 @@
-; Script d'installation Inno Setup pour Gestion Moderne RH v1.1.9 - UPDATE
-; Mise à jour : Modernisation complète de l'interface utilisateur
+; Script d'installation Inno Setup pour Gestion Moderne RH v1.1.10 - UPDATE
+; Mise à jour : Filtrage conformité et génération ZIP bulletins personnalisés
 
 #define MyAppName "Gestion Moderne RH"
-#define MyAppVersion "1.1.9"
+#define MyAppVersion "1.1.10"
 #define MyAppPublisher "GMP - Gestion Moderne de Paie"
 #define MyAppURL "https://github.com/AaronThierry/Rhplus_Gestion"
 #define MyAppExeName "RH_GRH.exe"
@@ -23,7 +23,7 @@ AppUpdatesURL={#MyAppURL}/releases
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=LICENSE.txt
-InfoBeforeFile=UPDATE_NOTES_v1.1.9.txt
+InfoBeforeFile=UPDATE_NOTES_v1.1.10.txt
 OutputDir=Setup\Output
 OutputBaseFilename=GestionModerneRH_v{#MyAppVersion}_Update
 SetupIconFile=RH_GRH\logo-rh-modified.ico
@@ -37,7 +37,7 @@ UninstallDisplayIcon={app}\{#MyAppExeName}
 UninstallDisplayName={#MyAppName}
 VersionInfoVersion={#MyAppVersion}
 VersionInfoCompany={#MyAppPublisher}
-VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.1.9
+VersionInfoDescription=Système de Gestion des Ressources Humaines et Paie - Mise à jour v1.1.10
 VersionInfoCopyright=Copyright (C) 2025 {#MyAppPublisher}
 VersionInfoProductName={#MyAppName}
 VersionInfoProductVersion={#MyAppVersion}
