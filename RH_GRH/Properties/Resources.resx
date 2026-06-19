@@ -121,14 +121,14 @@
   <data name="groupe-utilisateurs-ombre" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\groupe-utilisateurs-ombre.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="team_2322704" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\team_2322704.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="groupe-de-personnes-se-reunissant-dans-la-salle-de-brainstorming" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\groupe-de-personnes-se-reunissant-dans-la-salle-de-brainstorming.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="recrutement-des-ressources-humaines" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\recrutement-des-ressources-humaines.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="recrutement-des-ressources-humaines1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\recrutement-des-ressources-humaines1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="team_2322704" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\team_2322704.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gr.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,22 +136,25 @@
   <data name="team_8163740" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\team_8163740.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="84dead02-a175-49bb-aa12-145eb624d1ad-remove-bg-io" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\84dead02-a175-49bb-aa12-145eb624d1ad-remove-bg-io.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="logo RH+ (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo RH+ (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logo RH+" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo RH+.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="groupe-de-personnes-se-reunissant-dans-la-salle-de-brainstorming" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\groupe-de-personnes-se-reunissant-dans-la-salle-de-brainstorming.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="84dead02-a175-49bb-aa12-145eb624d1ad-remove-bg-io" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\84dead02-a175-49bb-aa12-145eb624d1ad-remove-bg-io.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="User Groups_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\User Groups_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="recrutement-des-ressources-humaines1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\recrutement-des-ressources-humaines1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PROPOSITION LOGO RH+ (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PROPOSITION LOGO RH+ (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -45,6 +45,7 @@ namespace RH_GRH
             this.labelAppName = new System.Windows.Forms.Label();
             this.labelWelcome = new System.Windows.Forms.Label();
             this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
+            this.guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelMain.SuspendLayout();
             this.panelLogin.SuspendLayout();
@@ -278,6 +279,7 @@ namespace RH_GRH
             // panelLeft
             // 
             this.panelLeft.BackColor = System.Drawing.Color.Transparent;
+            this.panelLeft.Controls.Add(this.guna2Separator2);
             this.panelLeft.Controls.Add(this.pictureBoxLogo);
             this.panelLeft.Controls.Add(this.guna2VSeparator1);
             this.panelLeft.Controls.Add(this.labelAppDesc);
@@ -291,12 +293,13 @@ namespace RH_GRH
             this.panelLeft.Padding = new System.Windows.Forms.Padding(53, 49, 53, 49);
             this.panelLeft.Size = new System.Drawing.Size(644, 738);
             this.panelLeft.TabIndex = 0;
+            this.panelLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.panelLeft_Paint);
             // 
             // labelAppDesc
             // 
             this.labelAppDesc.Font = new System.Drawing.Font("Montserrat", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAppDesc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(235)))));
-            this.labelAppDesc.Location = new System.Drawing.Point(64, 461);
+            this.labelAppDesc.Location = new System.Drawing.Point(99, 464);
             this.labelAppDesc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAppDesc.Name = "labelAppDesc";
             this.labelAppDesc.Size = new System.Drawing.Size(427, 98);
@@ -309,7 +312,7 @@ namespace RH_GRH
             // 
             this.labelAppName.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAppName.ForeColor = System.Drawing.Color.White;
-            this.labelAppName.Location = new System.Drawing.Point(62, 395);
+            this.labelAppName.Location = new System.Drawing.Point(97, 415);
             this.labelAppName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAppName.Name = "labelAppName";
             this.labelAppName.Size = new System.Drawing.Size(427, 49);
@@ -321,7 +324,7 @@ namespace RH_GRH
             // 
             this.labelWelcome.Font = new System.Drawing.Font("Montserrat ExtraBold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelWelcome.ForeColor = System.Drawing.Color.White;
-            this.labelWelcome.Location = new System.Drawing.Point(53, 312);
+            this.labelWelcome.Location = new System.Drawing.Point(88, 332);
             this.labelWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelWelcome.Name = "labelWelcome";
             this.labelWelcome.Size = new System.Drawing.Size(427, 74);
@@ -332,20 +335,29 @@ namespace RH_GRH
             // guna2VSeparator1
             // 
             this.guna2VSeparator1.FillColor = System.Drawing.Color.White;
-            this.guna2VSeparator1.FillThickness = 4;
-            this.guna2VSeparator1.Location = new System.Drawing.Point(45, 338);
+            this.guna2VSeparator1.FillThickness = 2;
+            this.guna2VSeparator1.Location = new System.Drawing.Point(77, 358);
             this.guna2VSeparator1.Name = "guna2VSeparator1";
-            this.guna2VSeparator1.Size = new System.Drawing.Size(12, 169);
+            this.guna2VSeparator1.Size = new System.Drawing.Size(22, 40);
             this.guna2VSeparator1.TabIndex = 3;
+            // 
+            // guna2Separator2
+            // 
+            this.guna2Separator2.FillColor = System.Drawing.Color.White;
+            this.guna2Separator2.FillThickness = 2;
+            this.guna2Separator2.Location = new System.Drawing.Point(104, 453);
+            this.guna2Separator2.Name = "guna2Separator2";
+            this.guna2Separator2.Size = new System.Drawing.Size(303, 10);
+            this.guna2Separator2.TabIndex = 6;
             // 
             // pictureBoxLogo
             // 
             this.pictureBoxLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxLogo.Image = global::RH_GRH.Properties.Resources.logo_RH___1_;
-            this.pictureBoxLogo.Location = new System.Drawing.Point(145, 58);
+            this.pictureBoxLogo.Image = global::RH_GRH.Properties.Resources.PROPOSITION_LOGO_RH___2_;
+            this.pictureBoxLogo.Location = new System.Drawing.Point(173, 27);
             this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(244, 231);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(255, 290);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLogo.TabIndex = 4;
             this.pictureBoxLogo.TabStop = false;
@@ -394,5 +406,6 @@ namespace RH_GRH
         private System.Windows.Forms.LinkLabel linkLabelMotDePasseOublie;
         private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator1;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
+        private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
     }
 }

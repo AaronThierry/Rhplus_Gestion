@@ -133,6 +133,16 @@ namespace RH_GRH.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PROPOSITION_LOGO_RH___2_ {
+            get {
+                object obj = ResourceManager.GetObject("PROPOSITION LOGO RH+ (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap recrutement_des_ressources_humaines {
             get {
                 object obj = ResourceManager.GetObject("recrutement-des-ressources-humaines", resourceCulture);

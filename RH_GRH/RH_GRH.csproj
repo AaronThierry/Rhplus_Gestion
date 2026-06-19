@@ -724,6 +724,7 @@
     <Content Include="logo-rh-modified.ico" />
     <Content Include="Resources\logo-genux.png" />
     <Content Include="Resources\logo-rh.png" />
+    <None Include="Resources\PROPOSITION LOGO RH+ %282%29.png" />
     <Content Include="Selection Entreprise.dc.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

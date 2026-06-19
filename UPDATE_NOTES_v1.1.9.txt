@@ -1,19 +1,27 @@
 ═══════════════════════════════════════════════════════════════════════
   GESTION MODERNE RH - MISE À JOUR v1.1.9
-  Modernisation complète de l'interface utilisateur
+  Modernisation UI et Améliorations UX Majeures
 ═══════════════════════════════════════════════════════════════════════
 
-Date de publication : 18 juin 2026
+Date de publication : 19 juin 2026
 
-NOUVEAUTÉS ET AMÉLIORATIONS
+NOUVEAUTÉS MAJEURES
 ───────────────────────────────────────────────────────────────────────
 
 ✓ INTERFACE UTILISATEUR MODERNISÉE
-  • Écran de connexion entièrement repensé
+  • Écran de connexion entièrement redesigné
     - Design moderne split-screen avec logo d'entreprise
-    - Interface bicolore : MidnightBlue et blanc
-    - Expérience utilisateur améliorée avec branding cohérent
-    - Séparateur visuel élégant entre les panneaux
+    - Interface bicolore professionnelle : MidnightBlue et blanc
+    - Transition fluide avec animation de fondu (fade-in/fade-out)
+    - Suppression du popup "Bienvenue" pour une UX fluide
+    - Message "✓ CONNEXION RÉUSSIE" sur le bouton
+    - Branding cohérent avec séparateur visuel élégant
+
+  • Transitions fluides et modernes
+    - Animation de fondu sortant (fade-out) du formulaire de connexion
+    - Animation de fondu entrant (fade-in) de l'écran principal
+    - Durée totale optimisée : ~1.2 secondes
+    - Expérience professionnelle sans interruption
 
   • Compteurs d'employés améliorés
     - Affichage clair sans emojis pour meilleure lisibilité
@@ -26,6 +34,34 @@ NOUVEAUTÉS ET AMÉLIORATIONS
     - Cohérence visuelle dans toute l'application
     - Meilleure lisibilité des textes et compteurs
 
+✓ DATEPICKER - SÉLECTION AUTOMATIQUE FIN DE MOIS
+  • Fonctionnalité intelligente de sélection de période
+    - Sélection d'une date de début → Date de fin = dernier jour du mois
+    - Exemple : 15/01/2026 → Date fin automatique : 31/01/2026
+    - Gain de temps pour la saisie des périodes mensuelles
+    - Moins d'erreurs de saisie
+
+  • Formulaires concernés :
+    - Gestion Salaire Horaire
+    - Gestion Salaire Journalier
+    - Paie Personnalisée
+    - Sélection Entreprise
+    - Impression en masse
+
+✓ GÉNÉRATION DE BULLETINS EN MASSE - ARCHIVE ZIP
+  • Export professionnel des bulletins de paie
+    - Génération automatique d'un fichier ZIP
+    - Nom structuré : Bulletins_[Entreprise]_[Période].zip
+    - Exemple : Bulletins_GMP_Paie_2026-01-01_au_2026-01-31.zip
+    - Compression automatique pour gain d'espace
+    - Organisation professionnelle des documents
+
+  • Avantages :
+    - Un seul fichier au lieu de dizaines de PDF
+    - Partage facile par email ou réseau
+    - Archivage simplifié avec nom explicite
+    - Tri chronologique automatique (format ISO)
+
 CORRECTIONS TECHNIQUES
 ───────────────────────────────────────────────────────────────────────
 
@@ -33,6 +69,7 @@ CORRECTIONS TECHNIQUES
 ✓ Suppression des emojis causant des problèmes de formatage
 ✓ Amélioration de la cohérence visuelle entre les formulaires
 ✓ Optimisation de l'affichage des statistiques
+✓ Nettoyage automatique des fichiers temporaires
 
 COMPATIBILITÉ
 ───────────────────────────────────────────────────────────────────────

@@ -190,5 +190,10 @@ namespace RH_GRH
         {
 
         }
+
+        private void panelLeft_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
