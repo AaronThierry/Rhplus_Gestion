@@ -45,6 +45,22 @@ Le formulaire `PaiePersonnaliseeForm` :
 - La génération en masse n'est **pas applicable** dans ce contexte
 - Chaque employé a des éléments de paie spécifiques
 
+## 📑 Sélection Employés + Impression en masse
+
+#### 3. SelectionEmployesImpressionForm ✅
+- **Formulaire :** Impression en masse par sélection d'employés
+- **Service :** `BatchBulletinService`
+- **Workflow :**
+  ```
+  SelectionEmployesImpressionForm
+    → Sélection des employés (cocher les employés souhaités)
+    → Définir période de paie
+    → ProgressionImpressionForm
+    → BatchBulletinService.GenererBulletinsAsync()
+    → Génération ZIP
+  ```
+- **Résultat :** `Bulletins_[Entreprise]_[Période].zip`
+
 ## 🎯 Résumé
 
 | Type de Contrat | Formulaire | Impression LOT | Génération ZIP |
@@ -52,6 +68,7 @@ Le formulaire `PaiePersonnaliseeForm` :
 | Horaire | GestionSalaireHoraireForm | ✅ Oui | ✅ Fonctionnel |
 | Journalier | GestionSalaireJournalierForm | ✅ Oui | ✅ Fonctionnel |
 | Personnalisé | PaiePersonnaliseeForm | ❌ Non | N/A |
+| Sélection | SelectionEmployesImpressionForm | ✅ Oui | ✅ Fonctionnel |
 
 ## 💡 Utilisation
 
@@ -107,6 +124,14 @@ else // Journalier
 2. Cliquer sur "Impression LOT"
 3. Sélectionner une entreprise
 4. Vérifier la création du ZIP
+
+### Test 3 : Sélection Employés Impression
+1. Aller dans le menu principal
+2. Cliquer sur "Sélection Employés + Impression"
+3. Cocher les employés souhaités
+4. Définir la période de paie
+5. Cliquer sur "Générer bulletins"
+6. Vérifier la création du ZIP
 
 **Vérifications :**
 - ✅ Nom du ZIP correct : `Bulletins_[Entreprise]_[Période].zip`

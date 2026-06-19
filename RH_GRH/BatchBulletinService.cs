@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -144,20 +145,32 @@ namespace RH_GRH
                 Errors = 0
             };
 
-            // Créer le dossier s'il n'existe pas
+            // Créer le dossier de destination s'il n'existe pas
             if (!Directory.Exists(dossierDestination))
             {
                 Directory.CreateDirectory(dossierDestination);
             }
 
-            // Créer un sous-dossier avec la période
+            // Créer un dossier temporaire pour les bulletins
             string periodeSafe = $"{periodeDebut:yyyy-MM-dd}_au_{periodeFin:yyyy-MM-dd}";
-            string sousDossier = Path.Combine(dossierDestination, $"Bulletins_{periodeSafe}");
+            string dossierTemp = Path.Combine(Path.GetTempPath(), $"Bulletins_{periodeSafe}_{DateTime.Now:HHmmss}");
 
-            if (!Directory.Exists(sousDossier))
+            if (!Directory.Exists(dossierTemp))
             {
-                Directory.CreateDirectory(sousDossier);
+                Directory.CreateDirectory(dossierTemp);
             }
+
+            // Récupérer le nom de l'entreprise du premier employé
+            string nomEntreprise = "Entreprise";
+            if (idsEmployes.Count > 0)
+            {
+                var premierEmploye = EmployeService.GetEmployeDetails(idsEmployes[0]);
+                if (premierEmploye != null && !string.IsNullOrEmpty(premierEmploye.NomEntreprise))
+                {
+                    nomEntreprise = premierEmploye.NomEntreprise;
+                }
+            }
+            string nomEntrepriseSafe = nomEntreprise.Replace(" ", "_").Replace("/", "-").Replace("\\", "-");
 
             // Traiter chaque employé
             foreach (var idEmploye in idsEmployes)
@@ -197,7 +210,7 @@ namespace RH_GRH
                     string policeSafe = (employe.Police ?? "SANS_POLICE").Replace(" ", "_").Replace("/", "-");
                     string nomEmployeSafe = (employe.Nom ?? "Employe").Replace(" ", "_").Replace("/", "-");
                     string nomFichier = $"Bulletin_{policeSafe}_{nomEmployeSafe}_{periodeSafe}.pdf";
-                    string cheminComplet = Path.Combine(sousDossier, nomFichier);
+                    string cheminComplet = Path.Combine(dossierTemp, nomFichier);
 
                     var document = new BulletinDocument(model);
                     await Task.Run(() => document.GeneratePdf(cheminComplet), cancellationToken);
@@ -217,6 +230,54 @@ namespace RH_GRH
                 }
 
                 progress?.Report(printProgress);
+            }
+
+            // Créer le fichier ZIP si au moins un bulletin a été généré
+            if (result.SuccessCount > 0)
+            {
+                try
+                {
+                    printProgress.CurrentEmployeeName = "Création du fichier ZIP...";
+                    progress?.Report(printProgress);
+
+                    string nomZip = $"Bulletins_{nomEntrepriseSafe}_{periodeSafe}.zip";
+                    string cheminZip = Path.Combine(dossierDestination, nomZip);
+
+                    // Supprimer le ZIP s'il existe déjà
+                    if (File.Exists(cheminZip))
+                    {
+                        File.Delete(cheminZip);
+                    }
+
+                    // Créer l'archive ZIP
+                    ZipFile.CreateFromDirectory(dossierTemp, cheminZip);
+
+                    // Ajouter le chemin du ZIP aux résultats
+                    result.GeneratedFiles.Clear(); // On remplace la liste des PDFs individuels
+                    result.GeneratedFiles.Add(cheminZip);
+
+                    printProgress.CurrentEmployeeName = "ZIP créé avec succès";
+                    progress?.Report(printProgress);
+                }
+                catch (Exception ex)
+                {
+                    string errorMsg = $"Erreur lors de la création du ZIP: {ex.Message}";
+                    result.Errors.Add(errorMsg);
+                    printProgress.LastError = errorMsg;
+                }
+            }
+
+            // Nettoyer le dossier temporaire
+            try
+            {
+                if (Directory.Exists(dossierTemp))
+                {
+                    Directory.Delete(dossierTemp, true);
+                }
+            }
+            catch
+            {
+                // Ignorer les erreurs de nettoyage
             }
 
             result.Duration = DateTime.Now - startTime;

@@ -56,11 +56,17 @@ NOUVEAUTÉS MAJEURES
     - Compression automatique pour gain d'espace
     - Organisation professionnelle des documents
 
+  • Fonctionnalité disponible dans :
+    - Gestion Salaire Horaire → Impression LOT
+    - Gestion Salaire Journalier → Impression LOT
+    - Sélection Employés + Impression en masse
+
   • Avantages :
     - Un seul fichier au lieu de dizaines de PDF
     - Partage facile par email ou réseau
     - Archivage simplifié avec nom explicite
     - Tri chronologique automatique (format ISO)
+    - Nettoyage automatique des fichiers temporaires
 
 CORRECTIONS TECHNIQUES
 ───────────────────────────────────────────────────────────────────────
