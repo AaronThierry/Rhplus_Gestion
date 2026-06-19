@@ -80,7 +80,8 @@ namespace RH_GRH
                     FROM personnel p
                     WHERE p.id_entreprise = @idEntreprise
                     AND p.date_entree <= @periodeFin
-                    AND (p.date_sortie IS NULL OR p.date_sortie >= @periodeDebut)";
+                    AND (p.date_sortie IS NULL OR p.date_sortie >= @periodeDebut)
+                    AND p.Conformite = 1";
 
                 if (!string.IsNullOrEmpty(typeContrat) && typeContrat != "Tous")
                 {

@@ -562,7 +562,8 @@ WHERE id_personnel  = @id_personnel;";
     SELECT id_personnel, police, nomPrenom
     FROM personnel
     WHERE id_entreprise = @e
-    AND typeContrat = 'Horaire'  -- Filtrer par typeContrat = 'Horaire'
+    AND typeContrat = 'Horaire'
+    AND Conformite = 1
     ORDER BY police, nomPrenom;";
 
         var cmd = new MySqlCommand(sql, con);
@@ -610,7 +611,8 @@ WHERE id_personnel  = @id_personnel;";
     SELECT id_personnel, police, nomPrenom
     FROM personnel
     WHERE id_entreprise = @e
-    AND typeContrat = 'Journalier'  -- Filtrer par typeContrat = 'Journalier'
+    AND typeContrat = 'Journalier'
+    AND Conformite = 1
     ORDER BY police, nomPrenom;";
 
         var cmd = new MySqlCommand(sql, con);

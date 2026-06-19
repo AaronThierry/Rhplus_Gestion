@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -1472,12 +1474,23 @@ namespace RH_GRH
                     // Choisir le dossier de destination
                     using (var folderDialog = new FolderBrowserDialog())
                     {
-                        folderDialog.Description = "Sélectionnez le dossier où enregistrer les bulletins générés";
+                        folderDialog.Description = "Sélectionnez le dossier où enregistrer l'archive ZIP des bulletins";
                         folderDialog.ShowNewFolderButton = true;
 
                         if (folderDialog.ShowDialog() == DialogResult.OK)
                         {
                             string dossierDestination = folderDialog.SelectedPath;
+
+                            // Créer un dossier temporaire pour les PDFs
+                            string periodeSafe = $"{periodeDebut:yyyy-MM-dd}_au_{periodeFin:yyyy-MM-dd}";
+                            string nomEntrepriseSafe = nomEntreprise.Replace(" ", "_").Replace("/", "-").Replace("\\", "-");
+                            string dossierTemp = Path.Combine(Path.GetTempPath(), $"Bulletins_Personnalises_{nomEntrepriseSafe}_{periodeSafe}_{DateTime.Now:HHmmss}");
+
+                            if (!Directory.Exists(dossierTemp))
+                            {
+                                Directory.CreateDirectory(dossierTemp);
+                            }
+
                             int nbSuccess = 0;
                             int nbErrors = 0;
                             List<string> erreurs = new List<string>();
@@ -1647,15 +1660,12 @@ namespace RH_GRH
                                         // Créer le modèle de bulletin
                                         var model = CreerModèleBulletin(snapshot, idEmploye);
 
-                                        // Générer le PDF
-                                        DateTime d0 = guna2DateTimePickerDebut.Value.Date;
-                                        DateTime d1 = guna2DateTimePickerFin.Value.Date;
-                                        string periodeSafe = $"{d0:yyyy-MM-dd}_au_{d1:yyyy-MM-dd}";
+                                        // Générer le PDF dans le dossier temporaire
                                         string matriculeSafe = matricule.Replace(" ", "_").Replace("/", "-");
                                         string nomEmployeSafe = nomPrenom.Replace(" ", "_").Replace("/", "-");
 
                                         string fileName = $"Bulletin_Personnalise_{matriculeSafe}_{nomEmployeSafe}_{periodeSafe}.pdf";
-                                        string fullPath = System.IO.Path.Combine(dossierDestination, fileName);
+                                        string fullPath = Path.Combine(dossierTemp, fileName);
 
                                         var document = new BulletinDocument(model);
                                         document.GeneratePdf(fullPath);
@@ -1707,12 +1717,56 @@ namespace RH_GRH
                                 }
                             }
 
+                            // Créer le fichier ZIP si des bulletins ont été générés avec succès
+                            string nomZip = "";
+                            if (nbSuccess > 0)
+                            {
+                                try
+                                {
+                                    nomZip = $"Bulletins_Personnalises_{nomEntrepriseSafe}_{periodeSafe}.zip";
+                                    string cheminZip = Path.Combine(dossierDestination, nomZip);
+
+                                    // Supprimer le ZIP s'il existe déjà
+                                    if (File.Exists(cheminZip))
+                                    {
+                                        File.Delete(cheminZip);
+                                    }
+
+                                    // Créer l'archive ZIP
+                                    ZipFile.CreateFromDirectory(dossierTemp, cheminZip);
+
+                                    // Nettoyer le dossier temporaire
+                                    try
+                                    {
+                                        Directory.Delete(dossierTemp, true);
+                                    }
+                                    catch
+                                    {
+                                        // Ignorer les erreurs de nettoyage
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    nbErrors++;
+                                    erreurs.Add($"Erreur lors de la création du ZIP: {ex.Message}");
+                                }
+                            }
+
                             // Afficher le résultat
                             string message = $"Génération terminée !\n\n" +
                                            $"Entreprise: {nomEntreprise}\n" +
                                            $"✓ Réussis: {nbSuccess}\n" +
-                                           $"✗ Échecs: {nbErrors}\n\n" +
-                                           $"Les bulletins ont été enregistrés dans:\n{dossierDestination}";
+                                           $"✗ Échecs: {nbErrors}\n\n";
+
+                            if (nbSuccess > 0 && !string.IsNullOrEmpty(nomZip))
+                            {
+                                message += $"📦 Archive ZIP : {nomZip}\n" +
+                                          $"📁 Dossier : {dossierDestination}";
+                            }
+                            else
+                            {
+                                message += $"Les bulletins ont été enregistrés dans:\n{dossierDestination}";
+                            }
 
                             if (erreurs.Count > 0 && erreurs.Count <= 5)
                             {

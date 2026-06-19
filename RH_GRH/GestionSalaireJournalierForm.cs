@@ -870,6 +870,7 @@ namespace RH_GRH
                         LEFT JOIN direction d ON d.id_direction = p.id_direction
                         LEFT JOIN categorie c ON c.id_categorie = p.id_categorie
                         WHERE p.typeContrat = 'Journalier'
+                        AND p.Conformite = 1
                         ORDER BY p.nomPrenom";
 
                     using (var cmd = new MySqlCommand(query, con))

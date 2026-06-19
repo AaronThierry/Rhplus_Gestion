@@ -355,6 +355,7 @@ namespace RH_GRH
                             p.date_sortie IS NULL
                             OR p.date_sortie >= @periodeFin
                         )
+                        AND p.Conformite = 1
                         ORDER BY p.nomPrenom";
 
                     using (var cmd = new MySqlCommand(sql, con))
