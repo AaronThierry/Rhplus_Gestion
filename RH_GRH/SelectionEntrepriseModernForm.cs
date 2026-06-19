@@ -292,6 +292,20 @@ namespace RH_GRH
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void datePickerDebut_ValueChanged(object sender, EventArgs e)
+        {
+            // Mettre à jour la MinDate
+            datePickerFin.MinDate = datePickerDebut.Value.Date;
+
+            // Calculer le dernier jour du mois sélectionné
+            DateTime dateDebut = datePickerDebut.Value;
+            int dernierJour = DateTime.DaysInMonth(dateDebut.Year, dateDebut.Month);
+            DateTime dateFin = new DateTime(dateDebut.Year, dateDebut.Month, dernierJour);
+
+            // Mettre automatiquement la date de fin au dernier jour du mois
+            datePickerFin.Value = dateFin;
+        }
     }
 
     // Classe personnalisée pour la carte d'entreprise

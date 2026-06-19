@@ -179,6 +179,7 @@ namespace RH_GRH
             this.guna2DateTimePickerDebut.Size = new System.Drawing.Size(180, 36);
             this.guna2DateTimePickerDebut.TabIndex = 1;
             this.guna2DateTimePickerDebut.Value = new System.DateTime(2026, 1, 10, 0, 0, 0, 0);
+            this.guna2DateTimePickerDebut.ValueChanged += new System.EventHandler(this.guna2DateTimePickerDebut_ValueChanged);
             //
             // label3
             //

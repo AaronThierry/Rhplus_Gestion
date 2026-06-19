@@ -332,7 +332,16 @@ namespace RH_GRH
 
         private void guna2DateTimePickerDebut_ValueChanged(object sender, EventArgs e)
         {
+            // Mettre à jour la MinDate
             guna2DateTimePickerFin.MinDate = guna2DateTimePickerDebut.Value.Date;
+
+            // Calculer le dernier jour du mois sélectionné
+            DateTime dateDebut = guna2DateTimePickerDebut.Value;
+            int dernierJour = DateTime.DaysInMonth(dateDebut.Year, dateDebut.Month);
+            DateTime dateFin = new DateTime(dateDebut.Year, dateDebut.Month, dernierJour);
+
+            // Mettre automatiquement la date de fin au dernier jour du mois
+            guna2DateTimePickerFin.Value = dateFin;
         }
 
         private void buttonValider_Click(object sender, EventArgs e)

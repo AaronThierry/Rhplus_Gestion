@@ -282,7 +282,8 @@ namespace RH_GRH
             this.datePickerDebut.Size = new System.Drawing.Size(156, 42);
             this.datePickerDebut.TabIndex = 2;
             this.datePickerDebut.Value = new System.DateTime(2026, 6, 18, 0, 0, 0, 0);
-            // 
+            this.datePickerDebut.ValueChanged += new System.EventHandler(this.datePickerDebut_ValueChanged);
+            //
             // labelArrow
             // 
             this.labelArrow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
