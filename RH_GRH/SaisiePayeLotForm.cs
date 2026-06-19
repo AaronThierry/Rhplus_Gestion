@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
@@ -16,6 +18,7 @@ namespace RH_GRH
         private DateTime periodeFin;
         private DataTable dtEmployes;
         private string typeContrat; // "Horaire" ou "Journalier"
+        private string nomEntreprise; // Nom de l'entreprise
 
         public SaisiePayeLotForm(int idEntreprise, DateTime periodeDebut, DateTime periodeFin, string typeContrat = "Horaire")
         {
@@ -25,6 +28,9 @@ namespace RH_GRH
             this.periodeFin = periodeFin;
             this.typeContrat = typeContrat;
 
+            // Récupérer le nom de l'entreprise
+            RecupererNomEntreprise();
+
             ConfigurerDataGridView();
             ChargerEmployes();
 
@@ -33,6 +39,33 @@ namespace RH_GRH
 
             // Mettre à jour le titre selon le type de contrat
             labelTitre.Text = $"Saisie de Paie par Lot - {typeContrat}";
+        }
+
+        private void RecupererNomEntreprise()
+        {
+            try
+            {
+                var connect = new Dbconnect();
+                using (var con = connect.getconnection)
+                {
+                    con.Open();
+                    string sql = "SELECT nomEntreprise FROM entreprise WHERE id_entreprise = @idEntreprise";
+                    using (var cmd = new MySqlCommand(sql, con))
+                    {
+                        cmd.Parameters.AddWithValue("@idEntreprise", idEntreprise);
+                        var result = cmd.ExecuteScalar();
+                        nomEntreprise = result?.ToString() ?? "Entreprise";
+
+                        // Nettoyer le nom pour l'utiliser dans un nom de fichier
+                        nomEntreprise = nomEntreprise.Replace("/", "-").Replace("\\", "-").Replace(":", "").Trim();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                nomEntreprise = "Entreprise";
+                System.Diagnostics.Debug.WriteLine($"Erreur récupération nom entreprise: {ex.Message}");
+            }
         }
 
         private void DataGridViewEmployes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -408,16 +441,22 @@ namespace RH_GRH
                         // Masquer la barre de progression
                         panelProgression.Visible = false;
 
+                        // Nom du fichier ZIP
+                        string periodeSafe = $"{periodeDebut:yyyy-MM-dd}_au_{periodeFin:yyyy-MM-dd}";
+                        string nomEntrepriseSafe = nomEntreprise.Replace(" ", "_");
+                        string nomZip = $"Bulletins_{nomEntrepriseSafe}_{periodeSafe}.zip";
+
                         CustomMessageBox.Show(
                             $"✅ Génération terminée avec succès !\n\n" +
                             $"📊 {dtEmployes.Rows.Count} bulletin(s) généré(s)\n" +
+                            $"📦 Archive ZIP : {nomZip}\n" +
                             $"📁 Dossier : {folderDialog.SelectedPath}\n\n" +
                             $"Le dossier va s'ouvrir automatiquement.",
                             "Succès",
                             CustomMessageBox.MessageType.Success,
                             CustomMessageBox.MessageButtons.OK);
 
-                        // Ouvrir automatiquement le dossier contenant les bulletins
+                        // Ouvrir automatiquement le dossier contenant le fichier ZIP
                         System.Diagnostics.Process.Start("explorer.exe", folderDialog.SelectedPath);
 
                         this.DialogResult = DialogResult.OK;
@@ -526,10 +565,14 @@ namespace RH_GRH
             int successCount = 0;
             int errorCount = 0;
 
-            // Créer le dossier de destination s'il n'existe pas
-            if (!System.IO.Directory.Exists(dossierDestination))
+            // Créer un dossier temporaire pour les bulletins
+            string periodeSafe = $"{periodeDebut:yyyy-MM-dd}_au_{periodeFin:yyyy-MM-dd}";
+            string nomEntrepriseSafe = nomEntreprise.Replace(" ", "_");
+            string dossierTemp = Path.Combine(Path.GetTempPath(), $"Bulletins_{nomEntrepriseSafe}_{periodeSafe}_{DateTime.Now:HHmmss}");
+
+            if (!Directory.Exists(dossierTemp))
             {
-                System.IO.Directory.CreateDirectory(dossierDestination);
+                Directory.CreateDirectory(dossierTemp);
             }
 
             foreach (DataRow row in dtEmployes.Rows)
@@ -547,8 +590,8 @@ namespace RH_GRH
 
                 try
                 {
-                    // Générer un bulletin individuel pour cet employé
-                    GenererBulletinIndividuel(row, dossierDestination);
+                    // Générer un bulletin individuel pour cet employé dans le dossier temporaire
+                    GenererBulletinIndividuel(row, dossierTemp);
                     successCount++;
                 }
                 catch (Exception ex)
@@ -564,15 +607,49 @@ namespace RH_GRH
                 }
             }
 
-            // Message de fin avec résumé
-            if (errorCount == 0)
+            // Créer le fichier ZIP
+            if (successCount > 0)
             {
-                labelProgression.Text = $"✅ Génération terminée - {successCount} bulletin(s) généré(s)";
+                labelProgression.Text = "📦 Création de l'archive ZIP...";
+                guna2ProgressBar1.Value = 95;
+                Application.DoEvents();
+
+                try
+                {
+                    // Nom du fichier ZIP avec nom entreprise et période
+                    string nomZip = $"Bulletins_{nomEntrepriseSafe}_{periodeSafe}.zip";
+                    string cheminZip = Path.Combine(dossierDestination, nomZip);
+
+                    // Supprimer le ZIP s'il existe déjà
+                    if (File.Exists(cheminZip))
+                    {
+                        File.Delete(cheminZip);
+                    }
+
+                    // Créer l'archive ZIP
+                    ZipFile.CreateFromDirectory(dossierTemp, cheminZip);
+
+                    // Nettoyer le dossier temporaire
+                    Directory.Delete(dossierTemp, true);
+
+                    guna2ProgressBar1.Value = 100;
+                    labelProgression.Text = $"✅ Archive créée - {successCount} bulletin(s) dans {nomZip}";
+                }
+                catch (Exception ex)
+                {
+                    labelProgression.Text = $"⚠️ Erreur création ZIP : {ex.Message}";
+                }
             }
             else
             {
-                labelProgression.Text = $"⚠️ Génération terminée - {successCount} réussi(s), {errorCount} erreur(s)";
+                // Nettoyer le dossier temporaire si aucun bulletin généré
+                if (Directory.Exists(dossierTemp))
+                {
+                    Directory.Delete(dossierTemp, true);
+                }
+                labelProgression.Text = "❌ Aucun bulletin généré";
             }
+
             Application.DoEvents();
             System.Threading.Thread.Sleep(1500); // Afficher le message final pendant 1.5 secondes
         }
